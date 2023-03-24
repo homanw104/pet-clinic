@@ -1,4 +1,36 @@
+# Pet Clnic
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Project Routing
+
+```txt
+pages/
+│
+├── learn/
+│   ├── case-study/[id] 病例
+│   ├── examination/[id] 化验项目
+│   ├── medication/[id] 药品
+│   └── index.tsx 病例数据库
+│
+├── quiz/
+│   ├── [id] 试卷
+│   └── index.tsx 在线测试
+│
+├── reception/ 前台区
+├── records-dept/ 档案室
+├── outpatient-room/ 门诊室
+├── vaccination-room/ 免疫室
+├── laboratory/ 化验室
+├── treatment-room/ 治疗室
+├── radiology-room/ 影像学检查室
+├── pharmacy/ 药房
+├── infusion-room/ 输液室
+├── preparation-area/ 手术准备室
+├── operating-room/ 手术室
+├── inpatient-ward/ 住院部
+└── autopsy-room/ 病理剖检室
+```
 
 ## Getting Started
 
