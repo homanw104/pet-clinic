@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Image from "next/image"
-import { Button, Grid, Stack, Typography } from "@mui/material";
+import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import GridLayout from "@/components/grid_layout";
 
 export default function Home() {
@@ -16,21 +16,23 @@ export default function Home() {
         <Grid container height="100%">
           <Grid item xs={12}>
             <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="center" height="100%">
-              <Typography variant='h1'>Pet Clinic Online</Typography>
-              <Button>Login</Button>
+              <Typography variant='h1'>宠物医院在线导览</Typography>
+              <Button href="/login">登录</Button>
             </Stack>
           </Grid>
           <Grid item xs={4}>
             <Stack spacing={2}>
-              <Typography variant='body1'>
-                在下方选择一个职位或者选择右边的科室以开始导览。
-              </Typography>
-              <Button>前台</Button>
-              <Button>医助</Button>
-              <Button>兽医</Button>
+              <Paper>
+                <Typography variant='body1'>
+                  在下方选择一个职位或者选择右边的科室以开始导览。
+                </Typography>
+              </Paper>
+              <Button variant="contained" href="/receptionist">前台</Button>
+              <Button variant="contained" href="/technician">医助</Button>
+              <Button variant="contained" href="/veterinarian">兽医</Button>
               <Stack spacing={2} direction="row" justifyContent="center">
-                <Button>病例库</Button>
-                <Button>在线测试</Button>
+                <Button variant="contained" size="large" href="/learn">病例库</Button>
+                <Button variant="contained" size="large" href="/quiz">在线测试</Button>
               </Stack>
             </Stack>
           </Grid>
