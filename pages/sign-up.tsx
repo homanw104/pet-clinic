@@ -2,8 +2,7 @@ import Head from "next/head";
 import { Button, Grid, Paper, Stack, TextField, Typography } from "@mui/material";
 import GridLayout from "@/components/grid_layout";
 
-export default function Login() {
-
+export default function SignUp() {
   return (
     <>
       <Head>
@@ -15,17 +14,15 @@ export default function Login() {
       <GridLayout bgImage="">
         <Grid item xs={7} className="blank"></Grid>
         <Grid item xs={5} display="flex" direction="column" justifyContent="center">
-          <Paper style={{ padding: "2.5rem" }}>
+          <Paper sx={{ padding: '2.5rem' }}>
             <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch">
-              <Typography variant="h3">登录</Typography>
+              <Typography variant="h3">注册</Typography>
               <TextField id="outlined-basic" label="用户名" variant="outlined" />
-              <TextField id="outlined-basic" label="密码" variant="outlined" />
+              <TextField id="outlined-basic" label="创建密码" variant="outlined" />
+              <TextField id="outlined-basic" label="重复密码" variant="outlined" />
               <Stack spacing={4} direction="row" justifyContent="space-between" style={{ paddingTop: "5rem" }}>
-                <Button>忘记密码？</Button>
-                <Stack spacing={2} direction="row" justifyContent="space-between">
-                  <Button variant="outlined" href="/sign-up">注册</Button>
-                  <Button variant="contained" href="/" disableElevation>登录</Button>
-                </Stack>
+                <Button variant="outlined" href="/login">返回</Button>
+                <Button variant="contained" href="/">注册</Button>
               </Stack>
             </Stack>
           </Paper>

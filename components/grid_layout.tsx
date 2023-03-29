@@ -8,12 +8,19 @@ import React from "react";
 
 type LayoutProps = {
   children: React.ReactNode;
+  bgImage?: string;
 };
 
-export default function GridLayout({ children }: LayoutProps) {
+export default function GridLayout({ children, bgImage }: LayoutProps) {
   return (
     <Box display="flex" flexDirection="column" height="100%">
-      <Container maxWidth="lg" style={{ flexGrow: 1, display: 'flex' }}>
+      <Container maxWidth="lg" style={{
+        flexGrow: 1,
+        display: 'flex',
+        backgroundImage: bgImage ? `url(${bgImage})` : undefined,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}>
         <Grid container height="100%">
           {children}
         </Grid>
