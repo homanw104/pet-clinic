@@ -29,7 +29,15 @@ pages/
 ├── preparation-area/ 手术准备室
 ├── operating-room/ 手术室
 ├── inpatient-ward/ 住院部
-└── autopsy-room/ 病理剖检室
+├── autopsy-room/ 病理剖检室
+│
+├── receptionist/ 前台（职位）
+├── technician/ 医助（职位）
+├── veterinarian/ 兽医（职位）
+│
+├── index.tsx 主页
+├── login.tsx 登录页
+└── sign-up.tsx 注册页
 ```
 
 ## Getting Started

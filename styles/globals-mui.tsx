@@ -1,6 +1,10 @@
 import React from "react";
 import { createTheme } from "@mui/material";
 
+const shape = {
+  borderRadius: 8,
+}
+
 const typography = {
   fontFamily: [
     '"Noto Sans SC"',
@@ -51,6 +55,7 @@ const lightTheme = createTheme({
       main: '#6A5D41',
     },
   },
+  shape: shape,
   typography: typography
 });
 
@@ -63,6 +68,7 @@ const darkTheme = createTheme({
       main: '#D6C5A2',
     },
   },
+  shape: shape,
   typography: typography
 });
 
