@@ -1,16 +1,17 @@
 /**
  * Layout used in login.tsx and sign-up.tsx.
  */
-import { Box, Button, Container, Grid, Paper, Stack, TextField, Typography } from "@mui/material";
+
 import React from "react";
 import Image from "next/image";
+import { Grid, Paper, Stack } from "@mui/material";
 import AppGridLayout from "@/components/layout/app_grid_layout";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
-export default function LoginCardLayout({ children }: LayoutProps) {
+export default function LoginPageLayout({ children }: LayoutProps) {
   return (
     <AppGridLayout bgColor="#F4B21E">
       <Grid item xs={6} position="relative">

@@ -1,13 +1,25 @@
-import Image from "next/image"
+import React from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import AppGridLayout from "@/components/layout/app_grid_layout";
 
-export default function Home() {
+type PageProps = {
+  overlay?: React.ReactNode;
+};
+
+export default function Home({ overlay }: PageProps) {
+  const route = useRouter();
+
+  const handleOnClick = (href: string) => {
+    route.push(href).then();
+  }
+
   return (
-    <AppGridLayout>
+    <AppGridLayout overlay={overlay}>
       <Grid item xs={12}>
         <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="center" height="100%">
-          <Typography variant="h1">宠物医院在线导览</Typography>
+          <Typography variant="h2">宠物医院在线导览</Typography>
           <Button href="/login">登录</Button>
         </Stack>
       </Grid>
@@ -18,12 +30,12 @@ export default function Home() {
               在下方选择一个职位或者选择右边的科室以开始导览。
             </Typography>
           </Paper>
-          <Button variant="contained" href="/receptionist">前台</Button>
-          <Button variant="contained" href="/technician">医助</Button>
-          <Button variant="contained" href="/veterinarian">兽医</Button>
+          <Button variant="contained" onClick={() => handleOnClick("/receptionist")}>前台</Button>
+          <Button variant="contained" onClick={() => handleOnClick("/technician")}>医助</Button>
+          <Button variant="contained" onClick={() => handleOnClick("/veterinarian")}>兽医</Button>
           <Stack spacing={2} direction="row" justifyContent="center">
-            <Button variant="contained" size="large" href="/learn">病例库</Button>
-            <Button variant="contained" size="large" href="/quiz">在线测试</Button>
+            <Button variant="contained" size="large" onClick={() => handleOnClick("/learn")}>病例库</Button>
+            <Button variant="contained" size="large" onClick={() => handleOnClick("/quiz")}>在线测试</Button>
           </Stack>
         </Stack>
       </Grid>

@@ -1,10 +1,10 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
-import LoginCardLayout from "@/components/layout/login_card_layout";
+import LoginPageLayout from "@/components/layout/login_page_layout";
 import Link from "next/link";
 
 export default function SignUp() {
   return (
-    <LoginCardLayout>
+    <LoginPageLayout>
       <Typography variant="h3">注册</Typography>
       <TextField
         id="username" label="用户名" variant="outlined"
@@ -26,6 +26,6 @@ export default function SignUp() {
           <Button variant="contained" href="/">注册</Button>
         </Link>
       </Stack>
-    </LoginCardLayout>
+    </LoginPageLayout>
   )
 }
