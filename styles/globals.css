@@ -1,30 +1,16 @@
 /* Light Theme Properties */
 
 :root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
+  --foreground-rgb: #1F1B16;
+  --background-rgb: #F9F2F2;
 }
 
 /* Dark Theme Properties */
 
-/*@media (prefers-color -scheme: dark) {*/
+/*@media (prefers-color-scheme: dark) {*/
 /*  :root {*/
-/*    --max-width: 1100px;*/
-/*    --border-radius: 12px;*/
-/*    --foreground-rgb: 255, 255, 255;*/
-/*    --background-rgb: 0, 0, 0;*/
-
-/*    --callout-rgb: 20, 20, 20;*/
-/*    --callout-border-rgb: 108, 108, 108;*/
-/*    --card-rgb: 100, 100, 100;*/
-/*    --card-border-rgb: 200, 200, 200;*/
+/*    --foreground-rgb: #F9F2F2;*/
+/*    --background-rgb: #1F1B16;*/
 /*  }*/
 /*}*/
 
@@ -45,11 +31,21 @@ body,
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+  color: var(--foreground-rgb);
+  background: var(--background-rgb);
+}
+
+::selection {
+  color: var(--background-rgb);
+  background-color: var(--foreground-rgb);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.material-symbols {
+  font-size: inherit;
+  font-variation-settings: inherit;
 }

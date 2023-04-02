@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
+import TypographyButton from "@/components/typography_button";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import AppGridLayout from "@/components/layout/app_grid_layout";
 
 type PageProps = {
@@ -18,34 +20,68 @@ export default function Home({ overlay }: PageProps) {
   return (
     <AppGridLayout overlay={overlay}>
       <Grid item xs={12}>
-        <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="center" height="100%">
-          <Typography variant="h2">宠物医院在线导览</Typography>
-          <Button href="/login">登录</Button>
+        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" style={{
+          marginTop: "4rem"
+        }}>
+          <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
+            <Typography variant="h1">Pet Clinic Online</Typography>
+            <TypographyButton variant="h3" onClick={() => handleOnClick("/login")}>
+              登录 <span className="material-symbols" style={{
+                position: "relative",
+                top: "0.15em"
+              }}>{"\u{e5d9}"}</span>
+            </TypographyButton>
+          </Stack>
+          <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
+            <Typography variant="h3">宠物医院在线导览</Typography>
+            <Typography variant="h4">
+              <span className="material-symbols" style={{
+                position: "relative",
+                top: "0.2em"
+              }}>{"\u{f1e5}"}</span> 点击职位/科室开始导览
+            </Typography>
+          </Stack>
         </Stack>
       </Grid>
-      <Grid item xs={4}>
-        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
+      <Grid item xs={3}>
+        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" style={{
+          marginTop: "4rem"
+        }}>
           <Paper>
-            <Typography variant="body1">
-              在下方选择一个职位或者选择右边的科室以开始导览。
-            </Typography>
+            <Stack spacing={2} direction="row" justifyContent="center" alignItems="center" margin="1rem">
+              <InfoOutlinedIcon />
+              <Typography variant="body1">
+                在下方选择职位或在右侧选择科室以开始导览。
+              </Typography>
+            </Stack>
           </Paper>
           <Button variant="contained" onClick={() => handleOnClick("/receptionist")}>前台</Button>
           <Button variant="contained" onClick={() => handleOnClick("/technician")}>医助</Button>
           <Button variant="contained" onClick={() => handleOnClick("/veterinarian")}>兽医</Button>
           <Stack spacing={2} direction="row" justifyContent="center">
-            <Button variant="contained" size="large" onClick={() => handleOnClick("/learn")}>病例库</Button>
-            <Button variant="contained" size="large" onClick={() => handleOnClick("/quiz")}>在线测试</Button>
+            <Button variant="contained" size="large" onClick={() => handleOnClick("/learn")} style={{
+              width: "100%"
+            }}>病例库</Button>
+            <Button variant="contained" size="large" onClick={() => handleOnClick("/quiz")} style={{
+              width: "100%"
+            }}>在线测试</Button>
           </Stack>
         </Stack>
       </Grid>
-      <Grid item xs={8}>
-        <Image
-          src="https://www.midmark.com/images/default-source/animal-health/angled-floor-plan0ca4a2f0f96142d9b07be7fe8c560850.png"
-          alt="Pet Clinic Online"
-          width={640}
-          height={386}
-        />
+      <Grid item xs={9} position="relative">
+        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" style={{
+          marginTop: "4rem",
+          position: "absolute",
+          top: "0", bottom: "0",
+          left: "2rem", right: "0"
+        }}>
+          <Image
+            src="https://www.midmark.com/images/default-source/animal-health/angled-floor-plan0ca4a2f0f96142d9b07be7fe8c560850.png"
+            alt="Pet Clinic Online"
+            fill={true}
+            style={{ objectFit: "contain", objectPosition: "top" }}
+          />
+        </Stack>
       </Grid>
     </AppGridLayout>
   )

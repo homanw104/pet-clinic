@@ -63,8 +63,8 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
             {children}
           </Grid>
         </Container>
-        {overlay !== undefined && <OverlayBox>{overlay}</OverlayBox>}
       </Box>
+      {overlay !== undefined && <OverlayBox>{overlay}</OverlayBox>}
     </>
   )
 }
