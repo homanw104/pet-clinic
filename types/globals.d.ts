@@ -5,12 +5,24 @@ import "@mui/material/styles";
  */
 declare module "@mui/material/styles" {
   interface Palette {
+    primary: PaletteColorOptions;
+    secondary: PaletteColorOptions;
+    tertiary: PaletteColorOptions;
     surface: SurfaceColorOptions;
   }
 
   interface PaletteOptions {
+    primary: PaletteColorOptions;
+    secondary: PaletteColorOptions;
     tertiary: PaletteColorOptions;
     surface: SurfaceColorOptions;
+  }
+
+  interface PaletteColor {
+    main: string;
+    onMain: string;
+    container: string;
+    onContainer: string;
   }
 
   interface PaletteColorOptions {
