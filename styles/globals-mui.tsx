@@ -1,30 +1,13 @@
+/**
+ * Style definitions used by @mui/material.
+ * Edit types/globals.d.ts to allow custom theme properties.
+ */
+
 import React from "react";
 import { createTheme } from "@mui/material";
 
-/**
- * Allow customization using `createTheme`.
- */
-declare module '@mui/material/styles' {
-  interface PaletteOptions {
-    tertiary?: PaletteColorOptions;
-    surface?: {
-      0?: string;
-      1?: string;
-      2?: string;
-      3?: string;
-      4?: string;
-    }
-  }
-  interface PaletteColorOptions {
-    main?: string;
-    onMain?: string;
-    container?: string;
-    onContainer?: string;
-  }
-}
-
 const shape = {
-  borderRadius: 8,
+  borderRadius: 12,
 }
 
 const typography = {
@@ -100,7 +83,8 @@ const lightTheme = createTheme({
       default: '#FFF8F3',
     },
     surface: {
-      0: '#FFF8F3',
+      main: '#FFF8F3',
+      onMain: '#1F1B16',
       1: '#FBF2F2',
       2: '#F9ECEB',
       3: '#F7E6E3',
@@ -142,7 +126,8 @@ const darkTheme = createTheme({
       default: '#16130E',
     },
     surface: {
-      0: '#16130E',
+      main: '#16130E',
+      onMain: '#CCC5BD',
       1: '#2C221E',
       2: '#332622',
       3: '#3B2B26',

@@ -2,9 +2,14 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
+import AvatarButton from "@/components/avatar_button";
 import TypographyButton from "@/components/typography_button";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import AppGridLayout from "@/components/layout/app_grid_layout";
+
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import receptionistIcon from "@/public/receptionist.png";
+import technicianIcon from "@/public/technician.png";
+import veterinarianIcon from "@/public/veterinarian.png";
 
 type PageProps = {
   overlay?: React.ReactNode;
@@ -45,7 +50,7 @@ export default function Home({ overlay }: PageProps) {
       </Grid>
       <Grid item xs={3}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" style={{
-          marginTop: "4rem"
+          marginTop: "4rem", marginBottom: "4rem"
         }}>
           <Paper>
             <Stack spacing={2} direction="row" justifyContent="center" alignItems="center" margin="1rem">
@@ -55,9 +60,21 @@ export default function Home({ overlay }: PageProps) {
               </Typography>
             </Stack>
           </Paper>
-          <Button variant="contained" onClick={() => handleOnClick("/receptionist")}>前台</Button>
-          <Button variant="contained" onClick={() => handleOnClick("/technician")}>医助</Button>
-          <Button variant="contained" onClick={() => handleOnClick("/veterinarian")}>兽医</Button>
+          <AvatarButton src={receptionistIcon} alt="前台" name="receptionist" onClick={() => {
+            handleOnClick("/receptionist")
+          }}>
+            前台
+          </AvatarButton>
+          <AvatarButton src={technicianIcon} alt="医助" name="technician" onClick={() => {
+            handleOnClick("/technician")
+          }}>
+            医助
+          </AvatarButton>
+          <AvatarButton src={veterinarianIcon} alt="兽医" name="veterinarian" onClick={() => {
+            handleOnClick("/veterinarian")
+          }}>
+            兽医
+          </AvatarButton>
           <Stack spacing={2} direction="row" justifyContent="center">
             <Button variant="contained" size="large" onClick={() => handleOnClick("/learn")} style={{
               width: "100%"
@@ -76,8 +93,8 @@ export default function Home({ overlay }: PageProps) {
           left: "2rem", right: "0"
         }}>
           <Image
-            src="https://www.midmark.com/images/default-source/animal-health/angled-floor-plan0ca4a2f0f96142d9b07be7fe8c560850.png"
-            alt="Pet Clinic Online"
+            src="/floor-plan.png"
+            alt="Pet clinic floor plan"
             fill={true}
             style={{ objectFit: "contain", objectPosition: "top" }}
           />
