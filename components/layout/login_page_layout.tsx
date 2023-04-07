@@ -14,7 +14,7 @@ export default function LoginPageLayout({ children }: LayoutProps) {
   return (
     <AppGridLayout bgImage="background-full.jpg">
       <Grid item xs={7} className="blank" />
-      <Grid item xs={5} display="flex" direction="column" justifyContent="center">
+      <Grid item xs={5} display="flex" direction="column" justifyContent="center" height="100vh">
         <Paper style={{ borderRadius: "12px" }}>
           <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
             {children}

@@ -34,8 +34,8 @@ function OverlayBox({ children }: OverlayProps) {
       zIndex: 999,
       backgroundColor: "rgba(0, 0, 0, 0.5)"
     }}>
-      <Container maxWidth="lg" style={{ flexGrow: 1, display: "flex" }}>
-        <Grid container height="100%">
+      <Container style={{ flexGrow: 1, display: "flex" }}>
+        <Grid container>
           {children}
         </Grid>
       </Container>
@@ -58,8 +58,8 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>
-        <Container maxWidth="lg" style={{ flexGrow: 1, display: "flex" }}>
-          <Grid container height="100%">
+        <Container style={{ flexGrow: 1 }}>
+          <Grid container>
             {children}
           </Grid>
         </Container>
