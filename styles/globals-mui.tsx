@@ -85,6 +85,7 @@ const lightTheme = createTheme({
     surface: {
       main: '#FFF8F3',
       onMain: '#1F1B16',
+      dim: '#E1D9D0',
       1: '#FBF2F2',
       2: '#F9ECEB',
       3: '#F7E6E3',
@@ -128,6 +129,7 @@ const darkTheme = createTheme({
     surface: {
       main: '#16130E',
       onMain: '#CCC5BD',
+      dim: '#16130E',
       1: '#2C221E',
       2: '#332622',
       3: '#3B2B26',

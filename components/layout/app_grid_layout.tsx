@@ -13,26 +13,38 @@ import React from "react";
 import Head from "next/head";
 import { Box, Container, Grid } from "@mui/material";
 
-type OverlayProps = {
+interface OverlayProps {
   children: React.ReactNode;
 }
 
-type LayoutProps = {
+interface LayoutProps {
   children: React.ReactNode;
   overlay?: React.ReactNode;
   bgColor?: string;
   bgImage?: string;
-};
+}
 
 function OverlayBox({ children }: OverlayProps) {
   return (
-    <Box position="absolute" display="flex" flexDirection="column" height="100%" style={{
+    <Box position="absolute" display="flex" flexDirection="column" height="100%" sx={{
       top: 0,
       left: 0,
       right: 0,
       bottom: 0,
       zIndex: 999,
-      backgroundColor: "rgba(0, 0, 0, 0.5)"
+
+      "@keyframes fadeInBlur": {
+        "0%": {
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          backdropFilter: "blur(0)",
+        },
+        "100%": {
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backdropFilter: "blur(5px)",
+        }
+      },
+
+      animation: "fadeInBlur 0.3s ease forwards"
     }}>
       <Container style={{ flexGrow: 1, display: "flex" }}>
         <Grid container>
@@ -52,7 +64,7 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
-      <Box position="relative" display="flex" flexDirection="column" height="100%" style={{
+      <Box position="relative" display="flex" flexDirection="column" height="100%" sx={{
         backgroundColor: bgColor ? bgColor : undefined,
         backgroundImage: bgImage ? `url(${bgImage})` : undefined,
         backgroundSize: 'cover',

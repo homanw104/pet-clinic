@@ -1,4 +1,3 @@
-import React from "react";
 import { CardProps, Paper, Stack, Typography, useTheme } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 

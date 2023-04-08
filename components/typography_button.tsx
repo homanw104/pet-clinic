@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography, TypographyProps, useTheme } from "@mui/material";
 
 export default function TypographyButton({ children, ...props }: TypographyProps) {

@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Grid, Paper, Stack, Typography } from "@mui/material";
 import AppGridLayout from "@/components/layout/app_grid_layout";
@@ -18,6 +18,11 @@ type PageProps = {
 
 export default function Home({ overlay }: PageProps) {
   const route = useRouter();
+
+  // Leaflet MapContainer doesn't support Server Side Rendering
+  const Map = dynamic(() => import('@/components/map'), {
+    ssr: false,
+  });
 
   const handleOnClick = (href: string) => {
     route.push(href).then();
@@ -80,20 +85,22 @@ export default function Home({ overlay }: PageProps) {
         <Paper elevation={0} sx={{
           backgroundColor: "theme.palette.surface.main",
           color: "theme.palette.surface.onMain",
-          marginTop: "4rem", marginBottom: "4rem",
+          marginTop: "4rem",
+          marginBottom: "4rem",
           position: "absolute",
           top: "0", bottom: "0",
           left: "2rem", right: "0",
           overflow: "hidden",
-          padding: 0,
           height: "600px",
         }}>
-          <Image
-            src="/floor-plan.png"
-            alt="Pet clinic floor plan"
-            fill={true}
-            style={{ objectFit: "contain", objectPosition: "top" }}
-          />
+          <Paper elevation={0} sx={{
+            margin: "0.5rem",
+            overflow: "hidden",
+            height: "584px",
+            borderRadius: "0.25rem"
+          }}>
+            <Map />
+          </Paper>
         </Paper>
       </Grid>
 

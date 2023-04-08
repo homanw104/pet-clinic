@@ -35,6 +35,7 @@ declare module "@mui/material/styles" {
   interface  SurfaceColorOptions {
     main: string;
     onMain: string;
+    dim: string;
     1: string;
     2: string;
     3: string;

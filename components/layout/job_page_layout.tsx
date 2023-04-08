@@ -16,7 +16,7 @@ function Overlay({ children, jobName, jobList }: LayoutProps) {
           position: "absolute",
           top: "2rem", bottom: "2rem",
           left: "0", right: "0",
-          borderRadius: "2rem"
+          borderRadius: "0.75rem"
         }}>
           <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
             <Typography variant="h3" justifyContent="center">{jobName}</Typography>
@@ -33,7 +33,7 @@ function Overlay({ children, jobName, jobList }: LayoutProps) {
           position: "absolute",
           top: "2rem", bottom: "2rem",
           left: "2rem", right: "0",
-          borderRadius: "2rem"
+          borderRadius: "0.75rem"
         }}>
           <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem" style={{
             overflowY: "scroll"
