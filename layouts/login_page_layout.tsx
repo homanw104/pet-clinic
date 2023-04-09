@@ -4,11 +4,11 @@
 
 import React from "react";
 import { Grid, Paper, Stack } from "@mui/material";
-import AppGridLayout from "@/components/layout/app_grid_layout";
+import AppGridLayout from "@/layouts/app_grid_layout";
 
-type LayoutProps = {
+interface LayoutProps {
   children: React.ReactNode;
-};
+}
 
 export default function LoginPageLayout({ children }: LayoutProps) {
   return (

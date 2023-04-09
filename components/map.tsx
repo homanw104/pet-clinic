@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import { CRS, LatLng, LatLngBounds } from "leaflet";
-import { MapContainer, ImageOverlay } from 'react-leaflet';
+import { MapContainer, ImageOverlay } from "react-leaflet";
 import { useTheme } from "@mui/material";
 
 export default function Map() {

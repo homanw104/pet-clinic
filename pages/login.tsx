@@ -1,5 +1,5 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
-import LoginPageLayout from "@/components/layout/login_page_layout";
+import LoginPageLayout from "@/layouts/login_page_layout";
 import Link from "next/link";
 
 export default function Login() {

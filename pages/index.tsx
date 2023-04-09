@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Grid, Paper, Stack, Typography } from "@mui/material";
-import AppGridLayout from "@/components/layout/app_grid_layout";
+import AppGridLayout from "@/layouts/app_grid_layout";
 
 import receptionistIcon from "@/public/receptionist.png";
 import technicianIcon from "@/public/technician.png";
@@ -20,7 +20,7 @@ export default function Home({ overlay }: PageProps) {
   const route = useRouter();
 
   // Leaflet MapContainer doesn't support Server Side Rendering
-  const Map = dynamic(() => import('@/components/map'), {
+  const Map = dynamic(() => import("@/components/map"), {
     ssr: false,
   });
 

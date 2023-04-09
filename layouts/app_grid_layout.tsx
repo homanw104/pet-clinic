@@ -33,6 +33,7 @@ function OverlayBox({ children }: OverlayProps) {
       bottom: 0,
       zIndex: 999,
 
+      // Fade in blur used when opening overlay
       "@keyframes fadeInBlur": {
         "0%": {
           backgroundColor: "rgba(0, 0, 0, 0)",

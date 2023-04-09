@@ -4,6 +4,7 @@
 
 import React from "react";
 import { useRouter } from "next/router";
+import Image, { StaticImageData } from "next/image";
 import {
   Box,
   Container,
@@ -17,18 +18,22 @@ import {
   useTheme
 } from "@mui/material";
 import Home from "@/pages";
-import Image, { StaticImageData } from "next/image";
 
-type LayoutProps = {
+interface ArticleInfo {
+  name: string;
+  href: string;
+}
+
+interface LayoutProps {
   children: React.ReactNode;
-  jobName: string;
-  jobList: string[];
-  src: StaticImageData;
-  alt: string;    // Image description
-  name: string;   // Job name in English
-};
+  src: StaticImageData;   // Image data
+  alt: string;            // Image description
+  title: string;          // List title
+  subtitle: string;       // List title in English
+  articleList: ArticleInfo[];
+}
 
-function Overlay({ children, jobName, jobList, src, alt, name }: LayoutProps) {
+function Overlay({ children, src, alt, title, subtitle, articleList }: LayoutProps) {
   const route = useRouter();
   const theme = useTheme();
 
@@ -38,7 +43,7 @@ function Overlay({ children, jobName, jobList, src, alt, name }: LayoutProps) {
 
   return (
     <>
-      <Grid item sm={3} position="relative" display="flex" direction="column" justifyContent="center">
+      <Grid item sm={3} position="relative">
         <Paper style={{
           position: "absolute",
           top: "2rem", bottom: "2rem",
@@ -57,26 +62,26 @@ function Overlay({ children, jobName, jobList, src, alt, name }: LayoutProps) {
           }}>
             <Stack direction="column" padding="2rem">
               <Typography variant="h4" align="left" noWrap={true} lineHeight={1}>
-                {jobName}
+                {title}
               </Typography>
               <Typography variant="h6" align="left" noWrap={true} lineHeight={1} style={{
                 textTransform: "none", fontVariant: "small-caps"
               }}>
-                {name}
+                {subtitle}
               </Typography>
             </Stack>
             <Image src={src} alt={alt} width={160} height={160} className="unselectable" style={{
               position: "absolute",
-              bottom: "-0.5rem",
-              right: "-0.5rem",
+              bottom: "-8px",
+              right: "-8px",
               opacity: "30%"
             }}/>
           </Box>
           <List>
-            {Array.from(jobList).map((value, index) => (
+            {Array.from(articleList).map((article, index) => (
               <ListItem key={index} disablePadding>
-                <ListItemButton onClick={() => handleOnClick(value)}>
-                  {value}
+                <ListItemButton onClick={() => handleOnClick(article.href)}>
+                  {article.name}
                 </ListItemButton>
               </ListItem>
             ))}
@@ -84,7 +89,7 @@ function Overlay({ children, jobName, jobList, src, alt, name }: LayoutProps) {
         </Paper>
       </Grid>
 
-      <Grid item sm={9} position="relative" display="flex" direction="column" justifyContent="center">
+      <Grid item sm={9} position="relative">
         <Paper style={{
           position: "absolute",
           top: "2rem", bottom: "2rem",
