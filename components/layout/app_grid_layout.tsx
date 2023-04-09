@@ -40,7 +40,7 @@ function OverlayBox({ children }: OverlayProps) {
         },
         "100%": {
           backgroundColor: "rgba(0, 0, 0, 0.5)",
-          backdropFilter: "blur(5px)",
+          backdropFilter: "blur(10px)",
         }
       },
 
@@ -64,6 +64,7 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
+
       <Box position="relative" display="flex" flexDirection="column" height="100%" sx={{
         backgroundColor: bgColor ? bgColor : undefined,
         backgroundImage: bgImage ? `url(${bgImage})` : undefined,
@@ -76,7 +77,9 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
           </Grid>
         </Container>
       </Box>
-      {overlay !== undefined && <OverlayBox>{overlay}</OverlayBox>}
+
+      {/* Render OverlayBox when overlay is not empty */}
+      {overlay && <OverlayBox>{overlay}</OverlayBox>}
     </>
   )
 }

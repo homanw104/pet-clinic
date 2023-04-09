@@ -26,7 +26,7 @@ export default function Home({ overlay }: PageProps) {
 
   const handleOnClick = (href: string) => {
     route.push(href).then();
-  }
+  };
 
   return (
     <AppGridLayout overlay={overlay}>
@@ -36,8 +36,12 @@ export default function Home({ overlay }: PageProps) {
           marginTop: "4rem"
         }}>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-            <Typography variant="h1" noWrap={true}>Pet Clinic Online</Typography>
-            <TypographyButton variant="h3" noWrap={true} onClick={() => handleOnClick("/login")}>
+            <Typography variant="h1" noWrap={true} className="unselectable">
+              Pet Clinic Online
+            </Typography>
+            <TypographyButton variant="h3" noWrap={true} className="unselectable" onClick={
+              () => handleOnClick("/login")
+            }>
               登录 <span className="material-symbols" style={{
                 position: "relative",
                 top: "0.15em"

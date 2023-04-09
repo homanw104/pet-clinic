@@ -54,6 +54,7 @@ const typography = {
 
 const lightTheme = createTheme({
   palette: {
+    mode: 'light',
     primary: {
       main: '#7A5910',
       onMain: '#FFFFFF',
@@ -80,16 +81,16 @@ const lightTheme = createTheme({
     },
     background: {
       paper: '#FFF8F3',
-      default: '#FFF8F3',
+      default: '#F9F2F2',
     },
     surface: {
       main: '#FFF8F3',
       onMain: '#1F1B16',
       dim: '#E1D9D0',
-      1: '#FBF2F2',
-      2: '#F9ECEB',
-      3: '#F7E6E3',
-      4: '#F6E4E0',
+      1: '#F9F2F2',
+      2: '#F7ECEB',
+      3: '#F4E6E3',
+      4: '#F3E4E0',
     },
   },
   shape: shape,
@@ -98,6 +99,7 @@ const lightTheme = createTheme({
 
 const darkTheme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
       main: '#FABD3E',
       onMain: '#452C02',
@@ -124,16 +126,19 @@ const darkTheme = createTheme({
     },
     background: {
       paper: '#16130E',
-      default: '#16130E',
+      default: '#2A221E',
     },
     surface: {
       main: '#16130E',
       onMain: '#CCC5BD',
       dim: '#16130E',
-      1: '#2C221E',
-      2: '#332622',
-      3: '#3B2B26',
-      4: '#3D2D27',
+      1: '#2A221E',
+      2: '#312622',
+      3: '#382B26',
+      4: '#3A2D27',
+    },
+    text: {
+      primary: '#CCC5BD',
     }
   },
   shape: shape,

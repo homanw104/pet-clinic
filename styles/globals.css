@@ -1,19 +1,3 @@
-/* Light theme properties */
-
-:root {
-  --foreground-rgb: #1F1B16;
-  --background-rgb: #F9F2F2;
-}
-
-/* Dark theme properties */
-
-/*@media (prefers-color-scheme: dark) {*/
-/*  :root {*/
-/*    --foreground-rgb: #F9F2F2;*/
-/*    --background-rgb: #1F1B16;*/
-/*  }*/
-/*}*/
-
 /* Global CSS */
 
 * {
@@ -28,7 +12,7 @@
   display: none;
 }
 
-/* Hide scrollbar for Firefox */
+/* Hide scrollbar for Firefox, IE and Edge */
 
 * {
   scrollbar-width: none;
@@ -45,22 +29,26 @@ body,
   overflow-x: hidden;
 }
 
-body {
-  color: var(--foreground-rgb);
-  background: var(--background-rgb);
-}
-
-::selection {
-  color: var(--background-rgb);
-  background-color: var(--foreground-rgb);
-}
+/* Disable default link style */
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* Material symbols */
+
 .material-symbols {
   font-size: inherit;
   font-variation-settings: inherit;
+}
+
+/* Make element (image, text, etc.) neither selectable nor draggable */
+
+.unselectable {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none; /* For Safari and Chrome */
+  -moz-user-select: none;    /* For Firefox */
+  -ms-user-select: none;     /* For Internet Explorer and Edge */
 }

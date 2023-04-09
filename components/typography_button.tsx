@@ -4,7 +4,7 @@ export default function TypographyButton({ children, ...props }: TypographyProps
   const theme = useTheme();
 
   return (
-    <Typography {...props} sx={{
+    <Typography className="unselectable" {...props} sx={{
       cursor: "pointer",
       '&:hover': {
         backgroundImage: "linear-gradient(to right, " + theme.palette.text.primary + " 100%, transparent 0%)",
