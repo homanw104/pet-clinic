@@ -11,6 +11,8 @@ import TypographyButton from "@/components/typography_button";
 import InfoCard from "@/components/info_card";
 import AvatarButton from "@/components/avatar_button";
 import NormalButton from "@/components/normal_button";
+import { useAppSelector } from "@/app/hooks";
+import { selectAuth } from "@/store/authSlice";
 
 type PageProps = {
   overlay?: React.ReactNode;
@@ -28,6 +30,7 @@ export default function Home({ overlay }: PageProps) {
     route.push(href).then();
   };
 
+  const Auth = useAppSelector(selectAuth)
   return (
     <AppGridLayout overlay={overlay}>
 
@@ -111,3 +114,4 @@ export default function Home({ overlay }: PageProps) {
     </AppGridLayout>
   )
 }
+
