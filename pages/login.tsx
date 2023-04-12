@@ -2,19 +2,18 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import LoginPageLayout from "@/layouts/login_page_layout";
 import Link from "next/link";
 import * as React from "react";
-import { createDispatchHook, useDispatch, useSelector } from "react-redux";
-import { LogIn,LogOut, selectAuth } from "@/store/authSlice"
-import { IUserState} from "@/store/authSlice"
+import { useDispatch } from "react-redux";
+import { LogIn, selectAuth } from "@/store/authSlice"
 import { useAppSelector } from "@/app/hooks";
-import {getUserAsync} from "@/api/Login";
 import axios from "axios";
-import { bool } from "prop-types";
+
 export default function Login() {
   const [username,setUsername] = React.useState("");
   const [password,setPassword] = React.useState("");
-  //const User = useUser();
+
   const Auth = useAppSelector(selectAuth)
   const dispatch = useDispatch();
+
   function  getUser1(){
     fetch('https://api.petclinic.homans.world:8443/users/',{
       mode:"no-cors"
@@ -25,7 +24,7 @@ export default function Login() {
       console.log(e)
     })
 
-  };
+  }
 
   function Login(){
     const params = new URLSearchParams();
@@ -75,9 +74,8 @@ export default function Login() {
             <Button variant="outlined">注册</Button>
           </Link>
           <Link href="/">
-            <Button variant="contained"disableElevation
+            <Button variant="contained" disableElevation
                     onClick={()=>{
-                      //@ts-ignore
                       console.log(Auth);
 
                       Login();

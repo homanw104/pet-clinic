@@ -40,6 +40,13 @@ pages/
 └── sign-up.tsx 注册页
 ```
 
+## Environment Variables
+
+`.env.development` and `.env.production` are default environment variables used
+in `development` (`next dev`) and `production` (`next start`) environment respectively.
+
+Make your changes in a new file `.env.local` to override the default ones.
+
 ## Getting Started
 
 First, run the development server:
