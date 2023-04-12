@@ -11,11 +11,11 @@ pages/
 │   ├── case-study/[id] 病例
 │   ├── examination/[id] 化验项目
 │   ├── medication/[id] 药品
-│   └── store.ts 病例数据库
+│   └── index.tsx 病例数据库
 │
 ├── quiz/
 │   ├── [id] 试卷
-│   └── store.ts 在线测试
+│   └── index.tsx 在线测试
 │
 ├── reception/ 前台区
 ├── records-dept/ 档案室
@@ -35,7 +35,7 @@ pages/
 ├── technician/ 医助（职位）
 ├── veterinarian/ 兽医（职位）
 │
-├── store.ts 主页
+├── index.tsx 主页
 ├── login.tsx 登录页
 └── sign-up.tsx 注册页
 ```
@@ -54,7 +54,7 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/store.ts`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 

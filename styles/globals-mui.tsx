@@ -4,10 +4,21 @@
  */
 
 import React from "react";
-import { createTheme } from "@mui/material";
+import { createTheme, Theme } from "@mui/material";
 
 const shape = {
   borderRadius: 12,
+}
+
+const components = {
+  MuiCssBaseline: {
+    styleOverrides: (theme: Omit<Theme, "components">) => `
+      ::selection {
+        color: ${theme.palette.surface.main};
+        background-color: ${theme.palette.surface.onMain};
+      }
+    `,
+  },
 }
 
 const typography = {
@@ -94,7 +105,8 @@ const lightTheme = createTheme({
     },
   },
   shape: shape,
-  typography: typography
+  components: components,
+  typography: typography,
 });
 
 const darkTheme = createTheme({
@@ -142,7 +154,8 @@ const darkTheme = createTheme({
     }
   },
   shape: shape,
-  typography: typography
+  components: components,
+  typography: typography,
 });
 
 export { lightTheme, darkTheme };

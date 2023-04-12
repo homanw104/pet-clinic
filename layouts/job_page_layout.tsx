@@ -7,8 +7,7 @@ import { useRouter } from "next/router";
 import Image, { StaticImageData } from "next/image";
 import {
   Box,
-  Container,
-  Grid,
+  Grid, IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -17,20 +16,17 @@ import {
   Typography,
   useTheme
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import ArticleInfoType from "@/types/article_info";
 import Home from "@/pages";
-
-interface ArticleInfo {
-  name: string;
-  href: string;
-}
 
 interface LayoutProps {
   children: React.ReactNode;
   src: StaticImageData;   // Image data
   alt: string;            // Image description
-  title: string;          // List title
-  subtitle: string;       // List title in English
-  articleList: ArticleInfo[];
+  title: string;          // Sidebar title
+  subtitle: string;       // Sidebar title in English
+  articleList: ArticleInfoType[];
 }
 
 function Overlay({ children, src, alt, title, subtitle, articleList }: LayoutProps) {
@@ -80,8 +76,8 @@ function Overlay({ children, src, alt, title, subtitle, articleList }: LayoutPro
           <List>
             {Array.from(articleList).map((article, index) => (
               <ListItem key={index} disablePadding>
-                <ListItemButton onClick={() => handleOnClick(article.href)}>
-                  {article.name}
+                <ListItemButton onClick={() => handleOnClick(`/${subtitle}/${article.slug}`)}>
+                  {article.title}
                 </ListItemButton>
               </ListItem>
             ))}
@@ -95,12 +91,22 @@ function Overlay({ children, src, alt, title, subtitle, articleList }: LayoutPro
           top: "2rem", bottom: "2rem",
           left: "2rem", right: "0",
         }}>
-          <Container sx={{
+          <Box sx={{
             overflow: "scroll",
-            height: "100%"
+            height: "100%",
+            padding: "2.5rem",
           }}>
             {children}
-          </Container>
+          </Box>
+          <Box sx={{
+            position: "absolute",
+            top: "1.25rem",
+            right: "1.25rem",
+          }}>
+            <IconButton aria-label="close" onClick={() => handleOnClick("/")}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
         </Paper>
       </Grid>
     </>

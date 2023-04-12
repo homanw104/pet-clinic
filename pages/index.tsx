@@ -2,21 +2,19 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Grid, Paper, Stack, Typography } from "@mui/material";
-import AppGridLayout from "@/layouts/app_grid_layout";
 
 import receptionistIcon from "@/public/receptionist.png";
 import technicianIcon from "@/public/technician.png";
 import veterinarianIcon from "@/public/veterinarian.png";
-import TypographyButton from "@/components/typography_button";
 import InfoCard from "@/components/info_card";
+import TypographyButton from "@/components/typography_button";
 import AvatarButton from "@/components/avatar_button";
 import NormalButton from "@/components/normal_button";
-import { useAppSelector } from "@/app/hooks";
-import { selectAuth } from "@/store/authSlice";
+import AppGridLayout from "@/layouts/app_grid_layout";
 
-type PageProps = {
+interface PageProps {
   overlay?: React.ReactNode;
-};
+}
 
 export default function Home({ overlay }: PageProps) {
   const route = useRouter();
@@ -30,7 +28,6 @@ export default function Home({ overlay }: PageProps) {
     route.push(href).then();
   };
 
-  const Auth = useAppSelector(selectAuth)
   return (
     <AppGridLayout overlay={overlay}>
 
@@ -69,13 +66,13 @@ export default function Home({ overlay }: PageProps) {
         }}>
           <InfoCard>在下方选择职位或在右侧选择科室以开始导览。</InfoCard>
           <AvatarButton src={receptionistIcon} alt="前台" name="receptionist" onClick={() => {
-            handleOnClick("/receptionist")
+            handleOnClick("/receptionist/intro")
           }}>前台</AvatarButton>
           <AvatarButton src={technicianIcon} alt="医助" name="technician" onClick={() => {
-            handleOnClick("/technician")
+            handleOnClick("/technician/intro")
           }}>医助</AvatarButton>
           <AvatarButton src={veterinarianIcon} alt="兽医" name="veterinarian" onClick={() => {
-            handleOnClick("/veterinarian")
+            handleOnClick("/veterinarian/intro")
           }}>兽医</AvatarButton>
           <Stack spacing={2} direction="row" justifyContent="center">
             <NormalButton name="database" onClick={() => handleOnClick("/learn")} style={{
@@ -114,4 +111,3 @@ export default function Home({ overlay }: PageProps) {
     </AppGridLayout>
   )
 }
-
