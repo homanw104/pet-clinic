@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import technicianIcon from "@/public/technician.png";
+import technicianIcon from "@/public/avatar/technician.png";
 import JobPageLayout from "@/layouts/job_page_layout";
 import MarkdownArticle from "@/components/markdown";
 import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
@@ -18,7 +18,7 @@ interface PageProps {
   articleList: ArticleInfoType[];
 }
 
-export default function Receptionist({ article, articleList }: PageProps) {
+export default function Technician({ article, articleList }: PageProps) {
   return (
     <JobPageLayout src={technicianIcon} alt={title} title={title} subtitle={subtitle} articleList={articleList}>
       <MarkdownArticle>

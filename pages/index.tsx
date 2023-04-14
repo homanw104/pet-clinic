@@ -1,16 +1,21 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 
-import receptionistIcon from "@/public/receptionist.png";
-import technicianIcon from "@/public/technician.png";
-import veterinarianIcon from "@/public/veterinarian.png";
+import receptionistIcon from "@/public/avatar/receptionist.png";
+import technicianIcon from "@/public/avatar/technician.png";
+import veterinarianIcon from "@/public/avatar/veterinarian.png";
 import InfoCard from "@/components/info_card";
-import TypographyButton from "@/components/typography_button";
-import AvatarButton from "@/components/avatar_button";
-import NormalButton from "@/components/normal_button";
+import TypographyButton from "@/components/button/typography_button";
+import AvatarButton from "@/components/button/avatar_button";
+import NormalButton from "@/components/button/normal_button";
 import AppGridLayout from "@/layouts/app_grid_layout";
+
+// Leaflet MapContainer doesn't support Server Side Rendering
+const MapViewer = dynamic(() => import("@/components/map_viewer"), {
+  ssr: false,
+});
 
 interface PageProps {
   overlay?: React.ReactNode;
@@ -18,11 +23,6 @@ interface PageProps {
 
 export default function Home({ overlay }: PageProps) {
   const route = useRouter();
-
-  // Leaflet MapContainer doesn't support Server Side Rendering
-  const Map = dynamic(() => import("@/components/map"), {
-    ssr: false,
-  });
 
   const handleOnClick = (href: string) => {
     route.push(href).then();
@@ -97,14 +97,14 @@ export default function Home({ overlay }: PageProps) {
           overflow: "hidden",
           height: "600px",
         }}>
-          <Paper elevation={0} sx={{
-            margin: "0.5rem",
+          <Box sx={{
+            padding: "0.5rem",
+            borderRadius: "0.25rem",
             overflow: "hidden",
-            height: "584px",
-            borderRadius: "0.25rem"
+            height: "100%"
           }}>
-            <Map />
-          </Paper>
+            <MapViewer />
+          </Box>
         </Paper>
       </Grid>
 

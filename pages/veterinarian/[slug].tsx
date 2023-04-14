@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import veterinarianIcon from "@/public/veterinarian.png";
+import veterinarianIcon from "@/public/avatar/veterinarian.png";
 import JobPageLayout from "@/layouts/job_page_layout";
 import MarkdownArticle from "@/components/markdown";
 import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";

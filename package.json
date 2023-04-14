@@ -13,6 +13,8 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
+    "@photo-sphere-viewer/core": "^5.1.4",
+    "@photo-sphere-viewer/markers-plugin": "^5.1.4",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
@@ -28,6 +30,8 @@
     "react-dom": "18.2.0",
     "react-leaflet": "^4.2.1",
     "react-redux": "^8.0.5",
+    "sass": "^1.62.0",
+    "three": "^0.151.3",
     "typescript": "5.0.2"
   },
   "devDependencies": {
