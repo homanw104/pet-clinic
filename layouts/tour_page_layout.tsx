@@ -11,6 +11,7 @@ import OverlayViewerBox from "@/components/overlay/overlay_viewer_box";
 import OverlayArticleBox from "@/components/overlay/overlay_article_box";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import ArticleInfoType from "@/types/article_info";
+import AppGridLayout from "@/layouts/app_grid_layout";
 
 interface LayoutProps {
   children?: React.ReactNode; // Optional when displaying panorama
@@ -43,9 +44,13 @@ function Overlay({ children, title, subtitle, articleList, src, markers }: Layou
           left: "2rem", right: "0",
           overflow: "hidden",
         }}>
-          <OverlayViewerBox src={src} markers={markers} />
+
+          {/* Display panorama when children is not present */}
+          {!children && <OverlayViewerBox src={src} markers={markers} />}
+
           {/* Display article when children is present */}
           {children && <OverlayArticleBox article={children} />}
+
         </Paper>
       </Grid>
     </>
@@ -54,8 +59,10 @@ function Overlay({ children, title, subtitle, articleList, src, markers }: Layou
 
 export default function TourPageLayout({ children, ...props }: LayoutProps) {
   return (
-    <Home overlay={
+    <AppGridLayout overlay={
       <Overlay {...props}>{children}</Overlay>
-    } />
+    }>
+      <Home />
+    </AppGridLayout>
   )
 }

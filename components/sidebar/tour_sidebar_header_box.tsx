@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { useRouter } from "next/router";
 
 interface BoxProps {
   title: string;          // Sidebar title
@@ -8,6 +9,11 @@ interface BoxProps {
 
 export default function TourSidebarHeaderBox({ title, subtitle }: BoxProps) {
   const theme = useTheme();
+  const route = useRouter();
+
+  const handleOnClick = (href: string) => {
+    route.push(href).then();
+  };
 
   return (
     <Box sx={{
@@ -20,7 +26,9 @@ export default function TourSidebarHeaderBox({ title, subtitle }: BoxProps) {
       alignItems: "center",
       justifyContent: "flex-start",
     }}>
-      <Stack direction="column" padding="2rem">
+      <Stack direction="column" padding="2rem" onClick={() => handleOnClick(`/${subtitle}`)} sx={{
+        cursor: "pointer"
+      }}>
         <Typography variant="h4" align="left" noWrap={true} lineHeight={1}>
           {title}
         </Typography>

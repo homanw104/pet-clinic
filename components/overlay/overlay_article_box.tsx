@@ -15,12 +15,17 @@ export default function OverlayArticleBox({ article }: BoxProps) {
   };
 
   return (
-    <>
+    <Box sx={{
+      position: "absolute",
+      height: "100%",
+      width: "100%",
+      zIndex: 100,  // Higher than OverlayViewerBox
+    }}>
       <Box sx={{
         overflow: "scroll",
         padding: "2.5rem",
         height: "100%",
-        zIndex: 80,
+        zIndex: 295,
       }}>
         {article}
       </Box>
@@ -28,12 +33,12 @@ export default function OverlayArticleBox({ article }: BoxProps) {
         position: "absolute",
         top: "1.25rem",
         right: "1.25rem",
-        zIndex: 85,
+        zIndex: 300,
       }}>
         <IconButton aria-label="close" onClick={() => handleOnClick("/")}>
           <CloseIcon />
         </IconButton>
       </Box>
-    </>
+    </Box>
   )
 }

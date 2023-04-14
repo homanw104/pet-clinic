@@ -18,13 +18,18 @@ export default function OverlayViewerBox({ src, markers }: BoxProps) {
   };
 
   return (
-    <>
+    <Box sx={{
+      position: "absolute",
+      height: "100%",
+      width: "100%",
+      zIndex: 90,   // Lower than OverlayArticleBox
+    }}>
       <Box sx={{
         overflow: "hidden",
         padding: "0.5rem",
         height: "100%",
         borderRadius: "0.25rem",
-        zIndex: 90,
+        zIndex: 295,
       }}>
         <PhotoSphere src={src} markers={markers} />
       </Box>
@@ -32,12 +37,12 @@ export default function OverlayViewerBox({ src, markers }: BoxProps) {
         position: "absolute",
         top: "1.25rem",
         right: "1.25rem",
-        zIndex: 95,
+        zIndex: 300,
       }}>
         <IconButton aria-label="close" onClick={() => handleOnClick("/")}>
           <CloseIcon />
         </IconButton>
       </Box>
-    </>
+    </Box>
   )
 }

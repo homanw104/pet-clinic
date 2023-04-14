@@ -10,6 +10,7 @@ import JobSidebarHeaderBox from "@/components/sidebar/job_sidebar_header_box";
 import OverlayArticleBox from "@/components/overlay/overlay_article_box";
 import { StaticImageData } from "next/image";
 import ArticleInfoType from "@/types/article_info";
+import AppGridLayout from "@/layouts/app_grid_layout";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -51,8 +52,10 @@ function Overlay({ children, src, alt, title, subtitle, articleList }: LayoutPro
 
 export default function JobPageLayout({ children, ...props }: LayoutProps) {
   return (
-    <Home overlay={
+    <AppGridLayout overlay={
       <Overlay {...props}>{children}</Overlay>
-    } />
+    }>
+      <Home />
+    </AppGridLayout>
   )
 }

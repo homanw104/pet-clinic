@@ -1,5 +1,5 @@
 /**
- * 前台主页。
+ * 前台区主页。
  */
 
 import React from "react";
@@ -8,7 +8,7 @@ import { getAllArticleBriefs } from "@/utils/article_util";
 import TourPageLayout from "@/layouts/tour_page_layout";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 
-export const title = "前台";
+export const title = "前台区";
 export const subtitle = "reception";
 export const src = "/pano/test.jpg";
 export const markers: MarkerConfig[] = [

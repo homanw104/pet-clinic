@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
@@ -17,11 +17,7 @@ const MapViewer = dynamic(() => import("@/components/map_viewer"), {
   ssr: false,
 });
 
-interface PageProps {
-  overlay?: React.ReactNode;
-}
-
-export default function Home({ overlay }: PageProps) {
+export default function Home() {
   const route = useRouter();
 
   const handleOnClick = (href: string) => {
@@ -29,8 +25,7 @@ export default function Home({ overlay }: PageProps) {
   };
 
   return (
-    <AppGridLayout overlay={overlay}>
-
+    <>
       <Grid item xs={12}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
           marginTop: "4rem"
@@ -107,7 +102,14 @@ export default function Home({ overlay }: PageProps) {
           </Box>
         </Paper>
       </Grid>
+    </>
+  )
+}
 
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <AppGridLayout>
+      {page}
     </AppGridLayout>
   )
 }
