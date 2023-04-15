@@ -10,7 +10,7 @@ export interface IUserState {
 }
 
  const initialState: IUserState = {
-  username: "qingshuruyonghuming",
+  username: null,
   isLoggedIn: false,
 
   password:null,

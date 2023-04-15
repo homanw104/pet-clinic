@@ -1,8 +1,12 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import LoginPageLayout from "@/layouts/login_page_layout";
 import Link from "next/link";
-
+import  * as React from 'react';
 export default function SignUp() {
+  const [username,setUsername] = React.useState("");
+  const [password,setPassword] = React.useState("");
+  const [passr,setPassr] = React.useState("");
+
   return (
     <LoginPageLayout>
       <Typography variant="h3">注册</Typography>

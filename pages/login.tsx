@@ -3,7 +3,7 @@ import LoginPageLayout from "@/layouts/login_page_layout";
 import Link from "next/link";
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import { LogIn, selectAuth } from "@/store/authSlice"
+import { LogIn, selectAuth ,LogOut} from "@/store/authSlice"
 import { useAppSelector } from "@/app/hooks";
 import axios from "axios";
 
@@ -40,11 +40,17 @@ export default function Login() {
         console.log(error);
       }
       )
+  }
+  function Logout(){
 
-
-
-
-
+    axios.get(`https://api.petclinic.homans.world:8443/logout?user=${username}/`)
+      .then(response =>{
+        console.log(response.data);
+        //@ts-ignore
+        dispatch((LogOut("")));
+      },error =>{
+        console.log(error);
+      })
   }
 
 
@@ -62,7 +68,7 @@ export default function Login() {
       <TextField
         id="password" label="密码" variant="outlined"
         type="password"
-        defaultValue={"请输入密码"}
+        defaultValue={""}
         onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{
           setPassword(event.target.value)
         }}
@@ -70,13 +76,16 @@ export default function Login() {
       <Stack spacing={4} direction="row" justifyContent="space-between" style={{ paddingTop: "5rem" }}>
         <Button>忘记密码？</Button>
         <Stack spacing={2} direction="row" justifyContent="space-between">
-          <Link href="/sign-up">
-            <Button variant="outlined">注册</Button>
-          </Link>
+
+            <Button variant="outlined" onClick={()=>{
+              Logout();
+            }
+            }>登出</Button>
+
           <Link href="/">
             <Button variant="contained" disableElevation
                     onClick={()=>{
-                      console.log(Auth);
+                     // console.log(Auth);
 
                       Login();
                     }}

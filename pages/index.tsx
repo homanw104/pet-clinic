@@ -11,6 +11,9 @@ import TypographyButton from "@/components/button/typography_button";
 import AvatarButton from "@/components/button/avatar_button";
 import NormalButton from "@/components/button/normal_button";
 import AppGridLayout from "@/layouts/app_grid_layout";
+import { useAppSelector } from "@/app/hooks";
+import { LogOut, selectAuth } from "@/store/authSlice";
+import { useDispatch } from "react-redux";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
 const MapViewer = dynamic(() => import("@/components/map_viewer"), {
@@ -19,11 +22,11 @@ const MapViewer = dynamic(() => import("@/components/map_viewer"), {
 
 export default function Home() {
   const route = useRouter();
-
   const handleOnClick = (href: string) => {
     route.push(href).then();
   };
-
+  const Auth = useAppSelector(selectAuth);
+  const dispatch = useDispatch();
   return (
     <>
       <Grid item xs={12}>
@@ -41,6 +44,13 @@ export default function Home() {
                 position: "relative",
                 top: "0.15em"
               }}>{"\u{e5d9}"}</span>
+            </TypographyButton>
+            <TypographyButton onClick={()=>{
+              console.log(Auth);
+              //@ts-ignore
+              dispatch(LogOut(''))
+            }}>
+              {Auth}
             </TypographyButton>
           </Stack>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
