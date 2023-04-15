@@ -30,7 +30,7 @@ export default function JobSidebarHeaderBox({ src, alt, title, subtitle }: BoxPr
         <Typography variant="h6" align="left" noWrap={true} lineHeight={1} style={{
           textTransform: "none", fontVariant: "small-caps"
         }}>
-          {subtitle}
+          {subtitle.replace("-", " ")}
         </Typography>
       </Stack>
       <Image src={src} alt={alt} width={160} height={160} className="unselectable" style={{

@@ -35,7 +35,7 @@ export default function TourSidebarHeaderBox({ title, subtitle }: BoxProps) {
         <Typography variant="h6" align="left" noWrap={true} lineHeight={1} style={{
           textTransform: "none", fontVariant: "small-caps"
         }}>
-          {subtitle}
+          {subtitle.replace("-", " ")}
         </Typography>
       </Stack>
     </Box>
