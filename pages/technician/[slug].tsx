@@ -6,9 +6,9 @@ import React from "react";
 import technicianIcon from "@/public/avatar/technician.png";
 import JobPageLayout from "@/layouts/job_page_layout";
 import MarkdownArticle from "@/components/markdown";
-import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
 import ArticleType from "@/types/article";
 import ArticleInfoType from "@/types/article_info";
+import { getStaticPathsBySubDir, getStaticPropsBySlug } from "@/utils/static_props_util";
 
 const title = "医助";
 const subtitle = "technician";
@@ -28,41 +28,10 @@ export default function Technician({ article, articleList }: PageProps) {
   )
 }
 
-/**
- * Pre-render this page using the slug parameter in the url path.
- * @param slug
- */
 export async function getStaticProps({ params }: { params: { slug: string }}) {
-  const subDir = subtitle;
-  const article = await getArticleBySlug(params.slug, subDir);
-  const articleBriefs = await getAllArticleBriefs(subDir);
-
-  return {
-    props: {
-      articleList: articleBriefs,
-      article: {
-        slug: article.slug,
-        date: article.date,
-        title: article.title,
-        content: article.content,
-      },
-    },
-  }
+  return await getStaticPropsBySlug(params.slug, subtitle);
 }
 
-/**
- * Define all pages that need to pre-render by searching down the file system
- * using getArticleSlugs().
- */
 export async function getStaticPaths() {
-  const slugs = await getArticleSlugs(subtitle);
-
-  return {
-    paths: slugs.map((slug) => {
-      return {
-        params: { slug: slug },
-      };
-    }),
-    fallback: false,
-  }
+  return await getStaticPathsBySubDir(subtitle);
 }

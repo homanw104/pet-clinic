@@ -1,6 +1,7 @@
 type ArticleInfoType = {
-  slug: string
-  title: string
+  slug: string;
+  date: string;
+  title: string;
 };
 
 export default ArticleInfoType;

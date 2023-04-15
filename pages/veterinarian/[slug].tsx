@@ -21,7 +21,7 @@ interface PageProps {
 export default function Veterinarian({ article, articleList }: PageProps) {
   return (
     <JobPageLayout src={veterinarianIcon} alt={title} title={title} subtitle={subtitle} articleList={articleList}>
-      <MarkdownArticle className="markdown" key={article.content.substring(0, 40)}>
+      <MarkdownArticle>
         {article.content}
       </MarkdownArticle>
     </JobPageLayout>

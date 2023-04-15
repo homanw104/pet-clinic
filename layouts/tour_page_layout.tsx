@@ -1,28 +1,27 @@
 /**
- * Tour page layout built upon Home component.
+ * Tour page layout.
+ * Place this layout inside a Grid layout.
  */
 
 import React from "react";
 import { Grid, Paper } from "@mui/material";
-import Home from "@/pages";
 import ArticleList from "@/components/sidebar/article_list";
 import TourSidebarHeaderBox from "@/components/sidebar/tour_sidebar_header_box";
 import OverlayViewerBox from "@/components/overlay/overlay_viewer_box";
 import OverlayArticleBox from "@/components/overlay/overlay_article_box";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import ArticleInfoType from "@/types/article_info";
-import AppGridLayout from "@/layouts/app_grid_layout";
 
 interface LayoutProps {
-  children?: React.ReactNode; // Optional when displaying panorama
-  title: string;              // Sidebar title
-  subtitle: string;           // Sidebar title in English
+  children?: React.ReactNode;   // Optional when displaying panorama
+  title: string;                // Sidebar title
+  subtitle: string;             // Sidebar title in English
   articleList: ArticleInfoType[];
-  src: string;                // Panorama source
-  markers: MarkerConfig[];    // Panorama markers
+  panoSrc?: string;             // Panorama source
+  panoMarkers?: MarkerConfig[]; // Panorama markers
 }
 
-function Overlay({ children, title, subtitle, articleList, src, markers }: LayoutProps) {
+export default function TourPageLayout({ children, title, subtitle, articleList, panoSrc, panoMarkers }: LayoutProps) {
   return (
     <>
       <Grid item sm={3} position="relative">
@@ -45,24 +44,19 @@ function Overlay({ children, title, subtitle, articleList, src, markers }: Layou
           overflow: "hidden",
         }}>
 
-          {/* Display panorama when children is not present */}
-          {!children && <OverlayViewerBox src={src} markers={markers} />}
+          {/* Display panorama when given panorama source file */}
+          {panoSrc && <OverlayViewerBox
+            src={panoSrc ? panoSrc : ""}
+            markers={panoMarkers}
+          />}
 
-          {/* Display article when children is present */}
-          {children && <OverlayArticleBox article={children} />}
+          {/* Else, display children in OverlayArticleBox */}
+          {!panoSrc && <OverlayArticleBox
+            article={children}
+          />}
 
         </Paper>
       </Grid>
     </>
-  )
-}
-
-export default function TourPageLayout({ children, ...props }: LayoutProps) {
-  return (
-    <AppGridLayout overlay={
-      <Overlay {...props}>{children}</Overlay>
-    }>
-      <Home />
-    </AppGridLayout>
   )
 }
