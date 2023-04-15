@@ -1,25 +1,27 @@
 /**
- * 导览 article 页面，根据路径变量 [room] 和 [slug] 生成各房间对应的各个 article。
+ * 职位 article 页面，根据路径变量 [job] 和 [slug] 生成各职位对应的各个 article。
  */
 
 import React, { ReactElement } from "react";
+import { StaticImageData } from "next/image";
 import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
-import TourPageLayout from "@/layouts/tour_page_layout";
+import JobPageLayout from "@/layouts/job_page_layout";
 import MarkdownArticle from "@/components/markdown";
 import AppGridLayout from "@/layouts/app_grid_layout";
 import Home from "@/pages";
-import ArticleInfoType from "@/types/article_info";
 import ArticleType from "@/types/article";
-import rooms from "@/contents/rooms";
+import ArticleInfoType from "@/types/article_info";
+import jobs from "@/contents/jobs";
 
 interface PageProps {
   title: string;
   subtitle: string;
+  avatar: StaticImageData;
   article: ArticleType;
   articleList: ArticleInfoType[];
 }
 
-export default function Room({ article }: PageProps) {
+export default function Job({ article }: PageProps) {
   return (
     <MarkdownArticle>
       {article.content}
@@ -27,16 +29,18 @@ export default function Room({ article }: PageProps) {
   )
 }
 
-Room.getLayout = function getLayout(page: ReactElement) {
+Job.getLayout = function getLayout(page: ReactElement) {
   return (
     <AppGridLayout overlay={
-      <TourPageLayout
+      <JobPageLayout
         title={page.props.title}
         subtitle={page.props.subtitle}
         articleList={page.props.articleList}
+        src={page.props.avatar}
+        alt={page.props.subtitle}
       >
         {page}
-      </TourPageLayout>
+      </JobPageLayout>
     }>
       <Home />
     </AppGridLayout>
@@ -45,20 +49,21 @@ Room.getLayout = function getLayout(page: ReactElement) {
 
 interface Params {
   params: {
-    room: string;
+    job: string;
     slug: string;
   }
 }
 
 export async function getStaticProps({ params }: Params) {
-  const article = await getArticleBySlug(params.slug, params.room);
-  const articleBriefs = await getAllArticleBriefs(params.room);
-  const room = rooms.find((room) => room.subtitle === params.room);
+  const article = await getArticleBySlug(params.slug, params.job);
+  const articleBriefs = await getAllArticleBriefs(params.job);
+  const jobInfo = jobs.find((job) => job.subtitle === params.job);
 
   return {
     props: {
-      title: room?.title,
-      subtitle: room?.subtitle,
+      title: jobInfo?.title,
+      subtitle: jobInfo?.subtitle,
+      avatar: jobInfo?.avatar,
       article: article,
       articleList: articleBriefs,
     }
@@ -68,12 +73,12 @@ export async function getStaticProps({ params }: Params) {
 export async function getStaticPaths() {
   let paths = [];
 
-  for (const room of rooms) {
-    let articleSlugs = await getArticleSlugs(room.subtitle);
+  for (const jobInfo of jobs) {
+    let articleSlugs = await getArticleSlugs(jobInfo.subtitle);
     for (const slug of articleSlugs) {
       paths.push({
         params: {
-          room: room.subtitle,
+          job: jobInfo.subtitle,
           slug: slug,
         },
       });

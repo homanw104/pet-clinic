@@ -5,10 +5,10 @@ import ArticleInfoType from "@/types/article_info";
 
 interface ListProps {
   articleList: ArticleInfoType[];
-  subtitle: string;       // Sidebar title in English
+  linkPrefix: string;
 }
 
-export default function ArticleList({ articleList, subtitle }: ListProps) {
+export default function ArticleList({ articleList, linkPrefix }: ListProps) {
   const route = useRouter();
 
   const handleOnClick = (href: string) => {
@@ -19,7 +19,7 @@ export default function ArticleList({ articleList, subtitle }: ListProps) {
     <List>
       {Array.from(articleList).map((article, index) => (
         <ListItem key={index} disablePadding>
-          <ListItemButton onClick={() => handleOnClick(`/${subtitle}/${article.slug}`)}>
+          <ListItemButton onClick={() => handleOnClick(`${linkPrefix}/${article.slug}`)}>
             {article.title}
           </ListItemButton>
         </ListItem>

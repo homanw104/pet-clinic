@@ -1,6 +1,6 @@
 type RoomInfoType = {
-  title: string;
-  subtitle: string;
+  title: string;      // Chinese title
+  subtitle: string;   // English title used in `contents` folder
   panoSrc: string;
   panoMarkers: null;
 };

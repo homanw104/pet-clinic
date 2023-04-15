@@ -1,16 +1,15 @@
 /**
- * Job page layout built upon Home component.
+ * Job page layout.
+ * Place this layout inside a Grid layout.
  */
 
 import React from "react";
 import { Grid, Paper, } from "@mui/material";
-import Home from "@/pages";
 import ArticleList from "@/components/sidebar/article_list";
 import JobSidebarHeaderBox from "@/components/sidebar/job_sidebar_header_box";
 import OverlayArticleBox from "@/components/overlay/overlay_article_box";
 import { StaticImageData } from "next/image";
 import ArticleInfoType from "@/types/article_info";
-import AppGridLayout from "@/layouts/app_grid_layout";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,7 +20,7 @@ interface LayoutProps {
   articleList: ArticleInfoType[];
 }
 
-function Overlay({ children, src, alt, title, subtitle, articleList }: LayoutProps) {
+export default function JobPageLayout({ children, src, alt, title, subtitle, articleList }: LayoutProps) {
   return (
     <>
       <Grid item sm={3} position="relative">
@@ -32,7 +31,7 @@ function Overlay({ children, src, alt, title, subtitle, articleList }: LayoutPro
           overflow: "hidden",
         }}>
           <JobSidebarHeaderBox src={src} alt={alt} title={title} subtitle={subtitle} />
-          <ArticleList articleList={articleList} subtitle={subtitle} />
+          <ArticleList articleList={articleList} linkPrefix={`/job/${subtitle}`} />
         </Paper>
       </Grid>
 
@@ -47,15 +46,5 @@ function Overlay({ children, src, alt, title, subtitle, articleList }: LayoutPro
         </Paper>
       </Grid>
     </>
-  )
-}
-
-export default function JobPageLayout({ children, ...props }: LayoutProps) {
-  return (
-    <AppGridLayout overlay={
-      <Overlay {...props}>{children}</Overlay>
-    }>
-      <Home />
-    </AppGridLayout>
   )
 }

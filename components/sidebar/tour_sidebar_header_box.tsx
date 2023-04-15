@@ -26,7 +26,7 @@ export default function TourSidebarHeaderBox({ title, subtitle }: BoxProps) {
       alignItems: "center",
       justifyContent: "flex-start",
     }}>
-      <Stack direction="column" padding="2rem" onClick={() => handleOnClick(`/${subtitle}`)} sx={{
+      <Stack direction="column" padding="2rem" onClick={() => handleOnClick(`/tour/${subtitle}`)} sx={{
         cursor: "pointer"
       }}>
         <Typography variant="h4" align="left" noWrap={true} lineHeight={1}>

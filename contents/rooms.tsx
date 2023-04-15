@@ -11,7 +11,8 @@ const rooms: RoomInfoType[] = [
   {
     title: "档案室",
     subtitle: "records-dept",
-    panoSrc: "/pano/records-dept.jpg",
+    // panoSrc: "/pano/records-dept.jpg",
+    panoSrc: "/pano/test.jpg",
     panoMarkers: null,
   },
   {

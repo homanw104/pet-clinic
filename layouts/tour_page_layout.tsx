@@ -32,7 +32,7 @@ export default function TourPageLayout({ children, title, subtitle, articleList,
           overflow: "hidden",
         }}>
           <TourSidebarHeaderBox title={title} subtitle={subtitle} />
-          <ArticleList articleList={articleList} subtitle={subtitle} />
+          <ArticleList articleList={articleList} linkPrefix={`/tour/${subtitle}`} />
         </Paper>
       </Grid>
 

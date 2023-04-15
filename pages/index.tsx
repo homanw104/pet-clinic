@@ -71,13 +71,13 @@ export default function Home() {
         }}>
           <InfoCard>在下方选择职位或在右侧选择科室以开始导览。</InfoCard>
           <AvatarButton src={receptionistIcon} alt="前台" name="receptionist" onClick={() => {
-            handleOnClick("/receptionist/intro")
+            handleOnClick("/job/receptionist/intro")
           }}>前台</AvatarButton>
           <AvatarButton src={technicianIcon} alt="医助" name="technician" onClick={() => {
-            handleOnClick("/technician/intro")
+            handleOnClick("/job/technician/intro")
           }}>医助</AvatarButton>
           <AvatarButton src={veterinarianIcon} alt="兽医" name="veterinarian" onClick={() => {
-            handleOnClick("/veterinarian/intro")
+            handleOnClick("/job/veterinarian/intro")
           }}>兽医</AvatarButton>
           <Stack spacing={2} direction="row" justifyContent="center">
             <NormalButton name="database" onClick={() => handleOnClick("/learn")} style={{
