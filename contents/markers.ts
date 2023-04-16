@@ -7,6 +7,11 @@ import { LatLng } from "leaflet";
 
 const markers = [
   {
+    tooltip: "前台区",
+    position: new LatLng(290, 720),
+    url: "/tour/reception",
+  },
+  {
     tooltip: "药房",
     position: new LatLng(480, 260),
     url: "/tour/pharmacy",
@@ -32,34 +37,9 @@ const markers = [
     url: "/tour/operating-room",
   },
   {
-    tooltip: "免疫室",
-    position: new LatLng(440, 820),
-    url: "/tour/vaccination-room",
-  },
-  {
-    tooltip: "输液室",
-    position: new LatLng(600, 1140),
-    url: "/tour/infusion-room",
-  },
-  {
-    tooltip: "前台区",
-    position: new LatLng(290, 720),
-    url: "/tour/reception",
-  },
-  {
-    tooltip: "影像学检查室",
-    position: new LatLng(650, 1440),
-    url: "/tour/radiology-room",
-  },
-  {
-    tooltip: "化验室",
-    position: new LatLng(340, 1020),
-    url: "/tour/laboratory",
-  },
-  {
-    tooltip: "病理剖检室",
-    position: new LatLng(500, 1340),
-    url: "/tour/autopsy-room",
+    tooltip: "住院部",
+    position: new LatLng(960, 1500),
+    url: "/tour/inpatient-ward",
   },
   {
     tooltip: "档案室",
@@ -67,9 +47,29 @@ const markers = [
     url: "/tour/records-dept",
   },
   {
-    tooltip: "住院部",
-    position: new LatLng(960, 1500),
-    url: "/tour/inpatient-ward",
+    tooltip: "影像学检查室",
+    position: new LatLng(650, 1440),
+    url: "/tour/radiology-room",
+  },
+  {
+    tooltip: "输液室",
+    position: new LatLng(600, 1140),
+    url: "/tour/infusion-room",
+  },
+  {
+    tooltip: "病理剖检室",
+    position: new LatLng(500, 1340),
+    url: "/tour/autopsy-room",
+  },
+  {
+    tooltip: "化验室",
+    position: new LatLng(340, 1020),
+    url: "/tour/laboratory",
+  },
+  {
+    tooltip: "免疫室",
+    position: new LatLng(440, 820),
+    url: "/tour/vaccination-room",
   },
 ]
 

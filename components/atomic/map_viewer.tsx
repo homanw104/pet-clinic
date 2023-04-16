@@ -1,10 +1,12 @@
 import "leaflet/dist/leaflet.css";
+import styles from "@/styles/MapViewer.module.css";
 import React from "react";
 import { CRS, Icon, LatLng, LatLngBounds, Point } from "leaflet";
 import { MapContainer, ImageOverlay, Marker, Tooltip } from "react-leaflet";
-import { useTheme } from "@mui/material";
+import { Typography, useTheme, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import markers from "@/contents/markers";
+import { hexToRGBA } from "@/utils/color_util";
 
 interface MarkerProps {
   position: LatLng;
@@ -13,6 +15,7 @@ interface MarkerProps {
 }
 
 function RoomMarker({ position, tooltip, url }: MarkerProps) {
+  const theme = useTheme();
   const route = useRouter();
 
   const markerIcon = new Icon({
@@ -26,7 +29,19 @@ function RoomMarker({ position, tooltip, url }: MarkerProps) {
     <Marker icon={markerIcon} position={position} eventHandlers={{
       click: () => route.push(url).then(),
     }}>
-      <Tooltip direction="top" sticky>{tooltip}</Tooltip>
+      <Tooltip className={styles.tooltip} opacity={1} direction="left" sticky>
+        <Box sx={{
+          color: theme.palette.surface.onMain,
+          borderColor: theme.palette.surface.onMain,
+          backgroundColor: theme.palette.surface[1],
+          borderWidth: "1px",
+          borderStyle: "solid",
+          padding: "4px 8px 4px 8px",
+          boxShadow: `0 0 8px ${hexToRGBA(theme.palette.surface.onMain, 0.1)}`,
+        }}>
+          <Typography>{tooltip}</Typography>
+        </Box>
+      </Tooltip>
     </Marker>
   )
 }

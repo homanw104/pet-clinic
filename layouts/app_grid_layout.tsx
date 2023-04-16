@@ -9,9 +9,10 @@
  * on top of the children by passing the overlay prop.
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, hexToRgb, rgbToHex, useTheme } from "@mui/material";
+import { hexToRGBA } from "@/utils/color_util";
 
 interface OverlayProps {
   children: React.ReactNode;
@@ -25,6 +26,8 @@ interface LayoutProps {
 }
 
 function OverlayBox({ children }: OverlayProps) {
+  const theme = useTheme();
+
   return (
     <Box position="absolute" display="flex" flexDirection="column" height="100%" sx={{
       top: 0,
@@ -35,12 +38,8 @@ function OverlayBox({ children }: OverlayProps) {
 
       // Fade in blur used when opening overlay
       "@keyframes fadeInBlur": {
-        "0%": {
-          backgroundColor: "rgba(0, 0, 0, 0)",
-          backdropFilter: "blur(0)",
-        },
-        "100%": {
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+        "to": {
+          backgroundColor: hexToRGBA(theme.palette.surface.onMain, 0.5),
           backdropFilter: "blur(10px)",
         }
       },
