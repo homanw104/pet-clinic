@@ -9,9 +9,9 @@
  * on top of the children by passing the overlay prop.
  */
 
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "next/head";
-import { Box, Container, Grid, hexToRgb, rgbToHex, useTheme } from "@mui/material";
+import { Box, Container, Grid, useTheme } from "@mui/material";
 import { hexToRGBA } from "@/utils/color_util";
 
 interface OverlayProps {

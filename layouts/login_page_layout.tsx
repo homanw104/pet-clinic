@@ -4,7 +4,6 @@
 
 import React from "react";
 import { Grid, Paper, Stack } from "@mui/material";
-import AppGridLayout from "@/layouts/app_grid_layout";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,7 +11,7 @@ interface LayoutProps {
 
 export default function LoginPageLayout({ children }: LayoutProps) {
   return (
-    <AppGridLayout bgImage="background-full.jpg">
+    <>
       <Grid item xs={7} className="blank" />
       <Grid item xs={5} height="100vh">
         <Stack display="flex" direction="column" justifyContent="center" height="100%">
@@ -23,6 +22,6 @@ export default function LoginPageLayout({ children }: LayoutProps) {
           </Paper>
         </Stack>
       </Grid>
-    </AppGridLayout>
+    </>
   )
 }

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { useRouter } from "next/router";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useAppDispatch } from "@/app/hooks";
 import { login } from "@/store/authSlice"
 import LoginPageLayout from "@/layouts/login_page_layout";
+import AppGridLayout from "@/layouts/app_grid_layout";
 import axios from "axios";
 
 export default function Login() {
@@ -28,7 +29,7 @@ export default function Login() {
   };
 
   return (
-    <LoginPageLayout>
+    <>
       <Typography variant="h3">登录</Typography>
       <TextField
         id="username" label="用户名" variant="outlined" type="text"
@@ -51,6 +52,16 @@ export default function Login() {
           登录
         </Button>
       </Box>
-    </LoginPageLayout>
+    </>
+  )
+}
+
+Login.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <AppGridLayout bgImage="background-full.jpg">
+      <LoginPageLayout>
+        {page}
+      </LoginPageLayout>
+    </AppGridLayout>
   )
 }

@@ -1,14 +1,12 @@
-import { Button, Stack, TextField, Typography } from "@mui/material";
-import LoginPageLayout from "@/layouts/login_page_layout";
 import Link from "next/link";
-import  * as React from 'react';
-export default function SignUp() {
-  const [username,setUsername] = React.useState("");
-  const [password,setPassword] = React.useState("");
-  const [passr,setPassr] = React.useState("");
+import { Button, Stack, TextField, Typography } from "@mui/material";
+import { ReactElement } from "react";
+import AppGridLayout from "@/layouts/app_grid_layout";
+import LoginPageLayout from "@/layouts/login_page_layout";
 
+export default function SignUp() {
   return (
-    <LoginPageLayout>
+    <>
       <Typography variant="h3">注册</Typography>
       <TextField
         id="username" label="用户名" variant="outlined"
@@ -30,6 +28,16 @@ export default function SignUp() {
           <Button variant="contained" href="/">注册</Button>
         </Link>
       </Stack>
-    </LoginPageLayout>
+    </>
+  )
+}
+
+SignUp.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <AppGridLayout bgImage="background-full.jpg">
+      <LoginPageLayout>
+        {page}
+      </LoginPageLayout>
+    </AppGridLayout>
   )
 }
