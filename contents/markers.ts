@@ -1,3 +1,8 @@
+/**
+ * Markers used in MapViewer (not for photospheres).
+ * Photosphere markers are stored in `rooms.ts`.
+ */
+
 import { LatLng } from "leaflet";
 
 const markers = [

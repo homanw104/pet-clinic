@@ -6,7 +6,14 @@ const rooms: RoomInfoType[] = [
     subtitle: "reception",
     // panoSrc: "/pano/reception.jpg",
     panoSrc: "/pano/test.jpg",
-    panoMarkers: null,
+    panoMarkers: [
+      {
+        id: "test-marker",
+        position: { yaw: "45deg", pitch: "0deg" },
+        image: "/pin-blue.png",
+        size: { width: 32, height: 32 },
+      },
+    ],
   },
   {
     title: "档案室",

@@ -32,7 +32,7 @@ export default function Header({ mapBoxRef }: HeaderProps) {
     if (mapBoxRef.current &&
       mapBoxRef.current.children[0] &&
       mapBoxRef.current.children[0] instanceof HTMLDivElement &&
-      mapBoxRef.current.children[0].className === "leaflet-container"
+      mapBoxRef.current.children[0].className.includes("leaflet-container")
     ) {
       const mapViewerRef = mapBoxRef.current.children[0];
       if (themeState === "lightTheme") {

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton } from "@mui/material";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
-import PhotoSphere from "@/components/photo_sphere";
+import PhotoSphere from "@/components/atomic/photo_sphere";
 
 interface BoxProps {
   src: string;

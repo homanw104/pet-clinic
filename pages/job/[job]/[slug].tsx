@@ -6,7 +6,7 @@ import React, { ReactElement } from "react";
 import { StaticImageData } from "next/image";
 import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
 import JobPageLayout from "@/layouts/job_page_layout";
-import MarkdownArticle from "@/components/markdown";
+import MarkdownArticle from "@/components/atomic/markdown";
 import AppGridLayout from "@/layouts/app_grid_layout";
 import Home from "@/pages";
 import ArticleType from "@/types/article";
