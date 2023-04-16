@@ -1,19 +1,17 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useRef } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Grid, Paper, Stack } from "@mui/material";
 
 import receptionistIcon from "@/public/avatar/receptionist.png";
 import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";
 import InfoCard from "@/components/info_card";
-import TypographyButton from "@/components/button/typography_button";
 import AvatarButton from "@/components/button/avatar_button";
 import NormalButton from "@/components/button/normal_button";
 import AppGridLayout from "@/layouts/app_grid_layout";
-import { useAppSelector } from "@/app/hooks";
-import { LogOut, selectAuth } from "@/store/authSlice";
-import { useDispatch } from "react-redux";
+import Header from "@/components/header/header";
+import Subheader from "@/components/header/subheader";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
 const MapViewer = dynamic(() => import("@/components/map_viewer"), {
@@ -22,46 +20,20 @@ const MapViewer = dynamic(() => import("@/components/map_viewer"), {
 
 export default function Home() {
   const route = useRouter();
+  const mapBoxRef = useRef<HTMLDivElement>(null);
+
   const handleOnClick = (href: string) => {
     route.push(href).then();
   };
-  const Auth = useAppSelector(selectAuth);
-  const dispatch = useDispatch();
+
   return (
     <>
       <Grid item xs={12}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
           marginTop: "4rem"
         }}>
-          <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-            <Typography variant="h1" noWrap={true} className="unselectable">
-              Pet Clinic Online
-            </Typography>
-            <TypographyButton variant="h3" noWrap={true} className="unselectable" onClick={
-              () => handleOnClick("/login")
-            }>
-              登录 <span className="material-symbols" style={{
-                position: "relative",
-                top: "0.15em"
-              }}>{"\u{e5d9}"}</span>
-            </TypographyButton>
-            <TypographyButton onClick={()=>{
-              console.log(Auth);
-              //@ts-ignore
-              dispatch(LogOut(''))
-            }}>
-              {Auth}
-            </TypographyButton>
-          </Stack>
-          <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-            <Typography variant="h3" noWrap={true}>宠物医院在线导览</Typography>
-            <Typography variant="h4" noWrap={true}>
-              <span className="material-symbols" style={{
-                position: "relative",
-                top: "0.2em"
-              }}>{"\u{f1e5}"}</span> 点击职位/科室开始导览
-            </Typography>
-          </Stack>
+          <Header mapBoxRef={mapBoxRef} />
+          <Subheader />
         </Stack>
       </Grid>
 
@@ -102,7 +74,7 @@ export default function Home() {
           overflow: "hidden",
           height: "600px",
         }}>
-          <Box sx={{
+          <Box ref={mapBoxRef} sx={{
             padding: "0.5rem",
             borderRadius: "0.25rem",
             overflow: "hidden",
