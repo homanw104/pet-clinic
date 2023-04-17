@@ -7,37 +7,38 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ```txt
 pages/
 │
+├── job/
+│   ├── receptionist/ 前台
+│   ├── technician/ 医助
+│   └── veterinarian/ 兽医
+│
+├── tour/
+│   ├── reception/ 前台区
+│   ├── records-dept/ 档案室
+│   ├── outpatient-room/ 门诊室
+│   ├── vaccination-room/ 免疫室
+│   ├── laboratory/ 化验室
+│   ├── treatment-room/ 治疗室
+│   ├── radiology-room/ 影像学检查室
+│   ├── pharmacy/ 药房
+│   ├── infusion-room/ 输液室
+│   ├── preparation-area/ 手术准备室
+│   ├── operating-room/ 手术室
+│   ├── inpatient-ward/ 住院部
+│   └── autopsy-room/ 病理剖检室
+│
 ├── learn/
-│   ├── case-study/[id] 病例
-│   ├── examination/[id] 化验项目
-│   ├── medication/[id] 药品
-│   └── index.tsx 病例数据库
+│   ├── case-study/ 病例数据库
+│   ├── examination/ 检查数据库
+│   └── medication/ 药品数据库
 │
 ├── quiz/
 │   ├── [id] 试卷
-│   └── index.tsx 在线测试
-│
-├── reception/ 前台区
-├── records-dept/ 档案室
-├── outpatient-room/ 门诊室
-├── vaccination-room/ 免疫室
-├── laboratory/ 化验室
-├── treatment-room/ 治疗室
-├── radiology-room/ 影像学检查室
-├── pharmacy/ 药房
-├── infusion-room/ 输液室
-├── preparation-area/ 手术准备室
-├── operating-room/ 手术室
-├── inpatient-ward/ 住院部
-├── autopsy-room/ 病理剖检室
-│
-├── receptionist/ 前台（职位）
-├── technician/ 医助（职位）
-├── veterinarian/ 兽医（职位）
+│   └── index.tsx 随机测试
 │
 ├── index.tsx 主页
-├── login.tsx 登录页
-└── sign-up.tsx 注册页
+├── login.tsx 登录
+└── sign-up.tsx 注册
 ```
 
 ## Environment Variables
