@@ -1,5 +1,5 @@
 /**
- * 测试主页，主页上有随机测试题生成。
+ * 数据库主页，根据数据库种类 [db] 从后端拉取不同的内容。
  */
 
 import React, { ReactElement } from "react";
@@ -7,8 +7,9 @@ import { Grid, Stack } from "@mui/material";
 import Header from "@/components/header/header";
 import Subheader from "@/components/header/subheader";
 import AppGridLayout from "@/layouts/app_grid_layout";
+import databases from "@/contents/databases";
 
-export default function Quiz() {
+export default function Learn() {
   return (
     <>
       <Grid item xs={12}>
@@ -16,7 +17,7 @@ export default function Quiz() {
           marginTop: "4rem"
         }}>
           <Header />
-          <Subheader variant="quiz" />
+          <Subheader variant="learn" />
         </Stack>
       </Grid>
 
@@ -31,10 +32,41 @@ export default function Quiz() {
   )
 }
 
-Quiz.getLayout = function getLayout(page: ReactElement) {
+Learn.getLayout = function getLayout(page: ReactElement) {
   return (
     <AppGridLayout>
       {page}
     </AppGridLayout>
   )
+}
+
+interface Params {
+  params: {
+    db: string;
+  }
+}
+
+export async function getStaticProps({ params }: Params) {
+  return {
+    props: {
+      db: params.db,
+    }
+  }
+}
+
+export async function getStaticPaths() {
+  let paths = [];
+
+  for (const db of databases) {
+    paths.push({
+      params: {
+        db: db.slug,
+      },
+    })
+  }
+
+  return {
+    paths: paths,
+    fallback: false,
+  };
 }

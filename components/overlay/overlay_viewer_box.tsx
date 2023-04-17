@@ -1,9 +1,10 @@
 import React from "react";
 import { useRouter } from "next/router";
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, useTheme } from "@mui/material";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import PhotoSphere from "@/components/atomic/photo_sphere";
+import { hexToRGBA } from "@/utils/color_util";
 
 interface BoxProps {
   src: string;
@@ -11,6 +12,7 @@ interface BoxProps {
 }
 
 export default function OverlayViewerBox({ src, markers }: BoxProps) {
+  const theme = useTheme();
   const route = useRouter();
 
   const handleOnClick = (href: string) => {
@@ -39,7 +41,10 @@ export default function OverlayViewerBox({ src, markers }: BoxProps) {
         right: "1.25rem",
         zIndex: 300,
       }}>
-        <IconButton aria-label="close" onClick={() => handleOnClick("/")}>
+        <IconButton aria-label="close" onClick={() => handleOnClick("/")} sx={{
+          backgroundColor: hexToRGBA(theme.palette.background.paper, 0.4),
+          backdropFilter: "blur(10px)",
+        }}>
           <CloseIcon />
         </IconButton>
       </Box>

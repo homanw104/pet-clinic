@@ -33,7 +33,7 @@ export default function Home() {
           marginTop: "4rem"
         }}>
           <Header mapBoxRef={mapBoxRef} />
-          <Subheader />
+          <Subheader variant="home" />
         </Stack>
       </Grid>
 
@@ -52,7 +52,7 @@ export default function Home() {
             handleOnClick("/job/veterinarian/intro")
           }}>兽医</AvatarButton>
           <Stack spacing={2} direction="row" justifyContent="center">
-            <NormalButton name="database" onClick={() => handleOnClick("/learn")} style={{
+            <NormalButton name="database" onClick={() => handleOnClick("/learn/case")} style={{
               width: "100%"
             }}>病例库</NormalButton>
             <NormalButton name="quiz" onClick={() => handleOnClick("/quiz")} style={{

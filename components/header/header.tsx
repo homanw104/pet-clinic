@@ -1,17 +1,19 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, useTheme } from "@mui/material";
 import { darkTheme, lightTheme } from "@/styles/globals-mui";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { toggleTheme } from "@/store/themeSlice";
 import { logout } from "@/store/authSlice";
 import TypographyButton from "@/components/button/typography_button";
+import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
 
 interface HeaderProps {
-  mapBoxRef: React.RefObject<HTMLDivElement>; // Reference to the parent element of the <MapViewer />
+  mapBoxRef?: React.RefObject<HTMLDivElement>; // Reference to the parent element of the <MapViewer />
 }
 
 export default function Header({ mapBoxRef }: HeaderProps) {
+  const theme = useTheme();
   const route = useRouter();
   const dispatch = useAppDispatch();
 
@@ -29,7 +31,8 @@ export default function Header({ mapBoxRef }: HeaderProps) {
 
   const handleToggleTheme = () => {
     // First, manually toggle theme for <MapViewer />
-    if (mapBoxRef.current &&
+    if (mapBoxRef &&
+      mapBoxRef.current &&
       mapBoxRef.current.children[0] &&
       mapBoxRef.current.children[0] instanceof HTMLDivElement &&
       mapBoxRef.current.children[0].className.includes("leaflet-container")
@@ -59,10 +62,12 @@ export default function Header({ mapBoxRef }: HeaderProps) {
         <TypographyButton variant="h3" noWrap={true} className="unselectable" onClick={
           () => handleOnClick("/login")
         }>
-          登录 <span className="material-symbols" style={{
+          登录
+          <SubdirectoryArrowLeftIcon className="material-symbols" sx={{
+            fontSize: theme.typography.h3.fontSize,
             position: "relative",
-            top: "0.15em"
-          }}>{"\u{e5d9}"}</span>
+            top: "0.1em",
+          }} />
         </TypographyButton>
       }
 
