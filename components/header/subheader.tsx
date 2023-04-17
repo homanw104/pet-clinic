@@ -73,7 +73,7 @@ export default function Subheader({ variant }: SubheaderProps) {
                       transform: "rotate(180deg)",
                       position: "relative",
                       top: "0.15em",
-                    }} /> database.title
+                    }} /> {database.title}
                   </TypographyButton>
                 )
               }
