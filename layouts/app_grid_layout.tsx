@@ -13,6 +13,7 @@ import React from "react";
 import Head from "next/head";
 import { Box, Container, Grid, useTheme } from "@mui/material";
 import { hexToRGBA } from "@/utils/color_util";
+import { useAppSelector } from "@/app/hooks";
 
 interface OverlayProps {
   children: React.ReactNode;
@@ -28,6 +29,8 @@ interface LayoutProps {
 function OverlayBox({ children }: OverlayProps) {
   const theme = useTheme();
 
+  const isMount = useAppSelector((state) => state.overlay.isMount);
+
   return (
     <Box position="absolute" display="flex" flexDirection="column" height="100%" sx={{
       top: 0,
@@ -38,16 +41,34 @@ function OverlayBox({ children }: OverlayProps) {
 
       // Fade in blur used when opening overlay
       "@keyframes fadeInBlur": {
+        "from": {
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          backdropFilter: "blur(0)",
+        },
         "to": {
           backgroundColor: hexToRGBA(theme.palette.surface.onMain, 0.5),
           backdropFilter: "blur(10px)",
-        }
+        },
       },
 
-      animation: "fadeInBlur 0.3s ease forwards"
+      // Fade out blur used when closing overlay
+      "@keyframes fadeOutBlur": {
+        "from": {
+          backgroundColor: hexToRGBA(theme.palette.surface.onMain, 0.5),
+          backdropFilter: "blur(10px)",
+        },
+        "to": {
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          backdropFilter: "blur(0)",
+        },
+      },
+
+      animation: isMount ?
+        "fadeInBlur 0.3s ease-out forwards" :
+        "fadeOutBlur 0.3s ease-in forwards",
     }}>
-      <Container style={{ flexGrow: 1, display: "flex" }}>
-        <Grid container>
+      <Container sx={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <Grid container minHeight="500px" maxHeight="900px" height="100%">
           {children}
         </Grid>
       </Container>
@@ -68,8 +89,8 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
       <Box position="relative" display="flex" flexDirection="column" height="100%" sx={{
         backgroundColor: bgColor ? bgColor : undefined,
         backgroundImage: bgImage ? `url(${bgImage})` : undefined,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundSize: "cover",
+        backgroundPosition: "center"
       }}>
         <Container style={{ flexGrow: 1 }}>
           <Grid container>

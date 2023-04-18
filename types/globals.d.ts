@@ -9,6 +9,7 @@ declare module "@mui/material/styles" {
     secondary: PaletteColorOptions;
     tertiary: PaletteColorOptions;
     surface: SurfaceColorOptions;
+    outline: OutlineColorOptions;
   }
 
   interface PaletteOptions {
@@ -16,6 +17,7 @@ declare module "@mui/material/styles" {
     secondary: PaletteColorOptions;
     tertiary: PaletteColorOptions;
     surface: SurfaceColorOptions;
+    outline: OutlineColorOptions;
   }
 
   interface PaletteColor {
@@ -40,5 +42,10 @@ declare module "@mui/material/styles" {
     2: string;
     3: string;
     4: string;
+  }
+
+  interface OutlineColorOptions {
+    main: string;
+    variant: string;
   }
 }

@@ -1,6 +1,6 @@
 /**
  * Style definitions used by @mui/material.
- * Edit types/globals.d.ts to allow custom theme properties.
+ * Custom theme properties are declared in types/globals.d.ts.
  */
 
 import React from "react";
@@ -10,6 +10,7 @@ const shape = {
   borderRadius: 12,
 }
 
+// Override default background color and text color
 const components = {
   MuiCssBaseline: {
     styleOverrides: (theme: Omit<Theme, "components">) => `
@@ -103,6 +104,13 @@ const lightTheme = createTheme({
       3: '#F4E6E3',
       4: '#F3E4E0',
     },
+    outline: {
+      main: '#7F7668',
+      variant: '#D0C5B5',
+    },
+    text: {
+      primary: '#1F1B16',
+    }
   },
   shape: shape,
   components: components,
@@ -148,6 +156,10 @@ const darkTheme = createTheme({
       2: '#312622',
       3: '#382B26',
       4: '#3A2D27',
+    },
+    outline: {
+      main: '#7F7668',
+      variant: '#D0C5B5',
     },
     text: {
       primary: '#CCC5BD',

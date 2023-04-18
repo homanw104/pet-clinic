@@ -2,16 +2,23 @@ import React from "react";
 import { useRouter } from "next/router";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton } from "@mui/material";
+import { useAppDispatch } from "@/app/hooks";
+import { unmountOverlay } from "@/store/overlaySlice";
 
 interface BoxProps {
   article: React.ReactNode;
 }
 
 export default function OverlayArticleBox({ article }: BoxProps) {
-  const route = useRouter();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleOnClick = (href: string) => {
-    route.push(href).then();
+    // Set overlay isMount state to false
+    dispatch(unmountOverlay());
+
+    // Return home after animations are finished
+    setTimeout(() => router.push(href).then(), 300);
   };
 
   return (

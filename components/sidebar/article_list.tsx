@@ -9,10 +9,10 @@ interface ListProps {
 }
 
 export default function ArticleList({ articleList, linkPrefix }: ListProps) {
-  const route = useRouter();
+  const router = useRouter();
 
   const handleOnClick = (href: string) => {
-    route.push(href).then();
+    router.push(href).then();
   };
 
   return (

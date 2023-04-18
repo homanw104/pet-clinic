@@ -1,5 +1,7 @@
 import JobInfoType from "@/types/job_info";
 import receptionistIcon from "@/public/avatar/receptionist.png";
+import technicianIcon from "@/public/avatar/technician.png";
+import veterinarianIcon from "@/public/avatar/veterinarian.png";
 
 const jobs: JobInfoType[] = [
   {
@@ -10,13 +12,13 @@ const jobs: JobInfoType[] = [
   {
     title: "医助",
     subtitle: "technician",
-    avatar: receptionistIcon,
+    avatar: technicianIcon,
 
   },
   {
     title: "兽医",
     subtitle: "veterinarian",
-    avatar: receptionistIcon,
+    avatar: veterinarianIcon,
   },
 ];
 

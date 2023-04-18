@@ -51,14 +51,14 @@ interface Params {
 
 export async function getStaticProps({ params }: Params) {
   const articleBriefs = await getAllArticleBriefs(params.room);
-  const room = rooms.find((room) => room.subtitle === params.room);
+  const roomInfo = rooms.find((room) => room.subtitle === params.room);
 
   return {
     props: {
-      title: room?.title,
-      subtitle: room?.subtitle,
-      panoSrc: room?.panoSrc,
-      panoMarkers: room?.panoMarkers,
+      title: roomInfo?.title,
+      subtitle: roomInfo?.subtitle,
+      panoSrc: roomInfo?.panoSrc,
+      panoMarkers: roomInfo?.panoMarkers,
       articleList: articleBriefs,
     }
   }

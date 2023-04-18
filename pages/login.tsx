@@ -8,7 +8,7 @@ import AppGridLayout from "@/layouts/app_grid_layout";
 import axios from "axios";
 
 export default function Login() {
-  const route = useRouter();
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const [username, setUsername] = React.useState("");
@@ -21,7 +21,7 @@ export default function Login() {
     axios.post("https://api.petclinic.homans.world:8443/login/", params)
       .then(response => {
         dispatch(login(username));
-        route.push("/").then();
+        router.push("/").then();
       })
       .catch(error => {
         console.log(error);

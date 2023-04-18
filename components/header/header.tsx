@@ -14,7 +14,7 @@ interface HeaderProps {
 
 export default function Header({ mapBoxRef }: HeaderProps) {
   const theme = useTheme();
-  const route = useRouter();
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const themeState = useAppSelector((state) => state.theme.theme);
@@ -22,7 +22,7 @@ export default function Header({ mapBoxRef }: HeaderProps) {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   const handleOnClick = (href: string) => {
-    route.push(href).then();
+    router.push(href).then();
   };
 
   const handleLogout = () => {

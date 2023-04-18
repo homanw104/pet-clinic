@@ -5,6 +5,8 @@ import { Box, IconButton, useTheme } from "@mui/material";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import PhotoSphere from "@/components/atomic/photo_sphere";
 import { hexToRGBA } from "@/utils/color_util";
+import { useAppDispatch } from "@/app/hooks";
+import { unmountOverlay } from "@/store/overlaySlice";
 
 interface BoxProps {
   src: string;
@@ -13,10 +15,15 @@ interface BoxProps {
 
 export default function OverlayViewerBox({ src, markers }: BoxProps) {
   const theme = useTheme();
-  const route = useRouter();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleOnClick = (href: string) => {
-    route.push(href).then();
+    // Set overlay isMount state to false
+    dispatch(unmountOverlay());
+
+    // Return home after animations are finished
+    setTimeout(() => router.push(href).then(), 300);
   };
 
   return (

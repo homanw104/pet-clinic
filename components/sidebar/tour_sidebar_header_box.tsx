@@ -9,10 +9,10 @@ interface BoxProps {
 
 export default function TourSidebarHeaderBox({ title, subtitle }: BoxProps) {
   const theme = useTheme();
-  const route = useRouter();
+  const router = useRouter();
 
   const handleOnClick = (href: string) => {
-    route.push(href).then();
+    router.push(href).then();
   };
 
   return (

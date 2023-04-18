@@ -7,6 +7,8 @@ import { Typography, useTheme, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import markers from "@/contents/markers";
 import { hexToRGBA } from "@/utils/color_util";
+import { useAppDispatch } from "@/app/hooks";
+import { mountOverlay } from "@/store/overlaySlice";
 
 interface MarkerProps {
   position: LatLng;
@@ -16,7 +18,8 @@ interface MarkerProps {
 
 function RoomMarker({ position, tooltip, url }: MarkerProps) {
   const theme = useTheme();
-  const route = useRouter();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const markerIcon = new Icon({
     iconUrl: "/marker.png",
@@ -27,14 +30,17 @@ function RoomMarker({ position, tooltip, url }: MarkerProps) {
 
   return (
     <Marker icon={markerIcon} position={position} eventHandlers={{
-      click: () => route.push(url).then(),
+      click: () => {
+        router.push(url).then();
+        dispatch(mountOverlay());
+      },
     }}>
       <Tooltip className={styles.tooltip} opacity={1} direction="left" sticky>
         <Box sx={{
           color: theme.palette.surface.onMain,
-          borderColor: theme.palette.surface.onMain,
+          borderColor: theme.palette.outline.main,
           backgroundColor: theme.palette.surface[1],
-          borderWidth: "1px",
+          borderWidth: "2px",
           borderStyle: "solid",
           padding: "4px 8px 4px 8px",
           boxShadow: `0 0 8px ${hexToRGBA(theme.palette.surface.onMain, 0.1)}`,

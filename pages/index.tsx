@@ -12,6 +12,8 @@ import NormalButton from "@/components/button/normal_button";
 import AppGridLayout from "@/layouts/app_grid_layout";
 import Header from "@/components/header/header";
 import Subheader from "@/components/header/subheader";
+import { mountOverlay } from "@/store/overlaySlice";
+import { useAppDispatch } from "@/app/hooks";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
 const MapViewer = dynamic(() => import("@/components/atomic/map_viewer"), {
@@ -19,11 +21,12 @@ const MapViewer = dynamic(() => import("@/components/atomic/map_viewer"), {
 });
 
 export default function Home() {
-  const route = useRouter();
+  const router = useRouter();
   const mapBoxRef = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
 
   const handleOnClick = (href: string) => {
-    route.push(href).then();
+    router.push(href).then();
   };
 
   return (
@@ -43,13 +46,16 @@ export default function Home() {
         }}>
           <InfoCard>在下方选择职位或在右侧选择科室以开始导览。</InfoCard>
           <AvatarButton src={receptionistIcon} alt="前台" name="receptionist" onClick={() => {
-            handleOnClick("/job/receptionist/intro")
+            handleOnClick("/job/receptionist/intro");
+            dispatch(mountOverlay());
           }}>前台</AvatarButton>
           <AvatarButton src={technicianIcon} alt="医助" name="technician" onClick={() => {
-            handleOnClick("/job/technician/intro")
+            handleOnClick("/job/technician/intro");
+            dispatch(mountOverlay());
           }}>医助</AvatarButton>
           <AvatarButton src={veterinarianIcon} alt="兽医" name="veterinarian" onClick={() => {
-            handleOnClick("/job/veterinarian/intro")
+            handleOnClick("/job/veterinarian/intro");
+            dispatch(mountOverlay());
           }}>兽医</AvatarButton>
           <Stack spacing={2} direction="row" justifyContent="center">
             <NormalButton name="database" onClick={() => handleOnClick("/learn/case")} style={{
