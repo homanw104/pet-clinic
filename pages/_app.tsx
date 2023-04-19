@@ -6,7 +6,7 @@ import { store } from "@/store/store";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
 import { Analytics } from "@vercel/analytics/react";
-import Theme from "@/components/app/theme";
+import Theme from "@/components/app/Theme";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

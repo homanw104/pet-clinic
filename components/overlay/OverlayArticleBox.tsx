@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton } from "@mui/material";
-import { useAppDispatch } from "@/app/hooks";
+import { useAppDispatch } from "@/utils/hook_util";
 import { unmountOverlay } from "@/store/overlaySlice";
 
 interface BoxProps {

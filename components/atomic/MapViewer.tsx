@@ -7,7 +7,7 @@ import { Typography, useTheme, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import markers from "@/contents/markers";
 import { hexToRGBA } from "@/utils/color_util";
-import { useAppDispatch } from "@/app/hooks";
+import { useAppDispatch } from "@/utils/hook_util";
 import { mountOverlay } from "@/store/overlaySlice";
 
 interface MarkerProps {

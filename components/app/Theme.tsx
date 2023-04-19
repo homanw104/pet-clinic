@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
-import { useAppSelector } from "@/app/hooks";
+import { useAppSelector } from "@/utils/hook_util";
 import { darkTheme, lightTheme } from "@/styles/globals-mui";
 
 interface ThemeProps {

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import { ReactElement } from "react";
-import AppGridLayout from "@/layouts/app_grid_layout";
-import LoginPageLayout from "@/layouts/login_page_layout";
+import AppGridLayout from "@/layouts/AppGridLayout";
+import LoginPageLayout from "@/layouts/LoginPageLayout";
 
 export default function SignUp() {
   return (

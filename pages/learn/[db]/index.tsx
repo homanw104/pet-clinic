@@ -4,9 +4,9 @@
 
 import React, { ReactElement } from "react";
 import { Grid, Stack } from "@mui/material";
-import Header from "@/components/header/header";
-import Subheader from "@/components/header/subheader";
-import AppGridLayout from "@/layouts/app_grid_layout";
+import Header from "@/components/header/Header";
+import Subheader from "@/components/header/Subheader";
+import AppGridLayout from "@/layouts/AppGridLayout";
 import databases from "@/contents/databases";
 
 export default function Learn() {

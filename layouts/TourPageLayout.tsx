@@ -5,13 +5,13 @@
 
 import React from "react";
 import { Grid, Grow, Paper } from "@mui/material";
-import ArticleList from "@/components/sidebar/article_list";
-import TourSidebarHeaderBox from "@/components/sidebar/tour_sidebar_header_box";
-import OverlayViewerBox from "@/components/overlay/overlay_viewer_box";
-import OverlayArticleBox from "@/components/overlay/overlay_article_box";
+import ArticleList from "@/components/sidebar/ArticleList";
+import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
+import OverlayViewerBox from "@/components/overlay/OverlayViewerBox";
+import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import ArticleInfoType from "@/types/article_info";
-import { useAppSelector } from "@/app/hooks";
+import { useAppSelector } from "@/utils/hook_util";
 
 interface LayoutProps {
   children?: React.ReactNode;   // Optional when displaying panorama

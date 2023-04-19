@@ -5,8 +5,8 @@
 import React, { ReactElement } from "react";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import { getAllArticleBriefs } from "@/utils/article_util";
-import TourPageLayout from "@/layouts/tour_page_layout";
-import AppGridLayout from "@/layouts/app_grid_layout";
+import TourPageLayout from "@/layouts/TourPageLayout";
+import AppGridLayout from "@/layouts/AppGridLayout";
 import Home from "@/pages";
 import ArticleInfoType from "@/types/article_info";
 import rooms from "@/contents/rooms";

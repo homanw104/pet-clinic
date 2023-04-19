@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, useTheme } from "@mui/material";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
-import PhotoSphere from "@/components/atomic/photo_sphere";
+import PhotoSphere from "@/components/atomic/PhotoSphere";
 import { hexToRGBA } from "@/utils/color_util";
-import { useAppDispatch } from "@/app/hooks";
+import { useAppDispatch } from "@/utils/hook_util";
 import { unmountOverlay } from "@/store/overlaySlice";
 
 interface BoxProps {

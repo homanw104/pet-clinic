@@ -1,10 +1,10 @@
 import React, { ReactElement } from "react";
 import { useRouter } from "next/router";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useAppDispatch } from "@/app/hooks";
+import { useAppDispatch } from "@/utils/hook_util";
 import { login } from "@/store/authSlice"
-import LoginPageLayout from "@/layouts/login_page_layout";
-import AppGridLayout from "@/layouts/app_grid_layout";
+import LoginPageLayout from "@/layouts/LoginPageLayout";
+import AppGridLayout from "@/layouts/AppGridLayout";
 import axios from "axios";
 
 export default function Login() {

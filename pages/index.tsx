@@ -6,17 +6,17 @@ import { Box, Grid, Paper, Stack } from "@mui/material";
 import receptionistIcon from "@/public/avatar/receptionist.png";
 import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";
-import InfoCard from "@/components/atomic/info_card";
-import AvatarButton from "@/components/button/avatar_button";
-import NormalButton from "@/components/button/normal_button";
-import AppGridLayout from "@/layouts/app_grid_layout";
-import Header from "@/components/header/header";
-import Subheader from "@/components/header/subheader";
+import InfoCard from "@/components/atomic/InfoCard";
+import AvatarButton from "@/components/button/AvatarButton";
+import NormalButton from "@/components/button/NormalButton";
+import AppGridLayout from "@/layouts/AppGridLayout";
+import Header from "@/components/header/Header";
+import Subheader from "@/components/header/Subheader";
 import { mountOverlay } from "@/store/overlaySlice";
-import { useAppDispatch } from "@/app/hooks";
+import { useAppDispatch } from "@/utils/hook_util";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
-const MapViewer = dynamic(() => import("@/components/atomic/map_viewer"), {
+const MapViewer = dynamic(() => import("@/components/atomic/MapViewer"), {
   ssr: false,
 });
 

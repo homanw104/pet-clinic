@@ -4,9 +4,9 @@
 
 import React, { ReactElement } from "react";
 import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
-import TourPageLayout from "@/layouts/tour_page_layout";
-import MarkdownArticle from "@/components/atomic/markdown";
-import AppGridLayout from "@/layouts/app_grid_layout";
+import TourPageLayout from "@/layouts/TourPageLayout";
+import MarkdownArticle from "@/components/atomic/Markdown";
+import AppGridLayout from "@/layouts/AppGridLayout";
 import Home from "@/pages";
 import ArticleInfoType from "@/types/article_info";
 import ArticleType from "@/types/article";
