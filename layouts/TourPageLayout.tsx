@@ -3,7 +3,7 @@
  * Place this layout inside a Grid layout.
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Grow, Paper } from "@mui/material";
 import ArticleList from "@/components/sidebar/ArticleList";
 import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
@@ -11,7 +11,8 @@ import OverlayViewerBox from "@/components/overlay/OverlayViewerBox";
 import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import ArticleInfoType from "@/types/article_info";
-import { useAppSelector } from "@/utils/hook_util";
+import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
+import { mountOverlay } from "@/store/overlaySlice";
 
 interface LayoutProps {
   children?: React.ReactNode;   // Optional when displaying panorama
@@ -23,7 +24,12 @@ interface LayoutProps {
 }
 
 export default function TourPageLayout({ children, title, subtitle, articleList, panoSrc, panoMarkers }: LayoutProps) {
+  const dispatch = useAppDispatch();
   const isMount = useAppSelector((state) => state.overlay.isMount);
+
+  useEffect(() => {
+    dispatch(mountOverlay());
+  }, [dispatch]);
 
   return (
     <>

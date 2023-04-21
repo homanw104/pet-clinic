@@ -7,19 +7,16 @@ import { Typography, useTheme, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import markers from "@/contents/markers";
 import { hexToRGBA } from "@/utils/color_util";
-import { useAppDispatch } from "@/utils/hook_util";
-import { mountOverlay } from "@/store/overlaySlice";
 
 interface MarkerProps {
   position: LatLng;
   tooltip: string;
-  url: string;
+  href: string;
 }
 
-function RoomMarker({ position, tooltip, url }: MarkerProps) {
+function RoomMarker({ position, tooltip, href }: MarkerProps) {
   const theme = useTheme();
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const markerIcon = new Icon({
     iconUrl: "/marker.png",
@@ -31,8 +28,7 @@ function RoomMarker({ position, tooltip, url }: MarkerProps) {
   return (
     <Marker icon={markerIcon} position={position} eventHandlers={{
       click: () => {
-        router.push(url).then();
-        dispatch(mountOverlay());
+        router.push(href).then();
       },
     }}>
       <Tooltip className={styles.tooltip} opacity={1} direction="left" sticky>
@@ -91,7 +87,7 @@ export default function MapViewer() {
         <RoomMarker
           position={marker.position}
           tooltip={marker.tooltip}
-          url={marker.url}
+          href={marker.href}
           key={index}
         />
       ))}

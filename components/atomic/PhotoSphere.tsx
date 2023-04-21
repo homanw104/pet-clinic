@@ -1,7 +1,9 @@
 import "@photo-sphere-viewer/core/index.scss";
 import "@photo-sphere-viewer/markers-plugin/index.scss"
 import React, { createRef, RefObject, useEffect } from "react";
-import { Box } from "@mui/material";
+import { useRouter } from "next/router";
+import { Box, useTheme } from "@mui/material";
+import { hexToRGBA } from "@/utils/color_util";
 import { Viewer } from "@photo-sphere-viewer/core";
 import { MarkerConfig, MarkersPlugin } from "@photo-sphere-viewer/markers-plugin";
 
@@ -28,9 +30,26 @@ interface PageProps {
 }
 
 export default function PhotoSphere({ src, markers }: PageProps) {
+  const theme = useTheme();
+  const router = useRouter();
   const containerRef: RefObject<HTMLDivElement> = createRef();
 
+  // Inject className and position to markers (`.sphere-tooltip` style overrides are at the end of this file)
+  if (markers) {
+    markers = markers.map((marker) => {
+      if (typeof marker.tooltip === "string") {
+        const tooltip = marker.tooltip;
+        marker.tooltip = {content: tooltip, position: "center left", className: "sphere-tooltip", trigger: "hover"}
+      } else {
+        const tooltip = marker.tooltip ? marker.tooltip.content : "";
+        marker.tooltip = {content: tooltip, position: "center left", className: "sphere-tooltip", trigger: "hover"}
+      }
+      return marker;
+    })
+  }
+
   useEffect(() => {
+    // Load viewer after component mount
     const viewer = new Viewer({
       container: containerRef.current as HTMLElement,
       panorama: src,
@@ -41,6 +60,12 @@ export default function PhotoSphere({ src, markers }: PageProps) {
       plugins: [
         [MarkersPlugin, { markers }]
       ],
+    });
+
+    // Register click event on markers
+    const markersPlugin = viewer.getPlugin(MarkersPlugin);
+    markersPlugin.addEventListener("select-marker", ({ marker }) => {
+      router.push(marker.data.link).then();
     });
 
     // Destroy viewer when component unmounts
@@ -54,6 +79,27 @@ export default function PhotoSphere({ src, markers }: PageProps) {
       borderRadius: "0.25rem",
       overflow: "hidden",
       height: "100%",
+
+      // Tooltip style overrides
+      "& .sphere-tooltip": {
+        color: theme.palette.surface.onMain,
+        borderColor: theme.palette.outline.main,
+        backgroundColor: theme.palette.surface[1],
+        borderWidth: "2px",
+        borderStyle: "solid",
+        borderRadius: "0",
+        padding: "4px 8px 4px 8px",
+        boxShadow: `0 0 8px ${hexToRGBA(theme.palette.surface.onMain, 0.1)}`,
+      },
+      "& .psv-tooltip-content": {
+        color: theme.palette.surface.onMain,
+        fontFamily: theme.typography.body1.fontFamily,
+        fontSize: theme.typography.body1.fontSize,
+        textShadow: "none",
+      },
+      "& .psv-tooltip-arrow": {
+        border: "none",
+      },
     }} />
   )
 }

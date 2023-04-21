@@ -8,10 +8,12 @@ const rooms: RoomInfoType[] = [
     panoSrc: "/pano/test.jpg",
     panoMarkers: [
       {
-        id: "test-marker",
-        position: { yaw: "45deg", pitch: "0deg" },
-        image: "/pin-blue.png",
+        id: "processing-paperwork",
+        tooltip: "处理文件工作",
+        image: "/marker.png",
         size: { width: 32, height: 32 },
+        position: { yaw: "45deg", pitch: "0deg" },
+        data: { link: "/tour/reception/processing-paperwork" }
       },
     ],
   },

@@ -3,14 +3,15 @@
  * Place this layout inside a Grid layout.
  */
 
-import React from "react";
+import React, { useEffect } from "react";
+import { StaticImageData } from "next/image";
 import { Grid, Grow, Paper } from "@mui/material";
 import ArticleList from "@/components/sidebar/ArticleList";
 import JobSidebarHeaderBox from "@/components/sidebar/JobSidebarHeaderBox";
 import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
-import { StaticImageData } from "next/image";
 import ArticleInfoType from "@/types/article_info";
-import { useAppSelector } from "@/utils/hook_util";
+import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
+import { mountOverlay } from "@/store/overlaySlice";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,7 +23,12 @@ interface LayoutProps {
 }
 
 export default function JobPageLayout({ children, src, alt, title, subtitle, articleList }: LayoutProps) {
+  const dispatch = useAppDispatch();
   const isMount = useAppSelector((state) => state.overlay.isMount);
+
+  useEffect(() => {
+    dispatch(mountOverlay());
+  }, [dispatch]);
 
   return (
     <>
