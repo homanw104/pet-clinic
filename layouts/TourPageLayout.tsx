@@ -33,7 +33,7 @@ export default function TourPageLayout({ children, title, subtitle, articleList,
         {...(isMount ? { timeout: 330 } : { timeout: 300 })}
       >
         <Grid item sm={3} position="relative">
-          <Paper style={{
+          <Paper sx={{
             position: "absolute",
             top: "2rem", bottom: "2rem",
             left: "0", right: "0",
@@ -51,7 +51,7 @@ export default function TourPageLayout({ children, title, subtitle, articleList,
         {...(isMount ? { timeout: 300 } : { timeout: 300 })}
       >
         <Grid item sm={9} position="relative">
-          <Paper style={{
+          <Paper sx={{
             position: "absolute",
             top: "2rem", bottom: "2rem",
             left: "2rem", right: "0",

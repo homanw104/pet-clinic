@@ -1,7 +1,7 @@
 import React, { ReactElement, useRef } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { Box, Grid, Paper, Stack } from "@mui/material";
+import { Box, Grid, Stack, useTheme } from "@mui/material";
 
 import receptionistIcon from "@/public/avatar/receptionist.png";
 import technicianIcon from "@/public/avatar/technician.png";
@@ -21,6 +21,7 @@ const MapViewer = dynamic(() => import("@/components/atomic/MapViewer"), {
 });
 
 export default function Home() {
+  const theme = useTheme();
   const router = useRouter();
   const mapBoxRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
@@ -68,15 +69,14 @@ export default function Home() {
         </Stack>
       </Grid>
 
-      <Grid item xs={9} position="relative">
-        <Paper elevation={0} sx={{
-          backgroundColor: "theme.palette.surface.main",
-          color: "theme.palette.surface.onMain",
+      <Grid item xs={9}>
+        <Box sx={{
+          backgroundColor: theme.palette.surface.main,
+          color: theme.palette.surface.onMain,
           marginTop: "4rem",
           marginBottom: "4rem",
-          position: "absolute",
-          top: "0", bottom: "0",
-          left: "2rem", right: "0",
+          marginLeft: "2rem",
+          borderRadius: "0.75rem",
           overflow: "hidden",
           height: "600px",
         }}>
@@ -88,7 +88,7 @@ export default function Home() {
           }}>
             <MapViewer />
           </Box>
-        </Paper>
+        </Box>
       </Grid>
     </>
   )

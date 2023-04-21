@@ -10,9 +10,10 @@ import databases from "@/contents/databases";
 
 interface SubheaderProps {
   variant: "home" | "learn" | "quiz";
+  onRandomQuiz?: () => void;
 }
 
-export default function Subheader({ variant }: SubheaderProps) {
+export default function Subheader({ variant, onRandomQuiz }: SubheaderProps) {
   const theme = useTheme();
   const router = useRouter();
   const { db } = router.query;
@@ -22,7 +23,9 @@ export default function Subheader({ variant }: SubheaderProps) {
   };
 
   const handleRandomQuiz = () => {
-    /* Generate a random quiz */
+    if (onRandomQuiz) {
+      onRandomQuiz();
+    }
   }
 
   switch (variant) {

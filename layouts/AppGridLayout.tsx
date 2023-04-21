@@ -92,7 +92,7 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}>
-        <Container style={{ flexGrow: 1 }}>
+        <Container sx={{ flexGrow: 1 }}>
           <Grid container>
             {children}
           </Grid>
