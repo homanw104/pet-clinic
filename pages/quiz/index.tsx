@@ -3,41 +3,22 @@
  */
 
 import React, { ReactElement, useEffect, useState } from "react";
-import { Box, CircularProgress, Grid, LinearProgress, Stack, Typography, useTheme } from "@mui/material";
+import { Box, CircularProgress, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
-import InfoCard from "@/components/atomic/InfoCard";
-import ListButton from "@/components/button/ListButton";
 import QuizButton from "@/components/button/QuizButton";
 import AppGridLayout from "@/layouts/AppGridLayout";
-import quizInfoType from "@/types/quiz_info";
 import questionType from "@/types/question";
+import QuizList from "@/components/atomic/QuizList";
 
 export default function Quiz() {
   const theme = useTheme();
 
-  const [quizList, setQuizList] = useState<quizInfoType[]>([]);
   const [question, setQuestion] = useState<questionType>();
 
   const mockAns = "左手持刀柄刃侧尾端，右手握持针钳（持针器），成45°角夹住刀片孔上段背侧，左手握住刀柄，对准孔槽处向下用力，至刀片完全安装在刀柄上；拆卸时，左手持手术刀柄，右手握持持针器，夹住刀片孔尾端背侧，稍提起，顺刀柄槽往前推 。";
 
   useEffect(() => {
-    // Fetch quiz list
-    setQuizList([
-      {
-        quizId: 1,
-        quizName: "综合测试1",
-      },
-      {
-        quizId: 2,
-        quizName: "综合测试2",
-      },
-      {
-        quizId: 3,
-        quizName: "综合测试3",
-      },
-    ]);
-
     // Fetch random question
     setQuestion({
       questionId: 55,
@@ -59,28 +40,7 @@ export default function Quiz() {
       </Grid>
 
       <Grid item xs={3}>
-        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
-          marginTop: "4rem",
-          marginBottom: "4rem",
-          minHeight: "600px",
-        }}>
-          <InfoCard>
-            在下侧列表中选择试卷，开始综合测试！
-          </InfoCard>
-
-          {quizList.length !== 0 && quizList.map((quiz, index) => (
-            <ListButton key={index}>
-              {quiz.quizName}
-            </ListButton>
-          ))}
-
-          {quizList.length === 0 &&
-            <Box width="100%">
-              <LinearProgress sx={{ borderRadius: 5}} />
-            </Box>
-          }
-
-        </Stack>
+        <QuizList />
       </Grid>
 
       <Grid item xs={9} position="relative">
