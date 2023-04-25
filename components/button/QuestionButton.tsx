@@ -1,22 +1,25 @@
-import { Button, ButtonProps, Typography } from "@mui/material";
+import { Button, ButtonProps, Typography, useTheme } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
+import { hexToRGBA } from "@/utils/color_util";
 
 interface QuizButtonProps extends ButtonProps {
-  state: "default" | "correct" | "incorrect" | "final";
+  state: "default" | "selected" | "correct" | "incorrect" | "final";
 }
 
-export default function QuizButton({ children, state = "default", ...props }: QuizButtonProps) {
+export default function QuestionButton({ children, state = "default", ...props }: QuizButtonProps) {
+  const theme = useTheme();
+
   switch (state) {
     case "correct":
       return (
         <Button
           fullWidth disableElevation disableRipple disableFocusRipple
           variant="contained" color="success" {...props} sx={{
-            cursor: "default", padding: "8px 20px 8px 20px",
+            cursor: "default", padding: "8px 20px 8px 20px", border: "0.8px solid transparent"
           }}
         >
-          <CheckIcon color="success" sx={{ position: "absolute", right: "-40px" }} />
+          <CheckIcon color="success" sx={{ position: "absolute", right: "-36px" }} />
           <Typography variant="button" sx={{ textAlign: "justify" }}>
             {children}
           </Typography>
@@ -27,10 +30,10 @@ export default function QuizButton({ children, state = "default", ...props }: Qu
         <Button
           fullWidth disableElevation disableRipple disableFocusRipple
           variant="contained" color="error" {...props} sx={{
-            cursor: "default", padding: "8px 20px 8px 20px",
+            cursor: "default", padding: "8px 20px 8px 20px", border: "0.8px solid transparent"
           }}
         >
-          <ClearIcon color="success" sx={{ position: "absolute", right: "-40px" }} />
+          <ClearIcon color="error" sx={{ position: "absolute", right: "-36px" }} />
           <Typography variant="button" sx={{ textAlign: "justify" }}>
             {children}
           </Typography>
@@ -49,10 +52,24 @@ export default function QuizButton({ children, state = "default", ...props }: Qu
           </Typography>
         </Button>
       );
+    case "selected":
+      return (
+        <Button
+          fullWidth disableElevation variant="outlined" color="primary" {...props} sx={{
+            cursor: "pointer", padding: "8px 20px 8px 20px",
+            boxShadow: `0 0 0 4px ${hexToRGBA(theme.palette.primary.main, 0.3)}`,
+            transition: "box-shadow 0.3s",
+          }}
+        >
+          <Typography variant="button" sx={{ textAlign: "justify" }}>
+            {children}
+          </Typography>
+        </Button>
+      );
     default:
       return (
         <Button
-          fullWidth variant="outlined" color="primary" {...props} sx={{
+          fullWidth disableElevation variant="outlined" color="primary" {...props} sx={{
             cursor: "pointer", padding: "8px 20px 8px 20px",
           }}
         >

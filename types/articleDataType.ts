@@ -1,8 +1,8 @@
-type ArticleType = {
+type ArticleDataType = {
   slug: string;
   date: string;
   title: string;
   content: string;
 };
 
-export default ArticleType;
+export default ArticleDataType;

@@ -1,6 +1,6 @@
-import RoomInfoType from "@/types/room_info";
+import RoomBriefType from "@/types/roomBriefType";
 
-const rooms: RoomInfoType[] = [
+const rooms: RoomBriefType[] = [
   {
     title: "前台区",
     subtitle: "reception",

@@ -5,8 +5,8 @@
 import fs from "fs";
 import readline from "readline";
 import { join } from "path";
-import ArticleType from "@/types/article";
-import ArticleInfoType from "@/types/article_info";
+import ArticleDataType from "@/types/articleDataType";
+import ArticleBriefType from "@/types/articleBriefType";
 
 const baseDir = process.cwd();
 const contentDir = `${baseDir}/contents`;
@@ -70,7 +70,7 @@ export function getArticleSlugs(subDir: string): Promise<string[]> {
  * @param slug "index", "intro", etc.
  * @param subDir "veterinarian", "technician", etc.
  */
-export function getArticleBySlug(slug: string, subDir: string): Promise<ArticleType> {
+export function getArticleBySlug(slug: string, subDir: string): Promise<ArticleDataType> {
   const fullDir = join(contentDir, subDir);
   const fullPath = join(fullDir, `${slug}.md`);
 
@@ -95,7 +95,7 @@ export function getArticleBySlug(slug: string, subDir: string): Promise<ArticleT
  * @param slug "index", "intro", etc.
  * @param subDir "veterinarian", "technician", etc.
  */
-export function getArticleBriefBySlug(slug: string, subDir: string): Promise<ArticleInfoType> {
+export function getArticleBriefBySlug(slug: string, subDir: string): Promise<ArticleBriefType> {
   const fullDir = join(contentDir, subDir);
   const fullPath = join(fullDir, `${slug}.md`);
 
@@ -118,7 +118,7 @@ export function getArticleBriefBySlug(slug: string, subDir: string): Promise<Art
  * Return a list of ArticleBriefType Promise in the given directory.
  * @param subDir "veterinarian", "technician", etc.
  */
-export function getAllArticleBriefs(subDir: string): Promise<ArticleInfoType[]> {
+export function getAllArticleBriefs(subDir: string): Promise<ArticleBriefType[]> {
   return new Promise((resolve, reject) => {
     getArticleSlugs(subDir)
       .then(slugs => {
@@ -136,7 +136,7 @@ export function getAllArticleBriefs(subDir: string): Promise<ArticleInfoType[]> 
  * Return a list of ArticleType Promise in the given directory.
  * @param subDir "veterinarian", "technician", etc.
  */
-export function getAllArticles(subDir: string): Promise<ArticleType[]> {
+export function getAllArticles(subDir: string): Promise<ArticleDataType[]> {
   return new Promise((resolve, reject) => {
     getArticleSlugs(subDir)
       .then(slugs => {

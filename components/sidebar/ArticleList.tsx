@@ -1,10 +1,10 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
-import ArticleInfoType from "@/types/article_info";
+import ArticleBriefType from "@/types/articleBriefType";
 
 interface ListProps {
-  articleList: ArticleInfoType[];
+  articleList: ArticleBriefType[];
   linkPrefix: string;
 }
 

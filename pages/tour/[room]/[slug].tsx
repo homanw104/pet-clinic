@@ -8,15 +8,15 @@ import TourPageLayout from "@/layouts/TourPageLayout";
 import MarkdownArticle from "@/components/atomic/Markdown";
 import AppGridLayout from "@/layouts/AppGridLayout";
 import Home from "@/pages";
-import ArticleInfoType from "@/types/article_info";
-import ArticleType from "@/types/article";
+import ArticleBriefType from "@/types/articleBriefType";
+import ArticleDataType from "@/types/articleDataType";
 import rooms from "@/contents/rooms";
 
 interface PageProps {
   title: string;
   subtitle: string;
-  article: ArticleType;
-  articleList: ArticleInfoType[];
+  article: ArticleDataType;
+  articleList: ArticleBriefType[];
 }
 
 export default function Room({ article }: PageProps) {

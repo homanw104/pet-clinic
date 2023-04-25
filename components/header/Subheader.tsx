@@ -10,10 +10,10 @@ import databases from "@/contents/databases";
 
 interface SubheaderProps {
   variant: "home" | "learn" | "quiz";
-  onRandomQuiz?: () => void;
+  onRandomQuestion?: () => void;
 }
 
-export default function Subheader({ variant, onRandomQuiz }: SubheaderProps) {
+export default function Subheader({ variant, onRandomQuestion }: SubheaderProps) {
   const theme = useTheme();
   const router = useRouter();
   const { db } = router.query;
@@ -23,8 +23,8 @@ export default function Subheader({ variant, onRandomQuiz }: SubheaderProps) {
   };
 
   const handleRandomQuiz = () => {
-    if (onRandomQuiz) {
-      onRandomQuiz();
+    if (onRandomQuestion) {
+      onRandomQuestion();
     }
   }
 
@@ -89,7 +89,7 @@ export default function Subheader({ variant, onRandomQuiz }: SubheaderProps) {
     case "quiz":
       return (
         <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-          <Typography variant="h3" noWrap={true}>
+          <Typography variant="h3" noWrap={true} className="unselectable">
             在线测试
           </Typography>
           <Stack spacing={4} direction="row" justifyContent="flex-end" alignItems="baseline">
@@ -110,7 +110,7 @@ export default function Subheader({ variant, onRandomQuiz }: SubheaderProps) {
                 transform: "rotate(-45deg)",
                 position: "relative",
                 top: "0.15em",
-              }} /> 换一道题目
+              }} /> 随机下一题
             </TypographyButton>
           </Stack>
         </Stack>

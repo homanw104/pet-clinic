@@ -3,82 +3,74 @@
  */
 
 import React, { ReactElement, useEffect } from "react";
-import {
-  Collapse,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Stack,
-  Typography
-} from "@mui/material";
+import { Box, Collapse, Grid, List, ListItemButton, ListItemText, Stack, } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
 import AppGridLayout from "@/layouts/AppGridLayout";
 import databases from "@/contents/databases";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export default function Learn() {
-  const [data,setData] = React.useState();
+  const [data, setData] = React.useState<any>();
   const router = useRouter();
   const {db} = router.query;
-  const [open,setOpen] = React.useState(true);
-  useEffect(()=>{
+  const [open, setOpen] = React.useState(true);
+
+  useEffect(() => {
     axios.get("https://api.petclinic.homans.world:8443/listDisease/")
-      .then(response =>{
-        if(response.data.error_num ===1){
+      .then(response => {
+        if (response.data.error_num === 1) {
           alert(response.data.msg);
-        }else {
-        setData(response.data);
+        } else {
+          setData(response.data);
           console.log(response.data);
         }
-      },error =>{
+      }, error => {
         console.log(error);
       })
-  },[])
+  }, []);
+
   return (
     <>
       <Grid item xs={12}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
           marginTop: "4rem"
         }}>
-          <Header />
-          <Subheader variant="learn" />
+          <Header/>
+          <Subheader variant="learn"/>
         </Stack>
       </Grid>
 
       <Grid item xs={3}>
         <List>
-          {data?.map((item,i)=>(
-            <box>
-              <ListItemButton onClick={()=>{
+          {data && data.map((item: any, index: number) => (
+            <Box key={index}>
+              <ListItemButton onClick={() => {
                 console.log(item.category);
                 //router.push(`/learn/${db}/`);
                 setOpen(!open);
 
               }}>
                 <ListItemText primary={item.category}/>
-                {open ? <ExpandLess /> : <ExpandMore />}
+                {open ? <ExpandLess/> : <ExpandMore/>}
               </ListItemButton>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton onClick={()=>{
-                    router.push(`/learn/${db}/${i}`);
-                  }} >
+                  <ListItemButton onClick={() => {
+                    router.push(`/learn/${db}/${index}`).then();
+                  }}>
                     <ListItemText primary={item.disease_name}></ListItemText>
                   </ListItemButton>
 
 
                 </List>
               </Collapse>
-            </box>
+            </Box>
 
 
-            ))}
+          ))}
         </List>
       </Grid>
 
@@ -103,7 +95,7 @@ interface Params {
   }
 }
 
-export async function getStaticProps({ params }: Params) {
+export async function getStaticProps({params}: Params) {
   return {
     props: {
       db: params.db,

@@ -8,7 +8,7 @@ import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";
 import InfoCard from "@/components/atomic/InfoCard";
 import AvatarButton from "@/components/button/AvatarButton";
-import NormalButton from "@/components/button/NormalButton";
+import NavButton from "@/components/button/NavButton";
 import AppGridLayout from "@/layouts/AppGridLayout";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
@@ -53,12 +53,12 @@ export default function Home() {
             handleOnClick("/job/veterinarian/intro");
           }}>兽医</AvatarButton>
           <Stack spacing={2} direction="row" justifyContent="center">
-            <NormalButton name="database" onClick={() => handleOnClick("/learn/case")} style={{
+            <NavButton name="database" onClick={() => handleOnClick("/learn/case")} style={{
               width: "100%"
-            }}>病例库</NormalButton>
-            <NormalButton name="quiz" onClick={() => handleOnClick("/quiz")} style={{
+            }}>病例库</NavButton>
+            <NavButton name="quiz" onClick={() => handleOnClick("/quiz")} style={{
               width: "100%"
-            }}>在线测试</NormalButton>
+            }}>在线测试</NavButton>
           </Stack>
         </Stack>
       </Grid>

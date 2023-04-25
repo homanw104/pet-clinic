@@ -4,7 +4,7 @@ interface NormalButtonProps extends ButtonProps {
   name: string;   // Button name in English
 }
 
-export default function NormalButton({ children, name, ...props }: NormalButtonProps) {
+export default function NavButton({ children, name, ...props }: NormalButtonProps) {
   const theme = useTheme();
 
   return (

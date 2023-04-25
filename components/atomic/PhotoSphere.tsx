@@ -72,7 +72,7 @@ export default function PhotoSphere({ src, markers }: PageProps) {
     return () => {
       viewer.destroy();
     };
-  });
+  }, [containerRef, src, markers, router]);
 
   return (
     <Box ref={containerRef} sx={{

@@ -9,16 +9,16 @@ import JobPageLayout from "@/layouts/JobPageLayout";
 import MarkdownArticle from "@/components/atomic/Markdown";
 import AppGridLayout from "@/layouts/AppGridLayout";
 import Home from "@/pages";
-import ArticleType from "@/types/article";
-import ArticleInfoType from "@/types/article_info";
+import ArticleDataType from "@/types/articleDataType";
+import ArticleBriefType from "@/types/articleBriefType";
 import jobs from "@/contents/jobs";
 
 interface PageProps {
   title: string;
   subtitle: string;
   avatar: StaticImageData;
-  article: ArticleType;
-  articleList: ArticleInfoType[];
+  article: ArticleDataType;
+  articleList: ArticleBriefType[];
 }
 
 export default function Job({ article }: PageProps) {

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Box, LinearProgress, Stack } from "@mui/material";
 import InfoCard from "@/components/atomic/InfoCard";
 import ListButton from "@/components/button/ListButton";
-import quizInfoType from "@/types/quiz_info";
+import quizBriefType from "@/types/quizBriefType";
 
 export default function QuizList() {
-  const [quizList, setQuizList] = useState<quizInfoType[]>([]);
+  const [quizList, setQuizList] = useState<quizBriefType[]>([]);
 
   useEffect(() => {
     // Fetch quiz list

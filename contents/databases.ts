@@ -1,6 +1,6 @@
-import DatabaseInfoType from "@/types/database_info";
+import DatabaseBriefType from "@/types/databaseBriefType";
 
-const databases: DatabaseInfoType[] = [
+const databases: DatabaseBriefType[] = [
   {
     title: "病例数据库",
     slug: "case",

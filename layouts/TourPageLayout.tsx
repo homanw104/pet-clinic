@@ -10,7 +10,7 @@ import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
 import OverlayViewerBox from "@/components/overlay/OverlayViewerBox";
 import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
-import ArticleInfoType from "@/types/article_info";
+import ArticleBriefType from "@/types/articleBriefType";
 import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
 import { mountOverlay } from "@/store/overlaySlice";
 
@@ -18,7 +18,7 @@ interface LayoutProps {
   children?: React.ReactNode;   // Optional when displaying panorama
   title: string;                // Sidebar title
   subtitle: string;             // Sidebar title in English
-  articleList: ArticleInfoType[];
+  articleList: ArticleBriefType[];
   panoSrc?: string;             // Panorama source
   panoMarkers?: MarkerConfig[]; // Panorama markers
 }

@@ -6,26 +6,49 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { Box, CircularProgress, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
-import QuizButton from "@/components/button/QuizButton";
+import QuestionButton from "@/components/button/QuestionButton";
+import QuizList from "@/components/quiz/QuizList";
 import AppGridLayout from "@/layouts/AppGridLayout";
-import questionType from "@/types/question";
-import QuizList from "@/components/atomic/QuizList";
+import questionDataType from "@/types/questionDataType";
 
 export default function Quiz() {
   const theme = useTheme();
 
-  const [question, setQuestion] = useState<questionType>();
+  // When isFinal is true, the quiz is finished and the user can only reset the quiz
+  const [isFinal, setIsFinal] = useState(false);
 
-  const mockAns = "左手持刀柄刃侧尾端，右手握持针钳（持针器），成45°角夹住刀片孔上段背侧，左手握住刀柄，对准孔槽处向下用力，至刀片完全安装在刀柄上；拆卸时，左手持手术刀柄，右手握持持针器，夹住刀片孔尾端背侧，稍提起，顺刀柄槽往前推 。";
+  // Selection number, default for `-1`
+  const [selection, setSelection] = useState<number>(-1);
 
-  useEffect(() => {
-    // Fetch random question
+  // Question data
+  const [question, setQuestion] = useState<questionDataType>();
+
+  const handleRandomQuestion = () => {
+    // Fetch random question from backend
     setQuestion({
       questionId: 55,
       description: "你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
       options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
       answer: 2,
     });
+
+    // Reset selection
+    setSelection(-1);
+    setIsFinal(false);
+  };
+
+  const handleOnSelect = (index: number) => {
+    // Ignore clicks when the quiz is final
+    if (isFinal) return;
+
+    // Save selection and set final
+    setSelection(index);
+    setIsFinal(true);
+  };
+
+  useEffect(() => {
+    // Load a question when page mounts
+    handleRandomQuestion();
   }, []);
 
   return (
@@ -35,7 +58,7 @@ export default function Quiz() {
           marginTop: "4rem"
         }}>
           <Header />
-          <Subheader variant="quiz" />
+          <Subheader variant="quiz" onRandomQuestion={handleRandomQuestion} />
         </Stack>
       </Grid>
 
@@ -57,16 +80,32 @@ export default function Quiz() {
           {question &&
             <Stack direction="column" alignItems="center">
               <Typography variant="h5" textAlign="center" margin="4rem" minWidth="300px" maxWidth="400px">
-                Q: 你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？
+                Q: {question.description}
               </Typography>
               <Stack direction="column" alignItems="center" marginBottom="4rem" spacing={2} width="320px">
-                {/*{question.options.map((option, index) => (*/}
-                {/*  <QuizButton state="default" key={index}>{option}</QuizButton>*/}
-                {/*))}*/}
-                <QuizButton state="correct">{mockAns}</QuizButton>
-                <QuizButton state="incorrect">{mockAns}</QuizButton>
-                <QuizButton state="final">{mockAns}</QuizButton>
-                <QuizButton state="default">{mockAns}</QuizButton>
+                {question.options.map((option, index) => {
+                  let state: "default" | "selected" | "correct" | "incorrect" | "final";
+
+                  if (isFinal) {
+                    if (index === question.answer) {
+                      state = "correct";
+                    } else if (index === selection) {
+                      state = "incorrect";
+                    } else {
+                      state = "final";
+                    }
+                  } else {
+                    state = "default";
+                  }
+
+                  return (
+                    <QuestionButton state={state} key={index} onClick={
+                      () => handleOnSelect(index)
+                    }>
+                      {option}
+                    </QuestionButton>
+                  )
+                })}
               </Stack>
             </Stack>
           }

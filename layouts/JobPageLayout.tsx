@@ -9,7 +9,7 @@ import { Grid, Grow, Paper } from "@mui/material";
 import ArticleList from "@/components/sidebar/ArticleList";
 import JobSidebarHeaderBox from "@/components/sidebar/JobSidebarHeaderBox";
 import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
-import ArticleInfoType from "@/types/article_info";
+import ArticleBriefType from "@/types/articleBriefType";
 import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
 import { mountOverlay } from "@/store/overlaySlice";
 
@@ -19,7 +19,7 @@ interface LayoutProps {
   alt: string;                // Image description
   title: string;              // Sidebar title
   subtitle: string;           // Sidebar title in English
-  articleList: ArticleInfoType[];
+  articleList: ArticleBriefType[];
 }
 
 export default function JobPageLayout({ children, src, alt, title, subtitle, articleList }: LayoutProps) {

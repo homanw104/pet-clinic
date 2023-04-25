@@ -8,7 +8,7 @@ import { getAllArticleBriefs } from "@/utils/article_util";
 import TourPageLayout from "@/layouts/TourPageLayout";
 import AppGridLayout from "@/layouts/AppGridLayout";
 import Home from "@/pages";
-import ArticleInfoType from "@/types/article_info";
+import ArticleBriefType from "@/types/articleBriefType";
 import rooms from "@/contents/rooms";
 
 interface PageProps {
@@ -16,7 +16,7 @@ interface PageProps {
   subtitle: string;
   panoSrc: string;
   panoMarkers: MarkerConfig[];
-  articleList: ArticleInfoType[];
+  articleList: ArticleBriefType[];
 }
 
 export default function Room(props: PageProps) {
