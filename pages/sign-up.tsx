@@ -34,7 +34,7 @@ export default function SignUp() {
 
 SignUp.getLayout = function getLayout(page: ReactElement) {
   return (
-    <AppGridLayout bgImage="background-full.jpg">
+    <AppGridLayout bgImage="background-full.jpg" bgColor="#F4B21D">
       <LoginPageLayout>
         {page}
       </LoginPageLayout>

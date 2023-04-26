@@ -1,15 +1,17 @@
 /**
- * 测试主页，主页上有随机测试题生成。
+ * 在线测试主页，主页上有随机测试题生成。
  */
 
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { Box, CircularProgress, Fade, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
 import QuestionButton from "@/components/button/QuestionButton";
 import QuizList from "@/components/quiz/QuizList";
 import AppGridLayout from "@/layouts/AppGridLayout";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import questionDataType from "@/types/questionDataType";
+import useSWR from "swr";
 
 export default function Quiz() {
   const theme = useTheme();
@@ -17,42 +19,53 @@ export default function Quiz() {
   // When isFinal is true, the quiz is finished and the user can only reset the quiz
   const [isFinal, setIsFinal] = useState(false);
 
-  // Timeouts are set between setIsLoading and setIsLoaded to allow animations to play
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoaded, setIsLoaded] = useState(false);
+  // Whether to show error indicator
+  const [showError, setShowError] = useState(true);
+
+  // Whether to show loading indicator
+  const [showLoading, setShowLoading] = useState(true);
+
+  // Whether to show content
+  const [showLoaded, setShowLoaded] = useState(false);
 
   // Selection data, `-1` for unselected
-  const [selection, setSelection] = useState<number>(-1);
+  const [selection, setSelection] = useState(-1);
 
-  // Question data
+  // Question data, formatted in questionDataType
   const [question, setQuestion] = useState<questionDataType>();
 
-  const handleRandomQuestion = () => {
-    // Timeout reference
-    let loadingTimeout: NodeJS.Timeout;
-    let loadedTimeout: NodeJS.Timeout;
+  // Raw data from backend
+  const { data, error, isLoading, mutate } = useSWR<any>(`${process.env.NEXT_PUBLIC_API_URL}/randomQuestion/`);
 
-    // Set to loading state before fetching a new question
-    setIsLoaded(false);
-    loadingTimeout = setTimeout(() => { setIsLoading(true) }, 250);
+  // Timeout references, timeouts are set to allow animations play
+  const errorTimeout = useRef<NodeJS.Timeout>();
+  const loadingTimeout = useRef<NodeJS.Timeout>();
+  const loadedTimeout = useRef<NodeJS.Timeout>();
+
+  const handleRandomQuestion = async () => {
+    // Set UI to loading before fetching a new question
+    clearTimeout(errorTimeout.current); setShowError(false);
+    clearTimeout(loadedTimeout.current); setShowLoaded(false);
+    loadingTimeout.current = setTimeout(() => { setShowLoading(true) }, 250);
 
     // Reset selection and remove results
     setSelection(-1);
     setIsFinal(false);
 
-    // Simulate network delay
+    // Fetch a new question by triggering a revalidation for the data
     setTimeout(() => {
-      // Fetch random question from backend
-      setQuestion({
-        questionId: 55,
-        description: "（样例数据）你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
-        options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
-        answer: 2,
+      mutate().then(() => {
+        if (error) {
+          clearTimeout(loadedTimeout.current); setShowLoaded(false);
+          clearTimeout(loadingTimeout.current); setShowLoading(false);
+          errorTimeout.current = setTimeout(() => { setShowError(true) }, 250);
+        } else {
+          clearTimeout(errorTimeout.current); setShowError(false);
+          clearTimeout(loadingTimeout.current); setShowLoading(false);
+          loadedTimeout.current = setTimeout(() => { setShowLoaded(true) }, 250);
+        }
       });
-      setIsLoading(false);
-      clearTimeout(loadingTimeout);
-      loadedTimeout = setTimeout(() => { setIsLoaded(true) }, 250);
-    }, 1500);
+    }, 250);
   };
 
   const handleOnSelect = (index: number) => {
@@ -65,9 +78,44 @@ export default function Quiz() {
   };
 
   useEffect(() => {
-    // Load a question when page mounts
-    handleRandomQuestion();
-  }, []);
+    if (error) {
+      // Set UI to error
+      clearTimeout(loadedTimeout.current); setShowLoaded(false);
+      clearTimeout(loadingTimeout.current); setShowLoading(false);
+      errorTimeout.current = setTimeout(() => { setShowError(true) }, 250);
+    } else if (isLoading) {
+      // Set UI to loading
+      clearTimeout(errorTimeout.current); setShowError(false);
+      clearTimeout(loadedTimeout.current); setShowLoaded(false);
+      loadingTimeout.current = setTimeout(() => { setShowLoading(true) }, 250);
+    } else if (data) {
+      // Set question and set UI to loaded
+      setQuestion({
+        questionId: data[0].question_id,
+        description: data[0].description,
+        options: [
+          data[0].option__option1,
+          data[0].option__option2,
+          data[0].option__option3,
+          data[0].option__option4,
+        ],
+        answer: data[0].answer,
+      });
+      clearTimeout(errorTimeout.current); setShowError(false);
+      clearTimeout(loadingTimeout.current); setShowLoading(false);
+      loadedTimeout.current = setTimeout(() => { setShowLoaded(true) }, 250);
+    } else {
+      // Handle undefined data
+      console.log(data);
+    }
+
+    // Clear timeouts on unmount
+    return () => {
+      clearTimeout(errorTimeout.current);
+      clearTimeout(loadingTimeout.current);
+      clearTimeout(loadedTimeout.current);
+    }
+  }, [data, error, isLoading]);
 
   return (
     <>
@@ -95,7 +143,20 @@ export default function Quiz() {
           minHeight: "600px",
         }}>
 
-          <Fade in={isLoaded} unmountOnExit>
+          <Fade in={showError} unmountOnExit>
+            <Stack direction="row" alignItems="center" justifyContent="center" height="600px">
+              <WarningAmberIcon />
+              <Typography variant="h6" paddingLeft="0.5rem">无法连接到网络</Typography>
+            </Stack>
+          </Fade>
+
+          <Fade in={showLoading} style={{ transitionDelay: "200ms" }} unmountOnExit>
+            <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
+              <CircularProgress />
+            </Stack>
+          </Fade>
+
+          <Fade in={showLoaded} unmountOnExit>
             <Stack direction="column" alignItems="center">
               <Typography variant="h5" textAlign="center" margin="4rem" minWidth="300px" maxWidth="400px">
                 Q: {question?.description}
@@ -125,12 +186,6 @@ export default function Quiz() {
                   )
                 })}
               </Stack>
-            </Stack>
-          </Fade>
-
-          <Fade in={isLoading} style={{ transitionDelay: "500ms" }} unmountOnExit>
-            <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
-              <CircularProgress />
             </Stack>
           </Fade>
 

@@ -6,9 +6,16 @@ import { store } from "@/store/store";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
 import { Analytics } from "@vercel/analytics/react";
+import { SWRConfig } from "swr";
+import axios from "axios";
 import Theme from "@/components/app/Theme";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+const fetcher = async (url: string) => {
+  const response = await axios.get(url);
+  return response.data;
+};
+
+type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 }
 
@@ -25,11 +32,13 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <Provider store={store}>
-      <Theme>
-        <CssBaseline enableColorScheme />
-        {appWithLayout}
-        <Analytics />
-      </Theme>
+      <SWRConfig value={{ fetcher: fetcher }}>
+        <Theme>
+          <CssBaseline enableColorScheme />
+          {appWithLayout}
+          <Analytics />
+        </Theme>
+      </SWRConfig>
     </Provider>
   )
 }
