@@ -4,7 +4,17 @@
 
 import React, { ReactElement, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Box, CircularProgress, Fade, Grid, Stack, useTheme } from "@mui/material";
+import {
+  Box, Button,
+  CircularProgress,
+  Dialog, DialogActions,
+  DialogContent,
+  DialogContentText, DialogTitle,
+  Fade,
+  Grid,
+  Stack,
+  useTheme
+} from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
 import QuizList from "@/components/quiz/QuizList";
@@ -17,6 +27,9 @@ export default function Quiz() {
   const theme = useTheme();
   const router = useRouter();
 
+  // When isDialogActive is true, a warning is shown to ask use whether to discard their changes
+  const [isDialogActive, setIsDialogActive] = useState(false);
+
   // Timeouts are set between setIsLoading and setIsLoaded to allow animations to play
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,7 +41,16 @@ export default function Quiz() {
   const { id } = router.query;
 
   const handleRandomQuestion = () => {
+    setIsDialogActive(true);
+  };
 
+  const handleDialogCancel = () => {
+    setIsDialogActive(false);
+  };
+
+  const handleDialogConfirm = () => {
+    setIsDialogActive(false);
+    router.push("/quiz").then();
   };
 
   // Update isQueryReady state when router is ready
@@ -138,6 +160,26 @@ export default function Quiz() {
 
         </Box>
       </Grid>
+
+      <Dialog
+        open={isDialogActive}
+        onClose={handleDialogCancel}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          返回随机测试
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            点击确定将清除当前测试进度并返回随机测试！
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogCancel}>取消</Button>
+          <Button onClick={handleDialogConfirm} autoFocus>确定</Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }
