@@ -1,3 +1,7 @@
+/**
+ * Page not found component, used inside AppGridLayout.
+ */
+
 import React from "react";
 import { useRouter } from "next/router";
 import { Box, Grid, Stack, Typography, useTheme } from "@mui/material";

@@ -7,7 +7,7 @@ import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import { getAllArticleBriefs } from "@/utils/article_util";
 import TourPageLayout from "@/layouts/TourPageLayout";
 import AppGridLayout from "@/layouts/AppGridLayout";
-import Home from "@/pages";
+import MockHome from "@/components/app/MockHome";
 import ArticleBriefType from "@/types/articleBriefType";
 import rooms from "@/contents/rooms";
 
@@ -38,7 +38,7 @@ Room.getLayout = function getLayout(page: ReactElement) {
         {page}
       </TourPageLayout>
     }>
-      <Home />
+      <MockHome />
     </AppGridLayout>
   )
 }

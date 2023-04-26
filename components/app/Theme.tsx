@@ -1,3 +1,7 @@
+/**
+ * Custom Theme wrapper.
+ */
+
 import React from "react";
 import { ThemeProvider } from "@mui/material";
 import { useAppSelector } from "@/utils/hook_util";

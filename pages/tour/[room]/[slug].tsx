@@ -7,7 +7,7 @@ import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/
 import TourPageLayout from "@/layouts/TourPageLayout";
 import MarkdownArticle from "@/components/atomic/Markdown";
 import AppGridLayout from "@/layouts/AppGridLayout";
-import Home from "@/pages";
+import MockHome from "@/components/app/MockHome";
 import ArticleBriefType from "@/types/articleBriefType";
 import ArticleDataType from "@/types/articleDataType";
 import rooms from "@/contents/rooms";
@@ -38,7 +38,7 @@ Room.getLayout = function getLayout(page: ReactElement) {
         {page}
       </TourPageLayout>
     }>
-      <Home />
+      <MockHome />
     </AppGridLayout>
   )
 }
