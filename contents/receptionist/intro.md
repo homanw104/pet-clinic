@@ -1,16 +1,5 @@
 # 前台职位简介
 
-## Colebat non lacertos et
+前台接待人员负责病历管理、接听电话、安排预约、办理患病动物入院和出院。接待人员在提高动物医院/诊所形象方面起着重要作用，因为他是客户与动物医院/诊所接触的第一个人和最后一个人。前台接待人员在动物医院/诊所工作流程的顺畅方面也起着关键作用，该职位的员工应具有优秀的办公能力和沟通技巧。
 
-Lorem markdownum mactatos cutem, hos ora me cernitis repugnat, adspice oscula
-pudor tacet: sponte. Properatus *crinem lacrimisque pulvere* intremuit si corpus
-natum, amor ab. Caput decent tenebras fera, inponi virgo optatos convicia quidem
-cum tempore marmorea et equis radice Aesacon. Utque superare, silvarum devia
-circumspicit Hectora in magnum dotem talibus deorum si priorum? Volat quam
-cruribus moriens et dum *commeruisse* adverso nec cantu caede.
-
-Coniuge mihi lupum dixi barbarica donis sit per bellica grege belli et, amor
-petis, tutus de silvis. Quietis favillam, numquam **e et reccidat** rapior
-apicemque felices? Vocisque fallit notus utentem, procul sui minus proles
-magnaque! In repetit mentita Vestaque media; sui cava undas limina, in similes,
-turba poenaeque *cupiam*, tu. Venter aliquid!
+receptionist photo:
