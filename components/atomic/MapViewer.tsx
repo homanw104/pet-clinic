@@ -5,8 +5,8 @@ import { CRS, Icon, LatLng, LatLngBounds, Point } from "leaflet";
 import { MapContainer, ImageOverlay, Marker, Tooltip } from "react-leaflet";
 import { Typography, useTheme, Box } from "@mui/material";
 import { useRouter } from "next/router";
-import markers from "@/contents/markers";
 import { hexToRGBA } from "@/utils/color_util";
+import markers from "@/contents/markers";
 
 interface MarkerProps {
   position: LatLng;

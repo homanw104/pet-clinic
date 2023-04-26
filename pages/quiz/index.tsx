@@ -3,7 +3,7 @@
  */
 
 import React, { ReactElement, useEffect, useState } from "react";
-import { Box, CircularProgress, Grid, Stack, Typography, useTheme } from "@mui/material";
+import { Box, CircularProgress, Fade, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
 import QuestionButton from "@/components/button/QuestionButton";
@@ -17,31 +17,49 @@ export default function Quiz() {
   // When isFinal is true, the quiz is finished and the user can only reset the quiz
   const [isFinal, setIsFinal] = useState(false);
 
-  // Selection number, default for `-1`
+  // Timeouts are set between setIsLoading and setIsLoaded to allow animations to play
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Selection data, `-1` for unselected
   const [selection, setSelection] = useState<number>(-1);
 
   // Question data
   const [question, setQuestion] = useState<questionDataType>();
 
   const handleRandomQuestion = () => {
-    // Fetch random question from backend
-    setQuestion({
-      questionId: 55,
-      description: "你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
-      options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
-      answer: 2,
-    });
+    // Timeout reference
+    let loadingTimeout: NodeJS.Timeout;
+    let loadedTimeout: NodeJS.Timeout;
 
-    // Reset selection
+    // Set to loading state before fetching a new question
+    setIsLoaded(false);
+    loadingTimeout = setTimeout(() => { setIsLoading(true) }, 250);
+
+    // Reset selection and remove results
     setSelection(-1);
     setIsFinal(false);
+
+    // Simulate network delay
+    setTimeout(() => {
+      // Fetch random question from backend
+      setQuestion({
+        questionId: 55,
+        description: "（样例数据）你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
+        options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
+        answer: 2,
+      });
+      setIsLoading(false);
+      clearTimeout(loadingTimeout);
+      loadedTimeout = setTimeout(() => { setIsLoaded(true) }, 250);
+    }, 1500);
   };
 
   const handleOnSelect = (index: number) => {
     // Ignore clicks when the quiz is final
     if (isFinal) return;
 
-    // Save selection and set final
+    // Save selection and set question as final
     setSelection(index);
     setIsFinal(true);
   };
@@ -77,17 +95,17 @@ export default function Quiz() {
           minHeight: "600px",
         }}>
 
-          {question &&
+          <Fade in={isLoaded} unmountOnExit>
             <Stack direction="column" alignItems="center">
               <Typography variant="h5" textAlign="center" margin="4rem" minWidth="300px" maxWidth="400px">
-                Q: {question.description}
+                Q: {question?.description}
               </Typography>
               <Stack direction="column" alignItems="center" marginBottom="4rem" spacing={2} width="320px">
-                {question.options.map((option, index) => {
+                {question?.options.map((option, index) => {
                   let state: "default" | "selected" | "correct" | "incorrect" | "final";
 
                   if (isFinal) {
-                    if (index === question.answer) {
+                    if (index === question?.answer) {
                       state = "correct";
                     } else if (index === selection) {
                       state = "incorrect";
@@ -108,13 +126,13 @@ export default function Quiz() {
                 })}
               </Stack>
             </Stack>
-          }
+          </Fade>
 
-          {!question &&
-            <Stack direction="column" alignItems="center" justifyContent="center" height="100%">
+          <Fade in={isLoading} style={{ transitionDelay: "500ms" }} unmountOnExit>
+            <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
               <CircularProgress />
             </Stack>
-          }
+          </Fade>
 
         </Box>
       </Grid>

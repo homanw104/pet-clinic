@@ -4,7 +4,7 @@
 
 import React, { ReactElement, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Box, CircularProgress, Grid, Stack, useTheme } from "@mui/material";
+import { Box, CircularProgress, Fade, Grid, Stack, useTheme } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
 import QuizList from "@/components/quiz/QuizList";
@@ -17,11 +17,19 @@ export default function Quiz() {
   const theme = useTheme();
   const router = useRouter();
 
+  // Timeouts are set between setIsLoading and setIsLoaded to allow animations to play
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const [isQueryReady, setIsQueryReady] = useState(false);
   const [isPageNotFound, setIsPageNotFound] = useState(false);
   const [quizData, setQuizData] = useState<quizDataType>();
 
   const { id } = router.query;
+
+  const handleRandomQuestion = () => {
+
+  };
 
   // Update isQueryReady state when router is ready
   useEffect(() => {
@@ -43,25 +51,48 @@ export default function Quiz() {
 
   // Fetch quiz data
   useEffect(() => {
+    // Quit if query is not even ready
     if (!isQueryReady) return;
-    setQuizData({
-      quizId: 1,
-      quizName: "手術準備操作專題",
-      questions: [
-        {
-          questionId: 55,
-          description: "你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
-          options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
-          answer: 2,
-        },
-        {
-          questionId: 56,
-          description: "你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
-          options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
-          answer: 2,
-        },
-      ],
-    });
+
+    // Timeout reference
+    let loadingTimeout: NodeJS.Timeout;
+    let loadedTimeout: NodeJS.Timeout;
+
+    // Set to loading state before fetching quiz data
+    setIsLoaded(false);
+    loadingTimeout = setTimeout(() => { setIsLoading(true) }, 250);
+
+    // Simulate network delay
+    setTimeout(() => {
+      // Fetch quiz data
+      setQuizData({
+        quizId: 1,
+        quizName: "手術準備操作專題（样例数据）",
+        questions: [
+          {
+            questionId: 55,
+            description: "你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
+            options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
+            answer: 2,
+          },
+          {
+            questionId: 56,
+            description: "你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
+            options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
+            answer: 2,
+          },
+        ],
+      });
+      setIsLoading(false);
+      clearTimeout(loadingTimeout);
+      loadedTimeout = setTimeout(() => { setIsLoaded(true) }, 250);
+    }, 3000);
+
+    // Clear timeouts when unmount
+    return () => {
+      clearTimeout(loadingTimeout);
+      clearTimeout(loadedTimeout);
+    }
   }, [isQueryReady]);
 
   if (isPageNotFound) return <PageNotFound />;
@@ -73,7 +104,7 @@ export default function Quiz() {
           marginTop: "4rem"
         }}>
           <Header />
-          <Subheader variant="quiz" />
+          <Subheader variant="quiz" onRandomQuestion={handleRandomQuestion} />
         </Stack>
       </Grid>
 
@@ -93,15 +124,17 @@ export default function Quiz() {
           padding: "2rem",
         }}>
 
-          {quizData &&
-            <QuizContent quizData={quizData} />
-          }
+          <Fade in={isLoaded} unmountOnExit>
+            <Box>
+              <QuizContent quizData={quizData ? quizData : { quizId: 0, quizName: "", questions: [] }} />
+            </Box>
+          </Fade>
 
-          {!quizData &&
+          <Fade in={isLoading} style={{ transitionDelay: "500ms" }} unmountOnExit>
             <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
               <CircularProgress />
             </Stack>
-          }
+          </Fade>
 
         </Box>
       </Grid>
