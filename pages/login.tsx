@@ -13,15 +13,25 @@ export default function Login() {
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
+  let Login_times = 3;
   const handleLogin = () => {
+    //SuperUser7
+    //Test@0001
     const params = new URLSearchParams();
     params.append("username", username);
     params.append("password", password);
     axios.post("https://api.petclinic.homans.world:8443/login/", params)
       .then(response => {
-        dispatch(login(username));
-        router.push("/").then();
+        console.log(response);
+        if(response.data['error_num']==1){
+          alert(`登录失败，还剩下${Login_times}次机会`)
+          Login_times--;
+
+        }else{
+          dispatch(login(username));
+          router.push("/").then();
+        }
+
       })
       .catch(error => {
         console.log(error);
