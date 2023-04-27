@@ -22,28 +22,26 @@ import databases from "@/contents/databases";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { login } from "@/store/authSlice";
 
 export default function Learn() {
   const theme = useTheme();
-  const [dataArray, setDataArray] = React.useState([]);
+  const [dataArray, setDataArray] = React.useState<any>([]);
   const [data, setData] = React.useState<any>();
   const router = useRouter();
   const {db} = router.query;
   const [open, setOpen] = React.useState(-1);
   const [origin_data, setOrigin_data] = React.useState([]);
-  const set1 = new Set();
   const [title, setTitle] = React.useState();
   const [introduction, setIntroduction] = React.useState();
   const [price, setPrice] = React.useState();
-  const [form_data,setForm_data] = React.useState([]);
+  const [form_data, setForm_data] = React.useState<any>([]);
   const handleData = (s: string) => {
-    let newdata:any = origin_data;
-    //console.log(newdata);
-    let ReturnData = new Array();
-    for (let i = 0; i < newdata.length; i++) {
-      if (newdata[i].category == s) {
-        ReturnData.push(newdata[i]);
+    let newData: any = origin_data;
+    //console.log(newData);
+    let ReturnData = [];
+    for (let i = 0; i < newData.length; i++) {
+      if (newData[i].category == s) {
+        ReturnData.push(newData[i]);
       }
     }
     //console.log(ReturnData);
@@ -52,10 +50,11 @@ export default function Learn() {
 
 
   useEffect(() => {
+    const set1 = new Set();
     console.log(db);
-    setTitle(null);
-    setIntroduction(null);
-    setPrice(null);
+    setTitle(undefined);
+    setIntroduction(undefined);
+    setPrice(undefined);
     if (db == "case") {
       axios.get("https://api.petclinic.homans.world:8443/listDisease/")
         .then(response => {
@@ -92,7 +91,7 @@ export default function Learn() {
     }
 
   }, [db]);
-  const handleFormData=(disease_id:string)=>{
+  const handleFormData = (disease_id: string) => {
 
     axios.get(`https://api.petclinic.homans.world:8443/caseGroup/?disease_id=${disease_id}`)
       .then(response => {
@@ -138,10 +137,10 @@ export default function Learn() {
                   borderRadius: "12px",
                 }}>
                   <ListItemText primary={item}/>
-                  {open==index ? <ExpandLess/> : <ExpandMore/>}
+                  {open == index ? <ExpandLess/> : <ExpandMore/>}
                 </ListItemButton>
                 <Collapse in={open == index} timeout="auto" unmountOnExit>
-                  {data && data.map((item, index) => (
+                  {data && data.map((item: any, index: number) => (
                     <ListItemButton key={index} onClick={() => {
                       //router.push(`/learn/${db}/${index}`).then();
                       setTitle(item.disease_name);
@@ -158,7 +157,7 @@ export default function Learn() {
               </Box>
             ))
             }
-            {db == "medication" && data && data.map((item, index) => (
+            {db == "medication" && data && data.map((item: any, index: number) => (
               <ListItemButton key={index} onClick={() => {
                 setTitle(item.disposition_name);
                 setIntroduction(item.introduction);
@@ -171,7 +170,7 @@ export default function Learn() {
                 <ListItemText primary={item.disposition_name}></ListItemText>
               </ListItemButton>
             ))}
-            {db == "examination" && data && data.map((item, index) => (
+            {db == "examination" && data && data.map((item: any, index: number) => (
               <ListItemButton key={index} onClick={() => {
 
                 setTitle(item.project_name);
@@ -201,122 +200,122 @@ export default function Learn() {
           padding: "2.5rem"
         }}>
           {db == "medication" && <Stack spacing={2}>
-              <Typography variant="h3" gutterBottom>{title}</Typography>
-              <Typography variant="body1" gutterBottom>{introduction}</Typography>
-              <Typography variant="body1" gutterBottom>价格为：{price}</Typography>
+            <Typography variant="h3" gutterBottom>{title}</Typography>
+            <Typography variant="body1" gutterBottom>{introduction}</Typography>
+            <Typography variant="body1" gutterBottom>价格为：{price}</Typography>
           </Stack>}
           {db == "examination" && <Stack spacing={2}>
-              <Typography variant="h3" gutterBottom>{title}</Typography>
-              <Typography variant="body1" gutterBottom>{introduction}</Typography>
-              <Typography variant="body1" gutterBottom>价格为：{price}</Typography>
+            <Typography variant="h3" gutterBottom>{title}</Typography>
+            <Typography variant="body1" gutterBottom>{introduction}</Typography>
+            <Typography variant="body1" gutterBottom>价格为：{price}</Typography>
           </Stack>}
           {db == "case" &&
-              <Box>
-                  <Typography variant="h3" gutterBottom>{title}</Typography>
-                  <Typography variant="body1" gutterBottom>{introduction}</Typography>
-                {form_data.error_num!=1 && form_data?.map((item,index)=>(
-                  <TableContainer key={index}>
-                    <Table sx={{minWidth: 550}} aria-label="simple table">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell  >病例{index+1}</TableCell>
+            <Box>
+              <Typography variant="h3" gutterBottom>{title}</Typography>
+              <Typography variant="body1" gutterBottom>{introduction}</Typography>
+              {form_data.error_num != 1 && form_data?.map((item: any, index: number) => (
+                <TableContainer key={index}>
+                  <Table sx={{minWidth: 550}} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>病例{index + 1}</TableCell>
 
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                          <TableRow
-                            sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                          >
-                            <TableCell sx={{minWidth:200}} component="th" scope="row">
-                              病例情况
-                            </TableCell>
-                            <TableCell align="right">{item.admission}</TableCell>
-                          </TableRow>
-                        <TableRow
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
-                            病例名称
-                          </TableCell>
-                          <TableCell align="right">{item.case_name}</TableCell>
-                        </TableRow>
-                        <TableRow
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
-                            检查
-                          </TableCell>
-                          <TableCell align="right">{item.checking}</TableCell>
-                        </TableRow>
-                        <TableRow
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell sx={{minWidth: 200}} component="th" scope="row">
+                          病例情况
+                        </TableCell>
+                        <TableCell align="right">{item.admission}</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
+                          病例名称
+                        </TableCell>
+                        <TableCell align="right">{item.case_name}</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
+                          检查
+                        </TableCell>
+                        <TableCell align="right">{item.checking}</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
                           诊断报告
 
-                          </TableCell>
-                          <TableCell align="right">{item.diagnostic_result
-                          }</TableCell>
-                        </TableRow>
-                        <TableRow
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
-                            病例名称
+                        </TableCell>
+                        <TableCell align="right">{item.diagnostic_result
+                        }</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
+                          病例名称
 
-                          </TableCell>
-                          <TableCell align="right">{item.disease__disease_name
-                          }</TableCell>
-                        </TableRow>
-                        <TableRow
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
-                            患者年龄
+                        </TableCell>
+                        <TableCell align="right">{item.disease__disease_name
+                        }</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
+                          患者年龄
 
-                          </TableCell>
-                          <TableCell align="right">{item.patient_age
-                          }</TableCell>
-                        </TableRow>
-                        <TableRow
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
-                            患者品种
+                        </TableCell>
+                        <TableCell align="right">{item.patient_age
+                        }</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
+                          患者品种
 
-                          </TableCell>
-                          <TableCell align="right">{item.patient_specie
-                          }</TableCell>
-                        </TableRow>
-                        <TableRow
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
-                            患者体重
+                        </TableCell>
+                        <TableCell align="right">{item.patient_specie
+                        }</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
+                          患者体重
 
-                          </TableCell>
-                          <TableCell align="right">{item.patient_weight
-                          }</TableCell>
-                        </TableRow>
-                        <TableRow
-                          sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                          <TableCell component="th" scope="row">
-                            治疗方案
+                        </TableCell>
+                        <TableCell align="right">{item.patient_weight
+                        }</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                      >
+                        <TableCell component="th" scope="row">
+                          治疗方案
 
-                          </TableCell>
-                          <TableCell align="right">{item.treatment
-                          }</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                ))}
-                {form_data.error_num==1&&<Typography sx={{marginTop:'5rem'}}>
-                    暂时无病例介绍
-                </Typography>}
-              </Box>
-              }
+                        </TableCell>
+                        <TableCell align="right">{item.treatment
+                        }</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              ))}
+              {form_data.error_num == 1 && <Typography sx={{marginTop: '5rem'}}>
+                暂时无病例介绍
+              </Typography>}
+            </Box>
+          }
         </Box>
       </Grid>
     </>
