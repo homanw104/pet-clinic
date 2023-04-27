@@ -1,9 +1,9 @@
-# 测试流程
+# 住院部
 
-## Legit nova fortius et utile corpore
+住院部是我院临床诊疗的重要组成部分，也是医院内科后备力量的培养基地。
 
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+目前我院只接受犬猫住院，为了更好的照顾动物，减少动物应激，划分出1个普通犬病房，1个重症犬病房，1个猫病房。除了猫病房外，每间病房设置有大小两种规格的笼位，可以满足由1kg至50kg体重的动物需求。笼位内放置消毒毛毯作为基础垫料，上铺吸水性尿片。目前我们拥有多种国内外先进的医疗设备，包括心电监护仪2台，血压仪2台，心电图1台，同时还有输液泵、输血泵、微量注射泵等仪器，力求让住院动物得到最精确、最全面的治疗与监测，为住院动物尤其是危重动物的治疗和监护提供了强大的保障。
+
+技术过硬和经验丰富的医护团队是我们强大的后盾，已经形成了心肺疾病、血液病、内分泌疾病、皮肤病、消化道疾病和泌尿系统疾病等专科方向，目前，我们在糖尿病、肝脏疾病、肾脏疾病、胰腺炎、消化道疾病、心脏疾病和血液病等疾病积累了丰富的诊疗和护理经验；在外科方面，我们对于术前及术后动物的治疗和护理也具有丰富的实战经验。
+
+我们是一支充满朝气、不断进取的队伍，为动物提供更高水平的治疗和护理方案。为了让更多可爱的小生命减轻病痛，更快地恢复健康，陪伴在主人的身旁，我们会更加努力，不断学习、提高业务素质和服务水平。

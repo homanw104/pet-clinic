@@ -1,9 +1,3 @@
-# 测试流程
+# 门诊室
 
-## Legit nova fortius et utile corpore
-
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+门诊是一个诊疗功能比较齐全的系统整体，从病宠挂号、候诊、就诊，到医院提供检诊分诊、诊断、检验、放射、注射、治疗、取药等是一连串的由多个环节组成的流程，在这个流程中，任何一个环节的梗阻都可造成门诊的严重拥挤，给病宠与客户带来不便。

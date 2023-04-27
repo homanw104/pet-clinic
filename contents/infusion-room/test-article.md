@@ -1,9 +1,16 @@
-# 测试流程
+# 输液室
 
-## Legit nova fortius et utile corpore
+注射室面积约40平方米，分普通病区和传染病区。现有输液台10张，并配有加温器、输液泵等。输液室内配有可移动紫外线消毒车。严格执行输液室消毒隔离制度。
 
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+## 服务内容：
+皮下注射、肌肉注射、腹腔注射、封闭注射、皮下输液、静脉输液、术前准备等。
+
+## 注射室特色：
+1. 能为各种宠物服务。
+2. 具有高超的注射及输液技术。
+3. 有耐心、细致的护理服务队伍。
+4. 有较高的沟通技巧及完善的宣传能力。
+5. 具有敏锐的观察力及完善的输液、注射过敏反应的急救能力。
+
+## 护理理念：
+减轻宠物的痛苦是我们最大的欣慰。

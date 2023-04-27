@@ -1,9 +1,3 @@
-# 测试流程
+# 手术室
 
-## Legit nova fortius et utile corpore
-
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+pet-clinic宠物医院门诊手术室为万级净化手术室，可有效减少手术风险，内配有呼吸麻醉仪、心电监护仪、整体反射式无影灯、腹腔镜、胃窥镜、眼科手术显微镜等设备。该手术室可开展胸腔、腹腔、脊柱、眼科等相关手术，为动物的诊断和治疗提供可靠保障。

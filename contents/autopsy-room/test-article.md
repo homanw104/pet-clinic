@@ -1,9 +1,3 @@
-# 测试流程
+# 剖检室介绍
 
-## Legit nova fortius et utile corpore
-
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+动物医院畜禽剖检，可进行犬、猫、鸡、鸭、猪、羊等动物的剖检、病理诊断和药敏试验。

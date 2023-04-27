@@ -1,9 +1,3 @@
-# 测试流程
+# 医学影像室
 
-## Legit nova fortius et utile corpore
-
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+pet-clinic宠物医院医学影像室由超声影像室和X线诊断室组成。该科室拥有数字化计算机X线诊断仪和彩色多普勒超声诊断仪，可进行大动物（马、牛）、小动物（犬、猫、兔子和龙猫等）及野生动物和海洋动物的影像诊断，为疾病诊断提供了更为精确的科学辅助。

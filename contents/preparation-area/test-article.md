@@ -1,9 +1,5 @@
-# 测试流程
+# 手术准备室
 
-## Legit nova fortius et utile corpore
+为了提高手术的工作效率，保障接台手术病宠的安全。手术准备室便是一个在我们日常工作中不可或缺的场地。
 
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+主要负责病宠手术麻醉前的各项准备工作，待手术病宠生命体征监测、为病宠进行静脉补液、准备换能器，以及静脉穿刺等操作。手术准备室的存在不仅缩短了接台病宠的术前等候时间，更有效提高了手术接台效率、还保证了病宠的安全。

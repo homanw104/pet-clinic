@@ -1,9 +1,5 @@
-# 测试流程
+# 免疫室
 
-## Legit nova fortius et utile corpore
+pet-clinic宠物医院免疫室为定点免疫单位，负责犬猫常见传染病及狂犬病的免疫接种工作。同时也提供传染病隔离区域。
 
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+

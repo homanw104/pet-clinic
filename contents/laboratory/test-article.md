@@ -1,9 +1,3 @@
-# 测试流程
+# 化验室介绍
 
-## Legit nova fortius et utile corpore
-
-Et sic caeca aut indoluit Iapygis triformis caespite lepus *fati reducto*
-plangitur et oculos in. Et undas et me mollibus longoque gratior, sociis et.
-Ponat antiqua Aeginam auctoribus **pactique**, sanguine, dilapsa parte nullo
-genitore et bella dissimulant verba exspectanda pharetras. Denique mihi. Aetatem
-argento penetralibus fugat.
+pet-clinic宠物医院化验室拥有五分类血常规计数仪、血气检测仪、血液生化检测仪、尿液检测仪、液相色谱仪等。

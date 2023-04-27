@@ -1,16 +1,10 @@
 # 医助职位简介
 
-## Colebat non lacertos et
+虽然兽医助理没有执照，也不要求参加受认可的兽医课程培训.但是他们是兽医团队中不可或缺的成员。大多数兽医助理接受在职培训，有些兽医助理通过职业教育课程接受正规的培训。他们在兽医和兽医技术人员的直接监督下工作。
 
-Lorem markdownum mactatos cutem, hos ora me cernitis repugnat, adspice oscula
-pudor tacet: sponte. Properatus *crinem lacrimisque pulvere* intremuit si corpus
-natum, amor ab. Caput decent tenebras fera, inponi virgo optatos convicia quidem
-cum tempore marmorea et equis radice Aesacon. Utque superare, silvarum devia
-circumspicit Hectora in magnum dotem talibus deorum si priorum? Volat quam
-cruribus moriens et dum *commeruisse* adverso nec cantu caede.
 
-Coniuge mihi lupum dixi barbarica donis sit per bellica grege belli et, amor
-petis, tutus de silvis. Quietis favillam, numquam **e et reccidat** rapior
-apicemque felices? Vocisque fallit notus utentem, procul sui minus proles
-magnaque! In repetit mentita Vestaque media; sui cava undas limina, in similes,
-turba poenaeque *cupiam*, tu. Venter aliquid!
+善医助理的作用是辅助兽医或者兽医技术人员，使他们能及时有效地完成工作。了解动物医院/诊所的所有工作流程以及其他工作人员如何完成其工作是非常必要的。了解这些有助于鲁医助理做好物品和患病动物的准备工作，从而使动物医院/诊所内的工作变得有效冇序。
+
+正因为在患病动物护理的准备和后续阶段兽医助理为专业人员提供了尽量多的即时帮助，才使兽医助理对专业人员来说非常重要。
+
+具有在不同部门之间交叉工作的能力，做好准备工作.与其他工作人员合作完成患病动物的护理以及成为专业人员的得力助手，这些都是一个一流兽医助理的标志。
