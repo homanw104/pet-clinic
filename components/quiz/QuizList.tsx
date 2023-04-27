@@ -1,61 +1,55 @@
+import useSWR from "swr";
 import React, { useEffect, useState } from "react";
-import { Fade, Skeleton, Stack } from "@mui/material";
+import { useRouter } from "next/router";
+import { Fade, Skeleton, Stack, Typography } from "@mui/material";
 import InfoCard from "@/components/atomic/InfoCard";
 import ListButton from "@/components/button/ListButton";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import { useRenderState } from "@/utils/hook_util";
+import { API_URL } from "@/utils/env_util";
 import quizBriefType from "@/types/quizBriefType";
-import { useRouter } from "next/router";
 
 export default function QuizList() {
   const router = useRouter();
 
-  // Timeouts are set between setIsLoading and setIsLoaded to allow animations to play
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoaded, setIsLoaded] = useState(false);
-
   // Quiz list data
   const [quizList, setQuizList] = useState<quizBriefType[]>([]);
+
+  // Raw data from backend
+  const {
+    data, error, isLoading
+  } = useSWR<any>(`${API_URL}/listPaper`);
+
+  // States to control loading & error UI
+  const {
+    renderState, setRenderState, clearTimeouts
+  } = useRenderState();
 
   const handleOnClick = (href: string) => {
     router.push(href).then();
   };
 
   useEffect(() => {
-    // Timeout reference
-    let loadingTimeout: NodeJS.Timeout;
-    let loadedTimeout: NodeJS.Timeout;
-
-    // Set to loading state before fetching a new question
-    setIsLoaded(false);
-    loadingTimeout = setTimeout(() => { setIsLoading(true) }, 250);
-
-    // Simulate network delay
-    setTimeout(() => {
-      // Fetch quiz list
-      setQuizList([
-        {
-          quizId: 1,
-          quizName: "综合测试1",
-        },
-        {
-          quizId: 2,
-          quizName: "综合测试2",
-        },
-        {
-          quizId: 3,
-          quizName: "综合测试3",
-        },
-      ]);
-      setIsLoading(false);
-      clearTimeout(loadingTimeout);
-      loadedTimeout = setTimeout(() => { setIsLoaded(true) }, 250);
-    }, 1500);
-
-    // Clear timeouts when unmount
-    return () => {
-      clearTimeout(loadingTimeout);
-      clearTimeout(loadedTimeout);
+    // Check render dependencies in order to determine render state
+    if (error) {
+      setRenderState("error");
+    } else if (isLoading) {
+      setRenderState("loading");
+    } else if (data) {
+      setQuizList(data.map((quiz: any) => {
+        return {
+          quizId: quiz.paper_id,
+          quizName: quiz.paper_name,
+        }
+      }));
+      setRenderState("loaded");
+    } else {
+      setRenderState("error");
     }
-  }, []);
+    
+    // Clear timeouts when unmount
+    return () => clearTimeouts();
+  }, [data, error, isLoading, clearTimeouts, setRenderState]);
 
   return (
     <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
@@ -67,21 +61,28 @@ export default function QuizList() {
         在下侧列表中选择试卷，开始综合测试！
       </InfoCard>
 
-      <Fade in={isLoaded} unmountOnExit>
+      <Fade in={renderState.error} unmountOnExit>
+        <Stack direction="row" alignItems="center" justifyContent="center">
+          <WarningAmberIcon />
+          <Typography variant="h6" paddingLeft="0.5rem">无法连接到网络</Typography>
+        </Stack>
+      </Fade>
+
+      <Fade in={renderState.loading} style={{ transitionDelay: "250ms" }} unmountOnExit>
+        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
+          <Skeleton variant="rounded" width="100%" height="40px" />
+          <Skeleton variant="rounded" width="100%" height="40px" />
+          <Skeleton variant="rounded" width="100%" height="40px" />
+        </Stack>
+      </Fade>
+
+      <Fade in={renderState.loaded} unmountOnExit>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
           {quizList.map((quiz, index) => (
             <ListButton key={index} onClick={() => handleOnClick(`/quiz/${quiz.quizId}`)}>
               {quiz.quizName}
             </ListButton>
           ))}
-        </Stack>
-      </Fade>
-
-      <Fade in={isLoading} style={{ transitionDelay: "250ms" }} unmountOnExit>
-        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
-          <Skeleton variant="rounded" width="100%" height="40px" />
-          <Skeleton variant="rounded" width="100%" height="40px" />
-          <Skeleton variant="rounded" width="100%" height="40px" />
         </Stack>
       </Fade>
 

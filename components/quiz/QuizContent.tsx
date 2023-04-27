@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Divider, Snackbar, Stack, Typography, useTheme } from "@mui/material";
 import QuestionList from "@/components/quiz/QuestionList";
 import TypographyButton from "@/components/button/TypographyButton";
@@ -38,8 +38,14 @@ export default function QuizContent({ quizData }: QuizContentProps) {
   };
 
   const handleCloseWarning = () => {
+    // Close warning
     setIsIncomplete(false);
   };
+
+  useEffect(() => {
+    // Reset quiz when quiz data change
+    handleResetQuiz();
+  }, [quizData]);
 
   return (
     <Stack direction="column" alignItems="stretch" justifyContent="flex-start" spacing={2}>

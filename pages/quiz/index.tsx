@@ -47,7 +47,7 @@ export default function Quiz() {
     setIsFinal(true);
   };
 
-  const handleRandomQuestion = async () => {
+  const handleRandomQuestion = () => {
     // Set UI to loading before fetching a new question
     setRenderState("loading");
 
@@ -56,14 +56,17 @@ export default function Quiz() {
     setIsFinal(false);
 
     // Fetch a new question after a timeout (for animation) using mutate()
-    setTimeout(() => {
-      mutate().then(() => {
-        if (error) {
-          setRenderState("error");
-        } else {
-          setRenderState("loaded");
-        }
-      });
+    setTimeout(async () => {
+      let prevId: string;
+      let newId: string;
+      let newData: any;
+
+      // Fetch new questions until the question id is different
+      do {
+        prevId = data ? data[0].question_id : "";
+        newData = await mutate();
+        newId = newData ? newData[0].question_id : "";
+      } while (prevId === newId);
     }, 250);
   };
 
@@ -122,16 +125,16 @@ export default function Quiz() {
           minHeight: "600px",
         }}>
 
+          <Fade in={renderState.loading} style={{ transitionDelay: "200ms" }} unmountOnExit>
+            <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
+              <CircularProgress />
+            </Stack>
+          </Fade>
+
           <Fade in={renderState.error} unmountOnExit>
             <Stack direction="row" alignItems="center" justifyContent="center" height="600px">
               <WarningAmberIcon />
               <Typography variant="h6" paddingLeft="0.5rem">无法连接到网络</Typography>
-            </Stack>
-          </Fade>
-
-          <Fade in={renderState.loading} style={{ transitionDelay: "200ms" }} unmountOnExit>
-            <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
-              <CircularProgress />
             </Stack>
           </Fade>
 

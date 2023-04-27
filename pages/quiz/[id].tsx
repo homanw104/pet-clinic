@@ -65,7 +65,6 @@ export default function Quiz() {
     } else if (isLoading) {
       setRenderState("loading");
     } else if (data) {
-      console.log(data)
       if (data.error_num) {
         setQuizData(undefined);
       } else {
@@ -125,16 +124,16 @@ export default function Quiz() {
           padding: "2rem",
         }}>
 
-          <Fade in={renderState.error} unmountOnExit>
-            <Stack direction="row" alignItems="center" justifyContent="center" height="600px">
-              <WarningAmberIcon />
-              <Typography variant="h6" paddingLeft="0.5rem">无法连接到网络</Typography>
+          <Fade in={renderState.loading} style={{ transitionDelay: "200ms" }} unmountOnExit>
+            <Stack direction="column" alignItems="center" justifyContent="center" height="536px">
+              <CircularProgress />
             </Stack>
           </Fade>
 
-          <Fade in={renderState.loading} style={{ transitionDelay: "500ms" }} unmountOnExit>
-            <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
-              <CircularProgress />
+          <Fade in={renderState.error} unmountOnExit>
+            <Stack direction="row" alignItems="center" justifyContent="center" height="536px">
+              <WarningAmberIcon />
+              <Typography variant="h6" paddingLeft="0.5rem">无法连接到网络</Typography>
             </Stack>
           </Fade>
 

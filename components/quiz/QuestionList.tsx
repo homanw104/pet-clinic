@@ -39,7 +39,7 @@ export default function QuestionList({ questions, selections, setSelections, isF
             <Typography>{question.description}</Typography>
             <Grid container maxWidth="752px" columns={2} spacing={2} sx={{
               paddingTop: "1rem",
-              paddingBottom: "2rem",
+              paddingBottom: "3rem",
             }}>
 
               {question.options.map((option, optionIndex) => {
