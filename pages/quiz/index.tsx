@@ -2,7 +2,8 @@
  * 在线测试主页，主页上有随机测试题生成。
  */
 
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import useSWR from "swr";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Box, CircularProgress, Fade, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
@@ -11,22 +12,22 @@ import QuizList from "@/components/quiz/QuizList";
 import AppGridLayout from "@/layouts/AppGridLayout";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import questionDataType from "@/types/questionDataType";
-import useSWR from "swr";
+import { useLoadingState } from "@/utils/hook_util";
+
+// Configurations to disable auto revalidation and deduping interval for random question API
+const swrConfig = {
+  revalidateIfStale: false,
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false,
+  dedupingInterval: 0,
+  focusThrottleInterval: 0,
+}
 
 export default function Quiz() {
   const theme = useTheme();
 
   // When isFinal is true, the quiz is finished and the user can only reset the quiz
   const [isFinal, setIsFinal] = useState(false);
-
-  // Whether to show error indicator
-  const [showError, setShowError] = useState(true);
-
-  // Whether to show loading indicator
-  const [showLoading, setShowLoading] = useState(true);
-
-  // Whether to show content
-  const [showLoaded, setShowLoaded] = useState(false);
 
   // Selection data, `-1` for unselected
   const [selection, setSelection] = useState(-1);
@@ -35,38 +36,13 @@ export default function Quiz() {
   const [question, setQuestion] = useState<questionDataType>();
 
   // Raw data from backend
-  const { data, error, isLoading, mutate } = useSWR<any>(`${process.env.NEXT_PUBLIC_API_URL}/randomQuestion/`);
+  const { data, error, isLoading, mutate } = useSWR<any>(`${process.env.NEXT_PUBLIC_API_URL}/randomQuestion/`, swrConfig);
 
-  // Timeout references, timeouts are set to allow animations play
-  const errorTimeout = useRef<NodeJS.Timeout>();
-  const loadingTimeout = useRef<NodeJS.Timeout>();
-  const loadedTimeout = useRef<NodeJS.Timeout>();
-
-  const handleRandomQuestion = async () => {
-    // Set UI to loading before fetching a new question
-    clearTimeout(errorTimeout.current); setShowError(false);
-    clearTimeout(loadedTimeout.current); setShowLoaded(false);
-    loadingTimeout.current = setTimeout(() => { setShowLoading(true) }, 250);
-
-    // Reset selection and remove results
-    setSelection(-1);
-    setIsFinal(false);
-
-    // Fetch a new question by triggering a revalidation for the data
-    setTimeout(() => {
-      mutate().then(() => {
-        if (error) {
-          clearTimeout(loadedTimeout.current); setShowLoaded(false);
-          clearTimeout(loadingTimeout.current); setShowLoading(false);
-          errorTimeout.current = setTimeout(() => { setShowError(true) }, 250);
-        } else {
-          clearTimeout(errorTimeout.current); setShowError(false);
-          clearTimeout(loadingTimeout.current); setShowLoading(false);
-          loadedTimeout.current = setTimeout(() => { setShowLoaded(true) }, 250);
-        }
-      });
-    }, 250);
-  };
+  // States to control loading & error UI
+  const {
+    showLoading, showError, showLoaded,
+    setShowLoading, setShowError, setShowLoaded, clearTimeouts
+  } = useLoadingState();
 
   const handleOnSelect = (index: number) => {
     // Ignore clicks when the quiz is final
@@ -77,19 +53,33 @@ export default function Quiz() {
     setIsFinal(true);
   };
 
+  const handleRandomQuestion = async () => {
+    // Set UI to loading before fetching a new question
+    setShowLoading();
+
+    // Reset selection and remove results
+    setSelection(-1);
+    setIsFinal(false);
+
+    // Fetch a new question after a timeout (for animation) using mutate()
+    setTimeout(() => {
+      mutate().then(() => {
+        if (error) {
+          setShowError();
+        } else {
+          setShowLoaded();
+        }
+      });
+    }, 250);
+  };
+
+  // Handle data states change
   useEffect(() => {
     if (error) {
-      // Set UI to error
-      clearTimeout(loadedTimeout.current); setShowLoaded(false);
-      clearTimeout(loadingTimeout.current); setShowLoading(false);
-      errorTimeout.current = setTimeout(() => { setShowError(true) }, 250);
+      setShowError();
     } else if (isLoading) {
-      // Set UI to loading
-      clearTimeout(errorTimeout.current); setShowError(false);
-      clearTimeout(loadedTimeout.current); setShowLoaded(false);
-      loadingTimeout.current = setTimeout(() => { setShowLoading(true) }, 250);
+      setShowLoading();
     } else if (data) {
-      // Set question and set UI to loaded
       setQuestion({
         questionId: data[0].question_id,
         description: data[0].description,
@@ -101,21 +91,15 @@ export default function Quiz() {
         ],
         answer: data[0].answer,
       });
-      clearTimeout(errorTimeout.current); setShowError(false);
-      clearTimeout(loadingTimeout.current); setShowLoading(false);
-      loadedTimeout.current = setTimeout(() => { setShowLoaded(true) }, 250);
+      setShowLoaded();
     } else {
-      // Handle undefined data
-      console.log(data);
+      setShowError();
     }
-
-    // Clear timeouts on unmount
+    
     return () => {
-      clearTimeout(errorTimeout.current);
-      clearTimeout(loadingTimeout.current);
-      clearTimeout(loadedTimeout.current);
+      clearTimeouts();
     }
-  }, [data, error, isLoading]);
+  }, [data, error, isLoading, setShowError, setShowLoaded, setShowLoading, clearTimeouts]);
 
   return (
     <>
