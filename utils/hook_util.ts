@@ -14,9 +14,9 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 /**
- * Custom loading state hook that handles timeouts between states.
+ * Custom render state hook that handles timeouts between states.
  */
-export const useLoadingState = () => {
+export const useRenderState = () => {
   // Timeout between states
   const timeout = 250;
 
@@ -28,50 +28,79 @@ export const useLoadingState = () => {
 
   // Whether to show content
   const [loaded, setLoaded] = useState(false);
-
+  
+  // Whether to show page not found
+  const [notFound, setNotFound] = useState(false);
+  
   // Timeout references
   const errorTimeout = useRef<NodeJS.Timeout>();
   const loadingTimeout = useRef<NodeJS.Timeout>();
   const loadedTimeout = useRef<NodeJS.Timeout>();
+  const notFoundTimeout = useRef<NodeJS.Timeout>();
 
   // Set loading after timeout
   const setShowLoading = useCallback(() => {
-    console.log("loading")
     clearTimeout(errorTimeout.current); setError(false);
     clearTimeout(loadedTimeout.current); setLoaded(false);
+    clearTimeout(notFoundTimeout.current); setNotFound(false);
     loadingTimeout.current = setTimeout(() => { setLoading(true) }, timeout);
   }, []);
 
   // Set error after timeout
   const setShowError = useCallback(() => {
-    console.log("error")
     clearTimeout(loadingTimeout.current); setLoading(false);
     clearTimeout(loadedTimeout.current); setLoaded(false);
+    clearTimeout(notFoundTimeout.current); setNotFound(false);
     errorTimeout.current = setTimeout(() => { setError(true) }, timeout);
   }, []);
 
   // Set loaded after timeout
   const setShowLoaded = useCallback(() => {
-    console.log("loaded")
     clearTimeout(loadingTimeout.current); setLoading(false);
     clearTimeout(errorTimeout.current); setError(false);
+    clearTimeout(notFoundTimeout.current); setNotFound(false);
     loadedTimeout.current = setTimeout(() => { setLoaded(true) }, timeout);
   }, []);
 
+  // Set page not found after timeout
+  const setShowNotFound = useCallback(() => {
+    clearTimeout(loadingTimeout.current); setLoading(false);
+    clearTimeout(loadedTimeout.current); setLoaded(false);
+    clearTimeout(errorTimeout.current); setError(false);
+    notFoundTimeout.current = setTimeout(() => { setNotFound(true) }, timeout);
+  }, []);
+  
   // Clear timeouts, used when component unmounts
   const clearTimeouts = useCallback(() => {
     clearTimeout(loadingTimeout.current);
     clearTimeout(loadedTimeout.current);
     clearTimeout(errorTimeout.current);
+    clearTimeout(notFoundTimeout.current);
   }, []);
 
+  const setRenderState = useCallback((state: string) => {
+    switch (state) {
+      case "loading":
+        setShowLoading();
+        break;
+      case "error":
+        setShowError();
+        break;
+      case "loaded":
+        setShowLoaded();
+        break;
+      case "notFound":
+        setShowNotFound();
+        break;
+      default:
+        setShowLoading();
+        break;
+    }
+  }, [setShowError, setShowLoaded, setShowLoading, setShowNotFound]);
+  
   return {
-    showLoading: loading,
-    showError: error,
-    showLoaded: loaded,
-    setShowLoading: setShowLoading,
-    setShowError: setShowError,
-    setShowLoaded: setShowLoaded,
+    renderState: { loading, loaded, error, notFound },
+    setRenderState: setRenderState,
     clearTimeouts: clearTimeouts,
   };
 }

@@ -7,21 +7,14 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { Box, CircularProgress, Fade, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
-import QuestionButton from "@/components/button/QuestionButton";
 import QuizList from "@/components/quiz/QuizList";
+import RandomQuestion from "@/components/quiz/RandomQuestion";
 import AppGridLayout from "@/layouts/AppGridLayout";
+import PageNotFound from "@/components/app/PageNotFound";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import { useRenderState } from "@/utils/hook_util";
+import { API_URL } from "@/utils/env_util";
 import questionDataType from "@/types/questionDataType";
-import { useLoadingState } from "@/utils/hook_util";
-
-// Configurations to disable auto revalidation and deduping interval for random question API
-const swrConfig = {
-  revalidateIfStale: false,
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  dedupingInterval: 0,
-  focusThrottleInterval: 0,
-}
 
 export default function Quiz() {
   const theme = useTheme();
@@ -36,13 +29,14 @@ export default function Quiz() {
   const [question, setQuestion] = useState<questionDataType>();
 
   // Raw data from backend
-  const { data, error, isLoading, mutate } = useSWR<any>(`${process.env.NEXT_PUBLIC_API_URL}/randomQuestion/`, swrConfig);
+  const {
+    data, error, isLoading, mutate
+  } = useSWR<any>(`${API_URL}/randomQuestion/`);
 
   // States to control loading & error UI
   const {
-    showLoading, showError, showLoaded,
-    setShowLoading, setShowError, setShowLoaded, clearTimeouts
-  } = useLoadingState();
+    renderState, setRenderState, clearTimeouts
+  } = useRenderState();
 
   const handleOnSelect = (index: number) => {
     // Ignore clicks when the quiz is final
@@ -55,7 +49,7 @@ export default function Quiz() {
 
   const handleRandomQuestion = async () => {
     // Set UI to loading before fetching a new question
-    setShowLoading();
+    setRenderState("loading");
 
     // Reset selection and remove results
     setSelection(-1);
@@ -65,20 +59,20 @@ export default function Quiz() {
     setTimeout(() => {
       mutate().then(() => {
         if (error) {
-          setShowError();
+          setRenderState("error");
         } else {
-          setShowLoaded();
+          setRenderState("loaded");
         }
       });
     }, 250);
   };
 
-  // Handle data states change
   useEffect(() => {
+    // Handle data states change
     if (error) {
-      setShowError();
+      setRenderState("error");
     } else if (isLoading) {
-      setShowLoading();
+      setRenderState("loading");
     } else if (data) {
       setQuestion({
         questionId: data[0].question_id,
@@ -91,15 +85,16 @@ export default function Quiz() {
         ],
         answer: data[0].answer,
       });
-      setShowLoaded();
+      setRenderState("loaded");
     } else {
-      setShowError();
+      setRenderState("error");
     }
-    
-    return () => {
-      clearTimeouts();
-    }
-  }, [data, error, isLoading, setShowError, setShowLoaded, setShowLoading, clearTimeouts]);
+
+    // Clear timeouts when unmount
+    return () => clearTimeouts();
+  }, [data, error, isLoading, clearTimeouts, setRenderState]);
+
+  if (renderState.notFound) return <PageNotFound />;
 
   return (
     <>
@@ -127,50 +122,28 @@ export default function Quiz() {
           minHeight: "600px",
         }}>
 
-          <Fade in={showError} unmountOnExit>
+          <Fade in={renderState.error} unmountOnExit>
             <Stack direction="row" alignItems="center" justifyContent="center" height="600px">
               <WarningAmberIcon />
               <Typography variant="h6" paddingLeft="0.5rem">无法连接到网络</Typography>
             </Stack>
           </Fade>
 
-          <Fade in={showLoading} style={{ transitionDelay: "200ms" }} unmountOnExit>
+          <Fade in={renderState.loading} style={{ transitionDelay: "200ms" }} unmountOnExit>
             <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
               <CircularProgress />
             </Stack>
           </Fade>
 
-          <Fade in={showLoaded} unmountOnExit>
-            <Stack direction="column" alignItems="center">
-              <Typography variant="h5" textAlign="center" margin="4rem" minWidth="300px" maxWidth="400px">
-                Q: {question?.description}
-              </Typography>
-              <Stack direction="column" alignItems="center" marginBottom="4rem" spacing={2} width="320px">
-                {question?.options.map((option, index) => {
-                  let state: "default" | "selected" | "correct" | "incorrect" | "final";
-
-                  if (isFinal) {
-                    if (index === question?.answer) {
-                      state = "correct";
-                    } else if (index === selection) {
-                      state = "incorrect";
-                    } else {
-                      state = "final";
-                    }
-                  } else {
-                    state = "default";
-                  }
-
-                  return (
-                    <QuestionButton state={state} key={index} onClick={
-                      () => handleOnSelect(index)
-                    }>
-                      {option}
-                    </QuestionButton>
-                  )
-                })}
-              </Stack>
-            </Stack>
+          <Fade in={renderState.loaded} unmountOnExit>
+            <Box>
+              <RandomQuestion
+                question={question ? question : { questionId: "", description: "该题不可用", options: [], answer: -1 }}
+                isFinal={isFinal}
+                selection={selection}
+                onSelect={handleOnSelect}
+              />
+            </Box>
           </Fade>
 
         </Box>

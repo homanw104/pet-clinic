@@ -1,8 +1,8 @@
-type questionType = {
-  questionId: number,
+type questionDataType = {
+  questionId: string,
   description: string,
   options: string[],
   answer: number,
 };
 
-export default questionType;
+export default questionDataType;

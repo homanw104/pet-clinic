@@ -2,25 +2,20 @@
  * 试卷测试页面，根据试卷 [id] 获取试卷信息。
  */
 
+import useSWR from "swr";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  Box, Button,
-  CircularProgress,
-  Dialog, DialogActions,
-  DialogContent,
-  DialogContentText, DialogTitle,
-  Fade,
-  Grid,
-  Stack,
-  useTheme
-} from "@mui/material";
+import { Box, CircularProgress, Fade, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
 import QuizList from "@/components/quiz/QuizList";
 import QuizContent from "@/components/quiz/QuizContent";
 import AppGridLayout from "@/layouts/AppGridLayout";
 import PageNotFound from "@/components/app/PageNotFound";
+import ConfirmDialog from "@/components/atomic/ConfirmDialog";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import { useRenderState } from "@/utils/hook_util";
+import { API_URL } from "@/utils/env_util";
 import quizDataType from "@/types/quizDataType";
 
 export default function Quiz() {
@@ -29,16 +24,22 @@ export default function Quiz() {
 
   // When isDialogActive is true, a warning is shown to ask use whether to discard their changes
   const [isDialogActive, setIsDialogActive] = useState(false);
-
-  // Timeouts are set between setIsLoading and setIsLoaded to allow animations to play
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const [isQueryReady, setIsQueryReady] = useState(false);
-  const [isPageNotFound, setIsPageNotFound] = useState(false);
+  
+  // Quiz data, formatted in quizDataType
   const [quizData, setQuizData] = useState<quizDataType>();
 
+  // Router query data, available when router.isReady
   const { id } = router.query;
+
+  // Raw data from backend
+  const {
+    data, error, isLoading
+  } = useSWR<any>(router.isReady ? `${API_URL}/showPaperDetails/?paper_id=${id}` : null);
+
+  // States to control loading & error UI
+  const {
+    renderState, setRenderState, clearTimeouts
+  } = useRenderState();
 
   const handleRandomQuestion = () => {
     setIsDialogActive(true);
@@ -53,71 +54,49 @@ export default function Quiz() {
     router.push("/quiz").then();
   };
 
-  // Update isQueryReady state when router is ready
   useEffect(() => {
-    if (router.isReady) {
-      setIsQueryReady(true);
-    }
-  }, [router.isReady]);
-
-  // Update pageNoteFound state depending on the value of `id`
-  useEffect(() => {
-    if (!isQueryReady) return;
-    if (typeof id !== "string") {
-      // `id` should be a string, if not, set page as not found
-      setIsPageNotFound(true);
+    // Check render dependencies in order to determine render state
+    if (!router.isReady) {
+      setRenderState("loading");
+    } else if (typeof id !== "string") {
+      setRenderState("notFound");
+    } else if (error) {
+      setRenderState("error");
+    } else if (isLoading) {
+      setRenderState("loading");
+    } else if (data) {
+      console.log(data)
+      if (data.error_num) {
+        setQuizData(undefined);
+      } else {
+        setQuizData({
+          quizId: id,
+          quizName: data[0].paper_id__paper_name,
+          questions: data.map((question: any) => {
+            return {
+              questionId: "",   // Not provided from backend
+              description: question.question_id__description,
+              options: [
+                question.question_id__option__option1,
+                question.question_id__option__option2,
+                question.question_id__option__option3,
+                question.question_id__option__option4,
+              ],
+              answer: question.question_id__answer,
+            }
+          }),
+        });
+      }
+      setRenderState("loaded");
     } else {
-      // Post request to backend with `id` and check the result
+      setRenderState("notFound");
     }
-  }, [isQueryReady, id]);
-
-  // Fetch quiz data
-  useEffect(() => {
-    // Quit if query is not even ready
-    if (!isQueryReady) return;
-
-    // Timeout reference
-    let loadingTimeout: NodeJS.Timeout;
-    let loadedTimeout: NodeJS.Timeout;
-
-    // Set to loading state before fetching quiz data
-    setIsLoaded(false);
-    loadingTimeout = setTimeout(() => { setIsLoading(true) }, 250);
-
-    // Simulate network delay
-    setTimeout(() => {
-      // Fetch quiz data
-      setQuizData({
-        quizId: 1,
-        quizName: "手術準備操作專題（样例数据）",
-        questions: [
-          {
-            questionId: 55,
-            description: "你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
-            options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
-            answer: 2,
-          },
-          {
-            questionId: 56,
-            description: "你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题你这问的什么问题？",
-            options: ["错误答案甲", "错误答案丙", "正确答案", "错误答案乙"],
-            answer: 2,
-          },
-        ],
-      });
-      setIsLoading(false);
-      clearTimeout(loadingTimeout);
-      loadedTimeout = setTimeout(() => { setIsLoaded(true) }, 250);
-    }, 3000);
 
     // Clear timeouts when unmount
-    return () => {
-      clearTimeout(loadingTimeout);
-      clearTimeout(loadedTimeout);
-    }
-  }, [isQueryReady]);
+    return () => clearTimeouts();
+  }, [router.isReady, id, data, error, isLoading, clearTimeouts, setRenderState]);
 
-  if (isPageNotFound) return <PageNotFound />;
+  if (renderState.notFound) return <PageNotFound />;
 
   return (
     <>
@@ -146,40 +125,37 @@ export default function Quiz() {
           padding: "2rem",
         }}>
 
-          <Fade in={isLoaded} unmountOnExit>
-            <Box>
-              <QuizContent quizData={quizData ? quizData : { quizId: 0, quizName: "", questions: [] }} />
-            </Box>
+          <Fade in={renderState.error} unmountOnExit>
+            <Stack direction="row" alignItems="center" justifyContent="center" height="600px">
+              <WarningAmberIcon />
+              <Typography variant="h6" paddingLeft="0.5rem">无法连接到网络</Typography>
+            </Stack>
           </Fade>
 
-          <Fade in={isLoading} style={{ transitionDelay: "500ms" }} unmountOnExit>
+          <Fade in={renderState.loading} style={{ transitionDelay: "500ms" }} unmountOnExit>
             <Stack direction="column" alignItems="center" justifyContent="center" height="600px">
               <CircularProgress />
             </Stack>
           </Fade>
 
+          <Fade in={renderState.loaded} unmountOnExit>
+            <Box>
+              <QuizContent
+                quizData={quizData ? quizData : { quizId: "", quizName: "该试卷无可用题目", questions: [] }}
+              />
+            </Box>
+          </Fade>
+
         </Box>
       </Grid>
 
-      <Dialog
-        open={isDialogActive}
-        onClose={handleDialogCancel}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          返回随机测试
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            点击确定将清除当前测试进度并返回随机测试！
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogCancel}>取消</Button>
-          <Button onClick={handleDialogConfirm} autoFocus>确定</Button>
-        </DialogActions>
-      </Dialog>
+      <ConfirmDialog
+        isActive={isDialogActive}
+        title={"返回随机测试"}
+        text={"确认后将清除当前测试进度并返回随机测试！"}
+        onCancel={handleDialogCancel}
+        onConfirm={handleDialogConfirm}
+      />
     </>
   )
 }

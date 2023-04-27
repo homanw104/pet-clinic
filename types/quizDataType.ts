@@ -1,7 +1,7 @@
 import questionDataType from "@/types/questionDataType";
 
 type quizDataType = {
-  quizId: number;
+  quizId: string;
   quizName: string;
   questions: questionDataType[];
 }

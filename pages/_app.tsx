@@ -15,6 +15,15 @@ const fetcher = async (url: string) => {
   return response.data;
 };
 
+const swrConfig = {
+  fetcher: fetcher,
+  revalidateIfStale: false,
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false,
+  dedupingInterval: 0,
+  focusThrottleInterval: 0,
+}
+
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 }
@@ -32,7 +41,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <Provider store={store}>
-      <SWRConfig value={{ fetcher: fetcher }}>
+      <SWRConfig value={swrConfig}>
         <Theme>
           <CssBaseline enableColorScheme />
           {appWithLayout}
