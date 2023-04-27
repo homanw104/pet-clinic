@@ -76,7 +76,7 @@ const rooms: RoomBriefType[] = [
     title: "治疗室",
     subtitle: "treatment-room",
     // panoSrc: "/pano/treatment-room.jpg",
-    panoSrc: "/pano/test.jpg",
+    panoSrc: "/pano/operating-room-two.jpg",
     panoMarkers:  [
       {
         id: "medical-examination",
@@ -118,14 +118,22 @@ const rooms: RoomBriefType[] = [
         position: { yaw: "1000deg", pitch: "0deg" },
         data: { link: "/tour/pharmacy/prescription-medicine-label" }
       },
+      {
+        id: "read-medicine-prescription",
+        tooltip: "阅读处方",
+        image: "/marker.png",
+        size: { width: 32, height: 32 },
+        position: { yaw: "1290deg", pitch: "5deg" },
+        data: { link: "/tour/pharmacy/read-medicine-prescription" }
+      },
 
       {
-        id: "get",
-        tooltip: "待命名标签1",
+        id: "prescription-medicine-label",
+        tooltip: "处方药标签",
         image: "/marker.png",
         size: { width: 32, height: 32 },
         position: { yaw: "1300deg", pitch: "0deg" },
-        data: { link: "/tour/pharmacy/get-medicine" }
+        data: { link: "/tour/pharmacy/prescription-medicine-label" }
       },
 
       {
@@ -143,7 +151,16 @@ const rooms: RoomBriefType[] = [
     subtitle: "infusion-room",
     // panoSrc: "/pano/infusion-room.jpg",
     panoSrc: "/pano/infusion-room.jpg",
-    panoMarkers: null,
+    panoMarkers:  [
+      {
+        id: "preparation-area",
+        tooltip: "手术准备室",
+        image: "/marker.png",
+        size: { width: 32, height: 32 },
+        position: { yaw: "2000deg", pitch: "0deg" },
+        data: { link: "/tour/preparation-area" }
+      },
+    ],
   },
   {
     title: "手术准备室",
@@ -152,12 +169,12 @@ const rooms: RoomBriefType[] = [
     panoSrc: "/pano/operating-room-one.jpg",
     panoMarkers:  [
         {
-          id: "preoperative-preparation",
-          tooltip: "术前准备",
+          id: "operating-room",
+          tooltip: "手术室",
           image: "/marker.png",
           size: { width: 32, height: 32 },
-          position: { yaw: "60deg", pitch: "0deg" },
-          data: { link: "/tour/preparation-area/preoperative-preparation" }
+          position: { yaw: "360deg", pitch: "0deg" },
+          data: { link: "/tour/operating-room" }
         },
     ],
   },
@@ -168,12 +185,12 @@ const rooms: RoomBriefType[] = [
     panoSrc: "/pano/operating-room-two.jpg",
     panoMarkers:  [
       {
-        id: "animal-surgery",
-        tooltip: "术前准备",
+        id: "outpatient-room",
+        tooltip: "门诊室",
         image: "/marker.png",
         size: { width: 32, height: 32 },
-        position: { yaw: "45deg", pitch: "0deg" },
-        data: { link: "/tour/operating-room/animal-surgery" }
+        position: { yaw: "40deg", pitch: "0deg" },
+        data: { link: "/tour/outpatient-room" }
       },
     ],
   },
