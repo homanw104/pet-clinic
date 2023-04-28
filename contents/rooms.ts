@@ -68,7 +68,7 @@ const rooms: RoomBriefType[] = [
         image: "/marker.png",
         size: { width: 32, height: 32 },
         position: { yaw: "45deg", pitch: "0deg" },
-        data: { link: "/tour/laboratory/medical-examination" }
+        data: { link: "/tour/laboratory" }
       },
     ],
   },
@@ -84,7 +84,7 @@ const rooms: RoomBriefType[] = [
         image: "/marker.png",
         size: { width: 32, height: 32 },
         position: { yaw: "45deg", pitch: "0deg" },
-        data: { link: "/tour/laboratory/medical-examination" }
+        data: { link: "/tour/laboratory" }
       },
     ],
   },
@@ -99,7 +99,7 @@ const rooms: RoomBriefType[] = [
         tooltip: "X光检查",
         image: "/marker.png",
         size: { width: 32, height: 32 },
-        position: { yaw: "45deg", pitch: "0deg" },
+        position: { yaw: "100deg", pitch: "5deg" },
         data: { link: "/tour/radiology-room/X-ray" }
       },
     ],
