@@ -19,6 +19,7 @@ export default function JobSidebarHeaderBox({ src, alt, title, subtitle }: BoxPr
       position: "relative",
       overflow: "hidden",
       height: "152px",
+      minHeight: "152px",
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-start",

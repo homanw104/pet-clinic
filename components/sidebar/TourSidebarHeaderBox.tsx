@@ -22,6 +22,7 @@ export default function TourSidebarHeaderBox({ title, subtitle }: BoxProps) {
       position: "relative",
       overflow: "hidden",
       height: "152px",
+      minHeight: "152px",
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-start",

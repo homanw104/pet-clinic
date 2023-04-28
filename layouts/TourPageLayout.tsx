@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect } from "react";
-import { Grid, Grow, Paper } from "@mui/material";
+import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
 import ArticleList from "@/components/sidebar/ArticleList";
 import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
 import OverlayViewerBox from "@/components/overlay/OverlayViewerBox";
@@ -45,8 +45,12 @@ export default function TourPageLayout({ children, title, subtitle, articleList,
             left: "0", right: "0",
             overflow: "hidden",
           }}>
-            <TourSidebarHeaderBox title={title} subtitle={subtitle} />
-            <ArticleList articleList={articleList} linkPrefix={`/tour/${subtitle}`} />
+            <Stack direction="column" height="100%">
+              <TourSidebarHeaderBox title={title} subtitle={subtitle} />
+              <Box sx={{ overflow: "scroll", flexGrow: 1 }}>
+                <ArticleList articleList={articleList} linkPrefix={`/tour/${subtitle}`} />
+              </Box>
+            </Stack>
           </Paper>
         </Grid>
       </Grow>

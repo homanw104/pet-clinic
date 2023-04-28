@@ -5,7 +5,7 @@
 
 import React, { useEffect } from "react";
 import { StaticImageData } from "next/image";
-import { Grid, Grow, Paper } from "@mui/material";
+import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
 import ArticleList from "@/components/sidebar/ArticleList";
 import JobSidebarHeaderBox from "@/components/sidebar/JobSidebarHeaderBox";
 import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
@@ -44,8 +44,12 @@ export default function JobPageLayout({ children, src, alt, title, subtitle, art
             left: "0", right: "0",
             overflow: "hidden",
           }}>
-            <JobSidebarHeaderBox src={src} alt={alt} title={title} subtitle={subtitle} />
-            <ArticleList articleList={articleList} linkPrefix={`/job/${subtitle}`} />
+            <Stack direction="column" height="100%">
+              <JobSidebarHeaderBox src={src} alt={alt} title={title} subtitle={subtitle} />
+              <Box sx={{ overflow: "scroll", flexGrow: 1 }}>
+                <ArticleList articleList={articleList} linkPrefix={`/job/${subtitle}`} />
+              </Box>
+            </Stack>
           </Paper>
         </Grid>
       </Grow>
