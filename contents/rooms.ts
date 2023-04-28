@@ -201,12 +201,12 @@ const rooms: RoomBriefType[] = [
     panoSrc: "/pano/pharmacy-door.jpg",
     panoMarkers: [
   {
-    id: "mark-1",
-    tooltip: "待命名标记点-1",
+    id: "reception",
+    tooltip: "前台",
     image: "/marker.png",
     size: { width: 32, height: 32 },
     position: { yaw: "45deg", pitch: "0deg" },
-    data: { link: "/tour/inpatient-ward/mark-1" }
+    data: { link: "/tour/reception" }
   },
 ],
   },
