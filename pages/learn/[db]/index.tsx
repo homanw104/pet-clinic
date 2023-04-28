@@ -22,6 +22,7 @@ import databases from "@/contents/databases";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { API_URL } from "@/utils/env_util";
 
 export default function Learn() {
   const theme = useTheme();
@@ -56,7 +57,7 @@ export default function Learn() {
     setIntroduction(undefined);
     setPrice(undefined);
     if (db == "case") {
-      axios.get("https://api.petclinic.homans.world:8443/listDisease/")
+      axios.get(`${API_URL}/listDisease/`)
         .then(response => {
           if (response.data.error_num === 1) {
             alert(response.data.msg);
@@ -77,13 +78,13 @@ export default function Learn() {
           console.log(error);
         })
     } else if (db == "medication") {
-      axios.get("https://api.petclinic.homans.world:8443/listDisposition/")
+      axios.get(`${API_URL}/listDisposition/`)
         .then(response => {
           console.log(response.data);
           setData(response.data);
         })
     } else if (db == "examination") {
-      axios.get("https://api.petclinic.homans.world:8443/listProject/")
+      axios.get(`${API_URL}/listProject/`)
         .then(response => {
           console.log(response.data);
           setData(response.data);
@@ -93,7 +94,7 @@ export default function Learn() {
   }, [db]);
   const handleFormData = (disease_id: string) => {
 
-    axios.get(`https://api.petclinic.homans.world:8443/caseGroup/?disease_id=${disease_id}`)
+    axios.get(`${API_URL}/caseGroup/?disease_id=${disease_id}`)
       .then(response => {
         console.log(response.data);
         setForm_data(response.data);

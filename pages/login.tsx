@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { ReactElement } from "react";
 import { useRouter } from "next/router";
 import { Box, Button, TextField, Typography } from "@mui/material";
@@ -5,7 +6,7 @@ import { useAppDispatch } from "@/utils/hook_util";
 import { login } from "@/store/authSlice"
 import LoginPageLayout from "@/layouts/LoginPageLayout";
 import AppGridLayout from "@/layouts/AppGridLayout";
-import axios from "axios";
+import { API_URL } from "@/utils/env_util";
 
 export default function Login() {
   const router = useRouter();
@@ -15,19 +16,17 @@ export default function Login() {
   const [password, setPassword] = React.useState("");
   let Login_times = 3;
   const handleLogin = () => {
-    //SuperUser7
-    //Test@0001
     const params = new URLSearchParams();
     params.append("username", username);
     params.append("password", password);
-    axios.post("https://api.petclinic.homans.world:8443/login/", params)
+    axios.post(`${API_URL}/login/`, params)
       .then(response => {
         console.log(response);
-        if(response.data['error_num']==1){
+        if (response.data['error_num'] == 1) {
           alert(`登录失败，还剩下${Login_times}次机会`)
           Login_times--;
 
-        }else{
+        } else {
           dispatch(login(username));
           router.push("/").then();
         }
@@ -53,10 +52,10 @@ export default function Login() {
           setPassword(event.target.value)
         }}
       />
-      <Box sx={{ paddingTop: "5rem" }}>
+      <Box sx={{paddingTop: "5rem"}}>
         <Button
           variant="contained" size="large" disableElevation
-          onClick={() => { handleLogin() }}
+          onClick={handleLogin}
           sx={{ width: "100%" }}
         >
           登录
