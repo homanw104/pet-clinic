@@ -72,23 +72,22 @@ export default function MockHome() {
               <Stack alignItems="center" justifyContent="center" sx={{
                 backgroundColor: theme.palette.surface[1],
                 height: "100%",
-                filter: "blur(50px)",
 
-                // Fade in blur used when opening overlay
-                "@keyframes fadeInBlur": {
-                  "from": { filter: "blur(10px)" },
-                  "to": { filter: "blur(50px)" },
+                // Fade in blur used on image
+                "@keyframes mockHomeFadeInBlur": {
+                  "from": { filter: "blur(5px)" },
+                  "to": { filter: "blur(40px)" },
                 },
 
-                // Fade out blur used when closing overlay
-                "@keyframes fadeOutBlur": {
-                  "from": { filter: "blur(50px)" },
-                  "to": { backdropFilter: "blur(10px)" },
+                // Fade out blur used on image
+                "@keyframes mockHomeFadeOutBlur": {
+                  "from": { filter: "blur(40px)" },
+                  "to": { backdropFilter: "blur(5px)" },
                 },
 
                 animation: isMount ?
-                  "fadeInBlur 0.3s ease-out forwards" :
-                  "fadeOutBlur 0.3s ease-in forwards",
+                  "mockHomeFadeInBlur 0.3s ease-out forwards" :
+                  "mockHomeFadeOutBlur 0.3s ease-in forwards",
               }}>
                 <Image
                   src={floorPlan}
