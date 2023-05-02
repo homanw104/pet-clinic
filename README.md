@@ -1,6 +1,11 @@
-# Pet Clinic
+# Pet Clinic Online
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Visit our live demo at https://pet-clinic.homans.world.
+
+本项目的目的是为了帮助兽医学生更好地学习兽医临床知识。我们提供了一个虚拟的宠物诊所，用户可以在这里进行学习和练习。结项汇报请参考 [Figma 演示](https://www.figma.com/proto/F97rlV8lIfX4KTrk71Kijc/Pet-Clinic-Prototype-v2.0?node-id=53988-27561)。
+
+项目无需后端也可以正常运行，但是 `learn` 和 `quiz` 模块中的数据获取依赖[后端项目](https://github.com/MxaWnag/PetClinic)。如需在生产环境部署请参考[项目部署说明](docs/项目部署说明.md)，其中包括前后端的部署方法以及 MariaDB、Docker、Jenkins 管理面板和域名访问的配置方法。如仅需了解并运行本项目请继续往下阅读。
 
 ## Getting Started
 
