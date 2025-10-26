@@ -1,33 +1,37 @@
 # Pet Clinic Online
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a Next.js project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 Visit our live demo at https://pet-clinic.homans.world.
 
-本项目的目的是为了帮助兽医学生更好地学习兽医临床知识。我们提供了一个虚拟的宠物诊所，用户可以在这里进行学习和练习。结项汇报请参考 [Figma 演示](https://www.figma.com/proto/F97rlV8lIfX4KTrk71Kijc/Pet-Clinic-Prototype-v2.0?node-id=53988-27561)。
+本课程项目旨在帮助兽医学生更好地学习相关知识。为此我们建立了一个虚拟的宠物诊所，用户可以在这里进行学习和练习。结项汇报请参考[在线演示文档](https://www.figma.com/proto/F97rlV8lIfX4KTrk71Kijc/Pet-Clinic-Prototype-v2.0?node-id=53988-27561)。
 
-项目无需后端也可以正常运行，但是 `learn` 和 `quiz` 模块中的数据获取依赖[后端项目](https://github.com/MxaWnag/PetClinic)。如需在生产环境部署请参考[项目部署说明](docs/项目部署说明.md)，其中包括前后端的部署方法以及 MariaDB、Docker、Jenkins 管理面板和域名访问的配置方法。如仅需了解并运行本项目请继续往下阅读。
+项目无需后端也可以正常运行，但是 `learn` 和 `quiz` 模块中的数据获取依赖[后端项目](https://github.com/MxaWnag/PetClinic)。如需在生产环境部署请参考[项目部署说明](docs/项目部署说明.md)，其中包括前后端的部署方法，包括 MariaDB、Docker、Jenkins 管理面板和域名访问的配置方法。如仅需运行此前端项目请继续阅读。
+
+![Screenshot](./assets/Screenshot.png "Screenshot")
 
 ## Getting Started
 
-First, install dependencies:
+1. Install dependencies.
 
-```bash
-npm install
-```
+    ```bash
+    npm install
+    ```
 
-Then run the development server:
+2. Run the development server.
 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Goto [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Page Routing
 
-This project uses [dynamic routes](https://nextjs.org/docs/routing/dynamic-routes) to reuse codes between pages.
-Routes like `/job/receptionist/1` and `/job/veterinarian/2` will be matched by `pages/job/[job]/[slug].tsx`.
-Metadata of each route is prescribed in `contents/*.ts`. Most used routes are listed below.
+This project uses [dynamic routes](https://nextjs.org/docs/routing/dynamic-routes)
+to reuse codes between pages. Routes like `/job/receptionist/article-a` and
+`/job/veterinarian/article-b` is matched by `pages/job/[job]/[slug].tsx`.
+Metadata of each route is prescribed in `contents/*.ts`.
+Most of the routes are listed below.
 
 ```txt
 pages/
@@ -68,8 +72,9 @@ pages/
 
 ## Environment Variables
 
-`.env.development` and `.env.production` are default environment variables used
-in `development` (`next dev`) and `production` (`next start`) environment respectively.
+`.env.development` and `.env.production` are default environment variables
+used in `development` (`next dev`) and `production` (`next start`)
+environment respectively.
 
 Make your own changes in a new file `.env.local` to override the default ones.
 
