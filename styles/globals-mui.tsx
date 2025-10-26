@@ -3,7 +3,6 @@
  * Custom theme properties are declared in types/globals.d.ts.
  */
 
-import React from "react";
 import { createTheme, Theme } from "@mui/material";
 
 const shape = {
@@ -69,15 +68,15 @@ const lightTheme = createTheme({
     mode: 'light',
     primary: {
       main: '#7A5910',
-      onMain: '#FFFFFF',
-      container: '#FFDCA9',
-      onContainer: '#291801',
+      contrastText: '#FFFFFF',
+      light: '#FFDCA9',
+      dark: '#291801',
     },
     secondary: {
       main: '#6C5C41',
-      onMain: '#FFFFFF',
-      container: '#FBDEBC',
-      onContainer: '#261905',
+      contrastText: '#FFFFFF',
+      light: '#FBDEBC',
+      dark: '#261905',
     },
     tertiary: {
       main: '#4B6445',
@@ -87,9 +86,9 @@ const lightTheme = createTheme({
     },
     error: {
       main: '#C3111C',
-      onMain: '#FFFFFF',
-      container: '#FFD9D6',
-      onContainer: '#450002'
+      contrastText: '#FFFFFF',
+      light: '#FFD9D6',
+      dark: '#450002'
     },
     background: {
       paper: '#FFF8F3',
@@ -122,15 +121,15 @@ const darkTheme = createTheme({
     mode: 'dark',
     primary: {
       main: '#FABD3E',
-      onMain: '#452C02',
-      container: '#614104',
-      onContainer: '#FFDCA9',
+      contrastText: '#452C02',
+      light: '#614104',
+      dark: '#FFDCA9',
     },
     secondary: {
       main: '#D9C4A2',
-      onMain: '#3E2D16',
-      container: '#56432B',
-      onContainer: '#FBDEBC',
+      contrastText: '#3E2D16',
+      light: '#56432B',
+      dark: '#FBDEBC',
     },
     tertiary: {
       main: '#B1CDA7',
@@ -140,9 +139,9 @@ const darkTheme = createTheme({
     },
     error: {
       main: '#FFB3AB',
-      onMain: '#6F0006',
-      container: '#9B000C',
-      onContainer: '#FFD9D6'
+      contrastText: '#6F0006',
+      light: '#9B000C',
+      dark: '#FFD9D6'
     },
     background: {
       paper: '#16130E',
