@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Stack, Typography, useTheme } from "@mui/material";
 import SouthWestIcon from '@mui/icons-material/SouthWest';
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
@@ -16,10 +16,11 @@ interface SubheaderProps {
 export default function Subheader({ variant, onRandomQuestion }: SubheaderProps) {
   const theme = useTheme();
   const router = useRouter();
-  const { db } = router.query;
+  const searchParams = useSearchParams();
+  const db = searchParams?.get("db")
 
   const handleOnClick = (href: string) => {
-    router.push(href).then();
+    router.push(href);
   };
 
   const handleRandomQuiz = () => {

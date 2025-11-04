@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Stack, Typography, useTheme } from "@mui/material";
 import { darkTheme, lightTheme } from "@/styles/globals-mui";
 import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
@@ -22,7 +22,7 @@ export default function Header({ mapBoxRef }: HeaderProps) {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   const handleOnClick = (href: string) => {
-    router.push(href).then();
+    router.push(href);
   };
 
   const handleLogout = () => {

@@ -1,6 +1,8 @@
-import React, { ReactElement, useRef } from "react";
+'use client';
+
+import { useRef } from "react";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Box, Grid, Stack, useTheme } from "@mui/material";
 
 import receptionistIcon from "@/public/avatar/receptionist.png";
@@ -9,7 +11,6 @@ import veterinarianIcon from "@/public/avatar/veterinarian.png";
 import InfoCard from "@/components/atomic/InfoCard";
 import AvatarButton from "@/components/button/AvatarButton";
 import NavButton from "@/components/button/NavButton";
-import AppGridLayout from "@/layouts/AppGridLayout";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
 
@@ -24,7 +25,7 @@ export default function Home() {
   const mapBoxRef = useRef<HTMLDivElement>(null);
 
   const handleOnClick = (href: string) => {
-    router.push(href).then();
+    router.push(href);
   };
 
   return (
@@ -85,13 +86,5 @@ export default function Home() {
         </Box>
       </Grid>
     </>
-  )
-}
-
-Home.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <AppGridLayout>
-      {page}
-    </AppGridLayout>
   )
 }

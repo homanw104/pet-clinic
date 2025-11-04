@@ -4,7 +4,7 @@ import React from "react";
 import { CRS, Icon, LatLng, LatLngBounds, Point } from "leaflet";
 import { MapContainer, ImageOverlay, Marker, Tooltip } from "react-leaflet";
 import { Typography, useTheme, Box } from "@mui/material";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { hexToRGBA } from "@/utils/color_util";
 import markers from "@/contents/markers";
 
@@ -28,7 +28,7 @@ function RoomMarker({ position, tooltip, href }: MarkerProps) {
   return (
     <Marker icon={markerIcon} position={position} eventHandlers={{
       click: () => {
-        router.push(href).then();
+        router.push(href);
       },
     }}>
       <Tooltip className={styles.tooltip} opacity={1} direction="left" sticky>

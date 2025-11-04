@@ -8,7 +8,6 @@ import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/
 import JobPageLayout from "@/layouts/JobPageLayout";
 import MarkdownArticle from "@/components/atomic/Markdown";
 import AppGridLayout from "@/layouts/AppGridLayout";
-import Home from "@/pages";
 import ArticleDataType from "@/types/articleDataType";
 import ArticleBriefType from "@/types/articleBriefType";
 import jobs from "@/contents/jobs";
@@ -42,7 +41,8 @@ Job.getLayout = function getLayout(page: ReactElement) {
         {page}
       </JobPageLayout>
     }>
-      <Home />
+      <br></br>
+      {/*<Home />*/}
     </AppGridLayout>
   )
 }
