@@ -1,8 +1,8 @@
 import { StaticImageData } from "next/image";
 
 type JobBriefType = {
-  title: string;      // Chinese title
-  subtitle: string;   // English title used in `contents` folder
+  chineseTitle: string;
+  englishID: string;
   avatar: StaticImageData;
 };
 

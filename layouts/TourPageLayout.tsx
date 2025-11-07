@@ -48,7 +48,7 @@ export default function TourPageLayout({ children, title, subtitle, articleList,
             <Stack direction="column" height="100%">
               <TourSidebarHeaderBox title={title} subtitle={subtitle} />
               <Box sx={{ overflow: "scroll", flexGrow: 1 }}>
-                <ArticleList articleList={articleList} linkPrefix={`/tour/${subtitle}`} />
+                <ArticleList articleBriefList={articleList} subtitle={subtitle} section="tour" />
               </Box>
             </Stack>
           </Paper>
@@ -76,7 +76,7 @@ export default function TourPageLayout({ children, title, subtitle, articleList,
 
             {/* Else, display children in OverlayArticleBox */}
             {!panoSrc && <OverlayArticleBox
-              article={children}
+              children={children}
             />}
 
           </Paper>

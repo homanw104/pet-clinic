@@ -1,15 +1,17 @@
+'use client';
+
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton } from "@mui/material";
 import { useAppDispatch } from "@/utils/hook_util";
 import { unmountOverlay } from "@/store/overlaySlice";
 
-interface BoxProps {
-  article: React.ReactNode;
+interface ComponentProps {
+  children: React.ReactNode;
 }
 
-export default function OverlayArticleBox({ article }: BoxProps) {
+export default function OverlayArticleBox({ children }: ComponentProps) {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -18,7 +20,7 @@ export default function OverlayArticleBox({ article }: BoxProps) {
     dispatch(unmountOverlay());
 
     // Return home after animations are finished
-    setTimeout(() => router.push(href).then(), 300);
+    setTimeout(() => router.push(href), 300);
   };
 
   return (
@@ -34,7 +36,7 @@ export default function OverlayArticleBox({ article }: BoxProps) {
         height: "100%",
         zIndex: 295,
       }}>
-        {article}
+        {children}
       </Box>
       <Box sx={{
         position: "absolute",

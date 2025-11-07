@@ -2,16 +2,16 @@ import DatabaseBriefType from "@/types/databaseBriefType";
 
 const databases: DatabaseBriefType[] = [
   {
-    title: "病例数据库",
-    slug: "case",
+    chineseTitle: "病例数据库",
+    englishID: "case",
   },
   {
-    title: "检查数据库",
-    slug: "examination",
+    chineseTitle: "检查数据库",
+    englishID: "examination",
   },
   {
-    title: "药品数据库",
-    slug: "medication",
+    chineseTitle: "药品数据库",
+    englishID: "medication",
   },
 ];
 

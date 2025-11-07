@@ -1,27 +1,31 @@
+'use client'
+
 import React from "react";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from "next/navigation";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import ArticleBriefType from "@/types/articleBriefType";
 
-interface ListProps {
-  articleList: ArticleBriefType[];
-  linkPrefix: string;
+interface ComponentProps {
+  articleBriefList: ArticleBriefType[];
+  subtitle: string;
+  section: string;
 }
 
-export default function ArticleList({ articleList, linkPrefix }: ListProps) {
+export default function ArticleList({ articleBriefList, subtitle, section }: ComponentProps) {
   const router = useRouter();
+  const params = useParams();
 
   const handleOnClick = (href: string) => {
-    router.push(href).then();
+    router.push(href);
   };
 
   return (
     <List>
-      {Array.from(articleList).map((article, index) => (
+      {Array.from(articleBriefList).map((article, index) => (
         <ListItem key={index} disablePadding>
           <ListItemButton
-            selected={router.asPath.startsWith(`${linkPrefix}/${article.slug}`)}
-            onClick={() => handleOnClick(`${linkPrefix}/${article.slug}`)}
+            selected={article.slug === params?.slug}
+            onClick={() => handleOnClick(`/${section}/${subtitle}/${article.slug}`)}
             sx={{ padding: "8px 16px 8px 32px" }}
           >
             <ListItemText primary={article.title} />

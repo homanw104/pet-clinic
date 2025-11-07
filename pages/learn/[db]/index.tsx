@@ -351,7 +351,7 @@ export async function getStaticPaths() {
   for (const db of databases) {
     paths.push({
       params: {
-        db: db.slug,
+        db: db.englishID,
       },
     })
   }

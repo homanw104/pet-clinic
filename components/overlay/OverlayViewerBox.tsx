@@ -1,5 +1,7 @@
+'use client';
+
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, useTheme } from "@mui/material";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
@@ -23,7 +25,7 @@ export default function OverlayViewerBox({ src, markers }: BoxProps) {
     dispatch(unmountOverlay());
 
     // Return home after animations are finished
-    setTimeout(() => router.push(href).then(), 300);
+    setTimeout(() => router.push(href), 300);
   };
 
   return (

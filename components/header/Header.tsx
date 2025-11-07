@@ -9,7 +9,7 @@ import TypographyButton from "@/components/button/TypographyButton";
 import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
 
 interface HeaderProps {
-  mapBoxRef?: React.RefObject<HTMLDivElement>; // Reference to the parent element of the <MapViewer />
+  mapBoxRef?: React.RefObject<HTMLDivElement | null>;   // Reference to the parent element of the <MapViewer />
 }
 
 export default function Header({ mapBoxRef }: HeaderProps) {

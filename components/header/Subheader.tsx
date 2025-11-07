@@ -67,17 +67,17 @@ export default function Subheader({ variant, onRandomQuestion }: SubheaderProps)
 
             {/* Render buttons, ignore the button that links to the current page */}
             {databases.map((database, index) => {
-              if (database.slug !== db) {
+              if (database.englishID !== db) {
                 return (
                   <TypographyButton variant="h4" noWrap={true} key={index} onClick={
-                    () => handleOnClick(`/learn/${database.slug}`)
+                    () => handleOnClick(`/learn/${database.englishID}`)
                   }>
                     <LaunchSharpIcon sx={{
                       fontSize: theme.typography.h4.fontSize,
                       transform: "rotate(180deg)",
                       position: "relative",
                       top: "0.15em",
-                    }} /> {database.title}
+                    }} /> {database.chineseTitle}
                   </TypographyButton>
                 )
               }

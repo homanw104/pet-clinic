@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { Box, Stack, Typography, useTheme } from "@mui/material";

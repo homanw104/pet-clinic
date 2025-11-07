@@ -1,6 +1,6 @@
 type DatabaseBriefType = {
-  title: string;
-  slug: string;
+  chineseTitle: string;
+  englishID: string;
 }
 
 export default DatabaseBriefType;

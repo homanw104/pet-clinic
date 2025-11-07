@@ -1,3 +1,5 @@
+'use client';
+
 import "leaflet/dist/leaflet.css";
 import styles from "@/styles/MapViewer.module.css";
 import React from "react";

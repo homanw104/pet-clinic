@@ -5,19 +5,19 @@ import veterinarianIcon from "@/public/avatar/veterinarian.png";
 
 const jobs: JobBriefType[] = [
   {
-    title: "前台",
-    subtitle: "receptionist",
+    chineseTitle: "前台",
+    englishID: "receptionist",
     avatar: receptionistIcon,
   },
   {
-    title: "医助",
-    subtitle: "technician",
+    chineseTitle: "医助",
+    englishID: "technician",
     avatar: technicianIcon,
 
   },
   {
-    title: "兽医",
-    subtitle: "veterinarian",
+    chineseTitle: "兽医",
+    englishID: "veterinarian",
     avatar: veterinarianIcon,
   },
 ];

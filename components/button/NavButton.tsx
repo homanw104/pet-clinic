@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, ButtonProps, Stack, Typography, useTheme } from "@mui/material";
 
 interface NormalButtonProps extends ButtonProps {
