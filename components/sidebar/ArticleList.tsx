@@ -24,7 +24,7 @@ export default function ArticleList({ articleBriefList, subtitle, section }: Com
       {Array.from(articleBriefList).map((article, index) => (
         <ListItem key={index} disablePadding>
           <ListItemButton
-            selected={article.slug === params?.slug}
+            selected={article.slug === params?.articleSlug}
             onClick={() => handleOnClick(`/${section}/${subtitle}/${article.slug}`)}
             sx={{ padding: "8px 16px 8px 32px" }}
           >

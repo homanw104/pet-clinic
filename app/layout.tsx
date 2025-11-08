@@ -3,13 +3,12 @@
 import "@/styles/globals.css";
 import axios from "axios";
 import React from "react";
-import {Provider} from "react-redux";
-import {store} from "@/store/store";
-import {SWRConfig} from "swr";
+import { Provider } from "react-redux";
+import { Analytics } from "@vercel/analytics/react";
+import { CssBaseline } from "@mui/material";
+import { SWRConfig } from "swr";
+import { store } from "@/store/store";
 import Theme from "@/components/app/Theme";
-import {CssBaseline} from "@mui/material";
-import {Analytics} from "@vercel/analytics/react";
-import AppGridLayout from "@/layouts/AppGridLayout";
 
 const fetcher = async (url: string) => {
   const response = await axios.get(url);
@@ -42,7 +41,7 @@ export default function RootLayout({ children }: {
         <SWRConfig value={swrConfig}>
           <Theme>
             <CssBaseline enableColorScheme />
-            <AppGridLayout>{children}</AppGridLayout>
+            {children}
             <Analytics />
           </Theme>
         </SWRConfig>

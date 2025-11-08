@@ -2,8 +2,8 @@ import RoomBriefType from "@/types/roomBriefType";
 
 const rooms: RoomBriefType[] = [
   {
-    title: "前台区",
-    subtitle: "reception",
+    chineseTitle: "前台区",
+    englishID: "reception",
     panoSrc: "/pano/reception.jpg",
     panoMarkers: [
       {
@@ -17,14 +17,14 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "档案室",
-    subtitle: "records-dept",
+    chineseTitle: "档案室",
+    englishID: "records-dept",
     panoSrc: "/pano/records-dept.jpg",
     panoMarkers: undefined,
   },
   {
-    title: "门诊室",
-    subtitle: "outpatient-room",
+    chineseTitle: "门诊室",
+    englishID: "outpatient-room",
     panoSrc: "/pano/outpatient-room.jpg",
     panoMarkers: [
       {
@@ -38,8 +38,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "免疫室",
-    subtitle: "vaccination-room",
+    chineseTitle: "免疫室",
+    englishID: "vaccination-room",
     panoSrc: "/pano/pre-isolation-room.jpg",
     panoMarkers: [
       {
@@ -53,8 +53,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "化验室",
-    subtitle: "laboratory",
+    chineseTitle: "化验室",
+    englishID: "laboratory",
     panoSrc: "/pano/laboratory.jpg",
     panoMarkers: [
       {
@@ -68,8 +68,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "治疗室",
-    subtitle: "treatment-room",
+    chineseTitle: "治疗室",
+    englishID: "treatment-room",
     panoSrc: "/pano/operating-room-two.jpg",
     panoMarkers: [
       {
@@ -83,8 +83,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "影像学检查室",
-    subtitle: "radiology-room",
+    chineseTitle: "影像学检查室",
+    englishID: "radiology-room",
     panoSrc: "/pano/radiology-room.jpg",
     panoMarkers: [
       {
@@ -98,8 +98,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "药房",
-    subtitle: "pharmacy",
+    chineseTitle: "药房",
+    englishID: "pharmacy",
     panoSrc: "/pano/pharmacy.jpg",
     panoMarkers: [
       {
@@ -137,8 +137,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "输液室",
-    subtitle: "infusion-room",
+    chineseTitle: "输液室",
+    englishID: "infusion-room",
     panoSrc: "/pano/infusion-room.jpg",
     panoMarkers: [
       {
@@ -152,8 +152,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "手术准备室",
-    subtitle: "preparation-area",
+    chineseTitle: "手术准备室",
+    englishID: "preparation-area",
     panoSrc: "/pano/operating-room-one.jpg",
     panoMarkers: [
       {
@@ -167,8 +167,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "手术室",
-    subtitle: "operating-room",
+    chineseTitle: "手术室",
+    englishID: "operating-room",
     panoSrc: "/pano/operating-room-two.jpg",
     panoMarkers: [
       {
@@ -182,8 +182,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "住院部",
-    subtitle: "inpatient-ward",
+    chineseTitle: "住院部",
+    englishID: "inpatient-ward",
     panoSrc: "/pano/pharmacy-front.jpg",
     panoMarkers: [
       {
@@ -197,8 +197,8 @@ const rooms: RoomBriefType[] = [
     ],
   },
   {
-    title: "病理剖检室",
-    subtitle: "autopsy-room",
+    chineseTitle: "病理剖检室",
+    englishID: "autopsy-room",
     panoSrc: "/pano/autopsy-room.jpg",
     panoMarkers: undefined,
   },

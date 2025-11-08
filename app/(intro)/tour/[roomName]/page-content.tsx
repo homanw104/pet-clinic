@@ -1,13 +1,14 @@
 'use client';
 
-import React from "react";
+import React, { useEffect } from "react";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
-import { useAppSelector } from "@/utils/hook_util";
+import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
 import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
 import ArticleList from "@/components/sidebar/ArticleList";
 import OverlayViewerBox from "@/components/overlay/OverlayViewerBox";
 import ArticleBriefType from "@/types/articleBriefType";
+import { mountOverlay } from "@/store/overlaySlice";
 
 export default function PageContent({ chineseTitle, englishID, articleList, panoSrc, panoMarkers }: {
   chineseTitle: string;
@@ -16,7 +17,12 @@ export default function PageContent({ chineseTitle, englishID, articleList, pano
   panoSrc: string;
   panoMarkers: MarkerConfig[] | undefined;
 }) {
+  const dispatch = useAppDispatch();
   const isMount = useAppSelector((state) => state.overlay.isMount);
+
+  useEffect(() => {
+    dispatch(mountOverlay());
+  }, [dispatch]);
 
   return (
     <>

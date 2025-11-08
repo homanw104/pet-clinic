@@ -4,7 +4,7 @@
 
 import { StaticImageData } from "next/image";
 import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
-import Cards from "@/app/(intro)/job/[jobName]/[articleSlug]/cards";
+import PageContent from "@/app/(intro)/job/[jobName]/[articleSlug]/page-content";
 import JobBriefType from "@/types/jobBriefType";
 import jobs from "@/contents/jobs";
 
@@ -24,14 +24,12 @@ export async function generateStaticParams() {
   return paramsList;
 }
 
-interface PageParams {
+export default async function Page({ params }: {
   params: Promise<{
     jobName: string;
     articleSlug: string;
   }>;
-}
-
-export default async function Page({ params }: PageParams) {
+}) {
   const paramsData = await params;
   const article = await getArticleBySlug(paramsData.articleSlug, paramsData.jobName);
   const articleBriefList = await getAllArticleBriefs(paramsData.jobName);
@@ -43,10 +41,10 @@ export default async function Page({ params }: PageParams) {
 
   const src = jobBrief.avatar;
   const alt = jobBrief.chineseTitle;
-  const title = jobBrief.chineseTitle;
-  const subtitle = jobBrief.englishID;
+  const chineseTitle = jobBrief.chineseTitle;
+  const englishID = jobBrief.englishID;
 
   return (
-    <Cards imgSrc={src} imgAlt={alt} chineseTitle={title} englishID={subtitle} articleBriefList={articleBriefList} article={article} />
+    <PageContent imgSrc={src} imgAlt={alt} chineseTitle={chineseTitle} englishID={englishID} articleBriefList={articleBriefList} article={article} />
   )
 }

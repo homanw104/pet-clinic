@@ -8,6 +8,8 @@ import { MapContainer, ImageOverlay, Marker, Tooltip } from "react-leaflet";
 import { Typography, useTheme, Box } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { hexToRGBA } from "@/utils/color_util";
+import { useAppDispatch } from "@/utils/hook_util";
+import { mountOverlay } from "@/store/overlaySlice";
 import markers from "@/contents/markers";
 
 interface MarkerProps {
@@ -19,6 +21,7 @@ interface MarkerProps {
 function RoomMarker({ position, tooltip, href }: MarkerProps) {
   const theme = useTheme();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const markerIcon = new Icon({
     iconUrl: "/marker.png",
@@ -30,6 +33,7 @@ function RoomMarker({ position, tooltip, href }: MarkerProps) {
   return (
     <Marker icon={markerIcon} position={position} eventHandlers={{
       click: () => {
+        dispatch(mountOverlay());
         router.push(href);
       },
     }}>

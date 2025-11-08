@@ -28,7 +28,6 @@ interface LayoutProps {
 
 function OverlayBox({ children }: OverlayProps) {
   const theme = useTheme();
-
   const isMount = useAppSelector((state) => state.overlay.isMount);
 
   return (
@@ -83,7 +82,6 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
         <title>Pet Clinic Online</title>
         <meta name="description" content="Pet clinic online learning platform."/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="icon" href="/favicon.ico"/>
       </Head>
 
       <Box position="relative" display="flex" flexDirection="column" height="100%" sx={{

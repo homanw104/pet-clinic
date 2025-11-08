@@ -1,20 +1,23 @@
 'use client';
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { StaticImageData } from "next/image";
 import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
-import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
+import JobSidebarHeaderBox from "@/components/sidebar/JobSidebarHeaderBox";
 import ArticleList from "@/components/sidebar/ArticleList";
+import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
 import MarkdownArticle from "@/components/atomic/Markdown";
 import ArticleBriefType from "@/types/articleBriefType";
 import ArticleDataType from "@/types/articleDataType";
-import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
+import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
 import { mountOverlay } from "@/store/overlaySlice";
 
-export default function PageContent({ chineseTitle, englishID, articleList, article }: {
+export default function PageContent({ imgSrc, imgAlt, chineseTitle, englishID, articleBriefList, article }: {
+  imgSrc: StaticImageData;
+  imgAlt: string;
   chineseTitle: string;
   englishID: string;
-  articleList: ArticleBriefType[];
+  articleBriefList: ArticleBriefType[];
   article: ArticleDataType;
 }) {
   const dispatch = useAppDispatch();
@@ -27,9 +30,9 @@ export default function PageContent({ chineseTitle, englishID, articleList, arti
   return (
     <>
       <Grow
-        in={isMount} mountOnEnter unmountOnExit
-        style={{ transformOrigin: "bottom right" }}
-        {...(isMount ? { timeout: 330 } : { timeout: 300 })}
+        in={isMount}
+        style={{ transformOrigin: "center center" }}
+        {...(isMount ? { timeout: 300 } : { timeout: 350 })}
       >
         <Grid item sm={3} position="relative">
           <Paper sx={{
@@ -39,9 +42,9 @@ export default function PageContent({ chineseTitle, englishID, articleList, arti
             overflow: "hidden",
           }}>
             <Stack direction="column" height="100%">
-              <TourSidebarHeaderBox chineseTitle={chineseTitle} englishID={englishID} />
+              <JobSidebarHeaderBox src={imgSrc} alt={imgAlt} title={chineseTitle} subtitle={englishID} />
               <Box sx={{ overflow: "scroll", flexGrow: 1 }}>
-                <ArticleList articleBriefList={articleList} subtitle={englishID} section="tour" />
+                <ArticleList articleBriefList={articleBriefList} subtitle={englishID} section="job" />
               </Box>
             </Stack>
           </Paper>
@@ -49,8 +52,8 @@ export default function PageContent({ chineseTitle, englishID, articleList, arti
       </Grow>
 
       <Grow
-        in={isMount} mountOnEnter unmountOnExit
-        style={{ transformOrigin: "bottom center" }}
+        in={isMount}
+        style={{ transformOrigin: "center left" }}
         {...(isMount ? { timeout: 300 } : { timeout: 300 })}
       >
         <Grid item sm={9} position="relative">

@@ -3,21 +3,36 @@
 import React, { useEffect } from "react";
 import { Box, Container, Grid, useTheme } from "@mui/material";
 import { hexToRGBA } from "@/utils/color_util";
-import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
-import { mountOverlay } from "@/store/overlaySlice";
+import { useAppSelector } from "@/utils/hook_util";
+import LayoutContent from "@/app/(intro)/layout-content";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: {
+  children: React.ReactNode
+}) {
   const theme = useTheme();
   const isMount = useAppSelector((state) => state.overlay.isMount);
-  const dispatch = useAppDispatch();
+  const [isVisible, setIsVisible] = React.useState(isMount);
 
   useEffect(() => {
-    dispatch(mountOverlay());
-  }, [dispatch]);
+    if (isMount) {
+      setIsVisible(true);
+    } else {
+      // Delay unmounting to allow fade-out animation to complete
+      const timeoutId = setTimeout(() => setIsVisible(false), 300);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isMount]);
 
   return (
-    <Grid item sm={12}>
-      <Box position="absolute" display="flex" flexDirection="column" height="100%" sx={{
+    <>
+      {/* The content of the main page is stored in the layout so that */}
+      {/* it doesn't unmount when navigating to overlay pages. */}
+      <Box position="relative" flexDirection="column" height="100%">
+        <LayoutContent />
+      </Box>
+
+      {/* Mount overlay when isMount == true */}
+      <Box position="absolute" display={isVisible ? "flex" : "none"} flexDirection="column" height="100%" sx={{
         top: 0,
         left: 0,
         right: 0,
@@ -58,6 +73,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Grid>
         </Container>
       </Box>
-    </Grid>
+    </>
   )
 }

@@ -12,10 +12,10 @@ export async function generateStaticParams() {
   let paramsList: { roomName: string; articleSlug: string }[] = [];
 
   for (const roomBrief of rooms) {
-    const articleSlugs = await getArticleSlugs(roomBrief.subtitle);
+    const articleSlugs = await getArticleSlugs(roomBrief.englishID);
     paramsList.push(
       ...articleSlugs.map((slug) => ({
-        roomName: roomBrief.subtitle,
+        roomName: roomBrief.englishID,
         articleSlug: slug,
       }))
     )
@@ -49,15 +49,15 @@ export default async function Page({ params }: {
   const paramsData = await params;
   const article = await getArticleBySlug(paramsData.articleSlug, paramsData.roomName);
   const articleBriefList = await getAllArticleBriefs(paramsData.roomName);
-  const roomBrief = rooms.find((room) => room.subtitle === paramsData.roomName) ?? {
-    title: "未知",
-    subtitle: "unknown",
+  const roomBrief = rooms.find((room) => room.englishID === paramsData.roomName) ?? {
+    chineseTitle: "未知",
+    englishID: "unknown",
     panoSrc: "",
     panoMarkers: [],
   } as RoomBriefType;
 
-  const chineseTitle = roomBrief.title;
-  const englishID = roomBrief.subtitle;
+  const chineseTitle = roomBrief.chineseTitle;
+  const englishID = roomBrief.englishID;
 
   return (
     <PageContent chineseTitle={chineseTitle} englishID={englishID} articleList={articleBriefList} article={article} />
