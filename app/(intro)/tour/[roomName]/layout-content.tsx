@@ -1,17 +1,14 @@
 'use client';
 
 import React, { useEffect } from "react";
-import { StaticImageData } from "next/image";
 import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
 import { mountOverlay } from "@/store/overlaySlice";
-import JobSidebarHeaderBox from "@/components/sidebar/JobSidebarHeaderBox";
 import ArticleList from "@/components/sidebar/ArticleList";
+import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
 import ArticleBriefType from "@/types/articleBriefType";
 
-export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, articleBriefList, children }: {
-  imgSrc: StaticImageData;
-  imgAlt: string;
+export default function LayoutContent({ title, subtitle, articleBriefList, children }: {
   title: string;
   subtitle: string;
   articleBriefList: ArticleBriefType[];
@@ -39,9 +36,9 @@ export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, article
             overflow: "hidden",
           }}>
             <Stack direction="column" height="100%">
-              <JobSidebarHeaderBox src={imgSrc} alt={imgAlt} title={title} subtitle={subtitle} />
+              <TourSidebarHeaderBox title={title} subtitle={subtitle} />
               <Box sx={{ overflow: "scroll", flexGrow: 1 }}>
-                <ArticleList articleBriefList={articleBriefList} subtitle={subtitle} section="job" />
+                <ArticleList articleBriefList={articleBriefList} subtitle={subtitle} section="tour" />
               </Box>
             </Stack>
           </Paper>

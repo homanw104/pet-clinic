@@ -1,12 +1,7 @@
-/**
- * 导览 article 页面，根据路径变量 [roomName] 和 [articleSlug] 生成各房间对应的各个 article。
- */
-
-import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
-import RoomBriefType from "@/types/roomBriefType";
-import rooms from "@/contents/rooms";
 import { Metadata } from "next";
+import { getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
 import PageContent from "@/app/(intro)/tour/[roomName]/[articleSlug]/page-content";
+import rooms from "@/contents/rooms";
 
 export async function generateStaticParams() {
   let paramsList: { roomName: string; articleSlug: string }[] = [];
@@ -32,7 +27,7 @@ export async function generateMetadata({ params }: {
 }): Promise<Metadata> {
   const paramsData = await params;
   let title = paramsData.articleSlug.replace("-", " ");
-  title = "Pet Clinic - " + title.charAt(0).toUpperCase() + title.slice(1);
+  title = title.charAt(0).toUpperCase() + title.slice(1) + " | Pet Clinic";
 
   return {
     title: title,
@@ -48,18 +43,8 @@ export default async function Page({ params }: {
 }) {
   const paramsData = await params;
   const article = await getArticleBySlug(paramsData.articleSlug, paramsData.roomName);
-  const articleBriefList = await getAllArticleBriefs(paramsData.roomName);
-  const roomBrief = rooms.find((room) => room.englishID === paramsData.roomName) ?? {
-    chineseTitle: "未知",
-    englishID: "unknown",
-    panoSrc: "",
-    panoMarkers: [],
-  } as RoomBriefType;
-
-  const chineseTitle = roomBrief.chineseTitle;
-  const englishID = roomBrief.englishID;
 
   return (
-    <PageContent chineseTitle={chineseTitle} englishID={englishID} articleList={articleBriefList} article={article} />
+    <PageContent article={article} />
   )
 }
