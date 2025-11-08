@@ -4,7 +4,7 @@ type RoomBriefType = {
   title: string;      // Chinese title
   subtitle: string;   // English title used in `contents` folder
   panoSrc: string;
-  panoMarkers: null | MarkerConfig[];
+  panoMarkers: MarkerConfig[] | undefined;
 };
 
 export default RoomBriefType;

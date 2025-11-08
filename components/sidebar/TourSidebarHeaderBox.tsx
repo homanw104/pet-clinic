@@ -1,18 +1,18 @@
+'use client';
+
 import React from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
-interface BoxProps {
-  title: string;          // Sidebar title
-  subtitle: string;       // Sidebar title in English
-}
-
-export default function TourSidebarHeaderBox({ title, subtitle }: BoxProps) {
+export default function TourSidebarHeaderBox({ chineseTitle, englishID }: {
+  chineseTitle: string;
+  englishID: string;
+}) {
   const theme = useTheme();
   const router = useRouter();
 
   const handleOnClick = (href: string) => {
-    router.push(href).then();
+    router.push(href);
   };
 
   return (
@@ -27,16 +27,16 @@ export default function TourSidebarHeaderBox({ title, subtitle }: BoxProps) {
       alignItems: "center",
       justifyContent: "flex-start",
     }}>
-      <Stack direction="column" padding="2rem" onClick={() => handleOnClick(`/tour/${subtitle}`)} sx={{
+      <Stack direction="column" padding="2rem" onClick={() => handleOnClick(`/tour/${englishID}`)} sx={{
         cursor: "pointer"
       }}>
         <Typography variant="h4" align="left" noWrap={true} lineHeight={1}>
-          {title}
+          {chineseTitle}
         </Typography>
         <Typography variant="h6" align="left" noWrap={true} lineHeight={1} style={{
           textTransform: "none", fontVariant: "small-caps"
         }}>
-          {subtitle.replace("-", " ")}
+          {englishID.replace("-", " ")}
         </Typography>
       </Stack>
     </Box>

@@ -50,8 +50,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         animation: isMount ?
           "fadeInBlur 0.3s ease-out forwards" :
-          "fadeOutBlur 0.3s ease-in forwards",
-        // animation: "fadeInBlur 0.3s ease-out forwards"
+          "fadeOutBlur 0.3s ease-in forwards"
       }}>
         <Container sx={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <Grid container minHeight="500px" maxHeight="800px" height="100%">

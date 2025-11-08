@@ -10,12 +10,10 @@ import { hexToRGBA } from "@/utils/color_util";
 import { useAppDispatch } from "@/utils/hook_util";
 import { unmountOverlay } from "@/store/overlaySlice";
 
-interface BoxProps {
+export default function OverlayViewerBox({ src, markers }: {
   src: string;
-  markers?: MarkerConfig[];
-}
-
-export default function OverlayViewerBox({ src, markers }: BoxProps) {
+  markers: MarkerConfig[] | undefined;
+}) {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -33,7 +31,7 @@ export default function OverlayViewerBox({ src, markers }: BoxProps) {
       position: "absolute",
       height: "100%",
       width: "100%",
-      zIndex: 90,   // Lower than OverlayArticleBox
+      zIndex: 90,
     }}>
       <Box sx={{
         overflow: "hidden",

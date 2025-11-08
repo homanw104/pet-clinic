@@ -33,10 +33,10 @@ export const useRenderState = () => {
   const [notFound, setNotFound] = useState(false);
   
   // Timeout references
-  const errorTimeout = useRef<NodeJS.Timeout>();
-  const loadingTimeout = useRef<NodeJS.Timeout>();
-  const loadedTimeout = useRef<NodeJS.Timeout>();
-  const notFoundTimeout = useRef<NodeJS.Timeout>();
+  const errorTimeout = useRef<NodeJS.Timeout>(setTimeout(() => {}, 0));
+  const loadingTimeout = useRef<NodeJS.Timeout>(setTimeout(() => {}, 0));
+  const loadedTimeout = useRef<NodeJS.Timeout>(setTimeout(() => {}, 0));
+  const notFoundTimeout = useRef<NodeJS.Timeout>(setTimeout(() => {}, 0));
 
   // Set loading after timeout
   const setShowLoading = useCallback(() => {

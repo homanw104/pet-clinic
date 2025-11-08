@@ -1,7 +1,9 @@
+'use client';
+
 import "@photo-sphere-viewer/core/index.scss";
 import "@photo-sphere-viewer/markers-plugin/index.scss"
 import React, { createRef, RefObject, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Box, useTheme } from "@mui/material";
 import { hexToRGBA } from "@/utils/color_util";
 import { Viewer } from "@photo-sphere-viewer/core";
@@ -32,7 +34,7 @@ interface PageProps {
 export default function PhotoSphere({ src, markers }: PageProps) {
   const theme = useTheme();
   const router = useRouter();
-  const containerRef: RefObject<HTMLDivElement> = createRef();
+  const containerRef: RefObject<HTMLDivElement | null> = createRef();
 
   // Inject className and position to markers (`.sphere-tooltip` style overrides are at the end of this file)
   if (markers) {
@@ -65,7 +67,7 @@ export default function PhotoSphere({ src, markers }: PageProps) {
     // Register click event on markers
     const markersPlugin = viewer.getPlugin(MarkersPlugin);
     markersPlugin.addEventListener("select-marker", ({ marker }) => {
-      router.push(marker.data.link).then();
+      router.push(marker.data.link);
     });
 
     // Destroy viewer when component unmounts

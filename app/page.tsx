@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { Box, Grid, Stack, useTheme } from "@mui/material";
@@ -35,7 +35,9 @@ export default function Home() {
           marginTop: "4rem"
         }}>
           <Header mapBoxRef={mapBoxRef} />
-          <Subheader variant="home" />
+          <Suspense fallback={null}>
+            <Subheader variant="home" />
+          </Suspense>
         </Stack>
       </Grid>
 

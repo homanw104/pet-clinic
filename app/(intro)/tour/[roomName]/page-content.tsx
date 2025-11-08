@@ -1,35 +1,22 @@
-/**
- * Tour page layout.
- * Place this layout inside a Grid layout.
- */
+'use client';
 
-import React, { useEffect } from "react";
-import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
-import ArticleList from "@/components/sidebar/ArticleList";
-import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
-import OverlayViewerBox from "@/components/overlay/OverlayViewerBox";
-import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
+import React from "react";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
+import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
+import { useAppSelector } from "@/utils/hook_util";
+import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
+import ArticleList from "@/components/sidebar/ArticleList";
+import OverlayViewerBox from "@/components/overlay/OverlayViewerBox";
 import ArticleBriefType from "@/types/articleBriefType";
-import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
-import { mountOverlay } from "@/store/overlaySlice";
 
-interface LayoutProps {
-  children?: React.ReactNode;   // Optional when displaying panorama
-  title: string;                // Sidebar title
-  subtitle: string;             // Sidebar title in English
+export default function PageContent({ chineseTitle, englishID, articleList, panoSrc, panoMarkers }: {
+  chineseTitle: string;
+  englishID: string;
   articleList: ArticleBriefType[];
-  panoSrc?: string;             // Panorama source
-  panoMarkers?: MarkerConfig[]; // Panorama markers
-}
-
-export default function TourPageLayout({ children, title, subtitle, articleList, panoSrc, panoMarkers }: LayoutProps) {
-  const dispatch = useAppDispatch();
+  panoSrc: string;
+  panoMarkers: MarkerConfig[] | undefined;
+}) {
   const isMount = useAppSelector((state) => state.overlay.isMount);
-
-  useEffect(() => {
-    dispatch(mountOverlay());
-  }, [dispatch]);
 
   return (
     <>
@@ -46,9 +33,9 @@ export default function TourPageLayout({ children, title, subtitle, articleList,
             overflow: "hidden",
           }}>
             <Stack direction="column" height="100%">
-              <TourSidebarHeaderBox title={title} subtitle={subtitle} />
+              <TourSidebarHeaderBox chineseTitle={chineseTitle} englishID={englishID} />
               <Box sx={{ overflow: "scroll", flexGrow: 1 }}>
-                <ArticleList articleBriefList={articleList} subtitle={subtitle} section="tour" />
+                <ArticleList articleBriefList={articleList} subtitle={englishID} section="tour" />
               </Box>
             </Stack>
           </Paper>
@@ -67,18 +54,10 @@ export default function TourPageLayout({ children, title, subtitle, articleList,
             left: "2rem", right: "0",
             overflow: "hidden",
           }}>
-
-            {/* Display panorama when given panorama source file */}
-            {panoSrc && <OverlayViewerBox
+            <OverlayViewerBox
               src={panoSrc ? panoSrc : ""}
               markers={panoMarkers}
-            />}
-
-            {/* Else, display children in OverlayArticleBox */}
-            {!panoSrc && <OverlayArticleBox
-              children={children}
-            />}
-
+            />
           </Paper>
         </Grid>
       </Grow>

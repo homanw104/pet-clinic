@@ -4,7 +4,7 @@
 
 import { StaticImageData } from "next/image";
 import { getAllArticleBriefs, getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
-import Cards from "@/app/job/[jobName]/[articleSlug]/cards";
+import Cards from "@/app/(intro)/job/[jobName]/[articleSlug]/cards";
 import JobBriefType from "@/types/jobBriefType";
 import jobs from "@/contents/jobs";
 

@@ -20,7 +20,7 @@ const rooms: RoomBriefType[] = [
     title: "档案室",
     subtitle: "records-dept",
     panoSrc: "/pano/records-dept.jpg",
-    panoMarkers: null,
+    panoMarkers: undefined,
   },
   {
     title: "门诊室",
@@ -200,7 +200,7 @@ const rooms: RoomBriefType[] = [
     title: "病理剖检室",
     subtitle: "autopsy-room",
     panoSrc: "/pano/autopsy-room.jpg",
-    panoMarkers: null,
+    panoMarkers: undefined,
   },
 ];
 
