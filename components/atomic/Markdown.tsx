@@ -1,48 +1,64 @@
+/*
+ * Reference:
+ *
+ * - <https://v5.mui.com/material-ui/react-box/>
+ * - <https://v5.mui.com/material-ui/react-typography/>
+ * - <https://www.npmjs.com/package/markdown-to-jsx#optionsoverrides---override-any-html-tags-representation>
+ */
+
 import React from "react";
 import Link from "next/link";
-import Markdown, { MarkdownToJSX } from 'markdown-to-jsx';
+import Markdown, { MarkdownToJSX } from "markdown-to-jsx";
 import { Box, Typography } from "@mui/material";
 
-function MarkdownListItem(props: any) {
-  return <Box component="li" sx={{ mt: 1, typography: 'body1' }} {...props} />;
-}
+const fontFamily = "Noto Sans SC, Noto Sans, sans-serif";
 
-interface MarkdownProps {
-  [key: string]: any;
-  children: string;
-  options?: MarkdownToJSX.Options;
-}
-
+// marginBottom is mainly used for creating spacing before a list.
+// marginTop is set to create a minimal spacing after the last element.
 const options = {
   overrides: {
     h1: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'h4' },
+      props: { fontFamily: fontFamily, variant: "h4" },
     },
     h2: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'h5' },
+      props: { fontFamily: fontFamily, marginTop: "1.2rem", variant: "h5" },
     },
     h3: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'h6' },
+      props: { fontFamily: fontFamily, marginTop: "1rem", variant: "h6" },
     },
     h4: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'caption', paragraph: true },
+      props: { fontFamily: fontFamily, marginTop: "0.85rem", variant: "caption", paragraph: true },
     },
     p: {
       component: Typography,
-      props: { paragraph: true },
+      props: { fontFamily: fontFamily, marginTop: "0.7rem", variant: "body1" },
     },
-    a: { component: Link },
+    ul: {
+      component: Box,
+      props: { fontFamily: fontFamily, component: "ul", marginTop: "0.7rem" }
+    },
+    ol: {
+      component: Box,
+      props: { fontFamily: fontFamily, component: "ol", marginTop: "0.7rem" }
+    },
     li: {
-      component: MarkdownListItem,
+      component: Box,
+      props: { fontFamily: fontFamily, component: "li", marginLeft: "2em", typography: "body1" }
     },
-  },
+    a: {
+      component: Link
+    }
+  }
 };
 
-export default function MarkdownArticle({ children, ...props }: MarkdownProps) {
+export default function MarkdownArticle({ children, ...props }: {
+  children: string;
+  options?: MarkdownToJSX.Options;
+}) {
   return (
     <Markdown options={options} {...props}>
       {children}
