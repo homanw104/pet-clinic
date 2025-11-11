@@ -1,3 +1,8 @@
+/*
+ * The layout of the main page is rendered client side to retain states,
+ * while most of the layouts in this app are rendered server side.
+ */
+
 'use client';
 
 import React, { useEffect } from "react";

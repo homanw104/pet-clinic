@@ -19,19 +19,19 @@ const options = {
   overrides: {
     h1: {
       component: Typography,
-      props: { fontFamily: fontFamily, variant: "h4" },
+      props: { fontFamily: fontFamily, marginBottom: "1.2rem", variant: "h4" },
     },
     h2: {
       component: Typography,
-      props: { fontFamily: fontFamily, marginTop: "1.2rem", variant: "h5" },
+      props: { fontFamily: fontFamily, marginTop: "1.2rem", marginBottom: "1.0rem", variant: "h5" },
     },
     h3: {
       component: Typography,
-      props: { fontFamily: fontFamily, marginTop: "1rem", variant: "h6" },
+      props: { fontFamily: fontFamily, marginTop: "1.0rem", marginBottom: "0.85rem", variant: "h6" },
     },
     h4: {
       component: Typography,
-      props: { fontFamily: fontFamily, marginTop: "0.85rem", variant: "caption", paragraph: true },
+      props: { fontFamily: fontFamily, marginTop: "0.85rem", marginBottom: "0.7rem", variant: "caption", paragraph: true },
     },
     p: {
       component: Typography,
