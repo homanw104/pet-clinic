@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: {
   }>;
 }): Promise<Metadata> {
   const paramsData = await params;
-  let title = paramsData.roomName.replace("-", " ");
+  let title = paramsData.roomName.replaceAll("-", " ");
   title = title.charAt(0).toUpperCase() + title.slice(1) + " | Pet Clinic";
 
   return {
