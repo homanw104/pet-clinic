@@ -13,11 +13,11 @@ export default function Layout({ children }: {
   const isMount = useAppSelector((state) => state.overlay.isMount);
   const [isVisible, setIsVisible] = React.useState(isMount);
 
+  // Delay unmounting to allow fade-out animation to complete
   useEffect(() => {
     if (isMount) {
       setIsVisible(true);
     } else {
-      // Delay unmounting to allow fade-out animation to complete
       const timeoutId = setTimeout(() => setIsVisible(false), 300);
       return () => clearTimeout(timeoutId);
     }
@@ -31,7 +31,7 @@ export default function Layout({ children }: {
         <LayoutContent />
       </Box>
 
-      {/* Mount overlay when isMount == true */}
+      {/* Mount overlay when isVisible == true */}
       <Box position="absolute" display={isVisible ? "flex" : "none"} flexDirection="column" height="100%" sx={{
         top: 0,
         left: 0,
