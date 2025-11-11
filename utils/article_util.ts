@@ -66,7 +66,7 @@ export function getArticleSlugs(subDir: string): Promise<string[]> {
 }
 
 /**
- * Return a ArticleType Promise in the given directory.
+ * Return a ArticleDataType Promise in the given directory.
  * @param slug "index", "intro", etc.
  * @param subDir "veterinarian", "technician", etc.
  */
@@ -116,20 +116,17 @@ export function getArticleBriefBySlug(slug: string, subDir: string): Promise<Art
 
 /**
  * Return a list of ArticleBriefType Promise in the given directory.
+ * "intro" will be moved to the first position if it exists.
  * @param subDir "veterinarian", "technician", etc.
  */
-export function getAllArticleBriefs(subDir: string): Promise<ArticleBriefType[]> {
-  return new Promise((resolve, reject) => {
-    getArticleSlugs(subDir)
-      .then(slugs => {
-        Promise.all(slugs.map((slug) => getArticleBriefBySlug(slug, subDir)))
-          .then(slugs => resolve(slugs))
-          .catch(err => reject(err));
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
+export async function getAllArticleBriefs(subDir: string): Promise<ArticleBriefType[]> {
+  let slugs = await getArticleSlugs(subDir);
+
+  // Move "intro" to the first position
+  if (slugs.includes("intro"))
+    slugs = ["intro", ...slugs.filter(slug => slug !== "intro")];
+
+  return Promise.all(slugs.map((slug) => getArticleBriefBySlug(slug, subDir)));
 }
 
 /**
