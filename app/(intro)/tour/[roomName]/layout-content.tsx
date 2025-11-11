@@ -29,12 +29,17 @@ export default function LayoutContent({ title, subtitle, articleBriefList, child
         {...(isMount ? { timeout: 300 } : { timeout: 350 })}
       >
         <Grid item sm={3} position="relative">
-          <Paper sx={{
-            position: "absolute",
-            top: "2rem", bottom: "2rem",
-            left: "0", right: "0",
-            overflow: "hidden",
-          }}>
+          <Paper
+            sx={{
+              position: "absolute",
+              top: "2rem", bottom: "2rem",
+              left: "0", right: "0",
+              overflow: "hidden",
+            }}
+
+            // Allow clicking inside the box without toggling close in the parent
+            onClick={(e) => e.stopPropagation()}
+          >
             <Stack direction="column" height="100%">
               <TourSidebarHeaderBox title={title} subtitle={subtitle} />
               <Box sx={{ overflow: "scroll", flexGrow: 1 }}>
@@ -51,12 +56,17 @@ export default function LayoutContent({ title, subtitle, articleBriefList, child
         {...(isMount ? { timeout: 300 } : { timeout: 300 })}
       >
         <Grid item sm={9} position="relative">
-          <Paper sx={{
-            position: "absolute",
-            top: "2rem", bottom: "2rem",
-            left: "2rem", right: "0",
-            overflow: "hidden",
-          }}>
+          <Paper
+            sx={{
+              position: "absolute",
+              top: "2rem", bottom: "2rem",
+              left: "2rem", right: "0",
+              overflow: "hidden",
+            }}
+
+            // Allow clicking inside the box without toggling close in the parent
+            onClick={(e) => e.stopPropagation()}
+          >
             {children}
           </Paper>
         </Grid>

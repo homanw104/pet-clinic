@@ -31,7 +31,6 @@ export default function OverlayViewerBox({ src, markers }: {
       position: "absolute",
       height: "100%",
       width: "100%",
-      zIndex: 90,
     }}>
       <Box sx={{
         overflow: "hidden",

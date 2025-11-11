@@ -6,19 +6,63 @@
 'use client';
 
 import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Box, Container, Grid, useTheme } from "@mui/material";
 import { hexToRGBA } from "@/utils/color_util";
-import { useAppSelector } from "@/utils/hook_util";
+import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
+import { unmountOverlay } from "@/store/overlaySlice";
 import LayoutContent from "@/app/(intro)/layout-content";
 
 export default function Layout({ children }: {
   children: React.ReactNode
 }) {
   const theme = useTheme();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  // Overlay mount state and visibility state
   const isMount = useAppSelector((state) => state.overlay.isMount);
   const [isVisible, setIsVisible] = React.useState(isMount);
 
-  // Delay unmounting to allow fade-out animation to complete
+  // Mouse drag threshold to differentiate between click and drag
+  const dragThreshold = 5;  // Pixels
+  let startX: number, startY: number;
+
+  // Record mouse position when mouse is pressed down
+  const handleOnMouseDown = (event: { clientX: number; clientY: number; }) => {
+    startX = event.clientX;
+    startY = event.clientY;
+  }
+
+  // Return home when a click is detected on the overlay box
+  const handleOnClick = (event: { clientX: number; clientY: number; }) => {
+    const endX = event.clientX;
+    const endY = event.clientY;
+    const distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+
+    // Considered a click, handle accordingly
+    if (distance < dragThreshold) {
+      // Set overlay isMount state to false
+      dispatch(unmountOverlay());
+
+      // Return home after animations are finished
+      setTimeout(() => router.push("/"), 300);
+    }
+  }
+
+  // Update visibility state based on mount state
+  // When user goes to overlay page,
+  //    > Click on target
+  //    > isMount: false -> true
+  //    > isVisible: false -> true
+  //    > router.push()
+  //    |------> animation time (300ms)
+  // When user goes to home page,
+  //    > Click on target
+  //    > isMount: true -> false
+  //    |------> animation time (300ms)
+  //           > isVisible: true -> false
+  //           > router.push()
   useEffect(() => {
     if (isMount) {
       setIsVisible(true);
@@ -31,13 +75,16 @@ export default function Layout({ children }: {
   return (
     <>
       {/* The content of the main page is stored in the layout so that */}
-      {/* it doesn't unmount when navigating to overlay pages. */}
+      {/* it doesn't reload when navigating to overlay pages. */}
       <Box position="relative" flexDirection="column" height="100%">
         <LayoutContent />
       </Box>
 
-      {/* Mount overlay when isVisible == true */}
-      <Box position="absolute" display={isVisible ? "flex" : "none"} flexDirection="column" height="100%" sx={{
+      {/* Mount overlay when isVisible === true */}
+      <Box position="absolute" display={isVisible ? "flex" : "none"} flexDirection="column" height="100%"
+           onMouseDown={handleOnMouseDown}
+           onClick={handleOnClick}
+           sx={{
         top: 0,
         left: 0,
         right: 0,

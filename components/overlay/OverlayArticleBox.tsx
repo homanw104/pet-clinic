@@ -28,7 +28,6 @@ export default function OverlayArticleBox({ children }: ComponentProps) {
       position: "absolute",
       height: "100%",
       width: "100%",
-      zIndex: 100,  // Higher than OverlayViewerBox
     }}>
       <Box sx={{
         overflow: "scroll",
