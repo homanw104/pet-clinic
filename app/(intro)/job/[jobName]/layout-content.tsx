@@ -25,18 +25,16 @@ export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, article
   }, [dispatch]);
 
   return (
-    <>
+    <Grid container height="100vh" minHeight="500px" maxHeight="800px" spacing="2rem">
       <Grow
         in={isMount}
         style={{ transformOrigin: "center center" }}
         {...(isMount ? { timeout: 300 } : { timeout: 350 })}
       >
-        <Grid item sm={3} position="relative">
+        <Grid item sm={3} height="100%">
           <Paper
             sx={{
-              position: "absolute",
-              top: "2rem", bottom: "2rem",
-              left: "0", right: "0",
+              height: "100%",
               overflow: "hidden",
             }}
 
@@ -58,12 +56,10 @@ export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, article
         style={{ transformOrigin: "center left" }}
         {...(isMount ? { timeout: 300 } : { timeout: 300 })}
       >
-        <Grid item sm={9} position="relative">
+        <Grid item sm={9} height="100%">
           <Paper
             sx={{
-              position: "absolute",
-              top: "2rem", bottom: "2rem",
-              left: "2rem", right: "0",
+              height: "100%",
               overflow: "hidden",
             }}
 
@@ -74,6 +70,6 @@ export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, article
           </Paper>
         </Grid>
       </Grow>
-    </>
+    </Grid>
   )
 }

@@ -7,7 +7,7 @@
 
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Box, Container, Grid, useTheme } from "@mui/material";
+import { Box, Container, useTheme } from "@mui/material";
 import { hexToRGBA } from "@/utils/color_util";
 import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
 import { unmountOverlay } from "@/store/overlaySlice";
@@ -77,7 +77,9 @@ export default function Layout({ children }: {
       {/* The content of the main page is stored in the layout so that */}
       {/* it doesn't reload when navigating to overlay pages. */}
       <Box position="relative" flexDirection="column" height="100%">
-        <LayoutContent />
+        <Container sx={{ flexGrow: 1 }}>
+          <LayoutContent />
+        </Container>
       </Box>
 
       {/* Mount overlay when isVisible === true */}
@@ -120,9 +122,7 @@ export default function Layout({ children }: {
           "fadeOutBlur 0.3s ease-in forwards"
       }}>
         <Container sx={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-          <Grid container minHeight="500px" maxHeight="800px" height="100%">
-            {children}
-          </Grid>
+          {children}
         </Container>
       </Box>
     </>

@@ -6,7 +6,7 @@
 import { createTheme, Theme } from "@mui/material";
 
 const shape = {
-  borderRadius: 12,
+  borderRadius: 8,
 }
 
 // Override default background color and text color

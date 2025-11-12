@@ -28,7 +28,7 @@ export default function OverlayViewerBox({ src, markers }: {
 
   return (
     <Box sx={{
-      position: "absolute",
+      position: "relative",
       height: "100%",
       width: "100%",
     }}>
@@ -43,8 +43,8 @@ export default function OverlayViewerBox({ src, markers }: {
       </Box>
       <Box sx={{
         position: "absolute",
-        top: "1.25rem",
-        right: "1.25rem",
+        top: "1rem",
+        right: "1rem",
         zIndex: 300,
       }}>
         <IconButton aria-label="close" onClick={() => handleOnClick("/")} sx={{
