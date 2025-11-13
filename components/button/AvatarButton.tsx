@@ -16,6 +16,7 @@ export default function AvatarButton({ children, src, alt, name, ...props }: Ava
       color: theme.palette.surface.onMain,
       overflow: "hidden",
       padding: 0,
+      borderRadius: "1rem"
     }}>
       <Stack direction="row" spacing={1.5} alignItems="center" justifyContent="center" width="100%">
         <Image src={src} alt={alt} width={96} height={96} className="unselectable" />

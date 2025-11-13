@@ -16,7 +16,7 @@ export default function Layout({ children }: {
           <Grid item xs={7} />
           <Grid item xs={4}>
             <Stack display="flex" direction="column" justifyContent="center" height="100vh">
-              <Paper>
+              <Paper sx={{ borderRadius: "1rem" }}>
                 {children}
               </Paper>
             </Stack>

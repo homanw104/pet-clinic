@@ -33,10 +33,8 @@ export default function OverlayViewerBox({ src, markers }: {
       width: "100%",
     }}>
       <Box sx={{
-        overflow: "hidden",
         padding: "0.5rem",
         height: "100%",
-        borderRadius: "0.25rem",
         zIndex: 295,
       }}>
         <PhotoSphere src={src} markers={markers} />

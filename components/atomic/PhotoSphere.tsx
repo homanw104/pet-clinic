@@ -78,7 +78,7 @@ export default function PhotoSphere({ src, markers }: PageProps) {
 
   return (
     <Box ref={containerRef} sx={{
-      borderRadius: "0.25rem",
+      borderRadius: "0.5rem",
       overflow: "hidden",
       height: "100%",
 

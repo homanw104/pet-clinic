@@ -5,10 +5,6 @@
 
 import { createTheme, Theme } from "@mui/material";
 
-const shape = {
-  borderRadius: 8,
-}
-
 // Override default background color and text color
 const components = {
   MuiCssBaseline: {
@@ -111,7 +107,6 @@ const lightTheme = createTheme({
       primary: '#1F1B16',
     }
   },
-  shape: shape,
   components: components,
   typography: typography,
 });
@@ -164,7 +159,6 @@ const darkTheme = createTheme({
       primary: '#CCC5BD',
     }
   },
-  shape: shape,
   components: components,
   typography: typography,
 });

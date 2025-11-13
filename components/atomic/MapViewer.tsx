@@ -82,7 +82,7 @@ export default function MapViewer() {
       center={center}
       crs={CRS.Simple}
       maxBounds={maxBounds}
-      style={{ height: "100%", borderRadius: "0.25rem", backgroundColor: theme.palette.surface[1] }}
+      style={{ height: "100%", borderRadius: "0.5rem", backgroundColor: theme.palette.surface[1] }}
     >
       <ImageOverlay
         url="/floor-plan.png"

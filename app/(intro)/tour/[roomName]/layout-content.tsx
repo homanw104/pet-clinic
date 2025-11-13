@@ -33,6 +33,7 @@ export default function LayoutContent({ title, subtitle, articleBriefList, child
             sx={{
               height: "100%",
               overflow: "hidden",
+              borderRadius: "1rem"
             }}
 
             // Allow clicking inside the box without toggling close in the parent
@@ -58,6 +59,7 @@ export default function LayoutContent({ title, subtitle, articleBriefList, child
             sx={{
               height: "100%",
               overflow: "hidden",
+              borderRadius: "1rem"
             }}
 
             // Allow clicking inside the box without toggling close in the parent

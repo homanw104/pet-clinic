@@ -79,7 +79,7 @@ export default function LayoutContent() {
           color: theme.palette.surface.onMain,
           marginTop: "2rem",
           marginBottom: "2rem",
-          borderRadius: "0.5rem",
+          borderRadius: "1rem",
           height: "37.5rem",
         }}>
           <Box ref={mapBoxRef} sx={{

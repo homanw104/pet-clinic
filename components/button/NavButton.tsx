@@ -15,7 +15,8 @@ export default function NavButton({ children, name, ...props }: NormalButtonProp
       color: theme.palette.surface.onMain,
       overflow: "hidden",
       padding: 0,
-      height: "140px",
+      height: "8.75rem",
+      borderRadius: "1rem"
     }}>
       <Stack direction="column" spacing={0.5} alignItems="center" justifyContent="stretch">
         <Typography variant="h5" align="left" noWrap={true} lineHeight={1}>
