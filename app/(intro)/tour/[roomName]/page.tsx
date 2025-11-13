@@ -1,6 +1,6 @@
 import PageContent from "@/app/(intro)/tour/[roomName]/page-content";
-import RoomBriefType from "@/types/roomBriefType";
-import rooms from "@/contents/rooms";
+import RoomBriefType from "@/lib/types/roomBriefType";
+import rooms from "@/lib/contents/rooms";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {

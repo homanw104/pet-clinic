@@ -17,12 +17,12 @@ import {
 } from "@mui/material";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
-import AppGridLayout from "@/layouts/AppGridLayout";
-import databases from "@/contents/databases";
+import AppGridLayout from "@/lib/layouts/AppGridLayout";
+import databases from "@/lib/contents/databases";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { API_URL } from "@/utils/env_util";
+import { API_URL } from "@/lib/utils/env";
 
 export default function Learn() {
   const theme = useTheme();

@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, Typography } from "@mui/material";
 import QuestionButton from "@/components/button/QuestionButton";
-import questionDataType from "@/types/questionDataType";
+import questionDataType from "@/lib/types/questionDataType";
 
 interface Props {
   question: questionDataType;

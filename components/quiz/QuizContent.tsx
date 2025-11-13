@@ -4,7 +4,7 @@ import QuestionList from "@/components/quiz/QuestionList";
 import TypographyButton from "@/components/button/TypographyButton";
 import SouthWestIcon from "@mui/icons-material/SouthWest";
 import EastIcon from "@mui/icons-material/East";
-import quizDataType from "@/types/quizDataType";
+import quizDataType from "@/lib/types/quizDataType";
 
 interface QuizContentProps {
   quizData: quizDataType;

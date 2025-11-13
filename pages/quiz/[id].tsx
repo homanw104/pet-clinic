@@ -10,13 +10,13 @@ import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
 import QuizList from "@/components/quiz/QuizList";
 import QuizContent from "@/components/quiz/QuizContent";
-import AppGridLayout from "@/layouts/AppGridLayout";
+import AppGridLayout from "@/lib/layouts/AppGridLayout";
 import PageNotFound from "@/components/app/PageNotFound";
 import ConfirmDialog from "@/components/atomic/ConfirmDialog";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import { useRenderState } from "@/utils/hook_util";
-import { API_URL } from "@/utils/env_util";
-import quizDataType from "@/types/quizDataType";
+import { useRenderState } from "@/lib/utils/hook";
+import { API_URL } from "@/lib/utils/env";
+import quizDataType from "@/lib/types/quizDataType";
 
 export default function Quiz() {
   const theme = useTheme();

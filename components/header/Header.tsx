@@ -1,10 +1,10 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Stack, Typography, useTheme } from "@mui/material";
-import { darkTheme, lightTheme } from "@/styles/globals-mui";
-import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
-import { toggleTheme } from "@/store/themeSlice";
-import { logout } from "@/store/authSlice";
+import { darkTheme, lightTheme } from "@/lib/styles/globals-mui";
+import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
+import { toggleTheme } from "@/lib/store/themeSlice";
+import { logout } from "@/lib/store/authSlice";
 import TypographyButton from "@/components/button/TypographyButton";
 import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
 

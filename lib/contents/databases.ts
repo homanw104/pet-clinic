@@ -1,4 +1,4 @@
-import DatabaseBriefType from "@/types/databaseBriefType";
+import DatabaseBriefType from "@/lib/types/databaseBriefType";
 
 const databases: DatabaseBriefType[] = [
   {

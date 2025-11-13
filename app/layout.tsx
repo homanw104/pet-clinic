@@ -1,13 +1,13 @@
 'use client';
 
-import "@/styles/globals.css";
+import "@/lib/styles/globals.css";
 import axios from "axios";
 import React from "react";
 import { Provider } from "react-redux";
 import { Analytics } from "@vercel/analytics/react";
 import { CssBaseline } from "@mui/material";
 import { SWRConfig } from "swr";
-import { store } from "@/store/store";
+import { store } from "@/lib/store/store";
 import Theme from "@/components/app/Theme";
 
 const fetcher = async (url: string) => {

@@ -12,8 +12,8 @@ import Subheader from "@/components/header/Subheader";
 import InfoCard from "@/components/atomic/InfoCard";
 import AvatarButton from "@/components/button/AvatarButton";
 import NavButton from "@/components/button/NavButton";
-import { useAppDispatch } from "@/utils/hook_util";
-import { mountOverlay } from "@/store/overlaySlice";
+import { useAppDispatch } from "@/lib/utils/hook";
+import { mountOverlay } from "@/lib/store/overlaySlice";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
 const MapViewer = dynamic(() => import("@/components/atomic/MapViewer"), {

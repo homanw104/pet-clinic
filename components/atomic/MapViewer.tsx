@@ -1,16 +1,16 @@
 'use client';
 
 import "leaflet/dist/leaflet.css";
-import styles from "@/styles/MapViewer.module.css";
+import styles from "@/lib/styles/MapViewer.module.css";
 import React from "react";
 import { CRS, Icon, LatLng, LatLngBounds, Point } from "leaflet";
 import { MapContainer, ImageOverlay, Marker, Tooltip } from "react-leaflet";
 import { Typography, useTheme, Box } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { hexToRGBA } from "@/utils/color_util";
-import { useAppDispatch } from "@/utils/hook_util";
-import { mountOverlay } from "@/store/overlaySlice";
-import markers from "@/contents/markers";
+import { hexToRGBA } from "@/lib/utils/color";
+import { useAppDispatch } from "@/lib/utils/hook";
+import { mountOverlay } from "@/lib/store/overlaySlice";
+import markers from "@/lib/contents/markers";
 
 interface MarkerProps {
   position: LatLng;

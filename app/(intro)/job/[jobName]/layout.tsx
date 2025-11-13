@@ -1,8 +1,8 @@
 import React from "react";
 import { StaticImageData } from "next/image";
-import { getAllArticleBriefs } from "@/utils/article_util";
+import { getAllArticleBriefs } from "@/lib/utils/article";
 import LayoutContent from "@/app/(intro)/job/[jobName]/layout-content";
-import jobs from "@/contents/jobs";
+import jobs from "@/lib/contents/jobs";
 
 export default async function Layout({ children, params }: {
   children: React.ReactNode

@@ -14,7 +14,7 @@ import receptionistIcon from "@/public/avatar/receptionist.png";
 import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";
 import floorPlan from "@/public/floor-plan.png";
-import { useAppSelector } from "@/utils/hook_util";
+import { useAppSelector } from "@/lib/utils/hook";
 
 export default function MockHome() {
   const theme = useTheme();

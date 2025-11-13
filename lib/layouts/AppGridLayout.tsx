@@ -12,8 +12,8 @@
 import React from "react";
 import Head from "next/head";
 import { Box, Container, Grid, useTheme } from "@mui/material";
-import { hexToRGBA } from "@/utils/color_util";
-import { useAppSelector } from "@/utils/hook_util";
+import { hexToRGBA } from "@/lib/utils/color";
+import { useAppSelector } from "@/lib/utils/hook";
 
 interface OverlayProps {
   children: React.ReactNode;

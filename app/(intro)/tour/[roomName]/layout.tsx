@@ -1,6 +1,6 @@
 import React from "react";
-import { getAllArticleBriefs } from "@/utils/article_util";
-import rooms from "@/contents/rooms";
+import { getAllArticleBriefs } from "@/lib/utils/article";
+import rooms from "@/lib/contents/rooms";
 import LayoutContent from "@/app/(intro)/tour/[roomName]/layout-content";
 
 export default async function Layout({ children, params }: {

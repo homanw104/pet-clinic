@@ -2,11 +2,11 @@
 
 import React, { useEffect } from "react";
 import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
-import { mountOverlay } from "@/store/overlaySlice";
+import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
+import { mountOverlay } from "@/lib/store/overlaySlice";
 import ArticleList from "@/components/sidebar/ArticleList";
 import TourSidebarHeaderBox from "@/components/sidebar/TourSidebarHeaderBox";
-import ArticleBriefType from "@/types/articleBriefType";
+import ArticleBriefType from "@/lib/types/articleBriefType";
 
 export default function LayoutContent({ title, subtitle, articleBriefList, children }: {
   title: string;

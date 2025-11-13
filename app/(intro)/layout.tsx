@@ -8,9 +8,9 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Container, useTheme } from "@mui/material";
-import { hexToRGBA } from "@/utils/color_util";
-import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
-import { unmountOverlay } from "@/store/overlaySlice";
+import { hexToRGBA } from "@/lib/utils/color";
+import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
+import { unmountOverlay } from "@/lib/store/overlaySlice";
 import LayoutContent from "@/app/(intro)/layout-content";
 
 export default function Layout({ children }: {

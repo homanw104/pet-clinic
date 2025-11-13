@@ -5,9 +5,9 @@ import { Fade, Skeleton, Stack, Typography } from "@mui/material";
 import InfoCard from "@/components/atomic/InfoCard";
 import ListButton from "@/components/button/ListButton";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import { useRenderState } from "@/utils/hook_util";
-import { API_URL } from "@/utils/env_util";
-import quizBriefType from "@/types/quizBriefType";
+import { useRenderState } from "@/lib/utils/hook";
+import { API_URL } from "@/lib/utils/env";
+import quizBriefType from "@/lib/types/quizBriefType";
 
 export default function QuizList() {
   const router = useRouter();

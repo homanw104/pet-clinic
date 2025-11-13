@@ -1,8 +1,8 @@
-import "@/styles/globals.css";
+import "@/lib/styles/globals.css";
 import type { AppProps } from "next/app";
 import { NextPage } from "next";
 import { Component, ReactElement, ReactNode } from "react";
-import { store } from "@/store/store";
+import { store } from "@/lib/store/store";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
 import { Analytics } from "@vercel/analytics/react";

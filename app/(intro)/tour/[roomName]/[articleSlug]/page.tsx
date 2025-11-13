@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
+import { getArticleBySlug, getArticleSlugs } from "@/lib/utils/article";
 import PageContent from "@/app/(intro)/tour/[roomName]/[articleSlug]/page-content";
-import rooms from "@/contents/rooms";
+import rooms from "@/lib/contents/rooms";
 
 export async function generateStaticParams() {
   let paramsList: { roomName: string; articleSlug: string }[] = [];

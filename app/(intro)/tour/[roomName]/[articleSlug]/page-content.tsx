@@ -3,7 +3,7 @@
 import React from "react";
 import MarkdownArticle from "@/components/atomic/Markdown";
 import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
-import ArticleDataType from "@/types/articleDataType";
+import ArticleDataType from "@/lib/types/articleDataType";
 
 export default function PageContent({ article }: {
   article: ArticleDataType;

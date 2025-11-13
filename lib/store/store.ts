@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "@/store/authSlice";
-import themeReducer from "@/store/themeSlice";
-import overlayReducer from "@/store/overlaySlice";
+import authReducer from "@/lib/store/authSlice";
+import themeReducer from "@/lib/store/themeSlice";
+import overlayReducer from "@/lib/store/overlaySlice";
 
 export const store = configureStore({
   reducer: {

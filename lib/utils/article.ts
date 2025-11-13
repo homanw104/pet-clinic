@@ -5,11 +5,11 @@
 import fs from "fs";
 import readline from "readline";
 import { join } from "path";
-import ArticleDataType from "@/types/articleDataType";
-import ArticleBriefType from "@/types/articleBriefType";
+import ArticleDataType from "@/lib/types/articleDataType";
+import ArticleBriefType from "@/lib/types/articleBriefType";
 
 const baseDir = process.cwd();
-const contentDir = `${baseDir}/contents`;
+const contentDir = `${baseDir}/lib/contents`;
 
 /**
  * Return the first line of the file, truncating the leading "# ".

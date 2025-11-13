@@ -5,7 +5,7 @@ import "@photo-sphere-viewer/markers-plugin/index.scss"
 import React, { createRef, RefObject, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Box, useTheme } from "@mui/material";
-import { hexToRGBA } from "@/utils/color_util";
+import { hexToRGBA } from "@/lib/utils/color";
 import { Viewer } from "@photo-sphere-viewer/core";
 import { MarkerConfig, MarkersPlugin } from "@photo-sphere-viewer/markers-plugin";
 

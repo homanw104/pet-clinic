@@ -4,8 +4,8 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton } from "@mui/material";
-import { useAppDispatch } from "@/utils/hook_util";
-import { unmountOverlay } from "@/store/overlaySlice";
+import { useAppDispatch } from "@/lib/utils/hook";
+import { unmountOverlay } from "@/lib/store/overlaySlice";
 
 interface ComponentProps {
   children: React.ReactNode;

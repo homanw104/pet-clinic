@@ -1,7 +1,7 @@
 import { Button, ButtonProps, Typography, useTheme } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
-import { hexToRGBA } from "@/utils/color_util";
+import { hexToRGBA } from "@/lib/utils/color";
 
 interface QuizButtonProps extends ButtonProps {
   state: "default" | "selected" | "correct" | "incorrect" | "final";

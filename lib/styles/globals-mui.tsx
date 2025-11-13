@@ -1,6 +1,6 @@
 /**
  * Style definitions used by @mui/material.
- * Custom theme properties are declared in types/globals.d.ts.
+ * Custom theme properties are declared in types/global.d.ts.
  */
 
 import { createTheme, Theme } from "@mui/material";

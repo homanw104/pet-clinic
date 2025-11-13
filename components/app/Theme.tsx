@@ -4,8 +4,8 @@
 
 import React from "react";
 import { ThemeProvider } from "@mui/material";
-import { useAppSelector } from "@/utils/hook_util";
-import { darkTheme, lightTheme } from "@/styles/globals-mui";
+import { useAppSelector } from "@/lib/utils/hook";
+import { darkTheme, lightTheme } from "@/lib/styles/globals-mui";
 
 interface ThemeProps {
   children: React.ReactNode;

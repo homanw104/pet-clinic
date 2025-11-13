@@ -6,9 +6,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, useTheme } from "@mui/material";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
 import PhotoSphere from "@/components/atomic/PhotoSphere";
-import { hexToRGBA } from "@/utils/color_util";
-import { useAppDispatch } from "@/utils/hook_util";
-import { unmountOverlay } from "@/store/overlaySlice";
+import { hexToRGBA } from "@/lib/utils/color";
+import { useAppDispatch } from "@/lib/utils/hook";
+import { unmountOverlay } from "@/lib/store/overlaySlice";
 
 export default function OverlayViewerBox({ src, markers }: {
   src: string;

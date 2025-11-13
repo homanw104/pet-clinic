@@ -3,11 +3,11 @@
 import React, { useEffect } from "react";
 import { StaticImageData } from "next/image";
 import { Box, Grid, Grow, Paper, Stack } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@/utils/hook_util";
-import { mountOverlay } from "@/store/overlaySlice";
+import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
+import { mountOverlay } from "@/lib/store/overlaySlice";
 import JobSidebarHeaderBox from "@/components/sidebar/JobSidebarHeaderBox";
 import ArticleList from "@/components/sidebar/ArticleList";
-import ArticleBriefType from "@/types/articleBriefType";
+import ArticleBriefType from "@/lib/types/articleBriefType";
 
 export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, articleBriefList, children }: {
   imgSrc: StaticImageData;

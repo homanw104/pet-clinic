@@ -1,6 +1,6 @@
-import { getArticleBySlug, getArticleSlugs } from "@/utils/article_util";
+import { getArticleBySlug, getArticleSlugs } from "@/lib/utils/article";
 import PageContent from "@/app/(intro)/job/[jobName]/[articleSlug]/page-content";
-import jobs from "@/contents/jobs";
+import jobs from "@/lib/contents/jobs";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
