@@ -56,6 +56,8 @@ export default function PageContent() {
         } else {
           setIsWarningDialogOpen(true);
         }
+      } else {
+        setIsWarningDialogOpen(true);
       }
       setIsLoading(false);
     }
