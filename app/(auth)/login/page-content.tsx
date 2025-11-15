@@ -108,8 +108,15 @@ export default function PageContent() {
             variant="contained" type="submit" size="large" disableElevation
             disabled={isLoading}
             onClick={handleOnClick}
+            sx={{ marginRight: "1rem" }}
           >
             登录
+          </Button>
+          <Button
+            variant="outlined" size="large" disableElevation
+            onClick={() => { router.push("/register") }}
+          >
+            注册
           </Button>
         </Box>
       </Box>
