@@ -139,7 +139,7 @@ export default function PageContent() {
             <DoneIcon color="success"/>
           </Box>
           <Button
-            variant="contained" size="large" disableElevation
+            variant="contained" type="submit" size="large" disableElevation
             disabled={isLoading}
             onClick={handleOnClick}
           >

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
-import { connectDB } from "@/lib/utils/mongodb";
+import { connectDB } from "@/lib/utils/mongoose";
 import User from "@/lib/models/User";
 
 interface LoginRequest {
