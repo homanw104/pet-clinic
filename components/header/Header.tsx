@@ -7,9 +7,11 @@ import { toggleTheme } from "@/lib/store/themeSlice";
 import { logout } from "@/lib/store/authSlice";
 import TypographyButton from "@/components/button/TypographyButton";
 import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
+import { API_URL } from "@/lib/utils/env";
+import axios from "axios";
 
 interface HeaderProps {
-  mapBoxRef?: React.RefObject<HTMLDivElement | null>;   // Reference to the parent element of the <MapViewer />
+  mapBoxRef?: React.RefObject<HTMLDivElement | null>;   // Reference to the parent element of <MapViewer />
 }
 
 export default function Header({ mapBoxRef }: HeaderProps) {
@@ -21,16 +23,17 @@ export default function Header({ mapBoxRef }: HeaderProps) {
   const username = useAppSelector((state) => state.auth.username);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
-  const handleOnClick = (href: string) => {
-    router.push(href);
-  };
-
-  const handleLogout = () => {
-    dispatch(logout(""));
+  const handleLogout = async () => {
+    try {
+      await axios.post(`${API_URL}/logout`);
+      dispatch(logout());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleToggleTheme = () => {
-    // First, manually toggle theme for <MapViewer />
+    // Manually toggle theme for <MapViewer />
     if (mapBoxRef &&
       mapBoxRef.current &&
       mapBoxRef.current.children[0] &&
@@ -51,18 +54,20 @@ export default function Header({ mapBoxRef }: HeaderProps) {
 
   return (
     <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-      <Typography variant="h1" noWrap={true} className="unselectable" onClick={
-        () => handleToggleTheme()
-      }>
+      <Typography
+        variant="h1" noWrap={true} className="unselectable"
+        onClick={() => handleToggleTheme()}
+      >
         Pet Clinic Online
       </Typography>
 
       {/* Display login button when logged out */}
       {!isLoggedIn &&
-        <TypographyButton variant="h3" noWrap={true} className="unselectable" onClick={
-          () => handleOnClick("/login")
-        }>
-          登录
+        <TypographyButton
+          variant="h3" noWrap={true} className="unselectable"
+          onClick={() => router.push("/login")}
+        >
+          {"登录"}
           <SubdirectoryArrowLeftIcon className="material-symbols" sx={{
             fontSize: theme.typography.h3.fontSize,
             position: "relative",
@@ -73,10 +78,11 @@ export default function Header({ mapBoxRef }: HeaderProps) {
 
       {/* Display logout button with username when logged in */}
       {isLoggedIn &&
-        <TypographyButton variant="h3" noWrap={true} className="unselectable" onClick={
-          ()=> handleLogout()
-        }>
-          {`{{ ${username} }}`}
+        <TypographyButton
+          variant="h3" noWrap={true} className="unselectable"
+          onClick={()=> handleLogout()}
+        >
+          {username}
         </TypographyButton>
       }
     </Stack>

@@ -15,13 +15,13 @@ const initialState: IUserState = {
 
 export const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: initialState,
   reducers: {
     login: (state: IUserState, action: PayloadAction<string>) => {
       state.isLoggedIn = true;
       state.username = action.payload;
     },
-    logout: (state: IUserState, action: PayloadAction<string>) => {
+    logout: (state: IUserState) => {
       state.isLoggedIn = false;
       state.username = null;
     }

@@ -47,19 +47,27 @@ export async function POST(req: Request) {
       );
     }
 
-    // Return with JWT Cookie
+    // Return with a JWT Cookie
     const token = jwt.sign(
       {
         id: user._id,
         email: user.email,
-        username: user.username,
+        username: user.username
       },
       JWT_SECRET!,
       { expiresIn: "7d" }
     );
 
     const response = NextResponse.json(
-      { success: "true", message: "Login successfully" },
+      {
+        success: "true",
+        message: "Login successfully",
+        user: {
+          id: user._id,
+          email: user.email,
+          username: user.username
+        }
+      },
       { status: 200 }
     );
 

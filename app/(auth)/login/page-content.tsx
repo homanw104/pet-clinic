@@ -1,44 +1,39 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Stack,
-  TextField,
-  Typography
-} from "@mui/material";
-import { API_URL } from "@/lib/utils/env";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
+import { login } from "@/lib/store/authSlice";
+import { useAppDispatch } from "@/lib/utils/hook";
+import { API_URL } from "@/lib/utils/env";
+import ErrorDialog from "@/components/atomic/ErrorDialog";
 
 export default function PageContent() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  const [identifier, setIdentifier] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const [isIdentifierValid, setIsIdentifierValid] = React.useState(true);
-  const [isPasswordValid, setIsPasswordValid] = React.useState(true);
-  const [isIdentifierNotFound, setIsIdentifierNotFound] = React.useState(false);
-  const [isPasswordIncorrect, setIsPasswordNotMatch] = React.useState(false);
+  const [isIdentifierValid, setIsIdentifierValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [isIdentifierNotFound, setIsIdentifierNotFound] = useState(false);
+  const [isPasswordIncorrect, setIsPasswordNotMatch] = useState(false);
 
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isSuccess, setIsSuccess] = React.useState(false);
-  const [isWarningDialogOpen, setIsWarningDialogOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  const login = async () => {
+  const handleLogin = async () => {
     try {
-      await axios.post(`${API_URL}/login`, {
+      const response = await axios.post(`${API_URL}/login`, {
         "identifier": identifier,
         "password": password
       });
+      dispatch(login(response.data.user.username));
       setIsSuccess(true);
       setTimeout(() => router.push("/"), 1000);
     } catch (error) {
@@ -49,10 +44,11 @@ export default function PageContent() {
         } else if (data.message === "Password does not match") {
           setIsPasswordNotMatch(true);
         } else {
-          setIsWarningDialogOpen(true);
+          setIsError(true);
+          setErrorMsg(data.message);
         }
       } else {
-        setIsWarningDialogOpen(true);
+        setIsError(true);
       }
       setIsLoading(false);
     }
@@ -67,12 +63,13 @@ export default function PageContent() {
 
     if (identifierValid && passwordValid && !isIdentifierNotFound && !isPasswordIncorrect) {
       setIsLoading(true);
-      login().then();
+      handleLogin().then();
     }
   }
 
   return (
     <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
+      <ErrorDialog open={isError} setOpen={setIsError} message={errorMsg} />
       <Typography variant="h4">登录</Typography>
       <Box component="form" width="100%">
         <TextField
@@ -120,27 +117,6 @@ export default function PageContent() {
           </Button>
         </Box>
       </Box>
-      <Dialog
-        open={isWarningDialogOpen}
-        onClose={() => setIsWarningDialogOpen(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        sx={{ ".MuiPaper-root": { borderRadius: "1rem" } }}
-      >
-        <DialogTitle id="alert-dialog-title">
-          出现了未知错误
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            服务可能不可用，请稍后再试。
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsWarningDialogOpen(false)} autoFocus>
-            确认
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Stack>
   )
 }

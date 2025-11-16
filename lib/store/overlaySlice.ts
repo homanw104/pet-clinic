@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IOverlayState {
-  isMount: boolean; // Used to determine fade in/out animations in other components
+  isMount: boolean;
 }
 
 const initialState: IOverlayState = {

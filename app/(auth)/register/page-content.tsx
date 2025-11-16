@@ -1,43 +1,34 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Stack,
-  TextField,
-  Typography
-} from "@mui/material";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { API_URL } from "@/lib/utils/env";
 import DoneIcon from '@mui/icons-material/Done';
+import ErrorDialog from "@/components/atomic/ErrorDialog";
 
 export default function PageContent() {
   const router = useRouter();
 
-  const [email, setEmail] = React.useState("");
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [repeatPassword, setRepeatPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const [isEmailValid, setIsEmailValid] = React.useState(true);
-  const [isUsernameValid, setIsUsernameValid] = React.useState(true);
-  const [isPasswordValid, setIsPasswordValid] = React.useState(true);
-  const [isPasswordMatch, setIsPasswordMatch] = React.useState(true);
-  const [isEmailRegistered, setIsEmailRegistered] = React.useState(false);
-  const [isUsernameTaken, setIsUsernameTaken] = React.useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isUsernameValid, setIsUsernameValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [isPasswordMatch, setIsPasswordMatch] = useState(true);
+  const [isEmailRegistered, setIsEmailRegistered] = useState(false);
+  const [isUsernameTaken, setIsUsernameTaken] = useState(false);
 
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isSuccess, setIsSuccess] = React.useState(false);
-  const [isWarningDialogOpen, setIsWarningDialogOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  const register = async () => {
+  const handleRegister = async () => {
     try {
       await axios.post(`${API_URL}/register`, {
         "email": email,
@@ -54,10 +45,11 @@ export default function PageContent() {
         } else if (data.message === "Username already exists") {
           setIsUsernameTaken(true);
         } else {
-          setIsWarningDialogOpen(true);
+          setIsError(true);
+          setErrorMsg(data.message);
         }
       } else {
-        setIsWarningDialogOpen(true);
+        setIsError(true);
       }
       setIsLoading(false);
     }
@@ -80,12 +72,13 @@ export default function PageContent() {
       && !isEmailRegistered && !isUsernameTaken
     ) {
       setIsLoading(true);
-      register().then();
+      handleRegister().then();
     }
   }
 
   return (
     <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
+      <ErrorDialog open={isError} setOpen={setIsError} message={errorMsg} />
       <Typography variant="h4">注册</Typography>
       <Box component="form" width="100%">
         <TextField
@@ -154,27 +147,6 @@ export default function PageContent() {
           </Button>
         </Box>
       </Box>
-      <Dialog
-        open={isWarningDialogOpen}
-        onClose={() => setIsWarningDialogOpen(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        sx={{ ".MuiPaper-root": { borderRadius: "1rem" } }}
-      >
-        <DialogTitle id="alert-dialog-title">
-          出现了未知错误
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            服务可能不可用，请稍后再试。
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsWarningDialogOpen(false)} autoFocus>
-            确认
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Stack>
   )
 }
