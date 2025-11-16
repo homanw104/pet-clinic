@@ -1,6 +1,8 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/utils/mongoose";
+import { NODE_ENV, JWT_SECRET } from "@/lib/utils/env";
 import User from "@/lib/models/User";
 
 interface LoginRequest {
@@ -45,10 +47,33 @@ export async function POST(req: Request) {
       );
     }
 
-    return NextResponse.json(
+    // Return with JWT Cookie
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+        username: user.username,
+      },
+      JWT_SECRET!,
+      { expiresIn: "7d" }
+    );
+
+    const response = NextResponse.json(
       { success: "true", message: "Login successfully" },
       { status: 200 }
     );
+
+    response.cookies.set({
+      name: "token",
+      value: token,
+      httpOnly: true,
+      secure: NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/"
+    });
+
+    return response;
   } catch (error) {
     console.error(error);
     return NextResponse.json({ success: "false", message: "Internal Server Error" }, { status: 500 });
