@@ -15,10 +15,10 @@ export default function NavButton({ children, name, ...props }: NormalButtonProp
       color: theme.palette.surface.onMain,
       overflow: "hidden",
       padding: 0,
-      height: "8.75rem",
+      height: "7rem",
       borderRadius: "1rem"
     }}>
-      <Stack direction="column" spacing={0.5} alignItems="center" justifyContent="stretch">
+      <Stack direction="column" spacing="0.25rem" alignItems="center" justifyContent="stretch">
         <Typography variant="h5" align="left" noWrap={true} lineHeight={1}>
           {children}
         </Typography>

@@ -10,10 +10,12 @@ export default function InfoCard({ children, ...props }: CardProps) {
       color: theme.palette.secondary.onContainer,
       overflow: "hidden",
       padding: 0,
-      height: "6.75rem",
       borderRadius: "1rem"
     }}>
-      <Stack spacing={2} direction="row" justifyContent="center" alignItems="center" padding="1rem" height="100%">
+      <Stack
+        spacing={2} direction="row" justifyContent="center" alignItems="center"
+        padding="1rem" minHeight="6.75rem"
+      >
         <InfoOutlinedIcon />
         <Typography variant="body1">
           {children}

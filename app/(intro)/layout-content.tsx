@@ -44,7 +44,8 @@ export default function LayoutContent() {
       <ErrorDialog open={isError} onClose={() => dispatch(resetError())} message={errorMsg} />
       <Grid item xs={12}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
-          marginTop: "4rem"
+          marginTop: "4rem",
+          marginBottom: "2rem"
         }}>
           <Header mapBoxRef={mapBoxRef} />
           <Suspense fallback={null}>
@@ -53,11 +54,8 @@ export default function LayoutContent() {
         </Stack>
       </Grid>
 
-      <Grid item xs={3}>
-        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
-          marginTop: "2rem",
-          marginBottom: "2rem"
-        }}>
+      <Grid item xs={12} sm={5} md={4} lg={3}>
+        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
           <InfoCard>在下方选择职位或在右侧选择科室以开始导览。</InfoCard>
           <AvatarButton src={receptionistIcon} alt="前台" name="receptionist" onClick={() => {
             handleOnClick("/job/receptionist/intro");
@@ -79,12 +77,10 @@ export default function LayoutContent() {
         </Stack>
       </Grid>
 
-      <Grid item xs={9}>
+      <Grid item xs={12} sm={7} md={8} lg={9}>
         <Box sx={{
           backgroundColor: theme.palette.surface.main,
           color: theme.palette.surface.onMain,
-          marginTop: "2rem",
-          marginBottom: "2rem",
           borderRadius: "1rem",
           height: "37.5rem",
         }}>

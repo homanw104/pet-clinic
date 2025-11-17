@@ -18,9 +18,9 @@ export default function AvatarButton({ children, src, alt, name, ...props }: Ava
       padding: 0,
       borderRadius: "1rem"
     }}>
-      <Stack direction="row" spacing={1.5} alignItems="center" justifyContent="center" width="100%">
+      <Stack direction="row" spacing="0.75rem" alignItems="center" justifyContent="center" width="100%">
         <Image src={src} alt={alt} width={96} height={96} className="unselectable" />
-        <Stack direction="column" spacing={0.5} alignItems="stretch" justifyContent="center" width="124px">
+        <Stack direction="column" spacing="0.25rem" alignItems="stretch" justifyContent="center" minWidth="7rem">
           <Typography variant="h5" align="left" noWrap={true} lineHeight={1}>
             {children}
           </Typography>

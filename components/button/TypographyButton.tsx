@@ -6,7 +6,10 @@ export default function TypographyButton({ children, variant, ...props }: Typogr
   // The backgroundSize property determines the underline width
   let backgroundSize: string;
   switch (variant) {
-    case "h1": case "h2": case "h3":
+    case "h1":
+      backgroundSize = "6px 6px";
+      break;
+    case "h2": case "h3":
       backgroundSize = "4px 4px";
       break;
     case "h4": case "h5": case "h6":
@@ -18,22 +21,30 @@ export default function TypographyButton({ children, variant, ...props }: Typogr
 
   return (
     <Typography className="unselectable" variant={variant} {...props} sx={{
+      // Looks lickable when hover
       cursor: "pointer",
+
+      // Fixed font for Typography Button
+      fontFamily: "Noto Sans SC",
+
+      // Padding for background styled underline
+      paddingBottom: "0.2em",
+
       '&:hover': {
-        backgroundImage: "linear-gradient(to right, " + theme.palette.text.primary + " 100%, transparent 0%)",
-        backgroundPosition: "0 1.12em",
+        backgroundImage: `linear-gradient(to right, ${theme.palette.text.primary} 100%)`,
+        backgroundPosition: "0 1.15em",
         backgroundRepeat: "repeat-x",
         backgroundSize: backgroundSize,
       },
       '&:focus': {
-        backgroundImage: "linear-gradient(to right, " + theme.palette.text.primary + " 100%, transparent 0%)",
-        backgroundPosition: "0 1.12em",
+        backgroundImage: `linear-gradient(to right, ${theme.palette.text.primary} 100%)`,
+        backgroundPosition: "0 1.15em",
         backgroundRepeat: "repeat-x",
         backgroundSize: backgroundSize,
       },
       '&:active': {
-        backgroundImage: "linear-gradient(to right, " + theme.palette.primary.main + " 100%, transparent 0%)",
-        backgroundPosition: "0 1.12em",
+        backgroundImage: `linear-gradient(to right, ${theme.palette.primary.main} 100%)`,
+        backgroundPosition: "0 1.15em",
         backgroundRepeat: "repeat-x",
         backgroundSize: backgroundSize,
         color: theme.palette.primary.main,
