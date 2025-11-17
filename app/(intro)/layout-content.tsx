@@ -9,6 +9,7 @@ import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";
 import Header from "@/components/header/Header";
 import Subheader from "@/components/header/Subheader";
+import Footer from "@/components/footer/Footer";
 import InfoCard from "@/components/atomic/InfoCard";
 import AvatarButton from "@/components/button/AvatarButton";
 import NavButton from "@/components/button/NavButton";
@@ -82,7 +83,7 @@ export default function LayoutContent() {
           backgroundColor: theme.palette.surface.main,
           color: theme.palette.surface.onMain,
           borderRadius: "1rem",
-          height: "37.5rem",
+          height: "38rem",
         }}>
           <Box ref={mapBoxRef} sx={{
             padding: "0.5rem",
@@ -91,6 +92,10 @@ export default function LayoutContent() {
             <MapViewer />
           </Box>
         </Box>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Footer />
       </Grid>
     </Grid>
   )
