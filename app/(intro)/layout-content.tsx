@@ -57,7 +57,7 @@ export default function LayoutContent() {
 
       <Grid item xs={12} sm={5} md={4} lg={3}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
-          <InfoCard>在下方选择职位或在右侧选择科室以开始导览。</InfoCard>
+          <InfoCard>在下方选择职位或科室以开始导览。</InfoCard>
           <AvatarButton src={receptionistIcon} alt="前台" name="receptionist" onClick={() => {
             handleOnClick("/job/receptionist/intro");
           }}>前台</AvatarButton>
@@ -83,7 +83,7 @@ export default function LayoutContent() {
           backgroundColor: theme.palette.surface.main,
           color: theme.palette.surface.onMain,
           borderRadius: "1rem",
-          height: "38rem",
+          height: "36rem",
         }}>
           <Box ref={mapBoxRef} sx={{
             padding: "0.5rem",

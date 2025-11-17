@@ -14,7 +14,7 @@ export default function InfoCard({ children, ...props }: CardProps) {
     }}>
       <Stack
         spacing={2} direction="row" justifyContent="center" alignItems="center"
-        padding="1rem" minHeight="6.75rem"
+        padding="1rem" minHeight="6rem"
       >
         <InfoOutlinedIcon />
         <Typography variant="body1">
