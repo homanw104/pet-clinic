@@ -5,10 +5,11 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
-import { login } from "@/lib/store/authSlice";
-import { useAppDispatch } from "@/lib/utils/hook";
-import { API_URL } from "@/lib/utils/env";
 import ErrorDialog from "@/components/atomic/ErrorDialog";
+import { login } from "@/lib/store/authSlice";
+import { raiseError, resetError } from "@/lib/store/errorSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
+import { API_URL } from "@/lib/utils/env";
 
 export default function PageContent() {
   const router = useRouter();
@@ -16,7 +17,6 @@ export default function PageContent() {
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
 
   const [isIdentifierValid, setIsIdentifierValid] = useState(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
@@ -25,7 +25,8 @@ export default function PageContent() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const isError = useAppSelector(state => state.error.isError);
+  const errorMsg = useAppSelector(state => state.error.errorMsg);
 
   const handleLogin = async () => {
     try {
@@ -44,11 +45,10 @@ export default function PageContent() {
         } else if (data.message === "Password does not match") {
           setIsPasswordNotMatch(true);
         } else {
-          setIsError(true);
-          setErrorMsg(data.message);
+          dispatch(raiseError(data.message));
         }
       } else {
-        setIsError(true);
+        dispatch(raiseError(error));
       }
       setIsLoading(false);
     }
@@ -69,7 +69,7 @@ export default function PageContent() {
 
   return (
     <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
-      <ErrorDialog open={isError} setOpen={setIsError} message={errorMsg} />
+      <ErrorDialog open={isError} onClose={() => dispatch(resetError())} message={errorMsg} />
       <Typography variant="h4">登录</Typography>
       <Box component="form" width="100%">
         <TextField

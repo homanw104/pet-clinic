@@ -12,8 +12,10 @@ import Subheader from "@/components/header/Subheader";
 import InfoCard from "@/components/atomic/InfoCard";
 import AvatarButton from "@/components/button/AvatarButton";
 import NavButton from "@/components/button/NavButton";
-import { useAppDispatch } from "@/lib/utils/hook";
+import ErrorDialog from "@/components/atomic/ErrorDialog";
+import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { mountOverlay } from "@/lib/store/overlaySlice";
+import { resetError } from "@/lib/store/errorSlice";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
 const MapViewer = dynamic(() => import("@/components/atomic/MapViewer"), {
@@ -26,6 +28,9 @@ export default function LayoutContent() {
   const mapBoxRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
 
+  const isError = useAppSelector(state => state.error.isError);
+  const errorMsg = useAppSelector(state => state.error.errorMsg);
+
   const handleOnClick = (href: string) => {
     // Toggle overlay visibility when navigating to job pages
     if (href.startsWith("/job")) dispatch(mountOverlay());
@@ -36,6 +41,7 @@ export default function LayoutContent() {
 
   return (
     <Grid container spacing="2rem">
+      <ErrorDialog open={isError} onClose={() => dispatch(resetError())} message={errorMsg} />
       <Grid item xs={12}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
           marginTop: "4rem"

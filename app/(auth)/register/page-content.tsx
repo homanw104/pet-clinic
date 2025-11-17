@@ -4,18 +4,20 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import { API_URL } from "@/lib/utils/env";
 import DoneIcon from '@mui/icons-material/Done';
 import ErrorDialog from "@/components/atomic/ErrorDialog";
+import { API_URL } from "@/lib/utils/env";
+import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
+import { raiseError, resetError } from "@/lib/store/errorSlice";
 
 export default function PageContent() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
 
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isUsernameValid, setIsUsernameValid] = useState(true);
@@ -26,7 +28,8 @@ export default function PageContent() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const isError = useAppSelector(state => state.error.isError);
+  const errorMsg = useAppSelector(state => state.error.errorMsg);
 
   const handleRegister = async () => {
     try {
@@ -45,11 +48,10 @@ export default function PageContent() {
         } else if (data.message === "Username already exists") {
           setIsUsernameTaken(true);
         } else {
-          setIsError(true);
-          setErrorMsg(data.message);
+          dispatch(raiseError(data.message));
         }
       } else {
-        setIsError(true);
+        dispatch(raiseError(error));
       }
       setIsLoading(false);
     }
@@ -78,7 +80,7 @@ export default function PageContent() {
 
   return (
     <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
-      <ErrorDialog open={isError} setOpen={setIsError} message={errorMsg} />
+      <ErrorDialog open={isError} onClose={() => dispatch(resetError())} message={errorMsg} />
       <Typography variant="h4">注册</Typography>
       <Box component="form" width="100%">
         <TextField

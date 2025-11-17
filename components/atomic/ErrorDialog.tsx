@@ -1,16 +1,16 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
-export default function ErrorDialog({ title, message, open, setOpen }: {
+export default function ErrorDialog({ title, message, open, onClose }: {
   title?: string;
   message?: string;
   open: boolean;
-  setOpen: (state: boolean) => void;
+  onClose: () => {};
 }) {
   return (
     <Dialog
       open={open}
-      onClose={() => setOpen(false)}
+      onClose={onClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
       sx={{ ".MuiPaper-root": { borderRadius: "1rem" } }}
@@ -24,7 +24,7 @@ export default function ErrorDialog({ title, message, open, setOpen }: {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setOpen(false)} autoFocus>
+        <Button onClick={onClose} autoFocus>
           {"确认"}
         </Button>
       </DialogActions>

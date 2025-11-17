@@ -1,14 +1,17 @@
+'use client';
+
 import React from "react";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Stack, Typography, useTheme } from "@mui/material";
+import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
+import TypographyButton from "@/components/button/TypographyButton";
 import { darkTheme, lightTheme } from "@/lib/styles/globals-mui";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { toggleTheme } from "@/lib/store/themeSlice";
 import { logout } from "@/lib/store/authSlice";
-import TypographyButton from "@/components/button/TypographyButton";
-import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
 import { API_URL } from "@/lib/utils/env";
-import axios from "axios";
+import { raiseError } from "@/lib/store/errorSlice";
 
 interface HeaderProps {
   mapBoxRef?: React.RefObject<HTMLDivElement | null>;   // Reference to the parent element of <MapViewer />
@@ -28,7 +31,7 @@ export default function Header({ mapBoxRef }: HeaderProps) {
       await axios.post(`${API_URL}/logout`);
       dispatch(logout());
     } catch (error) {
-      console.log(error);
+      dispatch(raiseError(error));
     }
   };
 
