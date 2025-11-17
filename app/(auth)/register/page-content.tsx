@@ -129,7 +129,7 @@ export default function PageContent() {
             setIsPasswordMatch(true);
           }}
         />
-        <Box display="flex" justifyContent="flex-end" alignItems="center" sx={{ paddingTop: "1rem" }}>
+        <Box display="flex" justifyContent="flex-end" alignItems="center" sx={{ paddingTop: "2rem" }}>
           <Box display={isSuccess ? "block" : "none"} sx={{ marginRight: "1rem" }}>
             <DoneIcon color="success"/>
           </Box>
