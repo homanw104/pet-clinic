@@ -1,17 +1,26 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Stack, Typography, useTheme } from "@mui/material";
+import {
+  ClickAwayListener, Fade,
+  MenuItem,
+  MenuList,
+  Paper,
+  Popper,
+  Stack,
+  Typography,
+  useTheme
+} from "@mui/material";
 import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
 import TypographyButton from "@/components/button/TypographyButton";
 import { darkTheme, lightTheme } from "@/lib/styles/globals-mui";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { toggleTheme } from "@/lib/store/themeSlice";
+import { raiseError } from "@/lib/store/errorSlice";
 import { logout } from "@/lib/store/authSlice";
 import { API_URL } from "@/lib/utils/env";
-import { raiseError } from "@/lib/store/errorSlice";
 
 interface HeaderProps {
   mapBoxRef?: React.RefObject<HTMLDivElement | null>;   // Reference to the parent element of <MapViewer />
@@ -26,10 +35,28 @@ export default function Header({ mapBoxRef }: HeaderProps) {
   const username = useAppSelector((state) => state.auth.username);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setMenuAnchorEl(menuAnchorEl ? null : event.currentTarget);
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  const handleMenuClickAway = () => {
+    setMenuAnchorEl(null);
+    setIsMenuOpen(false);
+  };
+
+  const handleOnClick = async () => {
+    handleMenuClickAway();
+    await handleLogout();
+  };
+
   const handleLogout = async () => {
     try {
       await axios.post(`${API_URL}/logout`);
-      dispatch(logout());
+      setTimeout(() => dispatch(logout()), 500);
     } catch (error) {
       dispatch(raiseError(error));
     }
@@ -81,12 +108,44 @@ export default function Header({ mapBoxRef }: HeaderProps) {
 
       {/* Display logout button with username when logged in */}
       {isLoggedIn &&
-        <TypographyButton
-          variant="h3" noWrap={true} className="unselectable"
-          onClick={()=> handleLogout()}
-        >
-          {username}
-        </TypographyButton>
+        <>
+          <TypographyButton
+            variant="h3" noWrap={true} className="unselectable"
+            onClick={handleMenuClick}
+          >
+            {username}
+          </TypographyButton>
+          <Popper
+            open={isMenuOpen} anchorEl={menuAnchorEl} transition
+            placement="bottom-end"
+            sx={{ paddingTop: "0.5rem" }}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} in={isMenuOpen} timeout={100}>
+                <Paper
+                  sx={{
+                    width: "12rem",
+                    borderColor: theme.palette.outline.main,
+                    borderWidth: "2px",
+                    borderStyle: "solid",
+                    borderRadius: 0
+                  }}
+                >
+                  <ClickAwayListener onClickAway={handleMenuClickAway}>
+                    <MenuList
+                      id="composition-menu"
+                      aria-labelledby="composition-button"
+                      onKeyDown={() => {}}
+                    >
+                      <MenuItem><del>用户信息</del>（正在开发）</MenuItem>
+                      <MenuItem onClick={handleOnClick}>登出</MenuItem>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
+        </>
       }
     </Stack>
   )
