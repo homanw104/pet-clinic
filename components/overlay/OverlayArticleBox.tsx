@@ -16,10 +16,7 @@ export default function OverlayArticleBox({ children }: ComponentProps) {
   const dispatch = useAppDispatch();
 
   const handleOnClick = (href: string) => {
-    // Set overlay isMount state to false
     dispatch(unmountOverlay());
-
-    // Return home after animations are finished
     setTimeout(() => router.push(href), 300);
   };
 

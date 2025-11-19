@@ -1,18 +1,19 @@
 'use client';
 
 import React from "react";
-import Image, { StaticImageData } from "next/image";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-interface BoxProps {
-  src: StaticImageData;   // Image data
-  alt: string;            // Image description
-  title: string;          // Sidebar title
-  subtitle: string;       // Sidebar title in English
-}
-
-export default function JobSidebarHeaderBox({ src, alt, title, subtitle }: BoxProps) {
+export default function SidebarTourHeaderBox({ title, subtitle }: {
+  title: string;
+  subtitle: string;
+}) {
   const theme = useTheme();
+  const router = useRouter();
+
+  const handleOnClick = (href: string) => {
+    router.push(href);
+  };
 
   return (
     <Box sx={{
@@ -26,7 +27,9 @@ export default function JobSidebarHeaderBox({ src, alt, title, subtitle }: BoxPr
       alignItems: "center",
       justifyContent: "flex-start",
     }}>
-      <Stack direction="column" padding="2rem">
+      <Stack direction="column" padding="2rem" onClick={() => handleOnClick(`/tour/${subtitle}`)} sx={{
+        cursor: "pointer"
+      }}>
         <Typography variant="h4" align="left" noWrap={true} lineHeight={1}>
           {title}
         </Typography>
@@ -36,12 +39,6 @@ export default function JobSidebarHeaderBox({ src, alt, title, subtitle }: BoxPr
           {subtitle.replace("-", " ")}
         </Typography>
       </Stack>
-      <Image src={src} alt={alt} width={160} height={160} className="unselectable" style={{
-        position: "absolute",
-        bottom: "-8px",
-        right: "-8px",
-        opacity: "30%"
-      }}/>
     </Box>
   )
 }

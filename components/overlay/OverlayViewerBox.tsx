@@ -19,10 +19,7 @@ export default function OverlayViewerBox({ src, markers }: {
   const dispatch = useAppDispatch();
 
   const handleOnClick = (href: string) => {
-    // Set overlay isMount state to false
     dispatch(unmountOverlay());
-
-    // Return home after animations are finished
     setTimeout(() => router.push(href), 300);
   };
 
@@ -40,6 +37,7 @@ export default function OverlayViewerBox({ src, markers }: {
         <PhotoSphere src={src} markers={markers} />
       </Box>
       <Box sx={{
+        display: { xs: "none", sm: "block" },
         position: "absolute",
         top: "1rem",
         right: "1rem",

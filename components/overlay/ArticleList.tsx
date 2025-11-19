@@ -5,13 +5,11 @@ import { useParams, useRouter } from "next/navigation";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import ArticleBriefType from "@/lib/types/articleBriefType";
 
-interface ComponentProps {
-  articleBriefList: ArticleBriefType[];
-  subtitle: string;
+export default function ArticleList({ section, subtitle, articleBriefList }: {
   section: string;
-}
-
-export default function ArticleList({ articleBriefList, subtitle, section }: ComponentProps) {
+  subtitle: string;
+  articleBriefList: ArticleBriefType[];
+}) {
   const router = useRouter();
   const params = useParams();
 

@@ -40,12 +40,8 @@ export default function Layout({ children }: {
     const endY = event.clientY;
     const distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
 
-    // Considered a click, handle accordingly
     if (distance < dragThreshold) {
-      // Set overlay isMount state to false
       dispatch(unmountOverlay());
-
-      // Return home after animations are finished
       setTimeout(() => router.push("/"), 300);
     }
   }
