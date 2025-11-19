@@ -11,7 +11,7 @@ interface ThemeProps {
   children: React.ReactNode;
 }
 
-export default function Theme({ children }: ThemeProps) {
+export default function CustomThemeProvider({ children }: ThemeProps) {
   const theme = useAppSelector((state) => state.theme.theme);
 
   return (

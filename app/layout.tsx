@@ -1,6 +1,5 @@
 'use client';
 
-import "@/lib/styles/globals.css";
 import axios from "axios";
 import React from "react";
 import { Provider } from "react-redux";
@@ -8,7 +7,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { CssBaseline } from "@mui/material";
 import { SWRConfig } from "swr";
 import { store } from "@/lib/store/store";
-import Theme from "@/components/app/Theme";
+import CustomThemeProvider from "@/components/app/CustomThemeProvider";
+import "@/lib/styles/globals.css";
 
 const fetcher = async (url: string) => {
   const response = await axios.get(url);
@@ -39,11 +39,11 @@ export default function RootLayout({ children }: {
     <body>
       <Provider store={store}>
         <SWRConfig value={swrConfig}>
-          <Theme>
+          <CustomThemeProvider>
             <CssBaseline enableColorScheme />
             {children}
             <Analytics />
-          </Theme>
+          </CustomThemeProvider>
         </SWRConfig>
       </Provider>
     </body>

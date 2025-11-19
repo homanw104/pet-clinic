@@ -76,14 +76,14 @@ export default function Layout({ children }: {
     <>
       {/* The content of the main page is stored in the layout so that */}
       {/* it doesn't reload when navigating to overlay pages. */}
-      <Box position="relative" flexDirection="column" height="100%">
+      <Box position="relative" flexDirection="column" height="100lvh">
         <Container sx={{ flexGrow: 1 }}>
           <LayoutContent />
         </Container>
       </Box>
 
       {/* Mount overlay when isVisible === true */}
-      <Box position="absolute" display={isVisible ? "flex" : "none"} flexDirection="column" height="100%"
+      <Box position="absolute" display={isVisible ? "flex" : "none"} flexDirection="column" height="100lvh"
            onMouseDown={handleOnMouseDown}
            onClick={handleOnClick}
            sx={{

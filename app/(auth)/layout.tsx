@@ -15,7 +15,7 @@ export default function Layout({ children }: {
         <Grid container spacing="2rem">
           <Grid item xs={0} sm={1} md={6} lg={6} />
           <Grid item xs={12} sm={10} md={5} lg={5}>
-            <Stack display="flex" direction="column" justifyContent="center" height="100vh">
+            <Stack display="flex" direction="column" justifyContent="center" height="100lvh">
               <Paper sx={{ borderRadius: "1rem" }}>
                 {children}
               </Paper>

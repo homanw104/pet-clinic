@@ -30,8 +30,11 @@ export default function OverlayArticleBox({ children }: ComponentProps) {
       width: "100%",
     }}>
       <Box sx={{
+        paddingTop: { xs: "2rem", sm: "2.5rem" },
+        paddingBottom: { xs: "2rem", sm: "2.5rem" },
+        paddingLeft: { xs: "1.5rem", sm: "2.5rem" },
+        paddingRight: { xs: "1.5rem", sm: "3.5rem" },
         overflow: "scroll",
-        padding: "2.5rem",
         height: "100%",
         zIndex: 295,
       }}>
@@ -43,7 +46,10 @@ export default function OverlayArticleBox({ children }: ComponentProps) {
         right: "1rem",
         zIndex: 300,
       }}>
-        <IconButton aria-label="close" onClick={() => handleOnClick("/")}>
+        <IconButton
+          aria-label="close" onClick={() => handleOnClick("/")}
+          sx={{ display: { xs: "none", sm: "block" }}}
+        >
           <CloseIcon />
         </IconButton>
       </Box>

@@ -1,14 +1,14 @@
-import "@/lib/styles/globals.css";
+import axios from "axios";
 import type { AppProps } from "next/app";
+import { SWRConfig } from "swr";
 import { NextPage } from "next";
-import { Component, ReactElement, ReactNode } from "react";
-import { store } from "@/lib/store/store";
+import { ReactElement, ReactNode } from "react";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
 import { Analytics } from "@vercel/analytics/react";
-import { SWRConfig } from "swr";
-import axios from "axios";
-import Theme from "@/components/app/Theme";
+import { store } from "@/lib/store/store";
+import CustomThemeProvider from "@/components/app/CustomThemeProvider";
+import "@/lib/styles/globals.css";
 
 const fetcher = async (url: string) => {
   const response = await axios.get(url);
@@ -42,11 +42,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <Provider store={store}>
       <SWRConfig value={swrConfig}>
-        <Theme>
+        <CustomThemeProvider>
           <CssBaseline enableColorScheme />
           {appWithLayout}
           <Analytics />
-        </Theme>
+        </CustomThemeProvider>
       </SWRConfig>
     </Provider>
   )
