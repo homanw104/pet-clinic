@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "@/lib/utils/axios";
 import { useRouter } from "next/navigation";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import DoneIcon from '@mui/icons-material/Done';
 import ErrorDialog from "@/components/atomic/ErrorDialog";
-import { API_URL } from "@/lib/utils/env";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { raiseError, resetError } from "@/lib/store/errorSlice";
 
@@ -33,7 +32,7 @@ export default function PageContent() {
 
   const handleRegister = async () => {
     try {
-      await axios.post(`${API_URL}/register`, {
+      await axios.post("/register", {
         "email": email,
         "username": username,
         "password": password

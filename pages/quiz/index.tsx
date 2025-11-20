@@ -13,7 +13,6 @@ import AppGridLayout from "@/lib/layouts/AppGridLayout";
 import PageNotFound from "@/components/app/PageNotFound";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { useRenderState } from "@/lib/utils/hook";
-import { API_URL } from "@/lib/utils/env";
 import questionDataType from "@/lib/types/questionDataType";
 
 export default function Quiz() {
@@ -31,7 +30,7 @@ export default function Quiz() {
   // Raw data from backend
   const {
     data, error, isLoading, mutate
-  } = useSWR<any>(`${API_URL}/randomQuestion/`);
+  } = useSWR<any>("/randomQuestion");
 
   // States to control loading & error UI
   const {

@@ -20,9 +20,8 @@ import Subheader from "@/components/header/Subheader";
 import AppGridLayout from "@/lib/layouts/AppGridLayout";
 import databases from "@/lib/contents/databases";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios from "@/lib/utils/axios";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { API_URL } from "@/lib/utils/env";
 
 export default function Learn() {
   const theme = useTheme();
@@ -57,7 +56,7 @@ export default function Learn() {
     setIntroduction(undefined);
     setPrice(undefined);
     if (db == "case") {
-      axios.get(`${API_URL}/listDisease/`)
+      axios.get("/listDisease")
         .then(response => {
           if (response.data.error_num === 1) {
             alert(response.data.msg);
@@ -78,13 +77,13 @@ export default function Learn() {
           console.log(error);
         })
     } else if (db == "medication") {
-      axios.get(`${API_URL}/listDisposition/`)
+      axios.get("/listDisposition")
         .then(response => {
           console.log(response.data);
           setData(response.data);
         })
     } else if (db == "examination") {
-      axios.get(`${API_URL}/listProject/`)
+      axios.get("/listProject")
         .then(response => {
           console.log(response.data);
           setData(response.data);
@@ -94,7 +93,7 @@ export default function Learn() {
   }, [db]);
   const handleFormData = (disease_id: string) => {
 
-    axios.get(`${API_URL}/caseGroup/?disease_id=${disease_id}`)
+    axios.get(`/caseGroup/?disease_id=${disease_id}`)
       .then(response => {
         console.log(response.data);
         setForm_data(response.data);

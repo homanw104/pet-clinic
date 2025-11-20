@@ -1,6 +1,6 @@
 'use client';
 
-import axios from "axios";
+import axios from "@/lib/utils/axios";
 import React from "react";
 import { Provider } from "react-redux";
 import { Analytics } from "@vercel/analytics/react";
@@ -8,6 +8,7 @@ import { CssBaseline } from "@mui/material";
 import { SWRConfig } from "swr";
 import { store } from "@/lib/store/store";
 import CustomThemeProvider from "@/components/app/CustomThemeProvider";
+import UserInitAuth from "@/components/app/UserInitAuth";
 import "@/lib/styles/globals.css";
 
 const fetcher = async (url: string) => {
@@ -39,11 +40,13 @@ export default function RootLayout({ children }: {
     <body>
       <Provider store={store}>
         <SWRConfig value={swrConfig}>
-          <CustomThemeProvider>
-            <CssBaseline enableColorScheme />
-            {children}
-            <Analytics />
-          </CustomThemeProvider>
+          <UserInitAuth>
+            <CustomThemeProvider>
+              <CssBaseline enableColorScheme />
+              {children}
+              <Analytics />
+            </CustomThemeProvider>
+          </UserInitAuth>
         </SWRConfig>
       </Provider>
     </body>

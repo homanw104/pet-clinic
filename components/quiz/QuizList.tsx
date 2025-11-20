@@ -6,7 +6,6 @@ import InfoCard from "@/components/atomic/InfoCard";
 import ListButton from "@/components/button/ListButton";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { useRenderState } from "@/lib/utils/hook";
-import { API_URL } from "@/lib/utils/env";
 import quizBriefType from "@/lib/types/quizBriefType";
 
 export default function QuizList() {
@@ -18,7 +17,7 @@ export default function QuizList() {
   // Raw data from backend
   const {
     data, error, isLoading
-  } = useSWR<any>(`${API_URL}/listPaper`);
+  } = useSWR<any>("/listPaper");
 
   // States to control loading & error UI
   const {

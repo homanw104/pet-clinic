@@ -15,7 +15,6 @@ import PageNotFound from "@/components/app/PageNotFound";
 import ConfirmDialog from "@/components/atomic/ConfirmDialog";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { useRenderState } from "@/lib/utils/hook";
-import { API_URL } from "@/lib/utils/env";
 import quizDataType from "@/lib/types/quizDataType";
 
 export default function Quiz() {
@@ -34,7 +33,7 @@ export default function Quiz() {
   // Raw data from backend
   const {
     data, error, isLoading
-  } = useSWR<any>(router.isReady ? `${API_URL}/showPaperDetails/?paper_id=${id}` : null);
+  } = useSWR<any>(router.isReady ? `/showPaperDetails/?paper_id=${id}` : null);
 
   // States to control loading & error UI
   const {

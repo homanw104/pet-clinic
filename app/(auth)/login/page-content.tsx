@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "@/lib/utils/axios";
 import { useRouter } from "next/navigation";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
@@ -9,7 +9,6 @@ import ErrorDialog from "@/components/atomic/ErrorDialog";
 import { login } from "@/lib/store/authSlice";
 import { raiseError, resetError } from "@/lib/store/errorSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
-import { API_URL } from "@/lib/utils/env";
 
 export default function PageContent() {
   const router = useRouter();
@@ -30,7 +29,7 @@ export default function PageContent() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`${API_URL}/login`, {
+      const response = await axios.post("/login", {
         "identifier": identifier,
         "password": password
       });

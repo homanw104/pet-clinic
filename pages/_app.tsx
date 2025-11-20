@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/lib/utils/axios";
 import type { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import { NextPage } from "next";

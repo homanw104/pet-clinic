@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "@/lib/utils/axios";
 import { useRouter } from "next/navigation";
 import { ClickAwayListener, Fade, MenuItem, MenuList, Paper, Popper, useTheme } from "@mui/material";
 import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
@@ -9,7 +9,6 @@ import TypographyButton from "@/components/button/TypographyButton";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { raiseError } from "@/lib/store/errorSlice";
 import { logout } from "@/lib/store/authSlice";
-import { API_URL } from "@/lib/utils/env";
 
 export default function LoginButton({ ...props }) {
   const theme = useTheme();
@@ -50,7 +49,7 @@ export default function LoginButton({ ...props }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post(`${API_URL}/logout`);
+      await axios.post("/logout");
       setTimeout(() => dispatch(logout()), 500);
     } catch (error) {
       dispatch(raiseError(error));
