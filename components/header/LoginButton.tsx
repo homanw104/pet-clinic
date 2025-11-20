@@ -3,40 +3,35 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import {
-  ClickAwayListener, Fade,
-  MenuItem,
-  MenuList,
-  Paper,
-  Popper,
-  Stack,
-  Typography,
-  useTheme
-} from "@mui/material";
+import { ClickAwayListener, Fade, MenuItem, MenuList, Paper, Popper, useTheme } from "@mui/material";
 import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
 import TypographyButton from "@/components/button/TypographyButton";
-import { darkTheme, lightTheme } from "@/lib/styles/globals-mui";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
-import { toggleTheme } from "@/lib/store/themeSlice";
 import { raiseError } from "@/lib/store/errorSlice";
 import { logout } from "@/lib/store/authSlice";
 import { API_URL } from "@/lib/utils/env";
 
-interface HeaderProps {
-  mapBoxRef?: React.RefObject<HTMLDivElement | null>;   // Reference to the parent element of <MapViewer />
-}
-
-export default function Header({ mapBoxRef }: HeaderProps) {
+export default function LoginButton({ ...props }) {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const themeState = useAppSelector((state) => state.theme.theme);
   const username = useAppSelector((state) => state.auth.username);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
+
+  let fontSize;
+  switch (props.variant) {
+    case "h1": fontSize = theme.typography.h1.fontSize; break;
+    case "h2": fontSize = theme.typography.h2.fontSize; break;
+    case "h3": fontSize = theme.typography.h3.fontSize; break;
+    case "h4": fontSize = theme.typography.h4.fontSize; break;
+    case "h5": fontSize = theme.typography.h5.fontSize; break;
+    case "h6": fontSize = theme.typography.h6.fontSize; break;
+    default: fontSize = theme.typography.h3.fontSize; break;
+  }
 
   const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setMenuAnchorEl(menuAnchorEl ? null : event.currentTarget);
@@ -62,44 +57,17 @@ export default function Header({ mapBoxRef }: HeaderProps) {
     }
   };
 
-  const handleToggleTheme = () => {
-    // Manually toggle theme for <MapViewer />
-    if (mapBoxRef &&
-      mapBoxRef.current &&
-      mapBoxRef.current.children[0] &&
-      mapBoxRef.current.children[0] instanceof HTMLDivElement &&
-      mapBoxRef.current.children[0].className.includes("leaflet-container")
-    ) {
-      const mapViewerRef = mapBoxRef.current.children[0];
-      if (themeState === "lightTheme") {
-        mapViewerRef.style.backgroundColor = darkTheme.palette.surface[1];
-      } else {
-        mapViewerRef.style.backgroundColor = lightTheme.palette.surface[1];
-      }
-    }
-
-    // Toggle global theme
-    dispatch(toggleTheme());
-  };
-
   return (
-    <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-      <Typography
-        variant="h1" noWrap={true} className="unselectable"
-        onClick={() => handleToggleTheme()}
-      >
-        Pet Clinic Online
-      </Typography>
-
+    <>
       {/* Display login button when logged out */}
       {!isLoggedIn &&
         <TypographyButton
-          variant="h3" noWrap={true} className="unselectable"
+          noWrap={true} className="unselectable" {...props}
           onClick={() => router.push("/login")}
         >
           {"登录"}
           <SubdirectoryArrowLeftIcon className="material-symbols" sx={{
-            fontSize: theme.typography.h3.fontSize,
+            fontSize: fontSize,
             position: "relative",
             top: "0.1em",
           }} />
@@ -110,7 +78,7 @@ export default function Header({ mapBoxRef }: HeaderProps) {
       {isLoggedIn &&
         <>
           <TypographyButton
-            variant="h3" noWrap={true} className="unselectable"
+            variant="h3" noWrap={true} className="unselectable" {...props}
             onClick={handleMenuClick}
           >
             {username}
@@ -147,6 +115,6 @@ export default function Header({ mapBoxRef }: HeaderProps) {
           </Popper>
         </>
       }
-    </Stack>
+    </>
   )
 }

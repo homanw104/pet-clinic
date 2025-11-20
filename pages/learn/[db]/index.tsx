@@ -15,7 +15,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import Header from "@/components/header/Header";
+import LoginButton from "@/components/header/LoginButton";
 import Subheader from "@/components/header/Subheader";
 import AppGridLayout from "@/lib/layouts/AppGridLayout";
 import databases from "@/lib/contents/databases";
@@ -111,7 +111,7 @@ export default function Learn() {
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
           marginTop: "4rem"
         }}>
-          <Header/>
+          <LoginButton/>
           <Subheader variant="learn"/>
         </Stack>
       </Grid>

@@ -5,7 +5,7 @@
 import useSWR from "swr";
 import React, { ReactElement, useEffect, useState } from "react";
 import { Box, CircularProgress, Fade, Grid, Stack, Typography, useTheme } from "@mui/material";
-import Header from "@/components/header/Header";
+import LoginButton from "@/components/header/LoginButton";
 import Subheader from "@/components/header/Subheader";
 import QuizList from "@/components/quiz/QuizList";
 import RandomQuestion from "@/components/quiz/RandomQuestion";
@@ -105,7 +105,7 @@ export default function Quiz() {
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
           marginTop: "4rem"
         }}>
-          <Header />
+          <LoginButton />
           <Subheader variant="quiz" onRandomQuestion={handleRandomQuestion} />
         </Stack>
       </Grid>

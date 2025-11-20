@@ -1,22 +1,24 @@
 'use client';
 
-import React, { Suspense, useRef } from "react";
+import React, { useRef } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { Box, Grid, Stack, useTheme } from "@mui/material";
+import { Box, Grid, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import receptionistIcon from "@/public/avatar/receptionist.png";
 import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";
-import Header from "@/components/header/Header";
-import Subheader from "@/components/header/Subheader";
+import LoginButton from "@/components/header/LoginButton";
 import Footer from "@/components/footer/Footer";
 import InfoCard from "@/components/atomic/InfoCard";
 import AvatarButton from "@/components/button/AvatarButton";
 import NavButton from "@/components/button/NavButton";
 import ErrorDialog from "@/components/atomic/ErrorDialog";
+import { darkTheme, lightTheme } from "@/lib/styles/globals-mui";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { mountOverlay } from "@/lib/store/overlaySlice";
 import { resetError } from "@/lib/store/errorSlice";
+import { toggleTheme } from "@/lib/store/themeSlice";
+import SouthWestIcon from "@mui/icons-material/SouthWest";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
 const MapViewer = dynamic(() => import("@/components/atomic/MapViewer"), {
@@ -27,10 +29,33 @@ export default function LayoutContent() {
   const theme = useTheme();
   const router = useRouter();
   const mapBoxRef = useRef<HTMLDivElement>(null);
-  const dispatch = useAppDispatch();
+  const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"))
+  const isSmScreen = useMediaQuery(theme.breakpoints.down("md"));
 
+  const dispatch = useAppDispatch();
+  const themeState = useAppSelector((state) => state.theme.theme);
   const isError = useAppSelector(state => state.error.isError);
   const errorMsg = useAppSelector(state => state.error.errorMsg);
+
+  const handleToggleTheme = () => {
+    // Manually toggle theme for <MapViewer />
+    if (mapBoxRef &&
+      mapBoxRef.current &&
+      mapBoxRef.current.children[0] &&
+      mapBoxRef.current.children[0] instanceof HTMLDivElement &&
+      mapBoxRef.current.children[0].className.includes("leaflet-container")
+    ) {
+      const mapViewerRef = mapBoxRef.current.children[0];
+      if (themeState === "lightTheme") {
+        mapViewerRef.style.backgroundColor = darkTheme.palette.surface[1];
+      } else {
+        mapViewerRef.style.backgroundColor = lightTheme.palette.surface[1];
+      }
+    }
+
+    // Toggle global theme
+    dispatch(toggleTheme());
+  };
 
   const handleOnClick = (href: string) => {
     // Toggle overlay visibility when navigating to job pages
@@ -48,10 +73,35 @@ export default function LayoutContent() {
           marginTop: "4rem",
           marginBottom: "2rem"
         }}>
-          <Header mapBoxRef={mapBoxRef} />
-          <Suspense fallback={null}>
-            <Subheader variant="home" />
-          </Suspense>
+          <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
+            <Typography
+              variant={isXsScreen ? "h3" : isSmScreen ? "h2" : "h1"}
+              onClick={() => handleToggleTheme()}
+            >
+              Pet Clinic Online
+            </Typography>
+            <LoginButton variant={isSmScreen ? "h4" : "h3"} sx={{ display: { xs: "none", sm: "block" }}} />
+          </Stack>
+          <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
+            <Typography variant={isXsScreen ? "h5" : isSmScreen ? "h4" : "h3"}>
+              宠物医院在线导览
+            </Typography>
+            <Typography
+              variant={isSmScreen ? "h5" : "h4"}
+              noWrap={true} className="unselectable"
+              sx={{display: { xs: "none", sm: "block" }}}
+            >
+              <SouthWestIcon sx={{
+                fontSize: {
+                  sm: theme.typography.h5.fontSize,
+                  md: theme.typography.h4.fontSize
+                },
+                position: "relative",
+                top: "0.2em",
+              }} /> 点击职位/科室以开始
+            </Typography>
+            <LoginButton variant="h5" sx={{ display: { xs: "block", sm: "none" }}} />
+          </Stack>
         </Stack>
       </Grid>
 

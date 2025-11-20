@@ -1,6 +1,6 @@
 import { Typography, TypographyProps, useTheme } from "@mui/material";
 
-export default function TypographyButton({ children, variant, ...props }: TypographyProps) {
+export default function TypographyButton({ children, variant, sx, ...props }: TypographyProps) {
   const theme = useTheme();
 
   // The backgroundSize property determines the underline width
@@ -21,6 +21,9 @@ export default function TypographyButton({ children, variant, ...props }: Typogr
 
   return (
     <Typography className="unselectable" variant={variant} {...props} sx={{
+      // Expand sx argument from parent
+      ...sx,
+
       // Looks lickable when hover
       cursor: "pointer",
 
