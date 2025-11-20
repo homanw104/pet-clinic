@@ -4,7 +4,7 @@ import { JWT_SECRET } from "@/lib/utils/env";
 
 const PROTECTED_PATHS: string[] = [];
 
-/*
+/**
  * Token format expected from the client-side cookie.
  */
 interface TokenPayload extends JwtPayload {
@@ -13,7 +13,7 @@ interface TokenPayload extends JwtPayload {
   username: string;
 }
 
-/*
+/**
  * Add x-user-id header when accessing protected path.
  * User will be redirected to login page if their token is invalid.
  */

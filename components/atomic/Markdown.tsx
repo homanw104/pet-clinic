@@ -1,4 +1,4 @@
-/*
+/**
  * Reference:
  *
  * - <https://v5.mui.com/material-ui/react-box/>

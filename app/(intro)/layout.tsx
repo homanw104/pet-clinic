@@ -1,4 +1,4 @@
-/*
+/**
  * The layout of the main page is rendered client side to retain states,
  * while most of the layouts in this app are rendered server side.
  * This layout mainly handles mounting/unmounting the overlay.
