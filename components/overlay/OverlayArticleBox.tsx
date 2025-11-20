@@ -45,7 +45,7 @@ export default function OverlayArticleBox({ children }: ComponentProps) {
       }}>
         <IconButton
           aria-label="close" onClick={() => handleOnClick("/")}
-          sx={{ display: { xs: "none", sm: "block" }}}
+          sx={{ display: { xs: "none", sm: "inline-flex" }}}
         >
           <CloseIcon />
         </IconButton>
