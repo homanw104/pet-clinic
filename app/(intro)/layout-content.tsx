@@ -19,6 +19,7 @@ import { mountOverlay } from "@/lib/store/overlaySlice";
 import { resetError } from "@/lib/store/errorSlice";
 import { toggleTheme } from "@/lib/store/themeSlice";
 import SouthWestIcon from "@mui/icons-material/SouthWest";
+import { useAccessibleButton } from "@/lib/utils/accessibility";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
 const MapViewer = dynamic(() => import("@/components/atomic/MapViewer"), {
@@ -65,6 +66,8 @@ export default function LayoutContent() {
     router.push(href);
   };
 
+  const { isButtonActive, ...a11yProps } = useAccessibleButton(handleToggleTheme);
+
   return (
     <Grid container spacing="2rem">
       <ErrorDialog open={isError} onClose={() => dispatch(resetError())} message={errorMsg} />
@@ -75,15 +78,15 @@ export default function LayoutContent() {
         }}>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
             <Typography
-              variant={isXsScreen ? "h3" : isSmScreen ? "h2" : "h1"}
-              onClick={() => handleToggleTheme()}
+              className="unselectable" variant={isXsScreen ? "h3" : isSmScreen ? "h2" : "h1"} {...a11yProps}
+              onClick={handleToggleTheme} sx={{ cursor: "pointer" }}
             >
               Pet Clinic Online
             </Typography>
             <LoginButton variant={isSmScreen ? "h4" : "h3"} sx={{ display: { xs: "none", sm: "block" }}} />
           </Stack>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-            <Typography variant={isXsScreen ? "h5" : isSmScreen ? "h4" : "h3"}>
+            <Typography className="unselectable" variant={isXsScreen ? "h5" : isSmScreen ? "h4" : "h3"}>
               宠物医院在线导览
             </Typography>
             <Typography
