@@ -1,3 +1,7 @@
+/**
+ * Different hooks used throughout the app.
+ */
+
 import { useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@/lib/store/store";

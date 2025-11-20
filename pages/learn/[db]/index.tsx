@@ -15,8 +15,8 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import LoginButton from "@/components/header/LoginButton";
-import Subheader from "@/components/header/Subheader";
+import LoginButton from "@/components/home/LoginButton";
+import Subheader from "@/components/home/Subheader";
 import AppGridLayout from "@/lib/layouts/AppGridLayout";
 import databases from "@/lib/contents/databases";
 import { useRouter } from "next/router";

@@ -17,6 +17,7 @@ export default async function Layout({ children, params }: {
     englishID: "unknown",
     avatar: {} as StaticImageData
   };
+
   const imgSrc = jobData.avatar;
   const imgAlt = jobData.chineseTitle;
   const chineseTitle = jobData.chineseTitle;

@@ -24,6 +24,7 @@ export default function PageContent() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
   const isError = useAppSelector(state => state.error.isError);
   const errorMsg = useAppSelector(state => state.error.errorMsg);
 
@@ -33,9 +34,11 @@ export default function PageContent() {
         "identifier": identifier,
         "password": password
       });
+
       dispatch(login(response.data.user.username));
       setIsSuccess(true);
       setTimeout(() => router.push("/"), 1000);
+
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         const data = error.response.data;
@@ -49,6 +52,7 @@ export default function PageContent() {
       } else {
         dispatch(raiseError(error));
       }
+
       setIsLoading(false);
     }
   }
@@ -68,7 +72,7 @@ export default function PageContent() {
 
   return (
     <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
-      <ErrorDialog open={isError} onClose={() => dispatch(resetError())} message={errorMsg} />
+      <ErrorDialog open={isError} message={errorMsg} onClose={() => dispatch(resetError())} />
       <Typography variant="h4">登录</Typography>
       <Box component="form" width="100%">
         <TextField

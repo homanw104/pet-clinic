@@ -7,8 +7,8 @@ import { Box, Grid, Stack, Typography, useMediaQuery, useTheme } from "@mui/mate
 import receptionistIcon from "@/public/avatar/receptionist.png";
 import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";
-import LoginButton from "@/components/header/LoginButton";
-import Footer from "@/components/footer/Footer";
+import LoginButton from "@/components/home/LoginButton";
+import Footer from "@/components/home/Footer";
 import InfoCard from "@/components/atomic/InfoCard";
 import AvatarButton from "@/components/button/AvatarButton";
 import NavButton from "@/components/button/NavButton";

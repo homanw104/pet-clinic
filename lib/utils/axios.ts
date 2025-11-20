@@ -1,3 +1,7 @@
+/**
+ * Axios wrapper including custom configs.
+ */
+
 import axios from "axios";
 
 axios.defaults.withCredentials = true;

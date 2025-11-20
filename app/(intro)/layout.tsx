@@ -47,19 +47,21 @@ export default function Layout({ children }: {
     }
   }
 
-  // Update visibility state based on mount state
-  // When user goes to overlay page,
-  //    > Click on target
-  //    > isMount: false -> true
-  //    > isVisible: false -> true
-  //    > router.push()
-  //    |------> animation time (300ms)
-  // When user goes to home page,
-  //    > Click on target
-  //    > isMount: true -> false
-  //    |------> animation time (300ms)
-  //           > isVisible: true -> false
-  //           > router.push()
+  /**
+   * Update visibility state based on mount state
+   * When user goes to overlay page,
+   *    > Click on target
+   *    > isMount: false -> true
+   *    > isVisible: false -> true
+   *    > router.push()
+   *    |------> animation time (300ms)
+   * When user goes to home page,
+   *    > Click on target
+   *    > isMount: true -> false
+   *    |------> animation time (300ms)
+   *           > isVisible: true -> false
+   *           > router.push()
+   */
   useEffect(() => {
     if (isMount) {
       setIsVisible(true);

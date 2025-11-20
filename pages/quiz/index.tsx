@@ -5,8 +5,8 @@
 import useSWR from "swr";
 import React, { ReactElement, useEffect, useState } from "react";
 import { Box, CircularProgress, Fade, Grid, Stack, Typography, useTheme } from "@mui/material";
-import LoginButton from "@/components/header/LoginButton";
-import Subheader from "@/components/header/Subheader";
+import LoginButton from "@/components/home/LoginButton";
+import Subheader from "@/components/home/Subheader";
 import QuizList from "@/components/quiz/QuizList";
 import RandomQuestion from "@/components/quiz/RandomQuestion";
 import AppGridLayout from "@/lib/layouts/AppGridLayout";

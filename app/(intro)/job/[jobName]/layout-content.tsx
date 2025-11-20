@@ -2,15 +2,7 @@
 
 import React, { useEffect } from "react";
 import { StaticImageData } from "next/image";
-import {
-  Box,
-  Grid,
-  Grow,
-  Paper,
-  Stack,
-  useMediaQuery,
-  useTheme
-} from "@mui/material";
+import { Box, Grid, Grow, Paper, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { mountOverlay } from "@/lib/store/overlaySlice";
 import SidebarJobHeaderBox from "@/components/overlay/SidebarJobHeaderBox";

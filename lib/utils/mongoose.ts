@@ -1,3 +1,7 @@
+/**
+ * Exports a connectDB function to connect to a mongodb instance when needed.
+ */
+
 import mongoose from "mongoose";
 import { NODE_ENV, MONGODB_URI } from "@/lib/utils/env";
 
