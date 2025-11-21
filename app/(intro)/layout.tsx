@@ -65,7 +65,8 @@ export default function Layout({ children }: {
    */
   useEffect(() => {
     if (isMount) {
-      setIsVisible(true);
+      const timeoutId = setTimeout(() => setIsVisible(true), 0);
+      return () => clearTimeout(timeoutId);
     } else {
       const timeoutId = setTimeout(() => setIsVisible(false), 300);
       return () => clearTimeout(timeoutId);
