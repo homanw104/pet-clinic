@@ -35,6 +35,7 @@ export default function LayoutContent() {
 
   const dispatch = useAppDispatch();
   const themeState = useAppSelector((state) => state.theme.theme);
+  const isMount = useAppSelector(state => state.overlay.isMount);
   const isError = useAppSelector(state => state.error.isError);
   const errorMsg = useAppSelector(state => state.error.errorMsg);
 
@@ -66,7 +67,8 @@ export default function LayoutContent() {
     router.push(href);
   };
 
-  const { isButtonActive, ...a11yProps } = useAccessibleButton(handleToggleTheme);
+  // Custom isButtonActive and tabIndex behavior for accessibility
+  const { isButtonActive, tabIndex, ...a11yProps } = useAccessibleButton(handleToggleTheme);
 
   return (
     <Grid container spacing="2rem">
@@ -78,12 +80,17 @@ export default function LayoutContent() {
         }}>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
             <Typography
-              className="unselectable" variant={isXsScreen ? "h3" : isSmScreen ? "h2" : "h1"} {...a11yProps}
+              className="unselectable"
+              variant={isXsScreen ? "h3" : isSmScreen ? "h2" : "h1"}
+              tabIndex={isMount ? -1 : 0} {...a11yProps}
               onClick={handleToggleTheme} sx={{ cursor: "pointer" }}
             >
               Pet Clinic Online
             </Typography>
-            <LoginButton variant={isSmScreen ? "h4" : "h3"} sx={{ display: { xs: "none", sm: "block" }}} />
+            <LoginButton
+              tabIndex={isMount ? -1 : 0} variant={isSmScreen ? "h4" : "h3"}
+              sx={{ display: { xs: "none", sm: "block" }}}
+            />
           </Stack>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
             <Typography className="unselectable" variant={isXsScreen ? "h5" : isSmScreen ? "h4" : "h3"}>
@@ -103,7 +110,10 @@ export default function LayoutContent() {
                 top: "0.2em",
               }} /> 点击职位/科室以开始
             </Typography>
-            <LoginButton variant="h5" sx={{ display: { xs: "block", sm: "none" }}} />
+            <LoginButton
+              tabIndex={isMount ? -1 : 0} variant="h5"
+              sx={{ display: { xs: "block", sm: "none" }}}
+            />
           </Stack>
         </Stack>
       </Grid>
@@ -111,22 +121,42 @@ export default function LayoutContent() {
       <Grid item xs={12} sm={5} md={4} lg={3}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
           <InfoCard>在下方选择职位或科室以开始导览。</InfoCard>
-          <AvatarButton src={receptionistIcon} alt="前台" name="receptionist" onClick={() => {
-            handleOnClick("/job/receptionist/intro");
-          }}>前台</AvatarButton>
-          <AvatarButton src={technicianIcon} alt="医助" name="technician" onClick={() => {
-            handleOnClick("/job/technician/intro");
-          }}>医助</AvatarButton>
-          <AvatarButton src={veterinarianIcon} alt="兽医" name="veterinarian" onClick={() => {
-            handleOnClick("/job/veterinarian/intro");
-          }}>兽医</AvatarButton>
+          <AvatarButton
+            src={receptionistIcon} alt="前台" name="receptionist"
+            tabIndex={isMount ? -1 : 0}
+            onClick={() => { handleOnClick("/job/receptionist/intro")}}
+          >
+            前台
+          </AvatarButton>
+          <AvatarButton
+            src={technicianIcon} alt="医助" name="technician"
+            tabIndex={isMount ? -1 : 0}
+            onClick={() => { handleOnClick("/job/technician/intro") }}
+          >
+            医助
+          </AvatarButton>
+          <AvatarButton
+            src={veterinarianIcon} alt="兽医" name="veterinarian"
+            tabIndex={isMount ? -1 : 0}
+            onClick={() => { handleOnClick("/job/veterinarian/intro") }}
+          >
+            兽医
+          </AvatarButton>
           <Stack spacing={2} direction="row" justifyContent="center">
-            <NavButton name="database" onClick={() => handleOnClick("/learn/case")} style={{
-              width: "100%"
-            }}>病例库</NavButton>
-            <NavButton name="quiz" onClick={() => handleOnClick("/quiz")} style={{
-              width: "100%"
-            }}>在线测试</NavButton>
+            <NavButton
+              name="database"
+              tabIndex={isMount ? -1 : 0}
+              onClick={() => handleOnClick("/learn/case")} style={{ width: "100%" }}
+            >
+              病例库
+            </NavButton>
+            <NavButton
+              name="quiz"
+              tabIndex={isMount ? -1 : 0}
+              onClick={() => handleOnClick("/quiz")} style={{ width: "100%" }}
+            >
+              在线测试
+            </NavButton>
           </Stack>
         </Stack>
       </Grid>

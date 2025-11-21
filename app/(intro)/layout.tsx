@@ -73,6 +73,23 @@ export default function Layout({ children }: {
     }
   }, [isMount]);
 
+  /**
+   * Listen to the pressing on escape key
+   */
+  useEffect(() => {
+    function handleEsc(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        if (isMount) {
+          dispatch(unmountOverlay());
+          setTimeout(() => router.push("/"), 300);
+        }
+      }
+    }
+
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  });
+
   return (
     <>
       {/* The content of the main page is stored in the layout so that */}
