@@ -3,7 +3,7 @@
 import "leaflet/dist/leaflet.css";
 import styles from "@/lib/styles/MapViewer.module.css";
 import React from "react";
-import { CRS, Icon, LatLng, LatLngBounds, Point } from "leaflet";
+import { CRS, Icon, LatLng, LatLngBounds, LeafletKeyboardEvent, Point } from "leaflet";
 import { MapContainer, ImageOverlay, Marker, Tooltip } from "react-leaflet";
 import { Typography, useTheme, Box } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -36,6 +36,13 @@ function RoomMarker({ position, tooltip, href }: MarkerProps) {
         dispatch(mountOverlay());
         router.push(href);
       },
+      keypress: (event: LeafletKeyboardEvent) => {
+        if (event.originalEvent.key === "Enter" || event.originalEvent.key === " ") {
+          event.originalEvent.preventDefault();
+          dispatch(mountOverlay());
+          router.push(href);
+        }
+      }
     }}>
       <Tooltip className={styles.tooltip} opacity={1} direction="left" sticky>
         <Box sx={{
