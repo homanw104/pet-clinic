@@ -6,7 +6,7 @@
 
 'use client';
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Container, useTheme } from "@mui/material";
 import { hexToRGBA } from "@/lib/utils/color";
@@ -27,19 +27,20 @@ export default function Layout({ children }: {
 
   // Mouse drag threshold to differentiate between click and drag
   const dragThreshold = 5;  // Pixels
-  let startX: number, startY: number;
+  const startX = useRef(0);
+  const startY = useRef(0);
 
   // Record mouse position when mouse is pressed down
   const handleOnMouseDown = (event: { clientX: number; clientY: number; }) => {
-    startX = event.clientX;
-    startY = event.clientY;
+    startX.current = event.clientX;
+    startY.current = event.clientY;
   }
 
   // Return home when a click is detected on the overlay box
   const handleOnClick = (event: { clientX: number; clientY: number; }) => {
     const endX = event.clientX;
     const endY = event.clientY;
-    const distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+    const distance = Math.sqrt(Math.pow(endX - startX.current, 2) + Math.pow(endY - startY.current, 2));
 
     if (distance < dragThreshold) {
       dispatch(unmountOverlay());
