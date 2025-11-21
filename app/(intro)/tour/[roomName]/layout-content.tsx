@@ -34,6 +34,9 @@ export default function LayoutContent({ title, subtitle, articleBriefList, child
     event.stopPropagation();
   }
 
+  /**
+   * Mount overlay in case the page is opened via a link
+   */
   useEffect(() => {
     dispatch(mountOverlay());
   }, [dispatch]);
