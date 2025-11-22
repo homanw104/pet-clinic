@@ -33,7 +33,7 @@ export default function PageContent() {
 
   const handleRegister = async () => {
     try {
-      await axios.post("/register", {
+      await axios.post("/user/register", {
         "email": email,
         "username": username,
         "password": password

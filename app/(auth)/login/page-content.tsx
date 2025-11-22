@@ -30,7 +30,7 @@ export default function PageContent() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("/login", {
+      const response = await axios.post("/user/login", {
         "identifier": identifier,
         "password": password
       });

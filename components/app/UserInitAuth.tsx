@@ -8,7 +8,7 @@ export default function UserInitAuth({ children }: { children: ReactNode }) {
 
   const checkUserAuth = async () => {
     try {
-      const result = await axios.get("/self-info");
+      const result = await axios.get("/user/self-info");
       dispatch(login(result.data.user.username));
     } catch (error) {
       dispatch(logout());

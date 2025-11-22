@@ -49,7 +49,7 @@ export default function LoginButton({ ...props }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post("/logout");
+      await axios.post("/user/logout");
       setTimeout(() => dispatch(logout()), 500);
     } catch (error) {
       dispatch(raiseError(error));
