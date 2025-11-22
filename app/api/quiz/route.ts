@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/utils/mongoose";
 import Quiz from "@/lib/models/Quiz";
 
+/**
+ * Create a quiz.
+ * @param req
+ * @constructor
+ */
 export async function POST(req: Request) {
   try {
     const { description, answer, opt1, opt2, opt3, opt4 }: {
@@ -36,6 +41,10 @@ export async function POST(req: Request) {
   }
 }
 
+/**
+ * Get the list of ids of quizzes.
+ * @constructor
+ */
 export async function GET() {
   try {
     await connectDB();
