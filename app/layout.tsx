@@ -2,6 +2,7 @@
 
 import axios from "@/lib/utils/axios";
 import React from "react";
+import { Noto_Sans, Noto_Sans_Display, Noto_Sans_SC } from "next/font/google";
 import { Provider } from "react-redux";
 import { Analytics } from "@vercel/analytics/react";
 import { CssBaseline } from "@mui/material";
@@ -10,6 +11,10 @@ import { store } from "@/lib/store/store";
 import CustomThemeProvider from "@/components/app/CustomThemeProvider";
 import UserInitAuth from "@/components/app/UserInitAuth";
 import "@/lib/styles/globals.css";
+
+const noto_sans = Noto_Sans({ weight: [ "300", "400", "500" ] });
+const noto_sans_display = Noto_Sans_Display({ weight: [ "300", "400", "500" ] });
+const noto_sans_sc = Noto_Sans_SC({ weight: [ "300", "400", "500" ] });
 
 const fetcher = async (url: string) => {
   const response = await axios.get(url);
@@ -29,27 +34,23 @@ export default function RootLayout({ children }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-    <head>
-      {/* Load Google Fonts */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-      <title>Pet Clinic</title>
-    </head>
-    <body>
-      <Provider store={store}>
-        <SWRConfig value={swrConfig}>
-          <UserInitAuth>
-            <CustomThemeProvider>
-              <CssBaseline enableColorScheme />
-              {children}
-              <Analytics />
-            </CustomThemeProvider>
-          </UserInitAuth>
-        </SWRConfig>
-      </Provider>
-    </body>
+    <html lang="en" className={`${noto_sans.className} ${noto_sans_display.className} ${noto_sans_sc.className}`}>
+      <head>
+        <title>Pet Clinic</title>
+      </head>
+      <body>
+        <Provider store={store}>
+          <SWRConfig value={swrConfig}>
+            <UserInitAuth>
+              <CustomThemeProvider>
+                <CssBaseline enableColorScheme />
+                {children}
+                <Analytics />
+              </CustomThemeProvider>
+            </UserInitAuth>
+          </SWRConfig>
+        </Provider>
+      </body>
     </html>
   )
 }
