@@ -1,10 +1,10 @@
-import { connectDB } from "@/lib/utils/mongoose";
 import { NextResponse } from "next/server";
-import Quiz from "@/lib/models/Quiz";
 import { Types } from "mongoose";
+import { connectDB } from "@/lib/utils/mongoose";
+import Question from "@/lib/models/Question";
 
 /**
- * Get a quiz by id.
+ * Get a question by id.
  * @param req
  * @param params
  * @constructor
@@ -18,23 +18,23 @@ export async function GET(
 
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
-        { success: "false", message: "Invalid ID" },
+        { success: "false", message: "Invalid question ID" },
         { status: 401 }
       )
     }
 
     await connectDB();
-    const quiz = await Quiz.findById(id).lean();
+    const question = await Question.findById(id).lean();
 
-    if (!quiz) {
+    if (!question) {
       return NextResponse.json(
-        { success: "false", message: "No such quiz" },
+        { success: "false", message: "No such question" },
         { status: 404 }
       );
     }
 
     return NextResponse.json(
-      { success: "true", message: "Successfully found the quiz", quiz: quiz },
+      { success: "true", message: "Successfully found the question", question: question },
       { status: 200 }
     );
   } catch (error) {
@@ -47,7 +47,7 @@ export async function GET(
 }
 
 /**
- * Update a quiz by id.
+ * Update a question by id.
  * @param req
  * @param params
  * @constructor
@@ -61,7 +61,7 @@ export async function PUT(
 
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
-        { success: "false", message: "Invalid ID" },
+        { success: "false", message: "Invalid question ID" },
         { status: 401 }
       )
     }
@@ -83,20 +83,20 @@ export async function PUT(
     }
 
     await connectDB();
-    const quiz = await Quiz.findByIdAndUpdate(
+    const question = await Question.findByIdAndUpdate(
       id,
       { description, answer, opt1, opt2, opt3, opt4 }
     ).lean();
 
-    if (!quiz) {
+    if (!question) {
       return NextResponse.json(
-        { success: "false", message: "No such quiz" },
+        { success: "false", message: "No such question" },
         { status: 404 }
       );
     }
 
     return NextResponse.json(
-      { success: "true", message: "Successfully updated the quiz" },
+      { success: "true", message: "Successfully updated the question" },
       { status: 200 }
     );
   } catch (error) {
@@ -109,7 +109,7 @@ export async function PUT(
 }
 
 /**
- * Delete a quiz by id.
+ * Delete a question by id.
  * @param req
  * @param params
  * @constructor
@@ -123,23 +123,23 @@ export async function DELETE(
 
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
-        { success: "false", message: "Invalid ID" },
+        { success: "false", message: "Invalid question ID" },
         { status: 401 }
       )
     }
 
     await connectDB();
-    const quiz = await Quiz.findByIdAndDelete(id).lean();
+    const question = await Question.findByIdAndDelete(id).lean();
 
-    if (!quiz) {
+    if (!question) {
       return NextResponse.json(
-        { success: "false", message: "No such quiz" },
+        { success: "false", message: "No such question" },
         { status: 404 }
       );
     }
 
     return NextResponse.json(
-      { success: "true", message: "Successfully deleted" },
+      { success: "true", message: "Successfully deleted the question" },
       { status: 200 }
     );
   } catch (error) {

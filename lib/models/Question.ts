@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
-export interface IQuiz extends Document {
+export interface IQuestion extends Document {
   description: string;
   answer: number;
   opt1: string;
@@ -9,7 +9,7 @@ export interface IQuiz extends Document {
   opt4: string;
 }
 
-const quizSchema = new Schema<IQuiz>({
+const questionSchema = new Schema<IQuestion>({
   description: { type: String, required: true },
   answer: { type: Number, required: true },
   opt1: { type: String, required: true },
@@ -18,7 +18,7 @@ const quizSchema = new Schema<IQuiz>({
   opt4: { type: String, required: true },
 });
 
-const Quiz: Model<IQuiz> =
-  mongoose.models.Quiz || mongoose.model<IQuiz>("Quiz", quizSchema);
+const Question: Model<IQuestion> =
+  mongoose.models.Question || mongoose.model<IQuestion>("Question", questionSchema);
 
-export default Quiz;
+export default Question;

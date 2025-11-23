@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/utils/mongoose";
-import Quiz from "@/lib/models/Quiz";
+import Question from "@/lib/models/Question";
 
 /**
- * Create a quiz.
+ * Create a question.
  * @param req
  * @constructor
  */
@@ -26,10 +26,10 @@ export async function POST(req: Request) {
     }
 
     await connectDB();
-    await Quiz.create({ description, answer, opt1, opt2, opt3, opt4 });
+    await Question.create({ description, answer, opt1, opt2, opt3, opt4 });
 
     return NextResponse.json(
-      { success: "true", message: "Quiz created" },
+      { success: "true", message: "Question created" },
       { status: 201 }
     );
   } catch (error) {
@@ -42,16 +42,16 @@ export async function POST(req: Request) {
 }
 
 /**
- * Get the list of ids of quizzes.
+ * Get the list of ids of questions.
  * @constructor
  */
 export async function GET() {
   try {
     await connectDB();
-    const docs = await Quiz.find({}, "_id").lean();
+    const docs = await Question.find({}, "_id").lean();
     const ids = docs.map((doc) => doc._id);
     return NextResponse.json(
-      { success: "true", message: "Query success", quiz_ids: ids },
+      { success: "true", message: "Query success", question_ids: ids },
       { status: 200 }
     );
   } catch (error) {
