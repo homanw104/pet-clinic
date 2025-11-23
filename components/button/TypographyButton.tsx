@@ -7,18 +7,31 @@ export default function TypographyButton({ children, variant, onClick, sx, ...pr
 
   // The backgroundSize property determines the underline width
   let backgroundSize: string;
+  let backgroundPosition: string;
   switch (variant) {
     case "h1":
       backgroundSize = "6px 6px";
+      backgroundPosition = "0 1.15em";
       break;
     case "h2": case "h3":
       backgroundSize = "4px 4px";
+      backgroundPosition = "0 1.15em";
       break;
-    case "h4": case "h5": case "h6":
+    case "h4":
+      backgroundSize = "3px 3px";
+      backgroundPosition = "0 1.2em";
+      break;
+    case "h5":
       backgroundSize = "2px 2px";
+      backgroundPosition = "0 1.25em";
+      break;
+    case "h6":
+      backgroundSize = "2px 2px";
+      backgroundPosition = "0 1.35em";
       break;
     default:
       backgroundSize = "1px 1px";
+      backgroundPosition = "0 1.35em";
   }
 
   return (
@@ -39,9 +52,9 @@ export default function TypographyButton({ children, variant, onClick, sx, ...pr
       ...(isButtonActive && {
         "&, &:hover, &:focus": {
           backgroundImage: `linear-gradient(to right, ${theme.palette.primary.main} 100%)`,
-          backgroundPosition: "0 1.15em",
           backgroundRepeat: "repeat-x",
           backgroundSize: backgroundSize,
+          backgroundPosition: backgroundPosition,
           color: theme.palette.primary.main,
         }
       }),
@@ -50,15 +63,16 @@ export default function TypographyButton({ children, variant, onClick, sx, ...pr
       ...(!isButtonActive && {
         "&:hover, &:focus": {
           backgroundImage: `linear-gradient(to right, ${theme.palette.text.primary} 100%)`,
-          backgroundPosition: "0 1.15em",
           backgroundRepeat: "repeat-x",
           backgroundSize: backgroundSize,
+          backgroundPosition: backgroundPosition,
         },
+
         "&:active": {
           backgroundImage: `linear-gradient(to right, ${theme.palette.primary.main} 100%)`,
-          backgroundPosition: "0 1.15em",
           backgroundRepeat: "repeat-x",
           backgroundSize: backgroundSize,
+          backgroundPosition: backgroundPosition,
           color: theme.palette.primary.main,
         }
       }),
