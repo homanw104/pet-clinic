@@ -51,11 +51,7 @@ export default function QuizList() {
   }, [data, error, isLoading, clearTimeouts, setRenderState]);
 
   return (
-    <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
-      marginTop: "4rem",
-      marginBottom: "4rem",
-      minHeight: "600px",
-    }}>
+    <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{ minHeight: "36rem" }}>
       <InfoCard>
         在下侧列表中选择试卷，开始综合测试！
       </InfoCard>

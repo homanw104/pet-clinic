@@ -17,12 +17,13 @@ import {
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { resetError } from "@/lib/store/errorSlice";
 import ErrorDialog from "@/components/atomic/ErrorDialog";
+import TitleButton from "@/components/home/TitleButton";
 import LoginButton from "@/components/home/LoginButton";
 import TypographyButton from "@/components/button/TypographyButton";
 import RandomQuestion from "@/components/quiz/RandomQuestion";
 import QuizList from "@/components/quiz/QuizList";
 import questionDataType from "@/lib/types/questionDataType";
-import TitleButton from "@/components/home/TitleButton";
+import Footer from "@/components/home/Footer";
 
 export default function PageContent() {
   const theme = useTheme();
@@ -34,6 +35,7 @@ export default function PageContent() {
   const isError = useAppSelector(state => state.error.isError);
   const errorMsg = useAppSelector(state => state.error.errorMsg);
 
+  // Question fetching and handling
   const [questionId, setQuestionId] = useState(null);
   const { data: questionIdsData, error: questionIdsError, isLoading: questionIdsLoading } = useSWR("/question");
   const { data: questionData, error: questionError, isLoading: questionLoading, mutate: questionMutate }
@@ -78,20 +80,21 @@ export default function PageContent() {
     <Grid container spacing="2rem">
       <ErrorDialog open={isError} onClose={() => dispatch(resetError())} message={errorMsg} />
       <Grid item xs={12}>
-        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{ marginTop: "4rem" }}>
+        <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
+          marginTop: "4rem",
+          marginBottom: "2rem"
+        }}>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
             <TitleButton />
-            <LoginButton
-              variant={isSmScreen ? "h4" : "h3"}
-              sx={{ display: { xs: "none", sm: "block" }}}
-            />
+            <LoginButton variant={isSmScreen ? "h4" : "h3"} sx={{ display: { xs: "none", sm: "block" }}} />
           </Stack>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
             <Typography className="unselectable" variant={isXsScreen ? "h5" : isSmScreen ? "h4" : "h3"}>
               在线测试
             </Typography>
             <Stack spacing={isSmScreen ? 2 : 4} direction="row" justifyContent="flex-end" alignItems="baseline">
-              <TypographyButton variant={isSmScreen ? "h5" : "h4"} noWrap={true} onClick={ () => router.push("/") } sx={{display: { xs: "none", sm: "block" }}}>
+              <TypographyButton variant={isSmScreen ? "h5" : "h4"} noWrap={true}
+                                onClick={() => router.push("/")} sx={{display: { xs: "none", sm: "block" }}}>
                 <WestOutlinedIcon sx={{
                   fontSize: {
                     sm: theme.typography.h5.fontSize,
@@ -101,7 +104,8 @@ export default function PageContent() {
                   top: "0.2em",
                 }} /> 返回导览
               </TypographyButton>
-              <TypographyButton variant={isSmScreen ? "h5" : "h4"} noWrap={true} onClick={handleRefreshQuestion} sx={{display: { xs: "none", sm: "block" }}}>
+              <TypographyButton variant={isSmScreen ? "h5" : "h4"} noWrap={true}
+                                onClick={handleRefreshQuestion} sx={{display: { xs: "none", sm: "block" }}}>
                 <LoopSharpIcon sx={{
                   fontSize: {
                     sm: theme.typography.h5.fontSize,
@@ -115,11 +119,12 @@ export default function PageContent() {
             </Stack>
             <LoginButton variant="h5" sx={{ display: { xs: "block", sm: "none" }}} />
           </Stack>
-          <Stack spacing={2} direction="row" justifyContent="flex-end" alignItems="baseline" sx={{display: { xs: "inline-flex", sm: "none" }}}>
+          <Stack spacing={2} direction="row" justifyContent="flex-end" alignItems="baseline"
+                 sx={{ display: { xs: "inline-flex", sm: "none" }}}>
             <TypographyButton variant="h5" noWrap={true} onClick={ () => router.push("/") }>
               <WestOutlinedIcon sx={{ fontSize: theme.typography.h5.fontSize, position: "relative", top: "0.2em" }} /> 返回导览
             </TypographyButton>
-            <TypographyButton variant="h6" noWrap={true} onClick={() => {}}>
+            <TypographyButton variant="h5" noWrap={true} onClick={handleRefreshQuestion}>
               <LoopSharpIcon sx={{ fontSize: theme.typography.h5.fontSize, transform: "rotate(-45deg)", position: "relative", top: "0.15em" }} /> 随机下一题
             </TypographyButton>
           </Stack>
@@ -157,6 +162,10 @@ export default function PageContent() {
           </Fade>
 
         </Box>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Footer />
       </Grid>
     </Grid>
   );
