@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Pet clinic online learning platform."
 };
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       {/* Home page contents are stored in the layout so that it won't reload */}

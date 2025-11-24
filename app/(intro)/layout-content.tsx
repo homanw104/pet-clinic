@@ -30,7 +30,7 @@ export default function LayoutContent() {
   const theme = useTheme();
   const router = useRouter();
   const mapBoxRef = useRef<HTMLDivElement>(null);
-  const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"))
+  const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isSmScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const dispatch = useAppDispatch();
