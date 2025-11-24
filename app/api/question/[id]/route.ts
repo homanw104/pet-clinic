@@ -66,16 +66,16 @@ export async function PUT(
       )
     }
 
-    const { description, answer, opt1, opt2, opt3, opt4 }: {
+    const { description, answer, optA, optB, optC, optD }: {
       description: string;
       answer: number;
-      opt1: string;
-      opt2: string;
-      opt3: string;
-      opt4: string;
+      optA: string;
+      optB: string;
+      optC: string;
+      optD: string;
     } = await req.json();
 
-    if (!description || !answer || !opt1 || !opt2 || !opt3 || !opt4) {
+    if (!description || !answer || !optA || !optB || !optC || !optD) {
       return NextResponse.json(
         { success: "false", error: "Missing field(s)" },
         { status: 400 }
@@ -85,7 +85,7 @@ export async function PUT(
     await connectDB();
     const question = await Question.findByIdAndUpdate(
       id,
-      { description, answer, opt1, opt2, opt3, opt4 }
+      { description, answer, optA, optB, optC, optD }
     ).lean();
 
     if (!question) {

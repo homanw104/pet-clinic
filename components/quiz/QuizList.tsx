@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Fade, Skeleton, Stack, Typography } from "@mui/material";
 import InfoCard from "@/components/atomic/InfoCard";
 import ListButton from "@/components/button/ListButton";
@@ -25,7 +25,7 @@ export default function QuizList() {
   } = useRenderState();
 
   const handleOnClick = (href: string) => {
-    router.push(href).then();
+    router.push(href);
   };
 
   useEffect(() => {
