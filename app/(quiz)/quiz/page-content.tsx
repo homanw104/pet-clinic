@@ -22,8 +22,9 @@ import LoginButton from "@/components/home/LoginButton";
 import TypographyButton from "@/components/button/TypographyButton";
 import RandomQuestion from "@/components/quiz/RandomQuestion";
 import QuizList from "@/components/quiz/QuizList";
-import questionDataType from "@/lib/types/questionDataType";
+import QuizListChips from "@/components/quiz/QuizListChips";
 import Footer from "@/components/home/Footer";
+import questionDataType from "@/lib/types/questionDataType";
 
 export default function PageContent() {
   const theme = useTheme();
@@ -82,7 +83,7 @@ export default function PageContent() {
       <Grid item xs={12}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
           marginTop: "4rem",
-          marginBottom: "2rem"
+          marginBottom: { xs: "0rem", sm: "2rem" }
         }}>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
             <TitleButton />
@@ -93,7 +94,7 @@ export default function PageContent() {
               在线测试
             </Typography>
             <Stack spacing={isSmScreen ? 2 : 4} direction="row" justifyContent="flex-end" alignItems="baseline">
-              <TypographyButton variant={isSmScreen ? "h5" : "h4"} noWrap={true}
+              <TypographyButton variant={isSmScreen ? "h5" : "h4"}
                                 onClick={() => router.push("/")} sx={{display: { xs: "none", sm: "block" }}}>
                 <WestOutlinedIcon sx={{
                   fontSize: {
@@ -104,7 +105,7 @@ export default function PageContent() {
                   top: "0.2em",
                 }} /> 返回导览
               </TypographyButton>
-              <TypographyButton variant={isSmScreen ? "h5" : "h4"} noWrap={true}
+              <TypographyButton variant={isSmScreen ? "h5" : "h4"}
                                 onClick={handleRefreshQuestion} sx={{display: { xs: "none", sm: "block" }}}>
                 <LoopSharpIcon sx={{
                   fontSize: {
@@ -131,11 +132,12 @@ export default function PageContent() {
         </Stack>
       </Grid>
 
-      <Grid item xs={3}>
-        <QuizList />
+      <Grid item xs={12} sm={5} md={4} lg={3}>
+        <QuizList sx={{display: { xs: "none", sm: "block" }}} />
+        <QuizListChips sx={{display: { xs: "block", sm: "none" }}} />
       </Grid>
 
-      <Grid item xs={9} position="relative">
+      <Grid item xs={12} sm={7} md={8} lg={9}>
         <Box sx={{
           backgroundColor: theme.palette.surface.main,
           color: theme.palette.surface.onMain,
@@ -155,7 +157,7 @@ export default function PageContent() {
             </Stack>
           </Fade>
 
-          <Fade in={questionData} unmountOnExit>
+          <Fade in={!questionLoading && !questionIdsLoading} unmountOnExit>
             <Box>
               <RandomQuestion question={question} />
             </Box>

@@ -8,7 +8,9 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { useRenderState } from "@/lib/utils/hook";
 import quizBriefType from "@/lib/types/quizBriefType";
 
-export default function QuizList() {
+export default function QuizList({ sx, ...props }: {
+  sx?: object;
+}) {
   const router = useRouter();
 
   // Quiz list data
@@ -51,7 +53,7 @@ export default function QuizList() {
   }, [data, error, isLoading, clearTimeouts, setRenderState]);
 
   return (
-    <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{ minHeight: "36rem" }}>
+    <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" {...props} sx={{ ...sx, minHeight: "36rem" }}>
       <InfoCard>
         在下侧列表中选择试卷，开始综合测试！
       </InfoCard>

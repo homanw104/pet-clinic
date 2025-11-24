@@ -77,7 +77,7 @@ export default function LoginButton({ ...props }) {
       {isLoggedIn &&
         <>
           <TypographyButton
-            variant="h3" noWrap={true} className="unselectable" {...props}
+            variant="h3" className="unselectable" {...props}
             onClick={handleMenuClick}
           >
             {username}

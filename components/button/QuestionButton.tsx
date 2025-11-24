@@ -16,7 +16,7 @@ export default function QuestionButton({ children, state = "default", ...props }
         <Button
           fullWidth disableElevation disableRipple disableFocusRipple
           variant="contained" color="success" {...props} sx={{
-            cursor: "default", padding: "8px 20px 8px 20px", border: "0.8px solid transparent"
+            cursor: "default", padding: "0.5rem 1rem", height: "3rem", border: "0.8px solid transparent"
           }}
         >
           <CheckIcon color="success" sx={{ position: "absolute", right: "-36px" }} />
@@ -30,7 +30,7 @@ export default function QuestionButton({ children, state = "default", ...props }
         <Button
           fullWidth disableElevation disableRipple disableFocusRipple
           variant="contained" color="error" {...props} sx={{
-            cursor: "default", padding: "8px 20px 8px 20px", border: "0.8px solid transparent"
+            cursor: "default", padding: "0.5rem 1rem", height: "3rem", border: "0.8px solid transparent"
           }}
         >
           <ClearIcon color="error" sx={{ position: "absolute", right: "-36px" }} />
@@ -44,7 +44,7 @@ export default function QuestionButton({ children, state = "default", ...props }
         <Button
           fullWidth disableElevation disableRipple disableFocusRipple
           variant="outlined" color="primary" {...props} sx={{
-            cursor: "default", padding: "8px 20px 8px 20px",
+            cursor: "default", padding: "0.5rem 1rem", height: "3rem"
           }}
         >
           <Typography variant="button" sx={{ textAlign: "justify" }}>
@@ -56,7 +56,7 @@ export default function QuestionButton({ children, state = "default", ...props }
       return (
         <Button
           fullWidth disableElevation variant="outlined" color="primary" {...props} sx={{
-            cursor: "pointer", padding: "8px 20px 8px 20px",
+            cursor: "pointer", padding: "0.5rem 1rem", height: "3rem",
             boxShadow: `0 0 0 4px ${hexToRGBA(theme.palette.primary.main, 0.3)}`,
             transition: "box-shadow 0.3s",
           }}
@@ -70,7 +70,7 @@ export default function QuestionButton({ children, state = "default", ...props }
       return (
         <Button
           fullWidth disableElevation variant="outlined" color="primary" {...props} sx={{
-            cursor: "pointer", padding: "8px 20px 8px 20px",
+            cursor: "pointer", padding: "0.5rem 1rem", height: "3rem"
           }}
         >
           <Typography variant="button" sx={{ textAlign: "justify" }}>

@@ -50,7 +50,7 @@ export default function LayoutContent() {
       <Grid item xs={12}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{
           marginTop: "4rem",
-          marginBottom: "2rem"
+          marginBottom: { xs: "0rem", sm: "2rem" }
         }}>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
             <TitleButton mapBoxRef={mapBoxRef} />
@@ -81,6 +81,12 @@ export default function LayoutContent() {
               tabIndex={isMount ? -1 : 0} variant="h5"
               sx={{ display: { xs: "block", sm: "none" }}}
             />
+          </Stack>
+          <Stack spacing={2} direction="row" justifyContent="flex-end" alignItems="baseline"
+                 sx={{ display: { xs: "inline-flex", sm: "none" }}}>
+            <Typography variant="h5" noWrap={true} className="unselectable">
+              <SouthWestIcon sx={{ fontSize: theme.typography.h5.fontSize, position: "relative", top: "0.2em" }} /> 点击职位/科室以开始
+            </Typography>
           </Stack>
         </Stack>
       </Grid>

@@ -22,10 +22,10 @@ export default function RandomQuestion({ question }: {
 
   return (
     <Stack direction="column" alignItems="center">
-      <Typography variant="h5" textAlign="center" margin="4rem" minWidth="300px" maxWidth="400px">
+      <Typography variant="h5" textAlign="center" padding="4rem" minHeight="14rem">
         Q: {question?.description}
       </Typography>
-      <Stack direction="column" alignItems="center" spacing={2} width="320px">
+      <Stack direction="column" alignItems="center" spacing="1.5rem" padding="0rem 4rem" width="100%" maxWidth="26rem">
         {question?.options.map((option, index) => {
           let state: "default" | "selected" | "correct" | "incorrect" | "final";
 
