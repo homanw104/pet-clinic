@@ -73,7 +73,7 @@ export default function LoginButton({ ...props }) {
         </TypographyButton>
       }
 
-      {/* Display logout button with username when logged in */}
+      {/* Display username with a menu when logged in */}
       {isLoggedIn &&
         <>
           <TypographyButton

@@ -12,10 +12,10 @@ interface ThemeProps {
 }
 
 export default function CustomThemeProvider({ children }: ThemeProps) {
-  const theme = useAppSelector((state) => state.theme.theme);
+  const themeName = useAppSelector((state) => state.theme.name);
 
   return (
-    <ThemeProvider theme={(theme === "lightTheme") ? lightTheme : darkTheme}>
+    <ThemeProvider theme={(themeName === "lightTheme") ? lightTheme : darkTheme}>
       {children}
     </ThemeProvider>
   )

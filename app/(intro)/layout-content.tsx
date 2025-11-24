@@ -13,13 +13,11 @@ import InfoCard from "@/components/atomic/InfoCard";
 import AvatarButton from "@/components/button/AvatarButton";
 import NavButton from "@/components/button/NavButton";
 import ErrorDialog from "@/components/atomic/ErrorDialog";
-import { darkTheme, lightTheme } from "@/lib/styles/globals-mui";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { mountOverlay } from "@/lib/store/overlaySlice";
 import { resetError } from "@/lib/store/errorSlice";
-import { toggleTheme } from "@/lib/store/themeSlice";
 import SouthWestIcon from "@mui/icons-material/SouthWest";
-import { useAccessibleButton } from "@/lib/utils/accessibility";
+import TitleButton from "@/components/home/TitleButton";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
 const MapViewer = dynamic(() => import("@/components/atomic/MapViewer"), {
@@ -34,30 +32,9 @@ export default function LayoutContent() {
   const isSmScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const dispatch = useAppDispatch();
-  const themeState = useAppSelector((state) => state.theme.theme);
   const isMount = useAppSelector(state => state.overlay.isMount);
   const isError = useAppSelector(state => state.error.isError);
   const errorMsg = useAppSelector(state => state.error.errorMsg);
-
-  const handleToggleTheme = () => {
-    // Manually toggle theme for <MapViewer />
-    if (mapBoxRef &&
-      mapBoxRef.current &&
-      mapBoxRef.current.children[0] &&
-      mapBoxRef.current.children[0] instanceof HTMLDivElement &&
-      mapBoxRef.current.children[0].className.includes("leaflet-container")
-    ) {
-      const mapViewerRef = mapBoxRef.current.children[0];
-      if (themeState === "lightTheme") {
-        mapViewerRef.style.backgroundColor = darkTheme.palette.surface[1];
-      } else {
-        mapViewerRef.style.backgroundColor = lightTheme.palette.surface[1];
-      }
-    }
-
-    // Toggle global theme
-    dispatch(toggleTheme());
-  };
 
   const handleOnClick = (href: string) => {
     // Toggle overlay visibility when navigating to job pages
@@ -66,9 +43,6 @@ export default function LayoutContent() {
     // Go to the target page afterward
     router.push(href);
   };
-
-  // Custom isButtonActive and tabIndex behavior for accessibility
-  const { isButtonActive, tabIndex, ...a11yProps } = useAccessibleButton(handleToggleTheme);
 
   return (
     <Grid container spacing="2rem">
@@ -79,14 +53,7 @@ export default function LayoutContent() {
           marginBottom: "2rem"
         }}>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-            <Typography
-              className="unselectable"
-              variant={isXsScreen ? "h3" : isSmScreen ? "h2" : "h1"}
-              tabIndex={isMount ? -1 : 0} {...a11yProps}
-              onClick={handleToggleTheme} sx={{ cursor: "pointer" }}
-            >
-              Pet Clinic Online
-            </Typography>
+            <TitleButton mapBoxRef={mapBoxRef} />
             <LoginButton
               tabIndex={isMount ? -1 : 0} variant={isSmScreen ? "h4" : "h3"}
               sx={{ display: { xs: "none", sm: "block" }}}

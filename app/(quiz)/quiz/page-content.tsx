@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
@@ -14,9 +14,7 @@ import {
   useMediaQuery,
   useTheme
 } from "@mui/material";
-import { useAccessibleButton } from "@/lib/utils/accessibility";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
-import { toggleTheme } from "@/lib/store/themeSlice";
 import { resetError } from "@/lib/store/errorSlice";
 import ErrorDialog from "@/components/atomic/ErrorDialog";
 import LoginButton from "@/components/home/LoginButton";
@@ -24,6 +22,7 @@ import TypographyButton from "@/components/button/TypographyButton";
 import RandomQuestion from "@/components/quiz/RandomQuestion";
 import QuizList from "@/components/quiz/QuizList";
 import questionDataType from "@/lib/types/questionDataType";
+import TitleButton from "@/components/home/TitleButton";
 
 export default function PageContent() {
   const theme = useTheme();
@@ -40,26 +39,20 @@ export default function PageContent() {
   const { data: questionData, error: questionError, isLoading: questionLoading, mutate: questionMutate }
     = useSWR(() => (questionId ? `/question/${questionId}` : null));
 
-  const handleToggleTheme = () => {
-    dispatch(toggleTheme());
-  };
-
   const handleRefreshQuestion = () => {
     if (questionIdsData) {
-      let index = 0;
       const ids = questionIdsData.question_ids;
+      let index = 0;
       do { index = Math.floor(Math.random() * ids.length) } while (ids.length > 1 && ids[index] === questionId);
       setQuestionId(ids[index]);
       questionMutate().then();
     }
   };
 
-  const { isButtonActive, ...a11yProps } = useAccessibleButton(handleToggleTheme);
-
   // Set a random question id once the id list is populated
-  let index = 0;
   if (questionIdsData && questionId === null) {
     const ids = questionIdsData.question_ids;
+    let index = 0;
     // eslint-disable-next-line react-hooks/purity
     do { index = Math.floor(Math.random() * ids.length) } while (ids.length > 1 && ids[index] === questionId);
     setQuestionId(ids[index]);
@@ -87,14 +80,7 @@ export default function PageContent() {
       <Grid item xs={12}>
         <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch" sx={{ marginTop: "4rem" }}>
           <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="baseline">
-            <Typography
-              {...a11yProps}
-              className="unselectable"
-              variant={isXsScreen ? "h3" : isSmScreen ? "h2" : "h1"}
-              onClick={handleToggleTheme} sx={{ cursor: "pointer" }}
-            >
-              Pet Clinic Online
-            </Typography>
+            <TitleButton />
             <LoginButton
               variant={isSmScreen ? "h4" : "h3"}
               sx={{ display: { xs: "none", sm: "block" }}}
