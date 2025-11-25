@@ -5,7 +5,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { Box, Grid, Stack, Typography, useTheme } from "@mui/material";
-import TypographyButton from "@/components/button/TypographyButton";
+import TypographyButton from "@/lib/components/button/TypographyButton";
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 
 export default function PageNotFound() {

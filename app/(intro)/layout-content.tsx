@@ -7,20 +7,20 @@ import { Box, Grid, Stack, Typography, useMediaQuery, useTheme } from "@mui/mate
 import receptionistIcon from "@/public/avatar/receptionist.png";
 import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";
-import LoginButton from "@/components/home/LoginButton";
-import Footer from "@/components/home/Footer";
-import InfoCard from "@/components/atomic/InfoCard";
-import AvatarButton from "@/components/button/AvatarButton";
-import NavButton from "@/components/button/NavButton";
-import ErrorDialog from "@/components/atomic/ErrorDialog";
+import LoginButton from "@/lib/components/home/LoginButton";
+import Footer from "@/lib/components/home/Footer";
+import InfoCard from "@/lib/components/atomic/InfoCard";
+import AvatarButton from "@/lib/components/button/AvatarButton";
+import NavButton from "@/lib/components/button/NavButton";
+import ErrorDialog from "@/lib/components/atomic/ErrorDialog";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { mountOverlay } from "@/lib/store/overlaySlice";
 import { resetError } from "@/lib/store/errorSlice";
 import SouthWestIcon from "@mui/icons-material/SouthWest";
-import TitleButton from "@/components/home/TitleButton";
+import TitleButton from "@/lib/components/home/TitleButton";
 
 // Leaflet MapContainer doesn't support Server Side Rendering
-const MapViewer = dynamic(() => import("@/components/atomic/MapViewer"), {
+const MapViewer = dynamic(() => import("@/lib/components/atomic/MapViewer"), {
   ssr: false,
 });
 

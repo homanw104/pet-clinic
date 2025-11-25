@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
 import { Analytics } from "@vercel/analytics/react";
 import { store } from "@/lib/store/store";
-import CustomThemeProvider from "@/components/app/CustomThemeProvider";
+import CustomThemeProvider from "@/lib/components/app/CustomThemeProvider";
 import "@/lib/styles/globals.css";
 
 const fetcher = async (url: string) => {

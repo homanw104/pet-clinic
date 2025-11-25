@@ -12,9 +12,9 @@ import {
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { mountOverlay } from "@/lib/store/overlaySlice";
-import ArticleList from "@/components/overlay/ArticleList";
-import SidebarTourHeaderBox from "@/components/overlay/SidebarTourHeaderBox";
-import OverlayMobileHeader from "@/components/overlay/OverlayMobileHeader";
+import ArticleList from "@/lib/components/overlay/ArticleList";
+import SidebarTourHeaderBox from "@/lib/components/overlay/SidebarTourHeaderBox";
+import OverlayMobileHeader from "@/lib/components/overlay/OverlayMobileHeader";
 import ArticleBriefType from "@/lib/types/articleBriefType";
 
 export default function LayoutContent({ title, subtitle, articleBriefList, children }: {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Divider, Snackbar, Stack, Typography, useTheme } from "@mui/material";
-import QuestionList from "@/components/quiz/QuestionList";
-import TypographyButton from "@/components/button/TypographyButton";
+import QuestionList from "@/lib/components/quiz/QuestionList";
+import TypographyButton from "@/lib/components/button/TypographyButton";
 import SouthWestIcon from "@mui/icons-material/SouthWest";
 import EastIcon from "@mui/icons-material/East";
 import quizDataType from "@/lib/types/quizDataType";

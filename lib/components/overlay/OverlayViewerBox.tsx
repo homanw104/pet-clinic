@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, useTheme } from "@mui/material";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
-import PhotoSphere from "@/components/atomic/PhotoSphere";
+import PhotoSphere from "@/lib/components/atomic/PhotoSphere";
 import { hexToRGBA } from "@/lib/utils/color";
 import { useAppDispatch } from "@/lib/utils/hook";
 import { unmountOverlay } from "@/lib/store/overlaySlice";

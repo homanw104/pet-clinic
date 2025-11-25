@@ -2,7 +2,7 @@
 
 import React from "react";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
-import OverlayViewerBox from "@/components/overlay/OverlayViewerBox";
+import OverlayViewerBox from "@/lib/components/overlay/OverlayViewerBox";
 
 export default function PageContent({ panoSrc, panoMarkers }: {
   panoSrc: string;

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Box, Collapse, IconButton, Paper, Stack, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import ArticleList from "@/components/overlay/ArticleList";
+import ArticleList from "@/lib/components/overlay/ArticleList";
 import { unmountOverlay } from "@/lib/store/overlaySlice";
 import { useAppDispatch } from "@/lib/utils/hook";
 import ArticleBriefType from "@/lib/types/articleBriefType";

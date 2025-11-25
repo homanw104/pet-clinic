@@ -5,7 +5,7 @@ import axios from "@/lib/utils/axios";
 import { useRouter } from "next/navigation";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import DoneIcon from '@mui/icons-material/Done';
-import ErrorDialog from "@/components/atomic/ErrorDialog";
+import ErrorDialog from "@/lib/components/atomic/ErrorDialog";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { raiseError, resetError } from "@/lib/store/errorSlice";
 

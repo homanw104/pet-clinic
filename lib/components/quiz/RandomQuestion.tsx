@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Stack, Typography } from "@mui/material";
-import QuestionButton from "@/components/button/QuestionButton";
+import QuestionButton from "@/lib/components/button/QuestionButton";
 import questionDataType from "@/lib/types/questionDataType";
 
 export default function RandomQuestion({ question }: {

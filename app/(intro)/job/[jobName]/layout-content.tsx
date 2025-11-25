@@ -5,9 +5,9 @@ import { StaticImageData } from "next/image";
 import { Box, Grid, Grow, Paper, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { mountOverlay } from "@/lib/store/overlaySlice";
-import SidebarJobHeaderBox from "@/components/overlay/SidebarJobHeaderBox";
-import ArticleList from "@/components/overlay/ArticleList";
-import OverlayMobileHeader from "@/components/overlay/OverlayMobileHeader";
+import SidebarJobHeaderBox from "@/lib/components/overlay/SidebarJobHeaderBox";
+import ArticleList from "@/lib/components/overlay/ArticleList";
+import OverlayMobileHeader from "@/lib/components/overlay/OverlayMobileHeader";
 import ArticleBriefType from "@/lib/types/articleBriefType";
 
 export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, articleBriefList, children }: {

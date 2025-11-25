@@ -1,7 +1,7 @@
 'use client';
 
-import OverlayArticleBox from "@/components/overlay/OverlayArticleBox";
-import MarkdownArticle from "@/components/atomic/Markdown";
+import OverlayArticleBox from "@/lib/components/overlay/OverlayArticleBox";
+import MarkdownArticle from "@/lib/components/atomic/Markdown";
 import ArticleDataType from "@/lib/types/articleDataType";
 
 export default function PageContent({ article }: {

@@ -8,8 +8,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { CssBaseline } from "@mui/material";
 import { SWRConfig } from "swr";
 import { store } from "@/lib/store/store";
-import CustomThemeProvider from "@/components/app/CustomThemeProvider";
-import UserInitAuth from "@/components/app/UserInitAuth";
+import CustomThemeProvider from "@/lib/components/app/CustomThemeProvider";
+import UserInitAuth from "@/lib/components/app/UserInitAuth";
 import "@/lib/styles/globals.css";
 
 const noto_sans = Noto_Sans({ weight: [ "300", "400", "500" ] });

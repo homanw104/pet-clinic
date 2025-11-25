@@ -16,14 +16,14 @@ import {
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { resetError } from "@/lib/store/errorSlice";
-import ErrorDialog from "@/components/atomic/ErrorDialog";
-import TitleButton from "@/components/home/TitleButton";
-import LoginButton from "@/components/home/LoginButton";
-import TypographyButton from "@/components/button/TypographyButton";
-import RandomQuestion from "@/components/quiz/RandomQuestion";
-import QuizList from "@/components/quiz/QuizList";
-import QuizListChips from "@/components/quiz/QuizListChips";
-import Footer from "@/components/home/Footer";
+import ErrorDialog from "@/lib/components/atomic/ErrorDialog";
+import TitleButton from "@/lib/components/home/TitleButton";
+import LoginButton from "@/lib/components/home/LoginButton";
+import TypographyButton from "@/lib/components/button/TypographyButton";
+import RandomQuestion from "@/lib/components/quiz/RandomQuestion";
+import QuizList from "@/lib/components/quiz/QuizList";
+import QuizListChips from "@/lib/components/quiz/QuizListChips";
+import Footer from "@/lib/components/home/Footer";
 import questionDataType from "@/lib/types/questionDataType";
 
 export default function PageContent() {

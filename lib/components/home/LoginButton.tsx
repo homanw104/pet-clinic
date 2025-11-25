@@ -5,7 +5,7 @@ import axios from "@/lib/utils/axios";
 import { useRouter } from "next/navigation";
 import { ClickAwayListener, Fade, MenuItem, MenuList, Paper, Popper, useTheme } from "@mui/material";
 import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
-import TypographyButton from "@/components/button/TypographyButton";
+import TypographyButton from "@/lib/components/button/TypographyButton";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { raiseError } from "@/lib/store/errorSlice";
 import { logout } from "@/lib/store/authSlice";

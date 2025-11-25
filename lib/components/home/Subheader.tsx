@@ -5,7 +5,7 @@ import SouthWestIcon from '@mui/icons-material/SouthWest';
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 import LaunchSharpIcon from "@mui/icons-material/LaunchSharp";
 import LoopSharpIcon from '@mui/icons-material/LoopSharp';
-import TypographyButton from "@/components/button/TypographyButton";
+import TypographyButton from "@/lib/components/button/TypographyButton";
 import databases from "@/lib/contents/databases";
 
 interface SubheaderProps {
