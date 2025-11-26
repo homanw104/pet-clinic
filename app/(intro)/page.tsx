@@ -11,5 +11,5 @@ export default function Page() {
       {/* Home page contents are stored in the layout so that it won't reload */}
       {/* everytime you return to the home page. */}
     </>
-  )
+  );
 }

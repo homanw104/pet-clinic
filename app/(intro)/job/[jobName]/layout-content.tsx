@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useEffect } from "react";
 import { StaticImageData } from "next/image";
@@ -19,7 +19,7 @@ export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, article
   children: React.ReactNode;
 }) {
   const theme = useTheme();
-  const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const dispatch = useAppDispatch();
   const isMount = useAppSelector((state) => state.overlay.isMount);
@@ -94,5 +94,5 @@ export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, article
         </Grid>
       </Grow>
     </Grid>
-  )
+  );
 }

@@ -12,7 +12,7 @@ const baseDir = process.cwd();
 const contentDir = `${baseDir}/lib/contents`;
 
 /**
- * Return the first line of the file, truncating the leading "# ".
+ * Return the first line of the file, truncating the leading "#".
  * @param filePath Full file path starting with "/".
  */
 function getTitle(filePath: string): Promise<string> {
@@ -82,7 +82,7 @@ export function getArticleBySlug(slug: string, subDir: string): Promise<ArticleD
           date: date,
           title: title,
           content: fs.readFileSync(fullPath, "utf8"),
-        })
+        });
       })
       .catch(err => {
         reject(err);
@@ -106,7 +106,7 @@ export function getArticleBriefBySlug(slug: string, subDir: string): Promise<Art
           slug: slug,
           date: date,
           title: title,
-        })
+        });
       })
       .catch(err => {
         reject(err);

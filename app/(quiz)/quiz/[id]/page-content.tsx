@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Box, CircularProgress, Fade, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
@@ -10,19 +10,21 @@ export default function PageContent({ quizId }: {
   quizId: string;
 }) {
   const theme = useTheme();
-  const { data, error, isLoading } = useSWR<any>(`/quiz/${quizId}`);
+  const { data, error, isLoading } = useSWR(`/quiz/${quizId}`);
 
   let quizData: quizDataType | undefined = undefined;
   if (data) {
     quizData = {
       quizId: data.quiz.id,
       quizName: data.quiz.title,
-      questions: data.quiz.questions.map((q: any) => { return {
-        questionId: q.id,
-        description: q.description,
-        options: [q.optA, q.optB, q.optC, q.optD],
-        answer: q.answer
-      }})
+      questions: data.quiz.questions.map((q: any) => {
+        return {
+          questionId: q.id,
+          description: q.description,
+          options: [q.optA, q.optB, q.optC, q.optD],
+          answer: q.answer
+        };
+      })
     };
   }
 
@@ -59,5 +61,5 @@ export default function PageContent({ quizId }: {
         </Fade>
       }
     </Box>
-  )
+  );
 }

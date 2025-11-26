@@ -27,5 +27,5 @@ export default function Footer() {
         </SvgIcon>
       </IconButton>
     </Stack>
-  )
+  );
 }

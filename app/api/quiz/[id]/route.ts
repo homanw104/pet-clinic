@@ -21,7 +21,7 @@ export async function GET(
       return NextResponse.json(
         { success: "false", message: "Invalid quiz ID" },
         { status: 401 }
-      )
+      );
     }
 
     await connectDB();
@@ -66,7 +66,7 @@ export async function PUT(
       return NextResponse.json(
         {success: "false", message: "Invalid quiz ID"},
         {status: 401}
-      )
+      );
     }
 
     const {name, questions}: {
@@ -86,7 +86,7 @@ export async function PUT(
         return NextResponse.json(
           { success: "false", message: "Invalid question id" },
           { status: 401 }
-        )
+        );
       }
     }
 
@@ -133,7 +133,7 @@ export async function DELETE(
       return NextResponse.json(
         { success: "false", message: "Invalid quiz ID" },
         { status: 401 }
-      )
+      );
     }
 
     await connectDB();

@@ -14,10 +14,14 @@ export default function UserInitAuth({ children }: { children: ReactNode }) {
       } catch (error) {
         dispatch(logout());
       }
-    }
+    };
     
     checkUserAuth().then();
   }, [dispatch]);
 
-  return <>{children}</>
+  return (
+    <>
+      {children}
+    </>
+  );
 }

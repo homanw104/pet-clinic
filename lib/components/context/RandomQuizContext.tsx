@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { createContext, ReactNode, useState } from "react";
 
@@ -22,7 +22,7 @@ export default function RandomQuizContextProvider({ children }: {
 
   const refreshQuiz = () => {
     setRefreshTimestamp(Date.now());
-  }
+  };
 
   return (
     <RandomQuizContext.Provider value={{ refreshQuiz, refreshTimestamp }}>

@@ -27,7 +27,7 @@ export async function POST(req: Request) {
         return NextResponse.json(
           { success: "false", message: "Invalid question id" },
           { status: 401 }
-        )
+        );
       }
     }
 

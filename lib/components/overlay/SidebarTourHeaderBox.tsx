@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
@@ -40,5 +40,5 @@ export default function SidebarTourHeaderBox({ title, subtitle }: {
         </Typography>
       </Stack>
     </Box>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import { MarkerConfig } from "@photo-sphere-viewer/markers-plugin";
@@ -13,5 +13,5 @@ export default function PageContent({ panoSrc, panoMarkers }: {
       src={panoSrc ? panoSrc : ""}
       markers={panoMarkers}
     />
-  )
+  );
 }

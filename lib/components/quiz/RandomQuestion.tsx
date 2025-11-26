@@ -45,9 +45,9 @@ export default function RandomQuestion({ question }: {
             <QuestionButton state={state} key={index} onClick={() => handleOnClick(index)}>
               {option}
             </QuestionButton>
-          )
+          );
         })}
       </Stack>
     </Stack>
-  )
+  );
 }

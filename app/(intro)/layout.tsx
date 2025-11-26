@@ -4,7 +4,7 @@
  * This layout mainly handles mounting/unmounting the overlay.
  */
 
-'use client';
+"use client";
 
 import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -34,7 +34,7 @@ export default function Layout({ children }: {
   const handleOnMouseDown = (event: { clientX: number; clientY: number; }) => {
     startX.current = event.clientX;
     startY.current = event.clientY;
-  }
+  };
 
   // Return home when a click is detected on the overlay box
   const handleOnClick = (event: { clientX: number; clientY: number; }) => {
@@ -46,7 +46,7 @@ export default function Layout({ children }: {
       dispatch(unmountOverlay());
       setTimeout(() => router.push("/"), 300);
     }
-  }
+  };
 
   /**
    * Update visibility state based on mount state
@@ -144,5 +144,5 @@ export default function Layout({ children }: {
         </Container>
       </Box>
     </>
-  )
+  );
 }

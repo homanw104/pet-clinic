@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useRef } from "react";
 import dynamic from "next/dynamic";
@@ -97,21 +97,21 @@ export default function LayoutContent() {
           <AvatarButton
             src={receptionistIcon} alt="前台" name="receptionist"
             tabIndex={isMount ? -1 : 0}
-            onClick={() => { handleOnClick("/job/receptionist/intro")}}
+            onClick={() => handleOnClick("/job/receptionist/intro")}
           >
             前台
           </AvatarButton>
           <AvatarButton
             src={technicianIcon} alt="医助" name="technician"
             tabIndex={isMount ? -1 : 0}
-            onClick={() => { handleOnClick("/job/technician/intro") }}
+            onClick={() => handleOnClick("/job/technician/intro")}
           >
             医助
           </AvatarButton>
           <AvatarButton
             src={veterinarianIcon} alt="兽医" name="veterinarian"
             tabIndex={isMount ? -1 : 0}
-            onClick={() => { handleOnClick("/job/veterinarian/intro") }}
+            onClick={() => handleOnClick("/job/veterinarian/intro")}
           >
             兽医
           </AvatarButton>
@@ -154,5 +154,5 @@ export default function LayoutContent() {
         <Footer />
       </Grid>
     </Grid>
-  )
+  );
 }

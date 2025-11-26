@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Button, ButtonProps, Stack, Typography, useTheme } from "@mui/material";
 
@@ -29,5 +29,5 @@ export default function NavButton({ children, name, ...props }: NormalButtonProp
         </Typography>
       </Stack>
     </Button>
-  )
+  );
 }

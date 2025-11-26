@@ -4,7 +4,7 @@ import jobs from "@/lib/contents/jobs";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
-  let paramsList: { jobName: string; articleSlug: string }[] = [];
+  const paramsList: { jobName: string; articleSlug: string }[] = [];
 
   for (const jobBrief of jobs) {
     const articleSlugs = await getArticleSlugs(jobBrief.englishID);
@@ -46,5 +46,5 @@ export default async function Page({ params }: {
 
   return (
     <PageContent article={article} />
-  )
+  );
 }

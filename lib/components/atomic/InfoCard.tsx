@@ -22,5 +22,5 @@ export default function InfoCard({ children, ...props }: CardProps) {
         </Typography>
       </Stack>
     </Paper>
-  )
+  );
 }

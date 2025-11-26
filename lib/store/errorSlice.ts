@@ -31,7 +31,7 @@ export const errorSlice = createSlice({
       state.isError = false;
     }
   },
-})
+});
 
 export const { raiseError, resetError } = errorSlice.actions;
 export default errorSlice.reducer;

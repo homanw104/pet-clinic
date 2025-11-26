@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -51,5 +51,5 @@ export default function OverlayViewerBox({ src, markers }: {
         </IconButton>
       </Box>
     </Box>
-  )
+  );
 }

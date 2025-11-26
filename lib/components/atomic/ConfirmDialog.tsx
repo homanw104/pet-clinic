@@ -30,5 +30,5 @@ export default function ConfirmDialog({ isActive, title, text, onCancel, onConfi
         <Button onClick={onConfirm} autoFocus>确定</Button>
       </DialogActions>
     </Dialog>
-  )
+  );
 }

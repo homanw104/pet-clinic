@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import axios from "@/lib/utils/axios";
 import { useRouter } from "next/navigation";
 import { ClickAwayListener, Fade, MenuItem, MenuList, Paper, Popper, useTheme } from "@mui/material";
-import SubdirectoryArrowLeftIcon from '@mui/icons-material/SubdirectoryArrowLeft';
+import SubdirectoryArrowLeftIcon from "@mui/icons-material/SubdirectoryArrowLeft";
 import TypographyButton from "@/lib/components/button/TypographyButton";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { raiseError } from "@/lib/store/errorSlice";
@@ -115,5 +115,5 @@ export default function LoginButton({ ...props }) {
         </>
       }
     </>
-  )
+  );
 }

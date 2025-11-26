@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import Image, { StaticImageData } from "next/image";
@@ -43,5 +43,5 @@ export default function SidebarJobHeaderBox({ src, alt, title, subtitle }: BoxPr
         opacity: "30%"
       }}/>
     </Box>
-  )
+  );
 }

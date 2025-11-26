@@ -32,5 +32,5 @@ export default function PageNotFound() {
         </Box>
       </Stack>
     </Grid>
-  )
+  );
 }

@@ -79,5 +79,5 @@ export default function TypographyButton({ children, variant, onClick, sx, ...pr
     }}>
       {children}
     </Typography>
-  )
-};
+  );
+}

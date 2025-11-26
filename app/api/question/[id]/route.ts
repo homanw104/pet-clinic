@@ -20,7 +20,7 @@ export async function GET(
       return NextResponse.json(
         { success: "false", message: "Invalid question ID" },
         { status: 401 }
-      )
+      );
     }
 
     await connectDB();
@@ -63,7 +63,7 @@ export async function PUT(
       return NextResponse.json(
         { success: "false", message: "Invalid question ID" },
         { status: 401 }
-      )
+      );
     }
 
     const { description, answer, optA, optB, optC, optD }: {
@@ -125,7 +125,7 @@ export async function DELETE(
       return NextResponse.json(
         { success: "false", message: "Invalid question ID" },
         { status: 401 }
-      )
+      );
     }
 
     await connectDB();

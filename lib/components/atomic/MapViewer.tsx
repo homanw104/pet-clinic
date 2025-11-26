@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import "leaflet/dist/leaflet.css";
 import styles from "@/lib/styles/MapViewer.module.css";
@@ -58,7 +58,7 @@ function RoomMarker({ position, tooltip, href }: MarkerProps) {
         </Box>
       </Tooltip>
     </Marker>
-  )
+  );
 }
 
 export default function MapViewer() {
@@ -73,7 +73,7 @@ export default function MapViewer() {
   const maxBounds = new LatLngBounds(
     new LatLng(-300, -525),
     new LatLng(1500, 2625)
-  )
+  );
 
   return (
     <MapContainer
@@ -106,5 +106,5 @@ export default function MapViewer() {
       ))}
 
     </MapContainer>
-  )
+  );
 }

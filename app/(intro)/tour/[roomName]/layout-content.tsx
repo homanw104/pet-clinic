@@ -1,15 +1,7 @@
-'use client';
+"use client";
 
 import React, { useEffect } from "react";
-import {
-  Box,
-  Grid,
-  Grow,
-  Paper,
-  Stack,
-  useMediaQuery,
-  useTheme
-} from "@mui/material";
+import { Box, Grid, Grow, Paper, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { mountOverlay } from "@/lib/store/overlaySlice";
 import ArticleList from "@/lib/components/overlay/ArticleList";
@@ -24,7 +16,7 @@ export default function LayoutContent({ title, subtitle, articleBriefList, child
   children: React.ReactNode;
 }) {
   const theme = useTheme();
-  const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const dispatch = useAppDispatch();
   const isMount = useAppSelector((state) => state.overlay.isMount);
@@ -32,7 +24,7 @@ export default function LayoutContent({ title, subtitle, articleBriefList, child
   const handleOnclick = (event: React.MouseEvent<HTMLElement>) => {
     // Allow clicking inside the box without toggling close in the parent
     event.stopPropagation();
-  }
+  };
 
   /**
    * Mount overlay in case the page is opened via a link
@@ -99,5 +91,5 @@ export default function LayoutContent({ title, subtitle, articleBriefList, child
         </Grid>
       </Grow>
     </Grid>
-  )
+  );
 }

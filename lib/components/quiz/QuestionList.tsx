@@ -17,7 +17,7 @@ export default function QuestionList({ questions, selections, setSelections, isF
 
     // Save selection number
     setSelections((prev) => {
-      let newSelections = [...prev];
+      const newSelections = [...prev];
       newSelections[questionIndex] = optionIndex;
       return newSelections;
     });
@@ -44,8 +44,8 @@ export default function QuestionList({ questions, selections, setSelections, isF
 
               {question.options.map((option, optionIndex) => {
                 let state: "default" | "selected" | "correct" | "incorrect" | "final";
-                let answer = question.answer;
-                let selection = selections[questionIndex];
+                const answer = question.answer;
+                const selection = selections[questionIndex];
 
                 if (isFinal) {
                   if (optionIndex === answer) {
@@ -73,7 +73,7 @@ export default function QuestionList({ questions, selections, setSelections, isF
                       {option}
                     </QuestionButton>
                   </Grid>
-                )
+                );
               })}
 
             </Grid>
@@ -82,5 +82,5 @@ export default function QuestionList({ questions, selections, setSelections, isF
       ))}
 
     </Stack>
-  )
+  );
 }

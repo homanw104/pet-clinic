@@ -4,12 +4,12 @@ import rooms from "@/lib/contents/rooms";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
-  let paramsList: { roomName: string }[] = [];
+  const paramsList: { roomName: string }[] = [];
 
   for (const roomBrief of rooms) {
     paramsList.push({
       roomName: roomBrief.englishID
-    })
+    });
   }
 
   return paramsList;
@@ -48,5 +48,5 @@ export default async function Page({ params }: {
 
   return (
     <PageContent panoSrc={panoSrc} panoMarkers={panoMarkers} />
-  )
+  );
 }

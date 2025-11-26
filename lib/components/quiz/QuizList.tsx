@@ -11,7 +11,7 @@ export default function QuizList({ sx, ...props }: {
   sx?: object;
 }) {
   const router = useRouter();
-  const { data, error, isLoading } = useSWR<any>("/quiz");
+  const { data, error, isLoading } = useSWR("/quiz");
 
   let quizList: quizBriefType[] | undefined = undefined;
   if (data) {
@@ -19,7 +19,7 @@ export default function QuizList({ sx, ...props }: {
       return {
         quizId: quiz.id,
         quizName: quiz.name,
-      }
+      };
     });
   }
 
@@ -60,5 +60,5 @@ export default function QuizList({ sx, ...props }: {
         </Fade>
       }
     </Stack>
-  )
+  );
 }

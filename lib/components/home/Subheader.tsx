@@ -1,10 +1,10 @@
 import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Stack, Typography, useTheme } from "@mui/material";
-import SouthWestIcon from '@mui/icons-material/SouthWest';
+import SouthWestIcon from "@mui/icons-material/SouthWest";
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 import LaunchSharpIcon from "@mui/icons-material/LaunchSharp";
-import LoopSharpIcon from '@mui/icons-material/LoopSharp';
+import LoopSharpIcon from "@mui/icons-material/LoopSharp";
 import TypographyButton from "@/lib/components/button/TypographyButton";
 import databases from "@/lib/contents/databases";
 
@@ -17,7 +17,7 @@ export default function Subheader({ variant, onRandomQuestion }: SubheaderProps)
   const theme = useTheme();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const db = searchParams?.get("db")
+  const db = searchParams?.get("db");
 
   const handleOnClick = (href: string) => {
     router.push(href);
@@ -27,7 +27,7 @@ export default function Subheader({ variant, onRandomQuestion }: SubheaderProps)
     if (onRandomQuestion) {
       onRandomQuestion();
     }
-  }
+  };
 
   switch (variant) {
     case "home":
@@ -44,7 +44,7 @@ export default function Subheader({ variant, onRandomQuestion }: SubheaderProps)
             }} /> 点击职位/科室开始导览
           </Typography>
         </Stack>
-      )
+      );
 
     case "learn":
       return (
@@ -79,13 +79,13 @@ export default function Subheader({ variant, onRandomQuestion }: SubheaderProps)
                       top: "0.15em",
                     }} /> {database.chineseTitle}
                   </TypographyButton>
-                )
+                );
               }
             })}
 
           </Stack>
         </Stack>
-      )
+      );
 
     case "quiz":
       return (
@@ -115,6 +115,6 @@ export default function Subheader({ variant, onRandomQuestion }: SubheaderProps)
             </TypographyButton>
           </Stack>
         </Stack>
-      )
+      );
   }
 }

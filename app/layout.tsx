@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import axios from "@/lib/utils/axios";
 import React from "react";
@@ -28,7 +28,7 @@ const swrConfig = {
   revalidateOnReconnect: false,
   dedupingInterval: 0,
   focusThrottleInterval: 0,
-}
+};
 
 export default function RootLayout({ children }: {
   children: React.ReactNode
@@ -52,5 +52,5 @@ export default function RootLayout({ children }: {
         </Provider>
       </body>
     </html>
-  )
+  );
 }

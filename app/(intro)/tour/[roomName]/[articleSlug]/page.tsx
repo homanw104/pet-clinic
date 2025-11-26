@@ -4,7 +4,7 @@ import PageContent from "@/app/(intro)/tour/[roomName]/[articleSlug]/page-conten
 import rooms from "@/lib/contents/rooms";
 
 export async function generateStaticParams() {
-  let paramsList: { roomName: string; articleSlug: string }[] = [];
+  const paramsList: { roomName: string; articleSlug: string }[] = [];
 
   for (const roomBrief of rooms) {
     const articleSlugs = await getArticleSlugs(roomBrief.englishID);
@@ -13,7 +13,7 @@ export async function generateStaticParams() {
         roomName: roomBrief.englishID,
         articleSlug: slug,
       }))
-    )
+    );
   }
 
   return paramsList;
@@ -46,5 +46,5 @@ export default async function Page({ params }: {
 
   return (
     <PageContent article={article} />
-  )
+  );
 }

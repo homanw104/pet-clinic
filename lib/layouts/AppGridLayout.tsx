@@ -72,7 +72,7 @@ function OverlayBox({ children }: OverlayProps) {
         </Grid>
       </Container>
     </Box>
-  )
+  );
 }
 
 export default function AppGridLayout({ children, overlay, bgColor, bgImage }: LayoutProps) {
@@ -100,5 +100,5 @@ export default function AppGridLayout({ children, overlay, bgColor, bgImage }: L
       {/* Render OverlayBox when overlay is not empty */}
       {overlay && <OverlayBox>{overlay}</OverlayBox>}
     </>
-  )
+  );
 }

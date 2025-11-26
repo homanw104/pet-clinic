@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import MarkdownArticle from "@/lib/components/atomic/Markdown";
@@ -16,5 +16,5 @@ export default function PageContent({ article }: {
         </MarkdownArticle>
       </OverlayArticleBox>
     </>
-  )
+  );
 }

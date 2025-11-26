@@ -18,5 +18,5 @@ export default function ListButton({ children, ...props }: ButtonProps) {
         </Typography>
       </Stack>
     </Button>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -33,7 +33,7 @@ export default function OverlayMobileHeader({ section, title, subtitle, articleB
   const handleOnclick = (event: React.MouseEvent<HTMLElement>) => {
     // Allow clicking inside the box without toggling close in the parent
     event.stopPropagation();
-  }
+  };
 
   return (
     <Box
@@ -65,5 +65,5 @@ export default function OverlayMobileHeader({ section, title, subtitle, articleB
         </Stack>
       </Paper>
     </Box>
-  )
+  );
 }

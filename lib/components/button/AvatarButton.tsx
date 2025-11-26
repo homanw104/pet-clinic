@@ -32,5 +32,5 @@ export default function AvatarButton({ children, src, alt, name, ...props }: Ava
         </Stack>
       </Stack>
     </Button>
-  )
-};
+  );
+}

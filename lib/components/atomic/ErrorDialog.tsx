@@ -5,7 +5,7 @@ export default function ErrorDialog({ title, message, open, onClose }: {
   title?: string;
   message?: string;
   open: boolean;
-  onClose: () => {};
+  onClose: () => object;
 }) {
   return (
     <Dialog
@@ -29,5 +29,5 @@ export default function ErrorDialog({ title, message, open, onClose }: {
         </Button>
       </DialogActions>
     </Dialog>
-  )
+  );
 }

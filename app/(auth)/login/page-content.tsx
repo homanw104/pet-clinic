@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import axios from "@/lib/utils/axios";
@@ -55,7 +55,7 @@ export default function PageContent() {
 
       setIsLoading(false);
     }
-  }
+  };
 
   const handleOnClick = () => {
     const identifierValid = identifier.length > 0;
@@ -68,7 +68,7 @@ export default function PageContent() {
       setIsLoading(true);
       handleLogin().then();
     }
-  }
+  };
 
   return (
     <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
@@ -114,12 +114,12 @@ export default function PageContent() {
           </Button>
           <Button
             variant="outlined" size="large" disableElevation
-            onClick={() => { router.push("/register") }}
+            onClick={() => { router.push("/register"); }}
           >
             注册
           </Button>
         </Box>
       </Box>
     </Stack>
-  )
+  );
 }

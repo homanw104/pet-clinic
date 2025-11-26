@@ -18,5 +18,5 @@ export default function CustomThemeProvider({ children }: ThemeProps) {
     <ThemeProvider theme={(themeName === "lightTheme") ? lightTheme : darkTheme}>
       {children}
     </ThemeProvider>
-  )
+  );
 }

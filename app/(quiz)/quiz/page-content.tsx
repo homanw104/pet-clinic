@@ -1,29 +1,9 @@
-'use client';
+"use client";
 
 import React, { useContext, useEffect, useState } from "react";
 import useSWR from "swr";
-import { useRouter } from "next/navigation";
-import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
-import LoopSharpIcon from "@mui/icons-material/LoopSharp";
-import {
-  Box, CircularProgress,
-  Fade,
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme
-} from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
-import { resetError } from "@/lib/store/errorSlice";
-import ErrorDialog from "@/lib/components/atomic/ErrorDialog";
-import TitleButton from "@/lib/components/home/TitleButton";
-import LoginButton from "@/lib/components/home/LoginButton";
-import TypographyButton from "@/lib/components/button/TypographyButton";
+import { Box, CircularProgress, Fade, Stack, Typography, useTheme } from "@mui/material";
 import RandomQuestion from "@/lib/components/quiz/RandomQuestion";
-import QuizList from "@/lib/components/quiz/QuizList";
-import QuizListChips from "@/lib/components/quiz/QuizListChips";
-import Footer from "@/lib/components/home/Footer";
 import questionDataType from "@/lib/types/questionDataType";
 import { RandomQuizContext } from "@/lib/components/context/RandomQuizContext";
 
@@ -66,10 +46,10 @@ export default function PageContent() {
         questionData?.question.optD
       ],
       answer: questionData?.question.answer
-    }
+    };
   }
 
-  // Reset question when context signals a refresh
+  // Reset question when context signals a refresh via refreshTimestamp change
   useEffect(() => {
     setQuestionId(null);
   }, [refreshTimestamp]);

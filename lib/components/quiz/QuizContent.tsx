@@ -91,5 +91,5 @@ export default function QuizContent({ quizData }: QuizContentProps) {
         isFinal={isFinal}
       />
     </Stack>
-  )
+  );
 }

@@ -23,5 +23,5 @@ export default async function Layout({ children, params }: {
     <LayoutContent title={chineseTitle} subtitle={englishID} articleBriefList={articleBriefList}>
       {children}
     </LayoutContent>
-  )
+  );
 }

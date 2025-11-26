@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import axios from "@/lib/utils/axios";
 import { useRouter } from "next/navigation";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import DoneIcon from '@mui/icons-material/Done';
+import DoneIcon from "@mui/icons-material/Done";
 import ErrorDialog from "@/lib/components/atomic/ErrorDialog";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { raiseError, resetError } from "@/lib/store/errorSlice";
@@ -58,7 +58,7 @@ export default function PageContent() {
 
       setIsLoading(false);
     }
-  }
+  };
 
   const handleOnClick = () => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -78,7 +78,7 @@ export default function PageContent() {
       setIsLoading(true);
       handleRegister().then();
     }
-  }
+  };
 
   return (
     <Stack spacing={4} direction="column" justifyContent="center" alignItems="stretch" margin="2rem">
@@ -145,12 +145,12 @@ export default function PageContent() {
           </Button>
           <Button
             variant="outlined" size="large" disableElevation
-            onClick={() => { router.push("/login")}}
+            onClick={() => { router.push("/login");}}
           >
             登录
           </Button>
         </Box>
       </Box>
     </Stack>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import "@photo-sphere-viewer/core/index.scss";
-import "@photo-sphere-viewer/markers-plugin/index.scss"
+import "@photo-sphere-viewer/markers-plugin/index.scss";
 import React, { createRef, RefObject, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Box, useTheme } from "@mui/material";
@@ -41,13 +41,13 @@ export default function PhotoSphere({ src, markers }: PageProps) {
     markers = markers.map((marker) => {
       if (typeof marker.tooltip === "string") {
         const tooltip = marker.tooltip;
-        marker.tooltip = {content: tooltip, position: "center left", className: "sphere-tooltip", trigger: "hover"}
+        marker.tooltip = { content: tooltip, position: "center left", className: "sphere-tooltip", trigger: "hover" };
       } else {
         const tooltip = marker.tooltip ? marker.tooltip.content : "";
-        marker.tooltip = {content: tooltip, position: "center left", className: "sphere-tooltip", trigger: "hover"}
+        marker.tooltip = { content: tooltip, position: "center left", className: "sphere-tooltip", trigger: "hover" };
       }
       return marker;
-    })
+    });
   }
 
   useEffect(() => {
@@ -103,5 +103,5 @@ export default function PhotoSphere({ src, markers }: PageProps) {
         border: "none",
       },
     }} />
-  )
+  );
 }
