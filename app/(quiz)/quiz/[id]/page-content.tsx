@@ -1,84 +1,61 @@
 'use client';
 
-import React, { useState } from "react";
-import useSWR from "swr";
+import { Box, CircularProgress, Fade, Grid, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import quizDataType from "@/lib/types/quizDataType";
+import useSWR from "swr";
+import LoginButton from "@/lib/components/home/LoginButton";
+import QuizList from "@/lib/components/quiz/QuizList";
+import QuizContent from "@/lib/components/quiz/QuizContent";
+import ConfirmDialog from "@/lib/components/atomic/ConfirmDialog";
+import TitleButton from "@/lib/components/home/TitleButton";
+import TypographyButton from "@/lib/components/button/TypographyButton";
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 import LoopSharpIcon from "@mui/icons-material/LoopSharp";
-import {
-  Box, CircularProgress,
-  Fade,
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme
-} from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
+import QuizListChips from "@/lib/components/quiz/QuizListChips";
 import { resetError } from "@/lib/store/errorSlice";
 import ErrorDialog from "@/lib/components/atomic/ErrorDialog";
-import TitleButton from "@/lib/components/home/TitleButton";
-import LoginButton from "@/lib/components/home/LoginButton";
-import TypographyButton from "@/lib/components/button/TypographyButton";
-import RandomQuestion from "@/lib/components/quiz/RandomQuestion";
-import QuizList from "@/lib/components/quiz/QuizList";
-import QuizListChips from "@/lib/components/quiz/QuizListChips";
+import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import Footer from "@/lib/components/home/Footer";
-import questionDataType from "@/lib/types/questionDataType";
 
-export default function PageContent() {
+export default function PageContent({ quizId }: {
+  quizId: string;
+}) {
   const theme = useTheme();
   const router = useRouter();
   const isXsScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isSmScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const { data, error, isLoading } = useSWR<any>(`/quiz/${quizId}`);
 
   const dispatch = useAppDispatch();
   const isError = useAppSelector(state => state.error.isError);
   const errorMsg = useAppSelector(state => state.error.errorMsg);
 
-  // Question fetching and handling
-  const [questionId, setQuestionId] = useState(null);
-  const { data: questionIdsData, error: questionIdsError, isLoading: questionIdsLoading } = useSWR("/question");
-  const { data: questionData, error: questionError, isLoading: questionLoading, mutate: questionMutate }
-    = useSWR(() => (questionId ? `/question/${questionId}` : null));
+  const [isDiscardDialogActive, setIsDiscardDialogActive] = useState(false);
 
-  const isLoading = questionLoading || questionIdsLoading;
-  const error = questionError || questionIdsError;
+  let quizData: quizDataType | undefined = undefined;
+  if (data) {
+    quizData = {
+      quizId: data.quiz.id,
+      quizName: data.quiz.title,
+      questions: data.quiz.questions.map((q: any) => { return {
+        questionId: q.id,
+        description: q.description,
+        options: [q.optA, q.optB, q.optC, q.optD],
+        answer: q.answer
+      }})
+    };
+  }
 
-  const handleRefreshQuestion = () => {
-    if (questionIdsData) {
-      const ids = questionIdsData.question_ids;
-      let index = 0;
-      do { index = Math.floor(Math.random() * ids.length) } while (ids.length > 1 && ids[index] === questionId);
-      setQuestionId(ids[index]);
-      questionMutate().then();
-    }
+  const handleDialogCancel = () => {
+    setIsDiscardDialogActive(false);
   };
 
-  // Set a random question id once the id list is populated
-  if (questionIdsData && questionId === null) {
-    const ids = questionIdsData.question_ids;
-    let index = 0;
-    // eslint-disable-next-line react-hooks/purity
-    do { index = Math.floor(Math.random() * ids.length) } while (ids.length > 1 && ids[index] === questionId);
-    setQuestionId(ids[index]);
-  }
-
-  // Populate question when data is available
-  let question: questionDataType | undefined = undefined;
-  if (questionData) {
-    question = {
-      questionId: questionData?.question._id,
-      description: questionData?.question.description,
-      options: [
-        questionData?.question.optA,
-        questionData?.question.optB,
-        questionData?.question.optC,
-        questionData?.question.optD
-      ],
-      answer: questionData?.question.answer
-    }
-  }
+  const handleDialogConfirm = () => {
+    setIsDiscardDialogActive(false);
+    router.push("/quiz");
+  };
 
   return (
     <Grid container spacing="2rem">
@@ -109,7 +86,7 @@ export default function PageContent() {
                 }} /> 返回导览
               </TypographyButton>
               <TypographyButton variant={isSmScreen ? "h5" : "h4"}
-                                onClick={handleRefreshQuestion} sx={{display: { xs: "none", sm: "block" }}}>
+                                onClick={() => setIsDiscardDialogActive(true)} sx={{display: { xs: "none", sm: "block" }}}>
                 <LoopSharpIcon sx={{
                   fontSize: {
                     sm: theme.typography.h5.fontSize,
@@ -118,19 +95,10 @@ export default function PageContent() {
                   transform: "rotate(-45deg)",
                   position: "relative",
                   top: "0.15em",
-                }} /> 随机下一题
+                }} /> 随机测试
               </TypographyButton>
             </Stack>
             <LoginButton variant="h5" sx={{ display: { xs: "block", sm: "none" }}} />
-          </Stack>
-          <Stack spacing={2} direction="row" justifyContent="flex-end" alignItems="baseline"
-                 sx={{ display: { xs: "inline-flex", sm: "none" }}}>
-            <TypographyButton variant="h5" noWrap={true} onClick={ () => router.push("/") }>
-              <WestOutlinedIcon sx={{ fontSize: theme.typography.h5.fontSize, position: "relative", top: "0.2em" }} /> 返回导览
-            </TypographyButton>
-            <TypographyButton variant="h5" noWrap={true} onClick={handleRefreshQuestion}>
-              <LoopSharpIcon sx={{ fontSize: theme.typography.h5.fontSize, transform: "rotate(-45deg)", position: "relative", top: "0.15em" }} /> 随机下一题
-            </TypographyButton>
           </Stack>
         </Stack>
       </Grid>
@@ -155,17 +123,19 @@ export default function PageContent() {
             </Fade>
           }
 
-          {!isLoading && question &&
-            <Fade in={Boolean(question)} unmountOnExit>
-              <Box>
-                <RandomQuestion question={question} />
+          {!isLoading && quizData &&
+            <Fade in={Boolean(quizData)} unmountOnExit>
+              <Box padding="2rem">
+                <QuizContent
+                  quizData={quizData}
+                />
               </Box>
             </Fade>
           }
 
           {!isLoading && error &&
             <Fade in={error} unmountOnExit>
-              <Stack direction="row" alignItems="center" justifyContent="center" height="600px">
+              <Stack direction="row" alignItems="center" justifyContent="center" height="36rem">
                 <Typography variant="h6" paddingLeft="0.5rem">加载失败！</Typography>
               </Stack>
             </Fade>
@@ -176,6 +146,14 @@ export default function PageContent() {
       <Grid item xs={12}>
         <Footer />
       </Grid>
+
+      <ConfirmDialog
+        isActive={isDiscardDialogActive}
+        title={"返回随机测试"}
+        text={"确认后将清除当前测试进度并返回随机测试！"}
+        onCancel={handleDialogCancel}
+        onConfirm={handleDialogConfirm}
+      />
     </Grid>
-  );
+  )
 }

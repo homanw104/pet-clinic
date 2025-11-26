@@ -9,7 +9,8 @@ export default function ListButton({ children, ...props }: ButtonProps) {
       color: theme.palette.surface.onMain,
       overflow: "hidden",
       padding: 0,
-      height: "2.5rem",
+      height: "3rem",
+      borderRadius: "1rem",
     }}>
       <Stack direction="column" spacing="0.25rem" alignItems="center" justifyContent="stretch">
         <Typography variant="button" align="left" noWrap={true} lineHeight={1}>

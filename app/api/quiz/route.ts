@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Types } from "mongoose";
 import { connectDB } from "@/lib/utils/mongoose";
 import Quiz from "@/lib/models/Quiz";
 
@@ -53,14 +54,14 @@ export async function GET() {
   try {
     await connectDB();
     const docs = await Quiz.find({}, "_id name").lean();
-    const ids = docs.map((doc) => {
+    const quizzes = docs.map((doc) => {
       return {
         id: doc._id,
         name: doc.name
       };
     });
     return NextResponse.json(
-      { success: "true", message: "Query success", quiz_ids: ids },
+      { success: "true", message: "Query success", quizzes: quizzes },
       { status: 200 }
     );
   } catch (error) {
