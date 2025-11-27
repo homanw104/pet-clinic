@@ -15,8 +15,8 @@ export default function PageContent({ quizId }: {
   let quizData: quizDataType | undefined = undefined;
   if (data) {
     quizData = {
-      quizId: data.quiz.id,
-      quizName: data.quiz.title,
+      quizId: data.quiz._id,
+      quizName: data.quiz.name,
       questions: data.quiz.questions.map((q: any) => {
         return {
           questionId: q.id,
@@ -45,7 +45,7 @@ export default function PageContent({ quizId }: {
 
       {!isLoading && quizData &&
         <Fade in={Boolean(quizData)} unmountOnExit>
-          <Box padding="2rem">
+          <Box padding="2rem 0rem">
             <QuizContent
               quizData={quizData}
             />

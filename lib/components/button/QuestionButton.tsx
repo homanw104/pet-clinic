@@ -57,8 +57,9 @@ export default function QuestionButton({ children, state = "default", ...props }
         <Button
           fullWidth disableElevation variant="outlined" color="primary" {...props} sx={{
             cursor: "pointer", padding: "0.5rem 1rem", height: "3rem",
+            "&:focus": { boxShadow: `0 0 0 4px ${hexToRGBA(theme.palette.primary.main, 0.3)}` },
             boxShadow: `0 0 0 4px ${hexToRGBA(theme.palette.primary.main, 0.3)}`,
-            transition: "box-shadow 0.3s",
+            transition: "box-shadow 0.3s"
           }}
         >
           <Typography variant="button" sx={{ textAlign: "justify" }}>

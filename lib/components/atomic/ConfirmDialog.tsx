@@ -16,6 +16,7 @@ export default function ConfirmDialog({ isActive, title, text, onCancel, onConfi
       onClose={onCancel}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
+      sx={{ ".MuiPaper-root": { borderRadius: "1rem" }}}
     >
       <DialogTitle id="alert-dialog-title">
         {title}

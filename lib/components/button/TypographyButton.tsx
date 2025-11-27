@@ -27,7 +27,7 @@ export default function TypographyButton({ children, variant, onClick, sx, ...pr
       break;
     case "h6":
       backgroundSize = "2px 2px";
-      backgroundPosition = "0 1.35em";
+      backgroundPosition = "0 1.4em";
       break;
     default:
       backgroundSize = "1px 1px";

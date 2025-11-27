@@ -10,7 +10,7 @@ interface ListProps {
   isFinal: boolean;   // When isFinal, answers are revealed and buttons are disabled
 }
 
-export default function QuestionList({ questions, selections, setSelections, isFinal }: ListProps) {
+export default function QuizContentQuestions({ questions, selections, setSelections, isFinal }: ListProps) {
   const handleOnClick = (questionIndex: number, optionIndex: number) => {
     // Ignore clicks when the quiz is final
     if (isFinal) return;
@@ -24,7 +24,7 @@ export default function QuestionList({ questions, selections, setSelections, isF
   };
 
   return (
-    <Stack direction="column">
+    <Stack direction="column" padding="0rem 2rem">
 
       {questions.map((question, questionIndex) => (
         <Stack direction="row" key={questionIndex} >
@@ -37,7 +37,7 @@ export default function QuestionList({ questions, selections, setSelections, isF
           </Box>
           <Stack direction="column" flexGrow="1">
             <Typography>{question.description}</Typography>
-            <Grid container maxWidth="752px" columns={2} spacing={2} sx={{
+            <Grid container maxWidth="47rem" columns={2} spacing={2} sx={{
               paddingTop: "1rem",
               paddingBottom: "3rem",
             }}>

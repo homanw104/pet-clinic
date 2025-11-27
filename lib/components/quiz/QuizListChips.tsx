@@ -42,8 +42,8 @@ export default function QuizListChips({ sx, ...props }: {
     <Box sx={{ overflowX: "auto", ...sx }} {...props}>
       <ConfirmDialog
         isActive={isDiscardDialogActive}
-        title={"返回随机测试"}
-        text={"确认后将清除当前测试进度并返回随机测试！"}
+        title={"确认开始测试"}
+        text={"确认后将加载所选测试并清除当前测试进度！"}
         onCancel={handleDialogCancel}
         onConfirm={handleDialogConfirm}
       />
@@ -62,13 +62,10 @@ export default function QuizListChips({ sx, ...props }: {
         <Fade in={Boolean(quizList)}>
           <Stack direction="row" spacing="0.5rem">
             {quizList.map((quiz, index) => (
-              <Chip
-                label={quiz.quizName} key={index}
-                onClick={() => {
-                  setDiscardDialogQuizId(quiz.quizId);
-                  setIsDiscardDialogActive(true);
-                }}
-              />
+              <Chip label={quiz.quizName} key={index} onClick={() => {
+                setDiscardDialogQuizId(quiz.quizId);
+                setIsDiscardDialogActive(true);
+              }} />
             ))}
           </Stack>
         </Fade>

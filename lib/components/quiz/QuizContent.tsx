@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Alert, Divider, Snackbar, Stack, Typography, useTheme } from "@mui/material";
-import QuestionList from "@/lib/components/quiz/QuestionList";
+import React, { useState } from "react";
+import { Alert, Box, Divider, Snackbar, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import QuizContentQuestions from "@/lib/components/quiz/QuizContentQuestions";
 import TypographyButton from "@/lib/components/button/TypographyButton";
-import SouthWestIcon from "@mui/icons-material/SouthWest";
+import NorthWestIcon from "@mui/icons-material/NorthWest";
 import EastIcon from "@mui/icons-material/East";
 import quizDataType from "@/lib/types/quizDataType";
 
-interface QuizContentProps {
+export default function QuizContent({ quizData }: {
   quizData: quizDataType;
-}
-
-export default function QuizContent({ quizData }: QuizContentProps) {
+}) {
   const theme = useTheme();
+  const isSmScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  // When isFinal is true, the quiz is finished and the user can only reset the quiz
-  const [isFinal, setIsFinal] = useState(false);
+  // When isFinished is true, the quiz is finished and the user can only reset the quiz
+  const [isFinished, setIsFinished] = useState(false);
 
   // When isIncomplete is true, a warning is shown
   const [isIncomplete, setIsIncomplete] = useState(false);
@@ -22,19 +21,19 @@ export default function QuizContent({ quizData }: QuizContentProps) {
   // List of selection numbers, the index of each selection corresponds to the index of each question
   const [selections, setSelections] = useState<number[]>([]);
 
-  const handleFinalSubmit = () => {
+  const handleSubmitQuiz = () => {
     // Check if all questions are answered
     if (selections.length !== quizData.questions.length) {
       setIsIncomplete(true);
     } else {
-      setIsFinal(true);
+      setIsFinished(true);
     }
   };
 
   const handleResetQuiz = () => {
-    // Reset selections and isFinal state
+    // Reset selections and isFinished state
     setSelections([]);
-    setIsFinal(false);
+    setIsFinished(false);
   };
 
   const handleCloseWarning = () => {
@@ -42,38 +41,44 @@ export default function QuizContent({ quizData }: QuizContentProps) {
     setIsIncomplete(false);
   };
 
-  useEffect(() => {
-    // Reset quiz when quiz data change
-    handleResetQuiz();
-  }, [quizData]);
-
   return (
     <Stack direction="column" alignItems="stretch" justifyContent="flex-start" spacing={2}>
-      <Stack direction="row" alignItems="flex-end" justifyContent="space-between">
-        <Typography variant="h4">{quizData.quizName}</Typography>
-
-        {!isFinal &&
-          <TypographyButton variant="h5" onClick={() => handleFinalSubmit()}>
-            提交答案 <EastIcon sx={{
-              fontSize: theme.typography.h5.fontSize,
-              position: "relative",
-              top: "0.15em",
-            }} />
-          </TypographyButton>
-        }
-
-        {isFinal &&
-          <TypographyButton variant="h5" onClick={() => handleResetQuiz()}>
-            重做试卷 <SouthWestIcon sx={{
-              fontSize: theme.typography.h5.fontSize,
-              position: "relative",
-              top: "0.15em",
-            }} />
-          </TypographyButton>
-        }
-      </Stack>
+      <Typography variant={isSmScreen ? "h5" : "h4"} padding="0rem 2rem">
+        {quizData.quizName}
+      </Typography>
 
       <Divider />
+
+      <QuizContentQuestions
+        questions={quizData.questions}
+        selections={selections}
+        setSelections={setSelections}
+        isFinal={isFinished}
+      />
+
+      <Divider />
+
+      <Box display="flex" justifyContent="flex-end" padding="0rem 2rem">
+        {!isFinished &&
+          <TypographyButton variant="h6" onClick={() => handleSubmitQuiz()}>
+            提交答案 <EastIcon sx={{
+            fontSize: theme.typography.h5.fontSize,
+            position: "relative",
+            top: "0.15em",
+          }} />
+          </TypographyButton>
+        }
+
+        {isFinished &&
+          <TypographyButton variant="h6" onClick={() => handleResetQuiz()}>
+            重做试卷 <NorthWestIcon sx={{
+            fontSize: theme.typography.h5.fontSize,
+            position: "relative",
+            top: "0.15em",
+          }} />
+          </TypographyButton>
+        }
+      </Box>
 
       <Snackbar open={isIncomplete} onClose={handleCloseWarning} autoHideDuration={6000} anchorOrigin={{
         vertical: "bottom",
@@ -83,13 +88,6 @@ export default function QuizContent({ quizData }: QuizContentProps) {
           试卷未完成！
         </Alert>
       </Snackbar>
-
-      <QuestionList
-        questions={quizData.questions}
-        selections={selections}
-        setSelections={setSelections}
-        isFinal={isFinal}
-      />
     </Stack>
   );
 }
