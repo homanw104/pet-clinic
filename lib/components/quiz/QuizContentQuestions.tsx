@@ -7,13 +7,13 @@ interface ListProps {
   questions: questionDataType[];
   selections: number[];
   setSelections: React.Dispatch<React.SetStateAction<number[]>>;
-  isFinal: boolean;   // When isFinal, answers are revealed and buttons are disabled
+  isFinished: boolean;   // When isFinished, answers are revealed and buttons are disabled
 }
 
-export default function QuizContentQuestions({ questions, selections, setSelections, isFinal }: ListProps) {
+export default function QuizContentQuestions({ questions, selections, setSelections, isFinished }: ListProps) {
   const handleOnClick = (questionIndex: number, optionIndex: number) => {
     // Ignore clicks when the quiz is final
-    if (isFinal) return;
+    if (isFinished) return;
 
     // Save selection number
     setSelections((prev) => {
@@ -47,7 +47,7 @@ export default function QuizContentQuestions({ questions, selections, setSelecti
                 const answer = question.answer;
                 const selection = selections[questionIndex];
 
-                if (isFinal) {
+                if (isFinished) {
                   if (optionIndex === answer) {
                     state = "correct";
                   } else if (optionIndex === selection) {

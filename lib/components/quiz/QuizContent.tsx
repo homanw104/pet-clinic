@@ -21,11 +21,19 @@ export default function QuizContent({ quizData }: {
   // List of selection numbers, the index of each selection corresponds to the index of each question
   const [selections, setSelections] = useState<number[]>([]);
 
+  // Correct answers count
+  const [correctCount, setCorrectCount] = useState(0);
+
   const handleSubmitQuiz = () => {
     // Check if all questions are answered
     if (selections.length !== quizData.questions.length) {
       setIsIncomplete(true);
     } else {
+      let count = 0;
+      for (let i = 0; i < quizData.questions.length; i++) {
+        if (selections[i] === quizData.questions[i].answer) count++;
+      }
+      setCorrectCount(count);
       setIsFinished(true);
     }
   };
@@ -53,13 +61,13 @@ export default function QuizContent({ quizData }: {
         questions={quizData.questions}
         selections={selections}
         setSelections={setSelections}
-        isFinal={isFinished}
+        isFinished={isFinished}
       />
 
       <Divider />
 
-      <Box display="flex" justifyContent="flex-end" padding="0rem 2rem">
-        {!isFinished &&
+      {!isFinished &&
+        <Box display="flex" justifyContent="flex-end" padding="0rem 2rem">
           <TypographyButton variant="h6" onClick={() => handleSubmitQuiz()}>
             提交答案 <EastIcon sx={{
             fontSize: theme.typography.h5.fontSize,
@@ -67,9 +75,14 @@ export default function QuizContent({ quizData }: {
             top: "0.15em",
           }} />
           </TypographyButton>
-        }
+        </Box>
+      }
 
-        {isFinished &&
+      {isFinished &&
+        <Box display="flex" justifyContent="space-between" padding="0rem 2rem">
+          <Typography variant="h6">
+            正确 {correctCount}/{quizData.questions.length}
+          </Typography>
           <TypographyButton variant="h6" onClick={() => handleResetQuiz()}>
             重做试卷 <NorthWestIcon sx={{
             fontSize: theme.typography.h5.fontSize,
@@ -77,8 +90,8 @@ export default function QuizContent({ quizData }: {
             top: "0.15em",
           }} />
           </TypographyButton>
-        }
-      </Box>
+        </Box>
+      }
 
       <Snackbar open={isIncomplete} onClose={handleCloseWarning} autoHideDuration={6000} anchorOrigin={{
         vertical: "bottom",
