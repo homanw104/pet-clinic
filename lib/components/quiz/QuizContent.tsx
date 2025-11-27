@@ -15,7 +15,7 @@ export default function QuizContent({ quizData }: {
   // When isFinished is true, the quiz is finished and the user can only reset the quiz
   const [isFinished, setIsFinished] = useState(false);
 
-  // When isIncomplete is true, a warning is shown
+  // When isIncomplete is true, a warning is shown in the UI
   const [isIncomplete, setIsIncomplete] = useState(false);
 
   // List of selection numbers, the index of each selection corresponds to the index of each question
@@ -25,27 +25,37 @@ export default function QuizContent({ quizData }: {
   const [correctCount, setCorrectCount] = useState(0);
 
   const handleSubmitQuiz = () => {
-    // Check if all questions are answered
-    if (selections.length !== quizData.questions.length) {
-      setIsIncomplete(true);
-    } else {
-      let count = 0;
-      for (let i = 0; i < quizData.questions.length; i++) {
-        if (selections[i] === quizData.questions[i].answer) count++;
+    // Check both array length and null/undefined values
+    const incomplete = selections.length !== quizData.questions.length;
+
+    let isSelEmpty = false;
+    for (const s of selections) {
+      if (s == null) {
+        isSelEmpty = true;
+        break;
       }
-      setCorrectCount(count);
-      setIsFinished(true);
     }
+
+    if (incomplete || isSelEmpty) {
+      setIsIncomplete(true);
+      return;
+    }
+
+    let count = 0;
+    for (let i = 0; i < quizData.questions.length; i++) {
+      if (selections[i] === quizData.questions[i].answer) count++;
+    }
+
+    setCorrectCount(count);
+    setIsFinished(true);
   };
 
   const handleResetQuiz = () => {
-    // Reset selections and isFinished state
     setSelections([]);
     setIsFinished(false);
   };
 
   const handleCloseWarning = () => {
-    // Close warning
     setIsIncomplete(false);
   };
 
