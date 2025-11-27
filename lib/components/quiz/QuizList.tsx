@@ -1,10 +1,9 @@
 import useSWR from "swr";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Fade, Skeleton, Stack, Typography } from "@mui/material";
+import { Fade, Skeleton, Stack } from "@mui/material";
 import InfoCard from "@/lib/components/atomic/InfoCard";
 import ListButton from "@/lib/components/button/ListButton";
-import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import quizBriefType from "@/lib/types/quizBriefType";
 
 export default function QuizList({ sx, ...props }: {
@@ -13,9 +12,14 @@ export default function QuizList({ sx, ...props }: {
   const router = useRouter();
   const { data, error, isLoading } = useSWR("/quiz");
 
+  type backendQuizType = {
+    id: string;
+    name: string;
+  }
+
   let quizList: quizBriefType[] | undefined = undefined;
   if (data) {
-    quizList = data.quizzes?.map((quiz: any) => {
+    quizList = data.quizzes?.map((quiz: backendQuizType) => {
       return {
         quizId: quiz.id,
         quizName: quiz.name,
@@ -52,12 +56,8 @@ export default function QuizList({ sx, ...props }: {
       }
 
       {!isLoading && error &&
-        <Fade in={error} unmountOnExit>
-          <Stack direction="row" alignItems="center" justifyContent="center">
-            <WarningAmberIcon />
-            <Typography variant="h6" paddingLeft="0.5rem">无法连接到网络</Typography>
-          </Stack>
-        </Fade>
+        // Display nothing on error
+        <></>
       }
     </Stack>
   );

@@ -1,5 +1,5 @@
 type quizInfoType = {
-  quizId: number,
+  quizId: string,
   quizName: string,
 };
 
