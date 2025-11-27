@@ -5,6 +5,7 @@ import React from "react";
 import { Noto_Sans, Noto_Sans_Display, Noto_Sans_SC } from "next/font/google";
 import { Provider } from "react-redux";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CssBaseline } from "@mui/material";
 import { SWRConfig } from "swr";
 import { store } from "@/lib/store/store";
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: {
               <CustomThemeProvider>
                 <CssBaseline enableColorScheme />
                 {children}
+                <SpeedInsights/>
                 <Analytics />
               </CustomThemeProvider>
             </UserInitAuth>
