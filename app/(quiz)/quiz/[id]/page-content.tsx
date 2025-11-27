@@ -36,7 +36,7 @@ export default function PageContent({ quizId }: {
       minHeight: "36rem"
     }}>
       {isLoading &&
-        <Fade in={isLoading} style={{ transitionDelay: "200ms" }} unmountOnExit>
+        <Fade in={isLoading} style={{ transitionDelay: "200ms" }}>
           <Stack direction="column" alignItems="center" justifyContent="center" height="36rem">
             <CircularProgress />
           </Stack>
@@ -44,7 +44,7 @@ export default function PageContent({ quizId }: {
       }
 
       {!isLoading && quizData &&
-        <Fade in={Boolean(quizData)} unmountOnExit>
+        <Fade in={Boolean(quizData)}>
           <Box padding="2rem 0rem">
             <QuizContent
               quizData={quizData}
@@ -54,7 +54,7 @@ export default function PageContent({ quizId }: {
       }
 
       {!isLoading && error &&
-        <Fade in={error} unmountOnExit>
+        <Fade in={error}>
           <Stack direction="row" alignItems="center" justifyContent="center" height="36rem">
             <Typography variant="h6" paddingLeft="0.5rem">加载失败！</Typography>
           </Stack>

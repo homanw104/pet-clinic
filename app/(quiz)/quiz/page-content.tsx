@@ -62,7 +62,7 @@ export default function PageContent() {
       minHeight: "36rem"
     }}>
       {isLoading &&
-        <Fade in={isLoading} style={{ transitionDelay: "200ms" }} unmountOnExit>
+        <Fade in={isLoading} style={{ transitionDelay: "200ms" }}>
           <Stack direction="column" alignItems="center" justifyContent="center" height="36rem">
             <CircularProgress />
           </Stack>
@@ -70,7 +70,7 @@ export default function PageContent() {
       }
 
       {!isLoading && question &&
-        <Fade in={Boolean(question)} unmountOnExit>
+        <Fade in={Boolean(question)}>
           <Box>
             <RandomQuestion question={question} />
           </Box>
@@ -78,7 +78,7 @@ export default function PageContent() {
       }
 
       {!isLoading && error &&
-        <Fade in={error} unmountOnExit>
+        <Fade in={error}>
           <Stack direction="row" alignItems="center" justifyContent="center" height="600px">
             <Typography variant="h6" paddingLeft="0.5rem">加载失败！</Typography>
           </Stack>

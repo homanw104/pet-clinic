@@ -55,7 +55,7 @@ export default function QuizList({ sx, ...props }: {
       </InfoCard>
 
       {isLoading &&
-        <Fade in={isLoading} style={{ transitionDelay: "250ms" }} unmountOnExit>
+        <Fade in={isLoading} style={{ transitionDelay: "250ms" }}>
           <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
             <Skeleton variant="rounded" width="100%" height="3rem" sx={{ borderRadius: "1rem" }} />
             <Skeleton variant="rounded" width="100%" height="3rem" sx={{ borderRadius: "1rem" }} />
@@ -65,7 +65,7 @@ export default function QuizList({ sx, ...props }: {
       }
 
       {!isLoading && quizList &&
-        <Fade in={Boolean(quizList)} unmountOnExit>
+        <Fade in={Boolean(quizList)}>
           <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
             {quizList.map((quiz, index) => (
               <ListButton key={index} onClick={() => {
