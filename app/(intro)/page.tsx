@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pet Clinic",
-  description: "Pet clinic online learning platform."
+  description: "Pet Clinic online learning platform."
 };
 
 export default function Page() {

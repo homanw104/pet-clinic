@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: {
 
   return {
     title: title,
-    description: title
+    description: "Pet Clinic online learning platform."
   };
 }
 
