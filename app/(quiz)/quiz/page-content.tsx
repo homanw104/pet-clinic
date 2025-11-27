@@ -14,7 +14,7 @@ export default function PageContent() {
   const [questionId, setQuestionId] = useState<string | null>(null);
   const [lastQuestionId, setLastQuestionId] = useState<string | null>(null);
   const { data: questionIdsData, error: questionIdsError, isLoading: questionIdsLoading } = useSWR("/question");
-  const { data: questionData, error: questionError, isLoading: questionLoading, mutate: questionMutate }
+  const { data: questionData, error: questionError, isLoading: questionLoading }
     = useSWR(() => (questionId ? `/question/${questionId}` : null));
 
   const isLoading = questionLoading || questionIdsLoading;
