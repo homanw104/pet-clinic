@@ -119,7 +119,7 @@ export default function LayoutContent() {
             <NavButton
               name="database"
               tabIndex={isMount ? -1 : 0}
-              onClick={() => handleOnClick("/learn/case")} style={{ width: "100%" }}
+              onClick={() => handleOnClick("/case")} style={{ width: "100%" }}
             >
               病例库
             </NavButton>
