@@ -1,41 +1,32 @@
 import { NextResponse } from "next/server";
-import { Types } from "mongoose";
 import { connectDB } from "@/lib/utils/mongoose";
-import Quiz from "@/lib/models/Quiz";
+import Disease from "@/lib/models/Disease";
 
 /**
- * Create a quiz.
+ * Create a disease.
  * @param req
  * @constructor
  */
 export async function POST(req: Request) {
   try {
-    const { name, questions }: {
+    const { name, category, description }: {
       name: string;
-      questions: string[]
+      category: string;
+      description: string;
     } = await req.json();
 
-    if (!name || !questions || !Array.isArray(questions) || questions.length === 0) {
+    if (!name || !category || !description) {
       return NextResponse.json(
         { success: "false", error: "Missing field(s)" },
         { status: 400 }
       );
     }
 
-    for (const questionId of questions) {
-      if (!Types.ObjectId.isValid(questionId)) {
-        return NextResponse.json(
-          { success: "false", message: "Invalid question id" },
-          { status: 401 }
-        );
-      }
-    }
-
     await connectDB();
-    await Quiz.create({ name, questions });
+    await Disease.create({ name, category, description });
 
     return NextResponse.json(
-      { success: "true", message: "Quiz created" },
+      { success: "true", message: "Disease created" },
       { status: 201 }
     );
   } catch (error) {
@@ -48,21 +39,23 @@ export async function POST(req: Request) {
 }
 
 /**
- * Get the list of ids and names of quizzes.
+ * Get the list of ids, names, and categories of diseases.
  * @constructor
  */
 export async function GET() {
   try {
     await connectDB();
-    const docs = await Quiz.find({}, "_id name").lean();
-    const quizzes = docs.map((doc) => {
+    const docs = await Disease.find({}, "_id name category").lean();
+    const diseases = docs.map((doc) => {
       return {
         id: doc._id,
-        name: doc.name
+        name: doc.name,
+        category: doc.category,
       };
     });
+
     return NextResponse.json(
-      { success: "true", message: "Query success", quizzes: quizzes },
+      { success: "true", message: "Query success", diseases: diseases },
       { status: 200 }
     );
   } catch (error) {
