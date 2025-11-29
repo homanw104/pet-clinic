@@ -1,6 +1,6 @@
 import { Button, ButtonProps, Stack, Typography, useTheme } from "@mui/material";
 
-export default function ListButton({ children, ...props }: ButtonProps) {
+export default function QuizListButton({ children, ...props }: ButtonProps) {
   const theme = useTheme();
 
   return (

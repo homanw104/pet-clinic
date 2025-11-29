@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Fade, Skeleton, Stack } from "@mui/material";
 import InfoCard from "@/lib/components/atomic/InfoCard";
-import ListButton from "@/lib/components/button/ListButton";
-import quizBriefType from "@/lib/types/quizBriefType";
+import QuizListButton from "@/lib/components/quiz/QuizListButton";
 import ConfirmDialog from "@/lib/components/atomic/ConfirmDialog";
+import quizBriefType from "@/lib/types/quizBriefType";
 
 export default function QuizList({ sx, ...props }: {
   sx?: object;
@@ -68,12 +68,12 @@ export default function QuizList({ sx, ...props }: {
         <Fade in={Boolean(quizList)}>
           <Stack spacing={2} direction="column" justifyContent="flex-start" alignItems="stretch">
             {quizList.map((quiz, index) => (
-              <ListButton key={index} onClick={() => {
+              <QuizListButton key={index} onClick={() => {
                 setDiscardDialogQuizId(quiz.quizId);
                 setIsDiscardDialogActive(true);
               }}>
                 {quiz.quizName}
-              </ListButton>
+              </QuizListButton>
             ))}
           </Stack>
         </Fade>

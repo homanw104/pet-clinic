@@ -11,6 +11,7 @@ import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 import Footer from "@/lib/components/home/Footer";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";
 import { useRouter } from "next/navigation";
+import CaseList from "@/lib/components/case/CaseList";
 
 export default function LayoutContent({ children }: {
   children: React.ReactNode;
@@ -65,7 +66,7 @@ export default function LayoutContent({ children }: {
       </Grid>
 
       <Grid item xs={12} sm={5} md={4} lg={3}>
-        List
+        <CaseList />
       </Grid>
 
       <Grid item xs={12} sm={7} md={8} lg={9}>
