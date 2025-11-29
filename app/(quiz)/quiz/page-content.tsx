@@ -20,17 +20,17 @@ export default function PageContent() {
   const isLoading = questionLoading || questionIdsLoading;
   const error = questionError || questionIdsError;
 
-  const ids: string[] = questionIdsData?.question_ids || [];
+  const questions: [{ id: string }] = questionIdsData?.questions || [];
 
   // Set a random question id once the id list is populated and the question id is not set
   if (questionIdsData && !questionId) {
     let index = 0;
     do {
       // eslint-disable-next-line react-hooks/purity
-      index = Math.floor(Math.random() * ids.length);
-    } while (ids.length > 1 && ids[index] === lastQuestionId);
-    setQuestionId(ids[index]);  // Will be set to null on refresh
-    setLastQuestionId(ids[index]);  // Won't be set to null
+      index = Math.floor(Math.random() * questions.length);
+    } while (questions.length > 1 && questions[index].id === lastQuestionId);
+    setQuestionId(questions[index].id);  // Will be set to null on refresh
+    setLastQuestionId(questions[index].id);  // Won't be set to null
   }
 
   // Populate question when data is available

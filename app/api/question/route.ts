@@ -49,9 +49,13 @@ export async function GET() {
   try {
     await connectDB();
     const docs = await Question.find({}, "_id").lean();
-    const ids = docs.map((doc) => doc._id);
+    const questions = docs.map((doc) => {
+      return {
+        id: doc._id
+      };
+    });
     return NextResponse.json(
-      { success: "true", message: "Query success", question_ids: ids },
+      { success: "true", message: "Query success", questions: questions },
       { status: 200 }
     );
   } catch (error) {

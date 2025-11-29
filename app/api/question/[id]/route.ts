@@ -77,7 +77,7 @@ export async function PUT(
 
     if (!description || !answer || !optA || !optB || !optC || !optD) {
       return NextResponse.json(
-        { success: "false", error: "Missing field(s)" },
+        { success: "false", message: "Missing field(s)" },
         { status: 400 }
       );
     }
@@ -96,7 +96,7 @@ export async function PUT(
     }
 
     return NextResponse.json(
-      { success: "true", message: "Successfully updated the question" },
+      { success: "true", message: "Question updated" },
       { status: 200 }
     );
   } catch (error) {
@@ -139,7 +139,7 @@ export async function DELETE(
     }
 
     return NextResponse.json(
-      { success: "true", message: "Successfully deleted the question" },
+      { success: "true", message: "Question deleted" },
       { status: 200 }
     );
   } catch (error) {
