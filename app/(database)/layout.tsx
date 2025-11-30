@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Container } from "@mui/material";
 import LayoutContent from "@/app/(database)/layout-content";
+import DiseaseContextProvider from "@/lib/components/context/DiseaseContext";
 
 export default function layout({ children }: {
   children: React.ReactNode;
@@ -8,9 +9,11 @@ export default function layout({ children }: {
   return (
     <Box position="relative" flexDirection="column" height="100lvh">
       <Container sx={{ flexGrow: 1 }}>
-        <LayoutContent>
-          {children}
-        </LayoutContent>
+        <DiseaseContextProvider>
+          <LayoutContent>
+            {children}
+          </LayoutContent>
+        </DiseaseContextProvider>
       </Container>
     </Box>
   );

@@ -1,6 +1,8 @@
+import DiseaseDataType from "@/lib/types/diseaseDataType";
+
 type CategoryDataType = {
   categoryName: string;
-  diseases: string[];
+  diseases: DiseaseDataType[];
 }
 
 export default CategoryDataType;
