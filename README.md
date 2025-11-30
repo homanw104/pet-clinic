@@ -5,11 +5,11 @@ Visit our live demo at [pet-clinic.homans.world](https://pet-clinic.homans.world
 
 ![Screenshot](./assets/Screenshot.png "Screenshot")
 
-本课程项目旨在帮助兽医学生更好地学习相关知识。为此我们建立了一个虚拟的宠物诊所，用户可以在这里进行学习和练习。结项汇报请参考[在线演示文档](https://www.figma.com/proto/F97rlV8lIfX4KTrk71Kijc/Pet-Clinic-Prototype-v2.0?node-id=53988-27561)。
+本课程项目旨在帮助兽医学生更好地学习相关知识，为此我们建立了一个虚拟的宠物诊所，用户可以在这里进行学习和练习。项目中的学习内容仅供参考，不作专业建议。
 
-本项目在结项后有后续的维护和更新，如需要查看结项时的代码快照请参考 2023 年的最后一个提交。
+项目无需后端也可以正常运行，其中病例库 `Database` 和在线测试 `Quiz` 两个模块中的数据原先依赖[后端项目](https://github.com/MxaWnag/PetClinic)，现已将两个模块的后端也迁移到本项目中，你需要自己配置 MongoDB 数据库并且参照 `/api` 中的接口提供数据。
 
-项目无需后端也可以正常运行，但是 `learn` 和 `quiz` 模块中的数据获取依赖[后端项目](https://github.com/MxaWnag/PetClinic)，我们后续打算将这两个模块的后端也迁移到本项目中。如需在生产环境部署请参考[项目部署说明](docs/项目部署说明.md)，其中包括前后端的部署方法，包括 MariaDB、Docker、Jenkins 管理面板和域名访问的配置方法。如仅需运行此前端项目请继续阅读。
+如仅需运行此前端项目可以直接跳至下一段阅读。如需查阅结项时所需的生产环境要求请参考[项目部署说明](docs/项目部署说明.md)，其中包括前后端的部署方法，包含 MariaDB、Docker、Jenkins 管理面板和域名访问的配置方法。结项时的代码快照敬请参考 2023 年的最后一个提交，结项汇报则参考[在线演示文档](https://www.figma.com/proto/F97rlV8lIfX4KTrk71Kijc/Pet-Clinic-Prototype-v2.0?node-id=53988-27561)。
 
 ## Getting Started
 
@@ -35,9 +35,8 @@ is matched by `app/(intro)/job/[jobName]/[articleSlug].tsx`.
 Metadata of each route is prescribed in `contents`.
 Most of the routes are listed below.
 
-> We are migrating from Next.js Pages Router to App Router.
-> Pages Router and App Router currently coexist in this project.
-> The routes below are for reference only, and some of the files are in the `app` folder now.
+> We've migrated from Next.js Pages Router to App Router.
+> The routes below are for reference only, all the files are in the `app` folder now.
 
 ```txt
 pages/
@@ -98,3 +97,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Deploy Your Own Database
+
+The easiest way to deploy a MongoDB database is to use [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register).
+
+All you need is to create a free account and a cluster, then create a database user and whitelist your IP address. Finally, get the connection string and put it in your `.env.local` file as `MONGODB_URI`.
