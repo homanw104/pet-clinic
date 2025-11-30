@@ -38,7 +38,7 @@ export default function CaseList({ sx, ...props }: {
   }
 
   return (
-    <Stack spacing="1rem" direction="column" justifyContent="flex-start" alignItems="stretch" {...props} sx={{ ...sx, minHeight: "36rem" }}>
+    <Stack spacing="1rem" direction="column" justifyContent="flex-start" alignItems="stretch" {...props} sx={{ ...sx }}>
       <InfoCard>
         在下侧列表中选择疾病，查看相关案例！
       </InfoCard>
