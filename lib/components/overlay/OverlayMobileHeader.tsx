@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArticleList from "@/lib/components/overlay/ArticleList";
 import { unmountOverlay } from "@/lib/store/overlaySlice";
 import { useAppDispatch } from "@/lib/utils/hook";
-import ArticleBriefType from "@/lib/types/articleBriefType";
+import ArticleBriefType from "@/lib/types/ArticleBriefType";
 
 export default function OverlayMobileHeader({ section, title, subtitle, articleBriefList, ...props }: {
   section: string;

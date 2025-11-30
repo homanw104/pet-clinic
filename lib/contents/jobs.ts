@@ -1,4 +1,4 @@
-import JobBriefType from "@/lib/types/jobBriefType";
+import JobBriefType from "@/lib/types/JobBriefType";
 import receptionistIcon from "@/public/avatar/receptionist.png";
 import technicianIcon from "@/public/avatar/technician.png";
 import veterinarianIcon from "@/public/avatar/veterinarian.png";

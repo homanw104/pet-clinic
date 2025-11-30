@@ -5,8 +5,8 @@
 import fs from "fs";
 import readline from "readline";
 import { join } from "path";
-import ArticleDataType from "@/lib/types/articleDataType";
-import ArticleBriefType from "@/lib/types/articleBriefType";
+import ArticleDataType from "@/lib/types/ArticleDataType";
+import ArticleBriefType from "@/lib/types/ArticleBriefType";
 
 const baseDir = process.cwd();
 const contentDir = `${baseDir}/lib/contents`;

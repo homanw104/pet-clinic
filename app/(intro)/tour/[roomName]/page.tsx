@@ -1,5 +1,5 @@
 import PageContent from "@/app/(intro)/tour/[roomName]/page-content";
-import RoomBriefType from "@/lib/types/roomBriefType";
+import RoomBriefType from "@/lib/types/RoomBriefType";
 import rooms from "@/lib/contents/rooms";
 import { Metadata } from "next";
 

@@ -1,4 +1,4 @@
-import DiseaseDataType from "@/lib/types/diseaseDataType";
+import DiseaseDataType from "@/lib/types/DiseaseDataType";
 
 type CategoryDataType = {
   categoryName: string;

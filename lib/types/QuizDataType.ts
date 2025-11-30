@@ -1,4 +1,4 @@
-import questionDataType from "@/lib/types/questionDataType";
+import questionDataType from "@/lib/types/QuestionDataType";
 
 type quizDataType = {
   quizId: string;

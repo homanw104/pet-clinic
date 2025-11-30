@@ -8,7 +8,7 @@ import { mountOverlay } from "@/lib/store/overlaySlice";
 import SidebarJobHeaderBox from "@/lib/components/overlay/SidebarJobHeaderBox";
 import ArticleList from "@/lib/components/overlay/ArticleList";
 import OverlayMobileHeader from "@/lib/components/overlay/OverlayMobileHeader";
-import ArticleBriefType from "@/lib/types/articleBriefType";
+import ArticleBriefType from "@/lib/types/ArticleBriefType";
 
 export default function LayoutContent({ imgSrc, imgAlt, title, subtitle, articleBriefList, children }: {
   imgSrc: StaticImageData;

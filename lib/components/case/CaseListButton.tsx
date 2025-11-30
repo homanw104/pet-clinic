@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Button, ButtonProps, Collapse, Stack, Typography, useTheme } from "@mui/material";
-import DiseaseDataType from "@/lib/types/diseaseDataType";
+import DiseaseDataType from "@/lib/types/DiseaseDataType";
 import { DiseaseContext } from "@/lib/components/context/DiseaseContext";
 
 export default function CaseListButton({ children, diseases, ...props }: {

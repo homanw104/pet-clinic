@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Alert, Box, Divider, Snackbar, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import QuizContentQuestions from "@/lib/components/quiz/QuizContentQuestions";
-import TypographyButton from "@/lib/components/button/TypographyButton";
+import TypographyButton from "@/lib/components/atomic/TypographyButton";
 import NorthWestIcon from "@mui/icons-material/NorthWest";
 import EastIcon from "@mui/icons-material/East";
-import quizDataType from "@/lib/types/quizDataType";
+import quizDataType from "@/lib/types/QuizDataType";
 
 export default function QuizContent({ quizData }: {
   quizData: quizDataType;

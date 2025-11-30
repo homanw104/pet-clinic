@@ -2,7 +2,7 @@
 
 import { Box, CircularProgress, Fade, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
-import quizDataType from "@/lib/types/quizDataType";
+import quizDataType from "@/lib/types/QuizDataType";
 import useSWR from "swr";
 import QuizContent from "@/lib/components/quiz/QuizContent";
 

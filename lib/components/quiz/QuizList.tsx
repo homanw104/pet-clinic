@@ -5,7 +5,7 @@ import { Fade, Skeleton, Stack } from "@mui/material";
 import InfoCard from "@/lib/components/atomic/InfoCard";
 import QuizListButton from "@/lib/components/quiz/QuizListButton";
 import ConfirmDialog from "@/lib/components/atomic/ConfirmDialog";
-import quizBriefType from "@/lib/types/quizBriefType";
+import quizBriefType from "@/lib/types/QuizBriefType";
 
 export default function QuizList({ sx, ...props }: {
   sx?: object;

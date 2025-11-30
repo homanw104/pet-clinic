@@ -1,4 +1,4 @@
-import RoomBriefType from "@/lib/types/roomBriefType";
+import RoomBriefType from "@/lib/types/RoomBriefType";
 
 const rooms: RoomBriefType[] = [
   {

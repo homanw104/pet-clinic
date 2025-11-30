@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Chip, Fade, Skeleton, Stack } from "@mui/material";
 import useSWR from "swr";
-import quizBriefType from "@/lib/types/quizBriefType";
+import quizBriefType from "@/lib/types/QuizBriefType";
 import ConfirmDialog from "@/lib/components/atomic/ConfirmDialog";
 
 export default function QuizListChips({ sx, ...props }: {

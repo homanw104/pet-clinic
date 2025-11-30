@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import useSWR from "swr";
 import { Box, CircularProgress, Fade, Stack, Typography, useTheme } from "@mui/material";
 import RandomQuestion from "@/lib/components/quiz/RandomQuestion";
-import questionDataType from "@/lib/types/questionDataType";
+import questionDataType from "@/lib/types/QuestionDataType";
 import { RandomQuizContext } from "@/lib/components/context/RandomQuizContext";
 
 export default function PageContent() {

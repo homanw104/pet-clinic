@@ -6,7 +6,7 @@ import ErrorDialog from "@/lib/components/atomic/ErrorDialog";
 import { resetError } from "@/lib/store/errorSlice";
 import TitleButton from "@/lib/components/home/TitleButton";
 import LoginButton from "@/lib/components/home/LoginButton";
-import TypographyButton from "@/lib/components/button/TypographyButton";
+import TypographyButton from "@/lib/components/atomic/TypographyButton";
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 import Footer from "@/lib/components/home/Footer";
 import { useAppDispatch, useAppSelector } from "@/lib/utils/hook";

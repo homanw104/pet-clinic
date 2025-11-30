@@ -7,7 +7,7 @@ import { mountOverlay } from "@/lib/store/overlaySlice";
 import ArticleList from "@/lib/components/overlay/ArticleList";
 import SidebarTourHeaderBox from "@/lib/components/overlay/SidebarTourHeaderBox";
 import OverlayMobileHeader from "@/lib/components/overlay/OverlayMobileHeader";
-import ArticleBriefType from "@/lib/types/articleBriefType";
+import ArticleBriefType from "@/lib/types/ArticleBriefType";
 
 export default function LayoutContent({ title, subtitle, articleBriefList, children }: {
   title: string;

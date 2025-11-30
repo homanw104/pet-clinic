@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
-import QuestionButton from "@/lib/components/button/QuestionButton";
-import questionDataType from "@/lib/types/questionDataType";
+import QuestionButton from "@/lib/components/quiz/QuestionButton";
+import questionDataType from "@/lib/types/QuestionDataType";
 
 interface ListProps {
   questions: questionDataType[];

@@ -12,7 +12,7 @@ import QuizList from "@/lib/components/quiz/QuizList";
 import QuizListChips from "@/lib/components/quiz/QuizListChips";
 import TitleButton from "@/lib/components/home/TitleButton";
 import LoginButton from "@/lib/components/home/LoginButton";
-import TypographyButton from "@/lib/components/button/TypographyButton";
+import TypographyButton from "@/lib/components/atomic/TypographyButton";
 import Footer from "@/lib/components/home/Footer";
 import ErrorDialog from "@/lib/components/atomic/ErrorDialog";
 import ConfirmDialog from "@/lib/components/atomic/ConfirmDialog";

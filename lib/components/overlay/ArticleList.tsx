@@ -3,7 +3,7 @@
 import React from "react";
 import { useParams, useRouter } from "next/navigation";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
-import ArticleBriefType from "@/lib/types/articleBriefType";
+import ArticleBriefType from "@/lib/types/ArticleBriefType";
 
 export default function ArticleList({ section, subtitle, articleBriefList }: {
   section: string;

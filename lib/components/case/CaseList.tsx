@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { Fade, Skeleton, Stack } from "@mui/material";
 import InfoCard from "@/lib/components/atomic/InfoCard";
 import CaseListButton from "@/lib/components/case/CaseListButton";
-import CategoryDataType from "@/lib/types/categoryDataType";
+import CategoryDataType from "@/lib/types/CategoryDataType";
 
 export default function CaseList({ sx, ...props }: {
   sx?: object;
