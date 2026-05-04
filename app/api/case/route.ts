@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     } else {
       const emptyDiseaseList: string[] = [];
       await connectDB();
-      await Case.create({ name, emptyDiseaseList, description });
+      await Case.create({ name, diseases: emptyDiseaseList, description });
     }
 
     return NextResponse.json(
